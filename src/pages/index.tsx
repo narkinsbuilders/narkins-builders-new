@@ -241,7 +241,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block md:w-1/2 ml-[5rem]">
-              <img src="https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-04-29-01h34m42s043-scaled.webp" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
+              <img src="/images/hill-crest-residency-launch-2.png", alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
             </div>
           </div>
         </div>
@@ -275,10 +275,10 @@ export default function Home() {
               }}
             >
               <Carousel swipe autoPlay slideShow  loop rightToLeft keyboard displayMode="3d" interval={10000} dataSource={[
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/al-arz-home-scaled.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/al-arz-residency-scaled.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/palm-residency-scaled.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-28-at-12.49.08-AM.jpeg"
+                  "/images/Al Arz Homez.JPG",
+                  "/images/Al Arz Terrace.JPG",
+                  "/images/Ferere Town Project.JPG",
+                  "/images/Sharfabad.JPG"
                 ].map(i => ({ image: i }))}></Carousel>
             </div>
           </div>
