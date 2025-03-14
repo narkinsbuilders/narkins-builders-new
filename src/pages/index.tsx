@@ -164,7 +164,7 @@ export default function Home() {
             swipe hideArrows={false} autoPlay slideShow loop rightToLeft
             hideIndicators={true} keyboard displayMode="default" interval={10000}
             dataSource={[
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-32.jpg",
+              "/images/NBR_SLIDE_1.png",
               "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-33.jpg",
               "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-34.jpg",
               "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-35.jpg",
