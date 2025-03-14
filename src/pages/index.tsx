@@ -165,13 +165,13 @@ export default function Home() {
             hideIndicators={true} keyboard displayMode="default" interval={10000}
             dataSource={[
               "/images/NBR_SLIDE_1.png",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-33.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-34.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-35.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-36.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-37.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-38.jpg",
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-39.jpg"
+              "/images/NBR_SLIDE_2.png",
+              "/images/NBR_SLIDE_3.png",
+              "/images/NBR_SLIDE_4.png",
+              //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-36.jpg",
+              //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-37.jpg",
+              //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-38.jpg",
+              //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-39.jpg"
             ].map(i => ({ image: i }))}
           />
         </div>
