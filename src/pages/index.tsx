@@ -183,7 +183,7 @@ export default function Home() {
                 swipe hideArrows={false} autoPlay slideShow
                 hideIndicators={true} loop rightToLeft keyboard displayMode="default" interval={10000}
                 dataSource={[
-                  "/images/NBR_SLIDE_1.png",
+              "/images/NBR_SLIDE_1.png",
               "/images/NBR_SLIDE_2.png",
               "/images/NBR_SLIDE_3.png",
               "/images/NBR_SLIDE_4.png",
@@ -241,7 +241,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block md:w-1/2 ml-[5rem]">
-              <img src="/images/hill-crest-residency-launch-2.png", alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
+              <img src= "/images/hill-crest-residency-launch-2.png", alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
             </div>
           </div>
         </div>

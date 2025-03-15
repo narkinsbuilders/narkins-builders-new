@@ -13,13 +13,13 @@ const navigation = {
         {
           name: 'Hill Crest Residency',
           href: '/hill-crest-residency',
-          imageSrc: '/images/HCR_elevation.jpg',
+          imageSrc: "/images/HCR_elevation.jpg",
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Narkin\'s Boutique Residency',
           href: '/narkins-boutique-residency',
-          imageSrc: '/images/NBR_nav_picture.jpg',
+          imageSrc: "/images/NBR_nav_picture.jpg",
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
       ],
@@ -41,19 +41,19 @@ const navigation = {
         {
           name: 'Al Arz Homes',
           href: '/completed-projects?p=al-arz-homes',
-          imageSrc: '/images/Al Arz Homez.JPG',
+          imageSrc: "/images/Al Arz Homez.JPG",
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Palm Residency',
           href: '/completed-projects?p=palm-residency',
-          imageSrc: 'images/Ferere Town Project',
+          imageSrc: "/images/Ferere Town Project.JPG",
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Al Arz Residency',
           href: '/completed-projects?p=al-arz-residency',
-          imageSrc: '/images/Al Arz Terrace.JPG',
+          imageSrc: "/images/Al Arz Terrace.JPG",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
@@ -61,7 +61,7 @@ const navigation = {
         {
           name: 'Classic Heights',
           href: '/completed-projects?p=classic-heights',
-          imageSrc: '/images/Sharfabad.JPG',
+          imageSrc: "/images/Sharfabad.JPG",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },

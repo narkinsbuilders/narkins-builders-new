@@ -27,14 +27,14 @@ function classNames(...classes) {
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
-    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: '/images/Diamond HCR.png' },
-    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: '/images/Gold HCR.png' },
-    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: '/images/Sapphire HCR.png' },
+    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: "/images/Diamond HCR.png" },
+    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: "/images/Gold HCR.png" },
+    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: "/images/Sapphire HCR.png" },
 ], [
-    { title: '3 Bed Platinum', size: '1884 Feet', location: 'Jinnah View', image: '/images/Platinium HCR.png' },
+    { title: '3 Bed Platinum', size: '1884 Feet', location: 'Jinnah View', image: "/images/Platinium HCR.png" },
 ], [
-    { title: '4 Bed Rhodium', size: '2507 Feet', location: 'Jinnah View', image: '/images/Rhodium HCR.png' },
-    { title: '4 Bed Sapphire-A', size: '1762 Feet', location: 'Safari View', image: '/images/Sapphire A 4 bed.png' },
+    { title: '4 Bed Rhodium', size: '2507 Feet', location: 'Jinnah View', image: "/images/Rhodium HCR.png" },
+    { title: '4 Bed Sapphire-A', size: '1762 Feet', location: 'Safari View', image: "/images/Sapphire A 4 bed.png" },
 ]];
 
 export default function NarkinsBoutiqueResidency() {
