@@ -433,7 +433,7 @@ export default function NarkinsBoutiqueResidency() {
           </div>
         </section>
         <section className="bg-neutral-100 border-t -px-5 lg:px-8 py-[4rem]">
-          <div className="py-5 -px-5 mx-auto max-w-7xl">
+          //<div className="py-5 -px-5 mx-auto max-w-7xl">
             <div className="mx-auto px-5 my-5 max-w-2xl lg:mx-0">
               <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">
                 Testimonials
