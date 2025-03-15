@@ -34,7 +34,7 @@ const cards = [
       size: "1547 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/7.Gold-Heritage-club-and-danzoo-safari-view-removebg-preview.png",
+        "/images/nbr_3d/gold_new.jpg",
     },
   ],
   [
@@ -43,7 +43,7 @@ const cards = [
       size: "2184 Square Feet",
       location: "Heritage Club & Theme Park View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/6.Diamond-Corner-Heritage-club-and-danzoo-safari-view.png",
+        "/images/nbr_3d/6.diamond_corner_heritage_club_and_danzoo_safari view.jpg",
     },
     {
       title: "3 Bed Diamond-A",
