@@ -50,7 +50,7 @@ const cards = [
       size: "2121 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/5.Diamond-A-jinnah-and-theme-park-view.webp",
+        "/images/nbr_3d/5_diamond_a_jinnah_and_theme_park_view.png",
     },
   ],
   [
@@ -59,28 +59,28 @@ const cards = [
       size: "2597 Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/4.Platinum-A-jinnah-and-theme-park-view.png",
+        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.jpg",
     },
     {
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Danzoo Safari View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/3.Platinum-A-1-Corner-jinnah-and-danzoo-safari-view.webp",
+        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.jpg",
     },
     {
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Boulevard View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/1.-Platinum-A-1-Corner-jinnah-and-theme-park-view.webp",
+        "/images/nbr_3d/platinum_a1_boulevard_new.jpg",
     },
     {
       title: "4 Bed Platinum A-1",
       size: "2486 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/2.Platinum-A-1-jinnah-and-danzoo-safari-view.webp",
+        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.jpg",
     },
   ],
 ];
