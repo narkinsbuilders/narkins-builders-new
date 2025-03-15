@@ -14,7 +14,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
           <div className="mb-6 md:mb-0">
             <a href="https://flowbite.com/" className="flex items-center">
               <img
-                src="/images/Narkins_Logo.png"
+                src="/images/narkins_logo.png"
                 className="h-[5rem] me-3"
                 alt="FlowBite Logo"
               />
