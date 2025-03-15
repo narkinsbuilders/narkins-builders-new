@@ -241,7 +241,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block md:w-1/2 ml-[5rem]">
-              <img src= "/images/hill-crest-residency-launch-2.png", alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
+              <img src= "/images/hill-crest-residency-launch-2.png" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
             </div>
           </div>
         </div>
