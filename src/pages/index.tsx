@@ -219,7 +219,7 @@ export default function Home() {
       <section className="text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed" style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-04-29-01h34m42s043-scaled.webp)" }}>
         <div className="max-w-7xl mx-auto px-4 py-[5rem]">
           <div className="md:lg:hidden block w-full">
-            <img src="/images/hcr_new.jpg" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
+            <img src="/images/hcr_new.JPG" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
           </div>
           <div className="flex flex-col justify-center h-full md:flex-row">
             <div className="max-w-3xl px-0 md:lg:px-[15px] gap-y-2 py-10 mt-[5%]">
@@ -241,7 +241,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block md:w-1/2 ml-[5rem]">
-              <img src= "/images/hcr_new.jpg" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
+              <img src= "/images/hcr_new.JPG" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
             </div>
           </div>
         </div>
