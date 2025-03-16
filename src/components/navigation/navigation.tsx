@@ -13,7 +13,7 @@ const navigation = {
         {
           name: 'Hill Crest Residency',
           href: '/hill-crest-residency',
-          imageSrc: "/images/hcr_new.jpg",
+          imageSrc: "/images/hcr_new.JPG",
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
