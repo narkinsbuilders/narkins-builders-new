@@ -239,7 +239,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                   <span className="sr-only">Narkins Builders</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Narkins-Logo.png"
+                    src="/images/narkins_logo.png"
                     alt=""
                   />
                 </Link>
