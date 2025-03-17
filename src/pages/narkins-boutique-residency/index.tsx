@@ -366,8 +366,8 @@ export default function NarkinsBoutiqueResidency() {
           </div>
         </section>
         <section className="bg-neutral-100 px-5 py-[4rem] lg:px-8">
-          <div className="py-5 mx-auto max-w-7xl">
-            <div className="mx-auto -px-6 my-5 max-w-2xl lg:mx-auto">
+          //<div className="py-5 mx-auto max-w-7xl">
+           // <div className="mx-auto -px-6 my-5 max-w-2xl lg:mx-auto">
               {/* <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">Gallery</h3> */}
             </div>
             <div className="max-w-7xl mt-5 mx-auto w-full overflow-hidden">
