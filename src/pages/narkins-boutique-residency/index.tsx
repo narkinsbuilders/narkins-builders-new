@@ -73,7 +73,7 @@ const cards = [
       size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
       image:
-        "/images/nbr_3d/platinum_a1_boulevard_new.jpg",
+        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.jpg",
     },
     {
       title: "4 Bed Platinum A-1",
