@@ -26,7 +26,7 @@ function classNames(...classes) {
 }
 import Carousel from "@/components/carousel-op/carousel-op";
 import AdsCampaign from "@/components/ads-campaign/ads-campaign";
-const categories = ["2 Bed", "3 Bed", "4 Bed"];
+const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
   [
     {
@@ -34,7 +34,7 @@ const cards = [
       size: "1547 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/nbr_3d/gold_new.jpg",
+        "/images/nbr_3d/gold_heritage _club_and_danzoo_safari_ view.jpg",
     },
   ],
   [
@@ -69,8 +69,8 @@ const cards = [
         "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.jpg",
     },
     {
-      title: "4 Bed Platinum A-1 Corner",
-      size: "2670 Square Feet",
+      title: "4 Bed Platinum A-1 Boulevard",
+      size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
       image:
         "/images/nbr_3d/platinum_a1_boulevard_new.jpg",
@@ -81,6 +81,15 @@ const cards = [
       location: "Jinnah & Theme Park View",
       image:
         "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.jpg",
+    },
+  ],
+  [
+    {
+      title: "Sky Villa",
+      size: "1547 Square Feet",
+      location: "Heritage Club & Danzoo Safari View",
+      image:
+        "/images/nbr_3d/gold_new.jpg",
     },
   ],
 ];
@@ -153,6 +162,9 @@ export default function NarkinsBoutiqueResidency() {
                 <br />
                 Elevate your lifestyle to new heights with {`Narkin's`} Boutique
                 Residency.
+                <br  />
+                With great pride, We unveil {`Narkin's`} Boutique Residency! In Collaboration with "Talent & Taste".
+                 This landmark project offers luxurious amenities, a grand reception lobby, and exquisite interiors --- featuring Highrise 2, 3 & 4 Bedroom luxury apartments and our exclusive Sky Villa Duplex Apartments, redefining modern sophistication and elevated living
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
