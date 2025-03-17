@@ -163,8 +163,10 @@ export default function NarkinsBoutiqueResidency() {
                 Elevate your lifestyle to new heights with {`Narkin's`} Boutique
                 Residency.
                 <br  />
+                <br  />
                 With great pride, We unveil {`Narkin's`} Boutique Residency! In Collaboration with "Talent & Taste".
-                 This landmark project offers luxurious amenities, a grand reception lobby, and exquisite interiors --- featuring Highrise 2, 3 & 4 Bedroom luxury apartments and our exclusive Sky Villa Duplex Apartments, redefining modern sophistication and elevated living
+                 This landmark project offers luxurious amenities, a grand reception lobby, and exquisite interiors 
+                 --- featuring Highrise 2, 3 & 4 Bedroom luxury apartments and our exclusive Sky Villa Duplex Apartments, redefining modern sophistication and elevated living.
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
