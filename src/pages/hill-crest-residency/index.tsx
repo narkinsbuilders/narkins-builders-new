@@ -236,6 +236,8 @@ export default function NarkinsBoutiqueResidency() {
                                 swipe hideArrows={false} autoPlay={true} slideShow={true} loop={true}
                                 hideIndicators={true} className={`w-full rounded-xl ${!matches ? 'aspect-video' : 'h-[40rem]'}`} displayMode="default"
                                 dataSource={[
+                                    // Change These
+
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h21m35s735.jpg",
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h26m38s830.jpg",
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h28m41s223.jpg",
@@ -255,6 +257,8 @@ export default function NarkinsBoutiqueResidency() {
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {[
+                                // Change These
+
                                 [
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h21m35s735.jpg",
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h26m38s830.jpg",

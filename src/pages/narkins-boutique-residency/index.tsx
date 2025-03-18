@@ -417,6 +417,7 @@ export default function NarkinsBoutiqueResidency() {
                 className={`w-full rounded-xl ${!matches ? "aspect-video" : "h-[40rem]"}`}
                 displayMode="default"
                 dataSource={[
+                  // Change These
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0776-1.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0787-1.webp",
@@ -433,11 +434,13 @@ export default function NarkinsBoutiqueResidency() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {[
                 [
+                  // Change These
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0776-1.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0787-1.webp",
                 ],
                 [
+                  // Change These
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0797-1.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-02-22-04h12m09s908-1-scaled.webp",
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
