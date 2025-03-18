@@ -85,11 +85,46 @@ const cards = [
   ],
   [
     {
-      title: "Sky Villa",
-      size: "1547 Square Feet",
+      title: "Diamond A",
+      size: "4242 Square Feet",
+      location: "Jinnah & Theme Park View",
+      image:
+        "/images/nbr_3d/Diamond-A-new(sky).jpg",
+    },
+    {
+      title: "Diamond Corner",
+      size: "4968 Square Feet",
+      location: "Heritage Club & Theme Park View",
+      image:
+        "/images/nbr_3d/diamond-corner-new(sky).jpg",
+    },
+    {
+      title: "Gold",
+      size: "3094 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/nbr_3d/gold_new.jpg",
+        "/images/nbr_3d/gold-new(sky).jpg",
+    },
+    {
+      title: "Platinium A",
+      size: "5194 Square Feet",
+      location: "Jinnah & Theme Park View",
+      image:
+        "/images/nbr_3d/platinum-a-new(sky).jpg",
+    },
+     {
+      title: "Platinium A-1 Corner",
+      size: "5340 Square Feet",
+      location: "Jinnah & Danzoo Safari View",
+      image:
+        "/images/nbr_3d/platinum-A1-Corner-new(sky).jpg",
+    },
+    {
+      title: "Platinum A-1 Boulevard",
+      size: "4972 Square Feet",
+      location: "Jinnah & Boulevard View",
+      image:
+        "/images/nbr_3d/platinum-A1-boulevard-new(sky).jpg",
     },
   ],
 ];
