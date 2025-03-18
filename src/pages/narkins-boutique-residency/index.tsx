@@ -50,7 +50,7 @@ const cards = [
       size: "2121 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/5_diamond_a_jinnah_and_theme_park_view.png",
+        "/images/nbr_3d/Diamond-A-blue.jpg",
     },
   ],
   [
