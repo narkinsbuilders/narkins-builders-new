@@ -260,9 +260,9 @@ export default function NarkinsBoutiqueResidency() {
                                 // Change These
 
                                 [
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h21m35s735.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h26m38s830.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h28m41s223.jpg"
+                                    "/images/NBR_SLIDE_1.png",
+                                    "/images/NBR_SLIDE_2.png",
+                                    "/images/NBR_SLIDE_3.png"
                                 ],
                                 [
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h43m54s456.jpg",
