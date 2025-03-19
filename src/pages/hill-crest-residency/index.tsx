@@ -238,18 +238,20 @@ export default function NarkinsBoutiqueResidency() {
                                 dataSource={[
                                     // Change These
 
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h21m35s735.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h26m38s830.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-30-23h28m41s223.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h43m54s456.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-29-02h24m02s449.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-29-02h24m08s928.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-29-02h24m28s208.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-29-02h24m47s413.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2023-11-29-02h25m05s134.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h42m19s559.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h42m36s758.jpg",
-                                    "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h42m44s064.jpg"
+                                    "/images/hcr_appartment/hcr_apartment_slide_1.png",
+                                  "/images/hcr_appartment/hcr_apartment_slide_2.png",
+                                  "/images/hcr_appartment/hcr_apartment_slide_3.png",
+                                   "/images/hcr_appartment/hcr_apartment_slide_4.png",
+                                 "/images/hcr_appartment/hcr_apartment_slide_5.png",
+"/images/hcr_appartment/hcr_apartment_slide_6.png",
+"/images/hcr_appartment/hcr_apartment_slide_7.png",
+"/images/hcr_appartment/hcr_apartment_slide_8.png",
+"/images/hcr_appartment/hcr_apartment_slide_9.png",
+"/images/hcr_appartment/hcr_apartment_slide_10.png",
+"/images/hcr_appartment/hcr_apartment_slide_11.png",
+"/images/hcr_appartment/hcr_apartment_slide_12.png",
+"/images/hcr_appartment/hcr_apartment_slide_13.png
+
                                 ].map(i => ({ image: i }))}
                             />
                         </div>
