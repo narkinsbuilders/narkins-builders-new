@@ -418,14 +418,13 @@ export default function NarkinsBoutiqueResidency() {
                 displayMode="default"
                 dataSource={[
                   // Change These
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0776-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0787-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0797-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-02-22-04h12m09s908-1-scaled.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0771-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0774-1.webp",
+                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png",
                 ].map((i) => ({ image: i }))}
               />
             </div>
@@ -435,15 +434,16 @@ export default function NarkinsBoutiqueResidency() {
               {[
                 [
                   // Change These
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0776-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0787-1.webp",
+                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
+
                 ],
                 [
                   // Change These
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0797-1.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-02-22-04h12m09s908-1-scaled.webp",
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/IMG_0763-1.webp",
+                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
                 ],
               ].map((images, index) => (
                 <div className="grid gap-4" key={images.join()}>
