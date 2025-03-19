@@ -262,7 +262,7 @@ export default function NarkinsBoutiqueResidency() {
                                 // Change These
 
                                 [
-                                    ""/images/hcr_appartment/hcr_apartment_slide_1.png",
+                                  "/images/hcr_appartment/hcr_apartment_slide_1.png",
                                   "/images/hcr_appartment/hcr_apartment_slide_2.png",
                                   "/images/hcr_appartment/hcr_apartment_slide_3.png",
                                    "/images/hcr_appartment/hcr_apartment_slide_4.png",
