@@ -277,9 +277,9 @@ export default function Home() {
               }}
             >
               <Carousel swipe autoPlay slideShow  loop rightToLeft keyboard displayMode="3d" interval={10000} dataSource={[
-                  "/images/Al Arz Homez.JPG",
-                  "/images/Al Arz Terrace.JPG",
-                  "/images/Ferere Town Project.JPG",
+                  "/images/al-arz-residency-scaled.webp",
+                  "/images/al-arz-home-scaled.webp",
+                  "/images/palm-residency-scaled.webp",
                   "/images/Sharfabad.JPG"
                 ].map(i => ({ image: i }))}></Carousel>
             </div>
