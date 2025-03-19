@@ -262,9 +262,19 @@ export default function NarkinsBoutiqueResidency() {
                                 // Change These
 
                                 [
-                                    "/images/NBR_SLIDE_1.png",
-                                    "/images/NBR_SLIDE_2.png",
-                                    "/images/NBR_SLIDE_3.png"
+                                    ""/images/hcr_appartment/hcr_apartment_slide_1.png",
+                                  "/images/hcr_appartment/hcr_apartment_slide_2.png",
+                                  "/images/hcr_appartment/hcr_apartment_slide_3.png",
+                                   "/images/hcr_appartment/hcr_apartment_slide_4.png",
+                                 "/images/hcr_appartment/hcr_apartment_slide_5.png",
+"/images/hcr_appartment/hcr_apartment_slide_6.png",
+"/images/hcr_appartment/hcr_apartment_slide_7.png",
+"/images/hcr_appartment/hcr_apartment_slide_8.png",
+"/images/hcr_appartment/hcr_apartment_slide_9.png",
+"/images/hcr_appartment/hcr_apartment_slide_10.png",
+"/images/hcr_appartment/hcr_apartment_slide_11.png",
+"/images/hcr_appartment/hcr_apartment_slide_12.png",
+"/images/hcr_appartment/hcr_apartment_slide_13.png
                                 ],
                                 [
                                     "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-01-21-01h43m54s456.jpg",
