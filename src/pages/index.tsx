@@ -216,7 +216,7 @@ export default function Home() {
         </div>
       </section>
       {/* Page section example for content below the video header */}
-      <section className="text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed" style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/images/hill-crest-residency-launch-2.png" }}>
+      <section className="text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed" style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/vlcsnap-2024-04-29-01h34m42s043-scaled.webp)" }}>
         <div className="max-w-7xl mx-auto px-4 py-[5rem]">
           <div className="md:lg:hidden block w-full">
             <img src="/images/hcr_new.JPG" alt="Hill Crest Residency" className="rounded-lg w-full min-w-[40vw]" />
@@ -263,8 +263,7 @@ export default function Home() {
               </p>
               <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl">Completed Projects</h2>
               <div className="text-lg mt-4 leading-8 text-neutral-900">
-                 At Narkins Builders & Developers, we owe a debt of gratitude to our valued partners, associates, investors, and friends.
-                 Their steadfast support and trust have been instrumental in propelling our growth and steering us towards continued success.
+                 At Narkins Builders & Developers, we deliver what we commit.
               </div>
             </div>
             <div
