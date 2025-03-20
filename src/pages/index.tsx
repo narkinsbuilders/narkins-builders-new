@@ -265,7 +265,6 @@ export default function Home() {
               <div className="text-lg mt-4 leading-8 text-neutral-900">
                  At Narkins Builders & Developers, we owe a debt of gratitude to our valued partners, associates, investors, and friends.
                  Their steadfast support and trust have been instrumental in propelling our growth and steering us towards continued success.
-                  Together, we forge ahead, united by a shared vision of excellence and a commitment to realizing our collective goals.
               </div>
             </div>
             <div
