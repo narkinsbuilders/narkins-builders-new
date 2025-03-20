@@ -418,7 +418,7 @@ export default function NarkinsBoutiqueResidency() {
                 displayMode="default"
                 dataSource={[
                   // Change These
-                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
@@ -434,7 +434,7 @@ export default function NarkinsBoutiqueResidency() {
               {[
                 [
                   // Change These
-                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.png",
@@ -443,7 +443,7 @@ export default function NarkinsBoutiqueResidency() {
                 ],
                 [
                   // Change These
-                  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png",
