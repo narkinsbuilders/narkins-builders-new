@@ -399,79 +399,69 @@ export default function NarkinsBoutiqueResidency() {
               </div>
             </div>
           </div>
-        </section>
-        <section className="bg-neutral-100 px-5 py-[4rem] lg:px-8">
-          <div className="py-5 mx-auto max-w-7xl">
-            <div className="mx-auto -px-6 my-5 max-w-2xl lg:mx-auto">
-              {/* <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">Gallery</h3> */}
-            </div>
-            <div className="max-w-7xl mt-5 mx-auto w-full overflow-hidden">
-              <Carousel
-                id="carousel"
-                swipe
-                hideArrows={false}
-                autoPlay={true}
-                slideShow={true}
-                loop={true}
-                hideIndicators={true}
-                className={`w-full rounded-xl ${!matches ? "aspect-video" : "h-[40rem]"}`}
-                displayMode="default"
-                dataSource={[
-                  // Change These
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png",
-                ].map((i) => ({ image: i }))}
-              />
-            </div>
-          </div>
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-              {[
-                [
-                  // Change These
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
+     </section>
+                    <section className="bg-neutral-100 px-5 py-[4rem] lg:px-8">
+                        <div className="py-5 mx-auto max-w-7xl">
+                            <div className="mx-auto -px-6 my-5 max-w-2xl lg:mx-auto">
+                                {/* <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">Gallery</h3> */}
+                            </div>
+                            <div className="max-w-7xl mt-5 mx-auto w-full overflow-hidden">
+                                <Carousel
+                                    id='carousel'
+                                    swipe hideArrows={false} autoPlay={true} slideShow={true} loop={true}
+                                    hideIndicators={true} className={`w-full rounded-xl ${!matches ? 'aspect-video' : 'h-[40rem]'}`} displayMode="default"
+                                    dataSource={[
+                                        // Change These
+    
+ "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.png",
-                ],
-                [
-                  // Change These
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.png"
+   
+                                    ].map(i => ({ image: i }))}
+                                />
+                            </div>
+                        </div>
+                        <div className="max-w-7xl mx-auto">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                {[
+                                    // Change These
+    
+                                    [
+                                      "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png"
+
+                                    ],
+                                    [
+ "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
 "/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_11.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_12.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_13.png",
-                ],
-              ].map((images, index) => (
-                <div className="grid gap-4" key={images.join()}>
-                  {images.slice(0, 2).map((src) => (
-                    <div
-                      key={src}
-                      className="px-4"
-                      onClick={() => openLightbox({ image: src })}
-                    >
-                      <img
-                        className={`h-auto max-w-full rounded-lg`}
-                        src={src}
-                        alt=""
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png"
+
+                                    ],
+                                    [
+                                       "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png"
+
+                                    ],
+                                    [
+                                        "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png"
+
+                                    ]
+                                ].map((images, index) => (
+                                    <div className="grid gap-4" key={images.join()}>
+                                        {images.slice(0, 2).map((src) => <div key={src} className="px-4" onClick={() => openLightbox({ image: src })}>
+                                            <img className={`h-auto max-w-full rounded-lg`} src={src} alt="" />
+                                        </div>)}
+                                    </div>
+                                ))}
+                            </div>
             {/* <AdsCampaign
               onlyForm={false}
               image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.png'}
