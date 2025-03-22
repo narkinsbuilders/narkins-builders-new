@@ -386,7 +386,7 @@ export default function NarkinsBoutiqueResidency() {
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Mosque-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Play-Area-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Pool-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Reception-with-title.webp",
+                 "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Reception-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Steam-Bath-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Billiard-Rooms-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Gym-with-title.webp",
