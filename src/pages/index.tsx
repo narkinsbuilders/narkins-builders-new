@@ -278,7 +278,7 @@ export default function Home() {
                   "/images/al-arz-residency-scaled.webp",
                   "/images/al-arz-home-scaled.webp",
                   "/images/palm-residency-scaled.webp",
-                  "/images/Sharfabad.JPG"
+                  "/images/Sharfabad_resized.jpg"
                 ].map(i => ({ image: i }))}></Carousel>
             </div>
           </div>

@@ -61,7 +61,7 @@ const navigation = {
         {
           name: 'Classic Heights',
           href: '/completed-projects?p=classic-heights',
-          imageSrc: "/images/Sharfabad.JPG",
+          imageSrc: "/images/Sharfabad_resized.jpg",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },

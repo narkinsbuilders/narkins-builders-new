@@ -399,7 +399,7 @@ export default function NarkinsBoutiqueResidency() {
               />
               <div className="p-4 px-0">
                 <h2 className="mt-2 font-bold text-lg leading-8 text-gray-800">
-                  {['Gym', 'Play Area', 'Pool', 'Reception', 'Snooker'][amenityIndex]}
+                  {['Gym', 'Play Area', 'Pool', 'Reception', 'Snooker', 'Steam Bath'][amenityIndex]}
                 </h2>
               </div>
             </div>
