@@ -19,7 +19,7 @@ const navigation = {
         {
           name: 'Narkin\'s Boutique Residency',
           href: '/narkins-boutique-residency',
-          imageSrc: "/images/nbr_nav_upscaled.webp",
+          imageSrc: "/images/nbr_nav.jpeg",
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
       ],
