@@ -338,6 +338,10 @@ export default function NarkinsBoutiqueResidency() {
                   "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Pool.webp",
                   "Pool",
                 ],
+                [
+                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/steam-bath.webp",
+                  "Steam Bath",
+                ],
               ].map(([image, name], index) => (
                 <li key={index}>
                   <div className="group relative before:absolute before:-inset-2.5 before:rounded-[20px] before:bg-gray-50 before:opacity-0 hover:before:opacity-100">
