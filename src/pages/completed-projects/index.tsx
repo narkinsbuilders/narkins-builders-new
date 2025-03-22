@@ -22,7 +22,7 @@ function classNames(...classes) {
 
 const categories = ['Palm Residency', 'AL Arz Terrace', 'AL Arz Homes', 'Classic Homes'];
 const maps = [
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4969.01853943289!2d67.03531127649141!3d24.840302377942507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33dd1d40d2655%3A0x966d0cdb327565c0!2sPearl%20Apartment!5e1!3m2!1sen!2s!4v1714414122232!5m2!1sen!2s',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2757.942943695933!2d67.0382979!3d24.840475599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33dd1da9b421f%3A0xed57a16e28104a84!2sPalm%20Residency%2C%20McNeil%20Rd%2C%20Frere%20Town%2C%20Karachi%2C%20Pakistan!5e1!3m2!1sen!2sus!4v1742636653877!5m2!1sen!2sus',
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4967.554989137014!2d67.03420337649223!3d24.876732177918772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e5c5fea0781%3A0x49dd2ea8b9422ee6!2sAl-Arz%20Terrace!5e1!3m2!1sen!2s!4v1714414177304!5m2!1sen!2s',
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4967.446745804674!2d67.05358048911405!3d24.879424520977317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f0057261ced%3A0x94c02ee6dcf3d3c8!2sAl%20Arz%20Homes!5e1!3m2!1sen!2s!4v1714414221044!5m2!1sen!2s',
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4965.124852519145!2d67.03464437649365!3d24.937111577879445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f86e9eb2f4d%3A0x137af69775b7af4c!2sClassic%20Homes!5e1!3m2!1sen!2s!4v1714414259043!5m2!1sen!2s'
