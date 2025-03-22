@@ -53,7 +53,7 @@ const navigation = {
         {
           name: 'Al Arz Residency',
           href: '/completed-projects?p=al-arz-residency',
-          imageSrc: "/images/al-arz-home-scaled.webp",
+          imageSrc: "/images/al-arz-residency-scaled.webp",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
