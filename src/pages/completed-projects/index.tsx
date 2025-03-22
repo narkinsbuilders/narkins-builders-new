@@ -102,7 +102,7 @@ export default function NarkinsBoutiqueResidency() {
                     </div>
                 </div>
                 <section className="bg-white">
-                    //<div className="mx-auto max-w-7xl py-[5rem] lg:px-8">
+                    <div className="mx-auto max-w-7xl py-[5rem] lg:px-8">
                         <Tab.Group>
                             <Tab.List className="flex space-x-1 gap-2 px-6 my-5 mb-5 border-b-neutral-900 rounded-xl p-1">
                                 {categories.map(category => (

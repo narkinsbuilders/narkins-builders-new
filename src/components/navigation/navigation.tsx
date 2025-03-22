@@ -41,19 +41,19 @@ const navigation = {
         {
           name: 'Al Arz Homes',
           href: '/completed-projects?p=al-arz-homes',
-          imageSrc: "/images/Al Arz Homez.JPG",
+          imageSrc: "/images/al-arz-home-scaled.webp",
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Palm Residency',
           href: '/completed-projects?p=palm-residency',
-          imageSrc: "/images/Ferere Town Project.JPG",
+          imageSrc: "/images/palm-residency-scaled.webp",
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Al Arz Residency',
           href: '/completed-projects?p=al-arz-residency',
-          imageSrc: "/images/Al Arz Terrace.JPG",
+          imageSrc: "/images/al-arz-home-scaled.webp",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
