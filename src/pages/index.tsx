@@ -219,7 +219,7 @@ export default function Home() {
       <section
   className="text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed"
   style={{
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://admin.narkinsbuilders.com/wp-content/uploads/2025/03/hcr_new-scaled.jpg')`
+ //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url('https://admin.narkinsbuilders.com/wp-content/uploads/2025/03/hcr_new-scaled.jpg')`
   }}
 >
 
