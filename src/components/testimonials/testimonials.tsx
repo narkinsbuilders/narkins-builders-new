@@ -1,79 +1,73 @@
+import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+import { motion } from 'framer-motion';
 import React, { FC } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 
 
-interface TestimonialsProps { }
+interface TestimonialsProps {
+  testimonials: Array<{
+    name: string,
+    stars: Array<true | "half">,
+    testimonial: string,
+    avatar: string, // Placeholder avatar
+  }>;
+}
 
-const Testimonials: FC<TestimonialsProps> = () => (
-  <section className="bg-neutral-100 border-t -px-5 lg:px-8 py-[4rem]">
-    <div className="py-5 -px-5 mx-auto max-w-7xl">
-      <div className="mr-auto px-5 my-5 max-w-2xl lg:mx-0">
-        <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize mb-4">Testimonials</h3>
-      </div>
-      <div className="grid mb-8 px-5 max-w-7xl mt-5 lg:mb-12 gap-2 gap-y-2 lg:grid-cols-2">
-        {[
-          {
-            name: "Saad Arshad",
-            stars: [true, true, true, true, "half"],
-            testimonial:
-              "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
-          },
-          {
-            name: "Arsalan",
-            stars: [true, true, true, true, true],
-            testimonial:
-              "Smooth booking experience, very transparent throughout the process.",
-          },
-          {
-            name: "Umair Iqrar",
-            stars: [true, true, true, true, false],
-            testimonial:
-              "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
-          },
-        ].map((item, index) => (
-          <figure key={index} className="flex border hover:bg-[#FAFAFA] transition transition-duration-100 cursor-pointer flex-col justify-center items-center p-8 text-center bg-white border-b border-gray-200 md:p-12 lg:border rounded-xl">
-            <blockquote className="mx-auto mb-8 max-w-2xl text-gray-500">
-              <h3 className="text-lg font-semibold text-gray-900 -dark:text-white">
-
-              </h3>
-              <ul className="flex justify-center my-4">
-                {item.stars.map((star, starIndex) => (
-                  <li key={starIndex}>
-                    <i
-                      className={`fas ${star === true
-                        ? "fa-star text-yellow-400"
-                        : star === "half"
-                          ? "fa-star-half-alt text-yellow-400"
-                          : "far fa-star text-yellow-400"
-                        }`}
-                    />
-                  </li>
-                ))}
-              </ul>
-              <p className="my-4">
-                {item.testimonial}
-              </p>
-            </blockquote>
-            <figcaption className="flex justify-center items-center space-x-3">
-              {/* <img
-  className="w-9 h-9 rounded-full"
-  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.webp"
-  alt="profile picture"
-/> */}
-              <div className="space-y-0.5 font-medium -dark:text-white text-left">
-                <div>{item.name}</div>
-                <div className="text-sm font-light text-gray-500 -dark:text-gray-400">
-                  Client
-                </div>
-              </div>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      {/* <div className="text-center">
-<a href="#" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 -dark:focus:ring-gray-700 -dark:bg-gray-800 -dark:text-gray-400 -dark:border-gray-600 -dark:hover:text-white -dark:hover:bg-gray-700">Show more...</a>
-</div> */}
+const Testimonials: FC<TestimonialsProps> = ({ testimonials }: TestimonialsProps) => (
+  <div className="mx-auto max-w-7xl">
+    {/* Heading */}
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+        What Our Clients Say
+      </h2>
+      <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        Hear from our satisfied clients about their experiences with Narkin’s Builders.
+      </p>
     </div>
-  </section>
+
+    {/* Testimonials Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((item, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card className="h-full bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <CardHeader className="flex flex-col items-center text-center p-6">
+              <Avatar className="w-16 h-16 mb-4 rounded-full overflow-hidden">
+                <AvatarImage src={item.avatar} alt={item.name} />
+                <AvatarFallback>{item.name[0]}</AvatarFallback>
+              </Avatar>
+              <CardTitle className="text-xl font-semibold text-gray-900">
+                {item.name}
+              </CardTitle>
+              <div className="flex justify-center mt-2">
+                {item.stars.map((star, starIndex) => (
+                  <span
+                    key={starIndex}
+                    className={`text-xl ${star === true
+                      ? "text-yellow-400"
+                      : star === "half"
+                        ? "text-yellow-400"
+                        : "text-gray-300"
+                      }`}
+                  >
+                    {star === true ? "★" : star === "half" ? "½" : "☆"}
+                  </span>
+                ))}
+              </div>
+            </CardHeader>
+            <CardContent className="text-center p-6 pt-0">
+              <blockquote className="text-gray-600 italic">
+                "{item.testimonial}"
+              </blockquote>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  </div>
 );
 
 export default Testimonials;

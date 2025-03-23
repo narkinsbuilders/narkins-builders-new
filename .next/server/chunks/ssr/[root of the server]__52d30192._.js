@@ -93,22 +93,30 @@ function Document() {
                 lineNumber: 9,
                 columnNumber: 7
             }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
+                crossOrigin: "anonymous",
+                src: "//unpkg.com/react-scan/dist/auto.global.js"
+            }, void 0, false, {
+                fileName: "[project]/src/pages/_document.tsx",
+                lineNumber: 13,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("body", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Main"], {}, void 0, false, {
                         fileName: "[project]/src/pages/_document.tsx",
-                        lineNumber: 19,
+                        lineNumber: 24,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["NextScript"], {}, void 0, false, {
                         fileName: "[project]/src/pages/_document.tsx",
-                        lineNumber: 20,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 18,
+                lineNumber: 23,
                 columnNumber: 7
             }, this)
         ]
@@ -756,15 +764,13 @@ __turbopack_async_result__();
 var { g: global, __dirname, a: __turbopack_async_module__ } = __turbopack_context__;
 __turbopack_async_module__(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 __turbopack_context__.s({
-    "default": (()=>App),
-    "getMoreInformationContext": (()=>getMoreInformationContext)
+    "default": (()=>App)
 });
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ads$2d$campaign$2f$ads$2d$campaign$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ads-campaign/ads-campaign.tsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sticky$2d$wa$2d$button$2f$wa$2d$button$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/sticky-wa-button/wa-button.tsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$global$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/contexts/global.tsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$dialog$2f$dialog$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/dialog/dialog.tsx [ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/zustand/index.tsx [ssr] (ecmascript)");
 var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__
@@ -777,8 +783,6 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
-;
-const getMoreInformationContext = __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["createContext"];
 function App({ Component, pageProps }) {
     const open = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["useGlobalLeadFormState"])((state)=>state.open);
     const setOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["useGlobalLeadFormState"])((state)=>state.setOpen);
@@ -797,7 +801,7 @@ function App({ Component, pageProps }) {
                     features: []
                 }, void 0, false, {
                     fileName: "[project]/src/pages/_app.tsx",
-                    lineNumber: 17,
+                    lineNumber: 15,
                     columnNumber: 9
                 }, void 0),
                 showButtons: false,
@@ -815,12 +819,12 @@ function App({ Component, pageProps }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/pages/_app.tsx",
-                lineNumber: 16,
+                lineNumber: 14,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sticky$2d$wa$2d$button$2f$wa$2d$button$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/_app.tsx",
-                lineNumber: 33,
+                lineNumber: 31,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$global$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["GlobalLeadFormProvider"], {
@@ -828,18 +832,18 @@ function App({ Component, pageProps }) {
                     ...pageProps
                 }, void 0, false, {
                     fileName: "[project]/src/pages/_app.tsx",
-                    lineNumber: 35,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/_app.tsx",
-                lineNumber: 34,
+                lineNumber: 32,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/_app.tsx",
-        lineNumber: 15,
+        lineNumber: 13,
         columnNumber: 5
     }, this);
 }
@@ -4616,15 +4620,25 @@ function HillCrestResidency({ posts }) {
                                             transition: {
                                                 duration: 0.3
                                             },
-                                            className: `group relative overflow-hidden min-h-[300px] rounded-lg shadow-lg hover:shadow-xl ${video.type === "facebook" ? "sm:col-span-2" : ""}`,
+                                            className: "group relative overflow-hidden min-h-[300px] rounded-lg shadow-lg hover:shadow-xl",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("iframe", {
-                                                    src: `https://www.youtube.com/embed/${video.id}`,
-                                                    title: video.title,
-                                                    allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-                                                    allowFullScreen: true,
-                                                    loading: "lazy",
-                                                    className: "w-full h-full rounded-lg"
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                                    href: `https://youtube.com/watch?v=${video.id}`,
+                                                    target: "_blank",
+                                                    rel: "noopener noreferrer",
+                                                    className: "block w-full h-full",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                        src: `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`,
+                                                        alt: video.title,
+                                                        width: 500,
+                                                        height: 300,
+                                                        className: "w-full h-full object-cover rounded-lg",
+                                                        loading: "lazy"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                        lineNumber: 454,
+                                                        columnNumber: 41
+                                                    }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
                                                     lineNumber: 448,
@@ -4635,16 +4649,32 @@ function HillCrestResidency({ posts }) {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                                         href: `https://youtube.com/watch?v=${video.id}`,
                                                         target: "_blank",
+                                                        rel: "noopener noreferrer",
                                                         className: "text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300",
                                                         children: "Watch Now"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 456,
+                                                        lineNumber: 466,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 455,
+                                                    lineNumber: 465,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                    className: "absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                                        className: "text-white text-lg font-semibold",
+                                                        children: video.title
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                        lineNumber: 478,
+                                                        columnNumber: 41
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                    lineNumber: 477,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
@@ -4673,7 +4703,7 @@ function HillCrestResidency({ posts }) {
                         posts: posts
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 465,
+                        lineNumber: 485,
                         columnNumber: 17
                     }, this)
                 ]
@@ -4684,7 +4714,7 @@ function HillCrestResidency({ posts }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$footer$2f$footer$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 467,
+                lineNumber: 487,
                 columnNumber: 13
             }, this)
         ]

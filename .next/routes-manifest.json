@@ -1,0 +1,103 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/blog/[...blog]",
+      "regex": "^/blog/(.+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPblog": "nxtPblog"
+      },
+      "namedRegex": "^/blog/(?<nxtPblog>.+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/__/ads-landing-hcr",
+      "regex": "^/__/ads\\-landing\\-hcr(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/__/ads\\-landing\\-hcr(?:/)?$"
+    },
+    {
+      "page": "/__/ads-landing-nbr",
+      "regex": "^/__/ads\\-landing\\-nbr(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/__/ads\\-landing\\-nbr(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/blogs",
+      "regex": "^/blogs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blogs(?:/)?$"
+    },
+    {
+      "page": "/completed-projects",
+      "regex": "^/completed\\-projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/completed\\-projects(?:/)?$"
+    },
+    {
+      "page": "/hill-crest-residency",
+      "regex": "^/hill\\-crest\\-residency(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/hill\\-crest\\-residency(?:/)?$"
+    },
+    {
+      "page": "/narkins-boutique-residency",
+      "regex": "^/narkins\\-boutique\\-residency(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/narkins\\-boutique\\-residency(?:/)?$"
+    }
+  ],
+  "dataRoutes": [
+    {
+      "page": "/",
+      "dataRouteRegex": "^/_next/data/g234YBJO\\-6XsftF6jSbne/index\\.json$"
+    },
+    {
+      "page": "/hill-crest-residency",
+      "dataRouteRegex": "^/_next/data/g234YBJO\\-6XsftF6jSbne/hill-crest-residency\\.json$"
+    }
+  ],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

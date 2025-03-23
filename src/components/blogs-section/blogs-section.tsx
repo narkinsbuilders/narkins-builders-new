@@ -32,12 +32,12 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
           <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
             From our blog
           </h2>
-          <p className="mt-4 text-lg text-neutral-700 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-neutral-700 mx-auto">
             Checkout what we're publishing on our blog
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
             <article key={post.id} className="bg-neutral-50 border p-4 rounded flex max-w-xl flex-col items-start justify-between">
               <div className="flex items-center gap-x-4 text-xs">
@@ -48,14 +48,16 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                   {post.category || "Uncategorized"}
                 </Link>
               </div>
-              <div className="group relative">
+              <div className="group relative" suppressHydrationWarning>
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                   <Link href={post.link}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" dangerouslySetInnerHTML={{ __html: post.description }}></p>
+                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                  {post.description.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "")}
+                </p>
               </div>
               {post.author.name && (
                 <div className="relative mt-8 flex items-center gap-x-4">

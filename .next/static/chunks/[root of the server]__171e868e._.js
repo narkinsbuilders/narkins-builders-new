@@ -468,14 +468,33 @@ function triggerUpdate(msg) {
 var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "useGlobalLeadFormState": (()=>useGlobalLeadFormState)
+    "useGlobalLeadFormState": (()=>useGlobalLeadFormState),
+    "useLightboxStore": (()=>useLightboxStore)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zustand$2f$esm$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/zustand/esm/index.mjs [client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zustand$2f$esm$2f$react$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/zustand/esm/react.mjs [client] (ecmascript)");
 ;
-const useGlobalLeadFormState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zustand$2f$esm$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["create"])((set)=>({
+const useGlobalLeadFormState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zustand$2f$esm$2f$react$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["create"])((set)=>({
         open: false,
         setOpen: (b)=>set({
                 open: b
+            })
+    }));
+const useLightboxStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zustand$2f$esm$2f$react$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["create"])((set)=>({
+        open: false,
+        image: {
+            title: undefined,
+            src: ""
+        },
+        openLightbox: (image)=>set({
+                open: true,
+                image
+            }),
+        closeLightbox: ()=>set({
+                open: false,
+                image: {
+                    title: undefined,
+                    src: ""
+                }
             })
     }));
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -2347,21 +2366,21 @@ __turbopack_context__.s({
     "Lightbox": (()=>Lightbox)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircleIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js [client] (ecmascript) <export default as XCircleIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$CloudArrowDownIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CloudArrowDownIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/outline/esm/CloudArrowDownIcon.js [client] (ecmascript) <export default as CloudArrowDownIcon>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XMarkIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XMarkIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js [client] (ecmascript) <export default as XMarkIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/button.tsx [client] (ecmascript)"); // shadcn/ui Button
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.js [client] (ecmascript) <export default as Loader2>"); // shadcn/ui Loader
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/zustand/index.tsx [client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
 ;
-;
-const Lightbox = ({ open, onClose, image })=>{
+const Lightbox = ()=>{
     _s();
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const { open, image, closeLightbox } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useLightboxStore"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Lightbox.useEffect": ()=>{
             if (open) {
@@ -2369,14 +2388,19 @@ const Lightbox = ({ open, onClose, image })=>{
             }
         }
     }["Lightbox.useEffect"], [
-        open
-    ]);
+        open,
+        image
+    ]); // Reset loading state when `image` changes
     const handleImageLoad = ()=>{
         setIsLoading(false); // Image has finished loading
     };
+    const handleImageError = ()=>{
+        setIsLoading(false); // Stop loading if the image fails to load
+        console.error("Failed to load image:", image);
+    };
     if (!open) return null; // Don't render if lightbox is closed
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        onClick: onClose,
+        onClick: closeLightbox,
         className: "fixed inset-0 z-[999] flex items-center justify-center bg-white/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out",
         style: {
             visibility: open ? "visible" : "hidden",
@@ -2389,97 +2413,105 @@ const Lightbox = ({ open, onClose, image })=>{
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
                         variant: "ghost",
                         size: "icon",
-                        onClick: (e)=>{
-                            e.stopPropagation();
-                            onClose();
-                        },
-                        className: "text-neutral-700 hover:text-black",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircleIcon$3e$__["XCircleIcon"], {
-                            className: "h-20 w-20"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                            lineNumber: 47,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                        lineNumber: 38,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
-                        variant: "ghost",
-                        size: "icon",
                         onClick: (e)=>e.stopPropagation(),
-                        className: "text-neutral-700 hover:text-black",
+                        className: "text-neutral-700 border-r mr-0 hover:text-black",
                         asChild: true,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                             href: image,
                             download: true,
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$CloudArrowDownIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CloudArrowDownIcon$3e$__["CloudArrowDownIcon"], {
-                                className: "h-20 w-20"
+                                className: "h-6 w-6"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                                lineNumber: 57,
-                                columnNumber: 13
+                                lineNumber: 43,
+                                columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                            lineNumber: 56,
-                            columnNumber: 11
+                            lineNumber: 42,
+                            columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                        lineNumber: 49,
-                        columnNumber: 9
+                        lineNumber: 35,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
+                        variant: "ghost",
+                        size: "icon",
+                        onClick: (e)=>{
+                            console.log('a');
+                            e.stopPropagation();
+                            closeLightbox();
+                        },
+                        className: "text-neutral-700 hover:text-black",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XMarkIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XMarkIcon$3e$__["XMarkIcon"], {
+                            className: "h-10 w-10"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/lightbox/lightbox.tsx",
+                            lineNumber: 57,
+                            columnNumber: 21
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/lightbox/lightbox.tsx",
+                        lineNumber: 47,
+                        columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                lineNumber: 37,
-                columnNumber: 7
+                lineNumber: 34,
+                columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                tabIndex: -1,
                 className: "relative max-w-6xl w-full h-full flex items-center justify-center p-4",
-                onClick: (e)=>e.stopPropagation(),
                 children: [
                     isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        tabIndex: -1,
                         className: "absolute inset-0 flex items-center justify-center",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
-                            className: "h-8 w-8 animate-spin text-black"
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"
                         }, void 0, false, {
                             fileName: "[project]/src/components/lightbox/lightbox.tsx",
                             lineNumber: 70,
-                            columnNumber: 13
+                            columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                        lineNumber: 69,
-                        columnNumber: 11
+                        lineNumber: 68,
+                        columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                        src: image,
+                        src: image.src,
                         alt: "Lightbox Image",
+                        onClick: (e)=>e.stopPropagation(),
                         onLoad: handleImageLoad,
+                        onError: handleImageError,
                         className: `max-w-full max-h-full object-contain transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`
                     }, void 0, false, {
                         fileName: "[project]/src/components/lightbox/lightbox.tsx",
                         lineNumber: 75,
-                        columnNumber: 9
+                        columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                lineNumber: 63,
-                columnNumber: 7
+                lineNumber: 62,
+                columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/lightbox/lightbox.tsx",
-        lineNumber: 31,
-        columnNumber: 5
+        lineNumber: 28,
+        columnNumber: 9
     }, this);
 };
-_s(Lightbox, "Yt82d/dvZsn5nYh5sqDQjv+rJ38=");
+_s(Lightbox, "/sUR3SikUMgZWQL8oON2ZKLWVFk=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useLightboxStore"]
+    ];
+});
 _c = Lightbox;
 var _c;
 __turbopack_context__.k.register(_c, "Lightbox");
@@ -2498,20 +2530,10 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 ;
 function Map({ map }) {
-    return map && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
-        src: map,
-        className: "border rounded-xl my-5 mt-[5rem]",
-        height: "600",
-        style: {
-            width: '100%'
-        },
-        allowfullscreen: "",
-        loading: "lazy",
-        referrerpolicy: "no-referrer-when-downgrade"
-    }, void 0, false, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, void 0, false, {
         fileName: "[project]/src/components/map/map.tsx",
         lineNumber: 3,
-        columnNumber: 16
+        columnNumber: 9
     }, this);
 }
 _c = Map;
@@ -3023,7 +3045,7 @@ const BlogsSection = ({ posts })=>{
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "mt-4 text-lg text-neutral-700 max-w-2xl mx-auto",
+                            className: "mt-4 text-lg text-neutral-700 mx-auto",
                             children: "Checkout what we're publishing on our blog"
                         }, void 0, false, {
                             fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
@@ -3037,7 +3059,7 @@ const BlogsSection = ({ posts })=>{
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3",
+                    className: "mx-auto grid grid-cols-1 gap-x-8 gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3",
                     children: posts.map((post)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("article", {
                             className: "bg-neutral-50 border p-4 rounded flex max-w-xl flex-col items-start justify-between",
                             children: [
@@ -3070,6 +3092,7 @@ const BlogsSection = ({ posts })=>{
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "group relative",
+                                    suppressHydrationWarning: true,
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             className: "mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600",
@@ -3097,9 +3120,7 @@ const BlogsSection = ({ posts })=>{
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "mt-5 line-clamp-3 text-sm leading-6 text-gray-600",
-                                            dangerouslySetInnerHTML: {
-                                                __html: post.description
-                                            }
+                                            children: post.description.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "")
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
                                             lineNumber: 58,
@@ -3120,7 +3141,7 @@ const BlogsSection = ({ posts })=>{
                                             className: "h-10 w-10 rounded-full bg-gray-50"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 65,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3131,7 +3152,7 @@ const BlogsSection = ({ posts })=>{
                                                     children: post.author.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
-                                                    lineNumber: 66,
+                                                    lineNumber: 68,
                                                     columnNumber: 21
                                                 }, this),
                                                 post.author.role && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3139,19 +3160,19 @@ const BlogsSection = ({ posts })=>{
                                                     children: post.author.role
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
-                                                    lineNumber: 67,
+                                                    lineNumber: 69,
                                                     columnNumber: 42
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
-                                            lineNumber: 65,
+                                            lineNumber: 67,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/blogs-section/blogs-section.tsx",
-                                    lineNumber: 61,
+                                    lineNumber: 63,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -3197,7 +3218,6 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navigation$2f$navigation$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/navigation/navigation.tsx [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$video$2d$player$2f$video$2d$player$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/video-player/video-player.tsx [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$20$2f$solid$2f$esm$2f$MagnifyingGlassCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MagnifyingGlassCircleIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/20/solid/esm/MagnifyingGlassCircleIcon.js [client] (ecmascript) <export default as MagnifyingGlassCircleIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useMediaQuery$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useMediaQuery.tsx [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$footer$2f$footer$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/footer/footer.tsx [client] (ecmascript)");
@@ -3212,8 +3232,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$t
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$blogs$2d$section$2f$blogs$2d$section$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/blogs-section/blogs-section.tsx [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/zustand/index.tsx [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$PlayIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlayIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/solid/esm/PlayIcon.js [client] (ecmascript) <export default as PlayIcon>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$MagnifyingGlassCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MagnifyingGlassCircleIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/solid/esm/MagnifyingGlassCircleIcon.js [client] (ecmascript) <export default as MagnifyingGlassCircleIcon>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$ArrowTopRightOnSquareIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowTopRightOnSquareIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/solid/esm/ArrowTopRightOnSquareIcon.js [client] (ecmascript) <export default as ArrowTopRightOnSquareIcon>");
 ;
 var _s = __turbopack_context__.k.signature();
+;
 ;
 ;
 ;
@@ -3392,15 +3417,9 @@ const testimonials = [
 var __N_SSP = true;
 function HillCrestResidency({ posts }) {
     _s();
-    const [lightbox, setLightbox] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])({
-        open: false,
-        image: ''
-    });
-    const openLightbox = ({ image })=>setLightbox({
-            ...lightbox,
-            open: true,
-            image
-        });
+    const openLightbox = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useLightboxStore"])({
+        "HillCrestResidency.useLightboxStore[openLightbox]": (state)=>state.openLightbox
+    }["HillCrestResidency.useLightboxStore[openLightbox]"]);
     const [query, setQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])('');
     const matches = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useMediaQuery$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useMediaQuery"])('(min-width: 768px)');
     const [amenityIndex, setAmenityIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(0);
@@ -3415,7 +3434,7 @@ function HillCrestResidency({ posts }) {
                         children: "Hill Crest Residency | Luxury Apartments in Bahria Town Karachi"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 121,
+                        lineNumber: 119,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3423,7 +3442,7 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 122,
+                        lineNumber: 120,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3431,7 +3450,7 @@ function HillCrestResidency({ posts }) {
                         content: "Hill Crest Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 126,
+                        lineNumber: 124,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3439,7 +3458,7 @@ function HillCrestResidency({ posts }) {
                         content: "Narkin's Builders"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 130,
+                        lineNumber: 128,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3447,7 +3466,7 @@ function HillCrestResidency({ posts }) {
                         content: "website"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 133,
+                        lineNumber: 131,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3455,7 +3474,7 @@ function HillCrestResidency({ posts }) {
                         content: "Hill Crest Residency | Luxury Apartments in Bahria Town Karachi"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 134,
+                        lineNumber: 132,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3463,7 +3482,7 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 135,
+                        lineNumber: 133,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3471,7 +3490,7 @@ function HillCrestResidency({ posts }) {
                         content: "https://www.hillcrestresidency.com"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 139,
+                        lineNumber: 137,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3479,7 +3498,7 @@ function HillCrestResidency({ posts }) {
                         content: "https://www.hillcrestresidency.com/images/hill-crest-residency-og.jpg"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 140,
+                        lineNumber: 138,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3487,7 +3506,7 @@ function HillCrestResidency({ posts }) {
                         content: "Hill Crest Residency"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 144,
+                        lineNumber: 142,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3495,7 +3514,7 @@ function HillCrestResidency({ posts }) {
                         content: "summary_large_image"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 147,
+                        lineNumber: 145,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3503,7 +3522,7 @@ function HillCrestResidency({ posts }) {
                         content: "Hill Crest Residency | Luxury Apartments in Bahria Town Karachi"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 148,
+                        lineNumber: 146,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3511,30 +3530,23 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 149,
+                        lineNumber: 147,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 119,
+                lineNumber: 117,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navigation$2f$navigation$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 154,
+                lineNumber: 152,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$lightbox$2f$lightbox$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Lightbox"], {
-                ...lightbox,
-                onClose: ()=>setLightbox({
-                        ...lightbox,
-                        open: false,
-                        image: ''
-                    })
-            }, void 0, false, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$lightbox$2f$lightbox$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Lightbox"], {}, void 0, false, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 155,
+                lineNumber: 153,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3547,12 +3559,12 @@ function HillCrestResidency({ posts }) {
                             poster: '/images/hcr_video_poster.png'
                         }, void 0, false, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 158,
+                            lineNumber: 156,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 157,
+                        lineNumber: 155,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3568,7 +3580,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Hill Crest Residency"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 161,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3577,25 +3589,25 @@ function HillCrestResidency({ posts }) {
                                                 "Our Magnificent and eminent master piece is located at 29-30A Jinnah Avenue,  Just 30 seconds away and nearly 1 km drive from the main gate. We ensure a luxurious and modern lifestyle with all your necessities as well as opulence being taken care of, once you book with us a place of your own in Hill Crest.",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 164,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 164,
                                                     columnNumber: 39
                                                 }, this),
                                                 "We are currently providing a variety of 2 bed and 3 bed luxury apartments along with lounge and dining that features panoramic view of the beauty of Bahria town. It will surely let you experience the lifestyle you always dreamed for your family and upcoming generations!"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 164,
+                                            lineNumber: 162,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 162,
+                                    lineNumber: 160,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3618,34 +3630,34 @@ function HillCrestResidency({ posts }) {
                                                         children: "→"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 174,
+                                                        lineNumber: 172,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, link.name, true, {
                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                lineNumber: 173,
+                                                lineNumber: 171,
                                                 columnNumber: 37
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                        lineNumber: 171,
+                                        lineNumber: 169,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 170,
+                                    lineNumber: 168,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 161,
+                            lineNumber: 159,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 160,
+                        lineNumber: 158,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3661,7 +3673,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Explore Our Offerings"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 185,
+                                            lineNumber: 183,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3669,13 +3681,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Discover a range of luxurious apartments designed to meet your lifestyle needs. Each offering combines elegance, comfort, and modern amenities."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 188,
+                                            lineNumber: 186,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 184,
+                                    lineNumber: 182,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -3690,12 +3702,12 @@ function HillCrestResidency({ posts }) {
                                                     children: category
                                                 }, category, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 196,
+                                                    lineNumber: 194,
                                                     columnNumber: 37
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 194,
+                                            lineNumber: 192,
                                             columnNumber: 29
                                         }, this),
                                         cards.map((items, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -3720,7 +3732,10 @@ function HillCrestResidency({ posts }) {
                                                             },
                                                             className: "group",
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Card"], {
-                                                                onClick: ()=>openLightbox(item),
+                                                                onClick: ()=>openLightbox({
+                                                                        src: item.image,
+                                                                        title: item.title
+                                                                    }),
                                                                 className: "bg-neutral-900 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-neutral-400 transition-all duration-300",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["CardHeader"], {
@@ -3735,27 +3750,27 @@ function HillCrestResidency({ posts }) {
                                                                                 loading: idx === 0 ? "eager" : "lazy"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                lineNumber: 227,
+                                                                                lineNumber: 225,
                                                                                 columnNumber: 57
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                                 className: "absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center",
-                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$20$2f$solid$2f$esm$2f$MagnifyingGlassCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MagnifyingGlassCircleIcon$3e$__["MagnifyingGlassCircleIcon"], {
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$MagnifyingGlassCircleIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MagnifyingGlassCircleIcon$3e$__["MagnifyingGlassCircleIcon"], {
                                                                                     className: "w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                    lineNumber: 236,
+                                                                                    lineNumber: 234,
                                                                                     columnNumber: 61
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                lineNumber: 235,
+                                                                                lineNumber: 233,
                                                                                 columnNumber: 57
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                        lineNumber: 226,
+                                                                        lineNumber: 224,
                                                                         columnNumber: 53
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -3766,7 +3781,7 @@ function HillCrestResidency({ posts }) {
                                                                                 children: item.title
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                lineNumber: 240,
+                                                                                lineNumber: 238,
                                                                                 columnNumber: 57
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3776,7 +3791,7 @@ function HillCrestResidency({ posts }) {
                                                                                         children: "Size"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                        lineNumber: 242,
+                                                                                        lineNumber: 240,
                                                                                         columnNumber: 61
                                                                                     }, this),
                                                                                     ": ",
@@ -3786,7 +3801,7 @@ function HillCrestResidency({ posts }) {
                                                                                         children: "Location"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                        lineNumber: 242,
+                                                                                        lineNumber: 240,
                                                                                         columnNumber: 97
                                                                                     }, this),
                                                                                     ": ",
@@ -3794,51 +3809,51 @@ function HillCrestResidency({ posts }) {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                                lineNumber: 241,
+                                                                                lineNumber: 239,
                                                                                 columnNumber: 57
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                        lineNumber: 239,
+                                                                        lineNumber: 237,
                                                                         columnNumber: 53
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                lineNumber: 222,
+                                                                lineNumber: 220,
                                                                 columnNumber: 49
                                                             }, this)
                                                         }, index, false, {
                                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                            lineNumber: 216,
+                                                            lineNumber: 214,
                                                             columnNumber: 45
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 209,
+                                                    lineNumber: 207,
                                                     columnNumber: 37
                                                 }, this)
                                             }, idx, false, {
                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                lineNumber: 208,
+                                                lineNumber: 206,
                                                 columnNumber: 33
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 192,
+                                    lineNumber: 190,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 182,
+                            lineNumber: 180,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 181,
+                        lineNumber: 179,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3854,7 +3869,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Amenities in Hill Crest Residency"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 258,
+                                            lineNumber: 256,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3862,13 +3877,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Explore the top-notch amenities designed to enhance your living experience."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 261,
+                                            lineNumber: 259,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 257,
+                                    lineNumber: 255,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3895,7 +3910,7 @@ function HillCrestResidency({ posts }) {
                                                             loading: "lazy"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                            lineNumber: 277,
+                                                            lineNumber: 275,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3905,33 +3920,33 @@ function HillCrestResidency({ posts }) {
                                                                 children: amenity.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                lineNumber: 286,
+                                                                lineNumber: 284,
                                                                 columnNumber: 49
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                            lineNumber: 285,
+                                                            lineNumber: 283,
                                                             columnNumber: 45
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 276,
+                                                    lineNumber: 274,
                                                     columnNumber: 41
                                                 }, this)
                                             }, index, false, {
                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 268,
                                                 columnNumber: 37
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 266,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 267,
+                                    lineNumber: 265,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3958,7 +3973,7 @@ function HillCrestResidency({ posts }) {
                                                 }))
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 298,
+                                            lineNumber: 296,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3973,29 +3988,29 @@ function HillCrestResidency({ posts }) {
                                                 ][amenityIndex]
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                lineNumber: 317,
+                                                lineNumber: 315,
                                                 columnNumber: 33
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 316,
+                                            lineNumber: 314,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 297,
+                                    lineNumber: 295,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 255,
+                            lineNumber: 253,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 254,
+                        lineNumber: 252,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4011,7 +4026,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Gallery"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 328,
+                                            lineNumber: 326,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4019,13 +4034,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Explore the stunning visuals of Hill Crest Residency."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 329,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 327,
+                                    lineNumber: 325,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4039,7 +4054,7 @@ function HillCrestResidency({ posts }) {
                                             },
                                             className: "group relative overflow-hidden rounded-lg cursor-pointer",
                                             onClick: ()=>openLightbox({
-                                                    image: src
+                                                    src
                                                 }),
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -4051,7 +4066,7 @@ function HillCrestResidency({ posts }) {
                                                     loading: "lazy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 346,
+                                                    lineNumber: 344,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4061,23 +4076,23 @@ function HillCrestResidency({ posts }) {
                                                         children: "View"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 355,
+                                                        lineNumber: 353,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 354,
+                                                    lineNumber: 352,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 339,
+                                            lineNumber: 337,
                                             columnNumber: 33
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 337,
+                                    lineNumber: 335,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4086,23 +4101,23 @@ function HillCrestResidency({ posts }) {
                                         map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.871134778674!2d67.3134228!3d25.0044944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1714296481726!5m2!1sen!2s"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                        lineNumber: 365,
+                                        lineNumber: 363,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 364,
+                                    lineNumber: 362,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 325,
+                            lineNumber: 323,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 324,
+                        lineNumber: 322,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4118,7 +4133,7 @@ function HillCrestResidency({ posts }) {
                                             children: "What Our Clients Say"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 374,
+                                            lineNumber: 372,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4126,13 +4141,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Hear from our satisfied clients about their experiences with Narkin’s Builders."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 377,
+                                            lineNumber: 375,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 373,
+                                    lineNumber: 371,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4158,20 +4173,20 @@ function HillCrestResidency({ posts }) {
                                                                         alt: item.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                        lineNumber: 393,
+                                                                        lineNumber: 391,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                                                         children: item.name[0]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                        lineNumber: 394,
+                                                                        lineNumber: 392,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                lineNumber: 392,
+                                                                lineNumber: 390,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -4179,7 +4194,7 @@ function HillCrestResidency({ posts }) {
                                                                 children: item.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                lineNumber: 396,
+                                                                lineNumber: 394,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4189,18 +4204,18 @@ function HillCrestResidency({ posts }) {
                                                                         children: star === true ? "★" : star === "half" ? "½" : "☆"
                                                                     }, starIndex, false, {
                                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                        lineNumber: 401,
+                                                                        lineNumber: 399,
                                                                         columnNumber: 53
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                                lineNumber: 399,
+                                                                lineNumber: 397,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 391,
+                                                        lineNumber: 389,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -4214,39 +4229,39 @@ function HillCrestResidency({ posts }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                            lineNumber: 416,
+                                                            lineNumber: 414,
                                                             columnNumber: 45
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 415,
+                                                        lineNumber: 413,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                lineNumber: 390,
+                                                lineNumber: 388,
                                                 columnNumber: 37
                                             }, this)
                                         }, index, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 385,
+                                            lineNumber: 383,
                                             columnNumber: 33
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 383,
+                                    lineNumber: 381,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 371,
+                            lineNumber: 369,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 370,
+                        lineNumber: 368,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4262,7 +4277,7 @@ function HillCrestResidency({ posts }) {
                                             children: "What Social Media is Saying"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 430,
+                                            lineNumber: 428,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4270,13 +4285,13 @@ function HillCrestResidency({ posts }) {
                                             children: "See what people are saying about Hill Crest Residency on YouTube and Facebook."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 433,
+                                            lineNumber: 431,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 429,
+                                    lineNumber: 427,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4288,86 +4303,157 @@ function HillCrestResidency({ posts }) {
                                             transition: {
                                                 duration: 0.3
                                             },
-                                            className: `group relative overflow-hidden min-h-[300px] rounded-lg shadow-lg hover:shadow-xl ${video.type === "facebook" ? "sm:col-span-2" : ""}`,
+                                            className: "group relative overflow-hidden min-h-[300px] shadow-lg hover:shadow-xl",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
-                                                    src: `https://www.youtube.com/embed/${video.id}`,
-                                                    title: video.title,
-                                                    allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-                                                    allowFullScreen: true,
-                                                    loading: "lazy",
-                                                    className: "w-full h-full rounded-lg"
-                                                }, void 0, false, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: `https://youtube.com/watch?v=${video.id}`,
+                                                    target: "_blank",
+                                                    rel: "noopener noreferrer",
+                                                    className: "block w-full h-full",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                                                            src: `https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`,
+                                                            alt: video.title,
+                                                            width: 500,
+                                                            height: 300,
+                                                            className: "w-full h-full object-cover",
+                                                            loading: "lazy"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                            lineNumber: 452,
+                                                            columnNumber: 41
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "absolute bottom-[4rem] left-4 flex items-center justify-center",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                                                                alt: 'youtube-logo',
+                                                                src: "/youtube.svg",
+                                                                width: 50,
+                                                                height: 150 / 2,
+                                                                style: {
+                                                                    height: 'auto'
+                                                                }
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                                lineNumber: 461,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                            lineNumber: 460,
+                                                            columnNumber: 41
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 448,
+                                                    lineNumber: 446,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center",
+                                                    className: "absolute inset-0 bg-black bg-opacity-0 bg-linear-to-b from-transparent to-black group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                         href: `https://youtube.com/watch?v=${video.id}`,
                                                         target: "_blank",
+                                                        rel: "noopener noreferrer",
                                                         className: "text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300",
-                                                        children: "Watch Now"
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$PlayIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlayIcon$3e$__["PlayIcon"], {
+                                                            className: "w-20 h-20"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                            lineNumber: 473,
+                                                            columnNumber: 45
+                                                        }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                        lineNumber: 456,
+                                                        lineNumber: 467,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                                    lineNumber: 455,
+                                                    lineNumber: 466,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute flex items-middle bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-white text-lg font-semibold",
+                                                            children: video.title
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                            lineNumber: 479,
+                                                            columnNumber: 41
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "ml-auto mt-1",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$solid$2f$esm$2f$ArrowTopRightOnSquareIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowTopRightOnSquareIcon$3e$__["ArrowTopRightOnSquareIcon"], {
+                                                                className: "h-4 w-4 text-white"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                                lineNumber: 480,
+                                                                columnNumber: 71
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                            lineNumber: 480,
+                                                            columnNumber: 41
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
+                                                    lineNumber: 478,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, video.id, true, {
                                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                            lineNumber: 441,
+                                            lineNumber: 439,
                                             columnNumber: 33
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                                    lineNumber: 439,
+                                    lineNumber: 437,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                            lineNumber: 427,
+                            lineNumber: 425,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 426,
+                        lineNumber: 424,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$blogs$2d$section$2f$blogs$2d$section$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         posts: posts
                     }, void 0, false, {
                         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                        lineNumber: 465,
+                        lineNumber: 487,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 156,
+                lineNumber: 154,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$footer$2f$footer$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-                lineNumber: 467,
+                lineNumber: 489,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/hill-crest-residency/index.tsx",
-        lineNumber: 118,
+        lineNumber: 116,
         columnNumber: 9
     }, this);
 }
-_s(HillCrestResidency, "1mzMXacNFCvM3Flj3L4lQb6ErO0=", false, function() {
+_s(HillCrestResidency, "/MwbB6T845bDi16Erq57QD+uOxs=", false, function() {
     return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useLightboxStore"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useMediaQuery$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["useMediaQuery"]
     ];
 });

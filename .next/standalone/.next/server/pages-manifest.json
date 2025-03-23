@@ -1,0 +1,15 @@
+{
+  "/_document": "pages/_document.js",
+  "/__/ads-landing-hcr": "pages/__/ads-landing-hcr.html",
+  "/__/ads-landing-nbr": "pages/__/ads-landing-nbr.html",
+  "/_error": "pages/_error.js",
+  "/about": "pages/about.html",
+  "/blog/[...blog]": "pages/blog/[...blog].html",
+  "/blogs": "pages/blogs.html",
+  "/completed-projects": "pages/completed-projects.html",
+  "/narkins-boutique-residency": "pages/narkins-boutique-residency.html",
+  "/_app": "pages/_app.js",
+  "/hill-crest-residency": "pages/hill-crest-residency.js",
+  "/": "pages/index.js",
+  "/404": "pages/404.html"
+}

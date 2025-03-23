@@ -5,12 +5,17 @@ import Navigation from '@/components/navigation/navigation';
 import Footer from '@/components/footer/footer';
 import Testimonials from '@/components/testimonials/testimonials';
 import BlogsSection from '@/components/blogs-section/blogs-section';
-import Carousel from '@/components/carousel-op/carousel-op';
+import dynamic from 'next/dynamic';
+
 import { useGlobalLeadFormState } from '@/zustand';
 import { GetServerSideProps } from 'next';
 import { Button } from '@/components/ui/button'; // shadcn/ui button
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
 import { motion } from 'framer-motion'; // For animations
+
+const Carousel = dynamic(() => import('@/components/carousel-op/carousel-op'), {
+  ssr: false
+});
 
 interface Post {
   id: number;
@@ -26,6 +31,29 @@ interface Post {
     imageUrl: string;
   };
 }
+const testimonials = [
+  {
+      name: "Saad Arshad",
+      stars: [true, true, true, true, "half"],
+      testimonial:
+          "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+      avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
+  },
+  {
+      name: "Arsalan",
+      stars: [true, true, true, true, true],
+      testimonial:
+          "Smooth booking experience, very transparent throughout the process.",
+      avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
+  },
+  {
+      name: "Umair Iqrar",
+      stars: [true, true, true, true, false],
+      testimonial:
+          "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+      avatar: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder avatar
+  },
+];
 
 export default function Index({ posts }: { posts: Post[] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -289,8 +317,8 @@ export default function Index({ posts }: { posts: Post[] }) {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-white">
-        <Testimonials />
+      <section className="bg-white border-t px-5 lg:px-8 py-20">
+        <Testimonials testimonials={testimonials} />
       </section>
 
       {/* Blogs Section */}

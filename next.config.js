@@ -18,7 +18,7 @@ module.exports = {
     ignoreBuildErrors: true
   },
   images: {
-    domains: ["admin.narkinsbuilders.com"]
+    domains: ["admin.narkinsbuilders.com", "i.ytimg.com"]
   }
   // webpack: (config, { dev, isServer }) => {
   //   if (!dev && !isServer) {

@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation/navigation";
 import VideoPlayer from "@/components/video-player/video-player";
-import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Footer from "@/components/footer/footer";
@@ -19,6 +18,9 @@ import BlogsSection from "@/components/blogs-section/blogs-section";
 import { Post } from "../blog/[...blog]";
 import { GetServerSideProps } from "next";
 import FacebookPageEmbed from "@/components/facebook/post";
+import { useLightboxStore } from "@/zustand";
+import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import Testimonials from "@/components/testimonials/testimonials";
 
 const people = [
     'Durward Reynolds',
@@ -98,21 +100,80 @@ const testimonials = [
     },
 ];
 
-export default function HillCrestResidency({ posts }: { posts: Post[] }) {
-    const [lightbox, setLightbox] = useState({
-        open: false, image: ''
-    });
-    const openLightbox = ({ image }: { image: string }) => setLightbox({ ...lightbox, open: true, image });
-    const [query, setQuery] = useState('')
-    const matches = useMediaQuery('(min-width: 768px)');
+const Amenities = () => {
     const [amenityIndex, setAmenityIndex] = useState(0);
+    return (
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            {/* Heading and Subheading */}
+            <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+                    Amenities in Hill Crest Residency
+                </h2>
+                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Explore the top-notch amenities designed to enhance your living experience.
+                </p>
+            </div>
 
-    const filteredPeople =
-        query === ''
-            ? people
-            : people.filter((person) => {
-                return person.toLowerCase().includes(query.toLowerCase())
-            })
+            {/* Amenities Grid */}
+            <div className="max-w-7xl w-full mx-auto">
+                <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                    {amenities.map((amenity, index) => (
+                        <motion.li
+                            key={index}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3 }}
+                            className="group">
+                            <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
+                                <Image
+                                    src={amenity.image}
+                                    alt={amenity.name}
+                                    width={500}
+                                    height={300}
+                                    className="absolute inset-0 h-full w-full object-cover"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover: bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                    <span className="text-white text-lg font-semibold opacity-0 group-hover: opacity-100 transition-all duration-300">
+                                        {amenity.name}
+                                    </span>
+                                </div>
+                            </div>
+                        </motion.li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* Carousel Section */}
+            <div className="mt-16 relative h-[30rem] w-full rounded-xl overflow-hidden">
+                <Carousel
+                    id="carousel"
+                    swipe
+                    autoPlay={false}
+                    slideShow={false}
+                    loop
+                    rightToLeft
+                    hideIndicators={true}
+                    onChange={setAmenityIndex}
+                    className="w-full h-full"
+                    displayMode="default"
+                    dataSource={[
+                        "/hcr-scaled/gym.webp",
+                        "/hcr-scaled/grand-lobby.webp",
+                        "/hcr-scaled/mosque.webp",
+                        "/hcr-scaled/steam-bath.webp",
+                    ].map((i) => ({ image: i }))}
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
+                    <h2 className="text-white text-lg font-bold">
+                        {["Gym", "Grand Lobby", "Mosque", "Steam Bath"][amenityIndex]}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    )
+};
+export default function HillCrestResidency({ posts }: { posts: Post[] }) {
+    const openLightbox = useLightboxStore(state => state.openLightbox);
 
     return (
         <main>
@@ -152,7 +213,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                 />
             </Head>
             <Navigation />
-            <Lightbox {...lightbox} onClose={() => setLightbox({ ...lightbox, open: false, image: '' })} />
+            <Lightbox />
             <div className="bg-white pt-[6rem]">
                 <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
                     <VideoPlayer src="/hillcrest.mp4" poster={'/images/hcr_video_poster.png'} />
@@ -220,7 +281,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                                                 className="group"
                                             >
                                                 <Card
-                                                    onClick={() => openLightbox(item)}
+                                                    onClick={() => openLightbox({ src: item.image, title: item.title })}
                                                     className="bg-neutral-900 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-neutral-400 transition-all duration-300"
                                                 >
                                                     <CardHeader className="relative">
@@ -252,74 +313,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                     </div>
                 </section>
                 <section className="bg-white py-20">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        {/* Heading and Subheading */}
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-                                Amenities in Hill Crest Residency
-                            </h2>
-                            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                                Explore the top-notch amenities designed to enhance your living experience.
-                            </p>
-                        </div>
-
-                        {/* Amenities Grid */}
-                        <div className="max-w-7xl w-full mx-auto">
-                            <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-                                {amenities.map((amenity, index) => (
-                                    <motion.li
-                                        key={index}
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="group"
-                                    >
-                                        <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
-                                            <Image
-                                                src={amenity.image}
-                                                alt={amenity.name}
-                                                width={500}
-                                                height={300}
-                                                className="absolute inset-0 h-full w-full object-cover"
-                                                loading="lazy"
-                                            />
-                                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover: bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                                <span className="text-white text-lg font-semibold opacity-0 group-hover: opacity-100 transition-all duration-300">
-                                                    {amenity.name}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Carousel Section */}
-                        <div className="mt-16 relative h-[30rem] w-full rounded-xl overflow-hidden">
-                            <Carousel
-                                id="carousel"
-                                swipe
-                                autoPlay={false}
-                                slideShow={false}
-                                loop
-                                rightToLeft
-                                hideIndicators={true}
-                                onChange={setAmenityIndex}
-                                className="w-full h-full"
-                                displayMode="default"
-                                dataSource={[
-                                    "/hcr-scaled/gym.webp",
-                                    "/hcr-scaled/grand-lobby.webp",
-                                    "/hcr-scaled/mosque.webp",
-                                    "/hcr-scaled/steam-bath.webp",
-                                ].map((i) => ({ image: i }))}
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
-                                <h2 className="text-white text-lg font-bold">
-                                    {["Gym", "Grand Lobby", "Mosque", "Steam Bath"][amenityIndex]}
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
+                    <Amenities />
                 </section>
                 <section className="bg-neutral-100 px-5 mx-auto py-20 lg:px-8">
                     <div className="mx-auto max-w-7xl">
@@ -341,7 +335,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.3 }}
                                     className="group relative overflow-hidden rounded-lg cursor-pointer"
-                                    onClick={() => openLightbox({ image: src })}
+                                    onClick={() => openLightbox({ src })}
                                 >
                                     <Image
                                         src={src}
@@ -368,60 +362,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                 </section>
 
                 <section className="bg-neutral-100 border-t px-5 lg:px-8 py-20">
-                    <div className="mx-auto max-w-7xl">
-                        {/* Heading */}
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-                                What Our Clients Say
-                            </h2>
-                            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                                Hear from our satisfied clients about their experiences with Narkin’s Builders.
-                            </p>
-                        </div>
-
-                        {/* Testimonials Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {testimonials.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <Card className="h-full bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                        <CardHeader className="flex flex-col items-center text-center p-6">
-                                            <Avatar className="w-16 h-16 mb-4">
-                                                <AvatarImage src={item.avatar} alt={item.name} />
-                                                <AvatarFallback>{item.name[0]}</AvatarFallback>
-                                            </Avatar>
-                                            <CardTitle className="text-xl font-semibold text-gray-900">
-                                                {item.name}
-                                            </CardTitle>
-                                            <div className="flex justify-center mt-2">
-                                                {item.stars.map((star, starIndex) => (
-                                                    <span
-                                                        key={starIndex}
-                                                        className={`text-xl ${star === true
-                                                            ? "text-yellow-400"
-                                                            : star === "half"
-                                                                ? "text-yellow-400"
-                                                                : "text-gray-300"
-                                                            }`}
-                                                    >
-                                                        {star === true ? "★" : star === "half" ? "½" : "☆"}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </CardHeader>
-                                        <CardContent className="text-center p-6 pt-0">
-                                            <blockquote className="text-gray-600 italic">
-                                                "{item.testimonial}"
-                                            </blockquote>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
+                    <Testimonials testimonials={testimonials} />
                 </section>
                 <section className="bg-white py-20 border-b border">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -442,20 +383,44 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                                     key={video.id}
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.3 }}
-                                    className={`group relative overflow-hidden min-h-[300px] rounded-lg shadow-lg hover:shadow-xl ${video.type === "facebook" ? "sm:col-span-2" : ""}`}
+                                    className="group relative overflow-hidden min-h-[300px] shadow-lg hover:shadow-xl"
                                 >
+                                    {/* YouTube Thumbnail */}
+                                    <a
+                                        href={`https://youtube.com/watch?v=${video.id}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-full h-full"
+                                    >
+                                        <Image
+                                            src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
+                                            alt={video.title}
+                                            width={500}
+                                            height={300}
+                                            className="w-full h-full object-cover"
+                                            loading="lazy"
+                                        />
+                                        <div className="absolute bottom-[4rem] left-4 flex items-center justify-center">
+                                            <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} />
+                                        </div>
+                                    </a>
 
-                                    <iframe
-                                        src={`https://www.youtube.com/embed/${video.id}`}
-                                        title={video.title}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen loading="lazy"
-                                        className="w-full h-full rounded-lg"
-                                    />
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                        <a href={`https://youtube.com/watch?v=${video.id}`} target="_blank" className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                            Watch Now
+                                    {/* Overlay with Title and Watch Now Button */}
+                                    <div className="absolute inset-0 bg-black bg-opacity-0 bg-linear-to-b from-transparent to-black group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                        <a
+                                            href={`https://youtube.com/watch?v=${video.id}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                        >
+                                            <PlayIcon className="w-20 h-20" />
                                         </a>
+                                    </div>
+
+                                    {/* Video Title */}
+                                    <div className="absolute flex items-middle bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                        <p className="text-white text-lg font-semibold">{video.title}</p>
+                                        <div className="ml-auto mt-1"><ArrowTopRightOnSquareIcon className="h-4 w-4 text-white" /></div>
                                     </div>
                                 </motion.div>
                             ))}
