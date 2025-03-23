@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Dialog title={`Get More Information — Narkin's Builders`} open={open} onClose={() => setOpen(false)} body={
         <AdsCampaign
           onlyForm={true} residency="General"
-          image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/Picture1.png'}
+          image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/Picture1.webp'}
           headline={"2, 3 & 4 Bedroom Luxury Apartments"}
           features={[]}
         />} showButtons={false} cancelButton={{

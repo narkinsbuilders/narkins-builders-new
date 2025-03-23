@@ -34,7 +34,7 @@ const cards = [
       size: "1547 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/nbr_3d/gold_heritage _club_and_danzoo_safari_ view.jpg",
+        "/images/nbr_3d/gold_heritage _club_and_danzoo_safari_ view.webp",
     },
   ],
   [
@@ -43,14 +43,14 @@ const cards = [
       size: "2184 Square Feet",
       location: "Heritage Club & Theme Park View",
       image:
-        "/images/nbr_3d/6.diamond_corner_heritage_club_and_danzoo_safari view.jpg",
+        "/images/nbr_3d/6.diamond_corner_heritage_club_and_danzoo_safari view.webp",
     },
     {
       title: "3 Bed Diamond-A",
       size: "2121 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/Diamond-A-blue.jpg",
+        "/images/nbr_3d/Diamond-A-blue.webp",
     },
   ],
   [
@@ -59,28 +59,28 @@ const cards = [
       size: "2597 Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.jpg",
+        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
     },
     {
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Danzoo Safari View",
       image:
-        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.jpg",
+        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
     },
     {
       title: "4 Bed Platinum A-1 Boulevard",
       size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
       image:
-        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.jpg",
+        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
     },
     {
       title: "4 Bed Platinum A-1",
       size: "2486 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.jpg",
+        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
     },
   ],
   [
@@ -89,42 +89,42 @@ const cards = [
       size: "4242 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/Diamond-A-new(sky).jpg",
+        "/images/nbr_3d/Diamond-A-new(sky).webp",
     },
     {
       title: "Diamond Corner",
       size: "4968 Square Feet",
       location: "Heritage Club & Theme Park View",
       image:
-        "/images/nbr_3d/diamond-corner-new(sky).jpg",
+        "/images/nbr_3d/diamond-corner-new(sky).webp",
     },
     {
       title: "Gold",
       size: "3094 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/nbr_3d/gold-new(sky).jpg",
+        "/images/nbr_3d/gold-new(sky).webp",
     },
     {
       title: "Platinium A",
       size: "5194 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/platinum-a-new(sky).jpg",
+        "/images/nbr_3d/platinum-a-new(sky).webp",
     },
      {
       title: "Platinium A-1 Corner",
       size: "5340 Square Feet",
       location: "Jinnah & Danzoo Safari View",
       image:
-        "/images/nbr_3d/platinum-A1-Corner-new(sky).jpg",
+        "/images/nbr_3d/platinum-A1-Corner-new(sky).webp",
     },
     {
       title: "Platinum A-1 Boulevard",
       size: "4972 Square Feet",
       location: "Jinnah & Boulevard View",
       image:
-        "/images/nbr_3d/platinum-A1-boulevard-new(sky).jpg",
+        "/images/nbr_3d/platinum-A1-boulevard-new(sky).webp",
     },
   ],
 ];
@@ -155,7 +155,7 @@ export default function NarkinsBoutiqueResidency() {
           <VideoPlayer
             src="/nbr.mp4"
             poster={
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-32.jpg"
+              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-32.webp"
             }
           />
         </div>
@@ -382,12 +382,12 @@ export default function NarkinsBoutiqueResidency() {
                 className="w-full rounded-xl h-[30rem]"
                 displayMode="default"
                 dataSource={[
-                  "/ncr-scaled/gym.png",
-                  "/ncr-scaled/play-area.png",
-                  "/ncr-scaled/pool.png",
-                  "/ncr-scaled/reception.png",
-                  "/ncr-scaled/snooker.png",
-                  "/hcr-scaled/steam-bath.jpg",
+                  "/ncr-scaled/gym.webp",
+                  "/ncr-scaled/play-area.webp",
+                  "/ncr-scaled/pool.webp",
+                  "/ncr-scaled/reception.webp",
+                  "/ncr-scaled/snooker.webp",
+                  "/hcr-scaled/steam-bath.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Mosque-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Play-Area-with-title.webp",
                   // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Pool-with-title.webp",
@@ -418,12 +418,12 @@ export default function NarkinsBoutiqueResidency() {
                                     dataSource={[
                                         // Change These
     
- "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.png"
+ "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.webp"
    
                                     ].map(i => ({ image: i }))}
                                 />
@@ -435,28 +435,28 @@ export default function NarkinsBoutiqueResidency() {
                                     // Change These
     
                                     [
-                                      "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.png"
+                                      "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.webp"
 
                                     ],
                                     [
- "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png",
+ "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
 
                                     ],
                                     [
-                                       "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png",
+                                       "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
 
                                     ],
                                     [
-                                        "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.png",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.png"
+                                        "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
+"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp"
 
                                     ]
                                 ].map((images, index) => (
@@ -469,7 +469,7 @@ export default function NarkinsBoutiqueResidency() {
                             </div>
             {/* <AdsCampaign
               onlyForm={false}
-              image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.png'}
+              image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.webp'}
               headline={"2, 3 & 4 Bedroom Luxury Apartments"}
               features={[
                 "4 mins from the main gate",
@@ -541,7 +541,7 @@ export default function NarkinsBoutiqueResidency() {
                   <figcaption className="flex justify-center items-center space-x-3">
                     {/* <img
                     className="w-9 h-9 rounded-full"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.webp"
                     alt="profile picture"
                   /> */}
                     <div className="space-y-0.5 font-medium -dark:text-white text-left">

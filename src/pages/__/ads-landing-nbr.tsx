@@ -10,7 +10,7 @@ export default function AdsLandingPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <AdsCampaign residency="Narkin's Boutique Residency"
               onlyForm={false}
-              image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.png'}
+              image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.webp'}
               headline={"2, 3 & 4 Bedroom Luxury Apartments"}
               features={[
                 "4 mins from the main gate",

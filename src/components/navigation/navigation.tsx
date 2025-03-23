@@ -13,7 +13,7 @@ const navigation = {
         {
           name: 'Hill Crest Residency',
           href: '/hill-crest-residency',
-          imageSrc: "/images/hcr_new.JPG",
+          imageSrc: "/images/hcr_new.webp",
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
@@ -61,7 +61,7 @@ const navigation = {
         {
           name: 'Classic Heights',
           href: '/completed-projects?p=classic-heights',
-          imageSrc: "/images/Sharfabad_resized.jpg",
+          imageSrc: "/images/Sharfabad_resized.webp",
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
@@ -239,7 +239,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                   <span className="sr-only">Narkins Builders</span>
                   <img
                     className="h-8 w-auto"
-                    src="/images/narkins_logo.png"
+                    src="/images/narkins_logo.webp"
                     alt=""
                   />
                 </Link>

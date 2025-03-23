@@ -29,30 +29,30 @@ const maps = [
 ]
 const cards = [
     [
-       // "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0116-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0107-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0108-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0109-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0111-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0112-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0114-1.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0115-1.jpg"
+       // "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0116-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0107-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0108-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0109-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0111-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0112-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0114-1.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0115-1.webp"
     ], [
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0118.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0119.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0120.jpg",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0121.jpg"
-    ], [//'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0123.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0124.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0125.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0126.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0127.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0129.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0130.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0131.jpg',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0132.jpg'
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0118.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0119.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0120.webp",
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0121.webp"
+    ], [//'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0123.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0124.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0125.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0126.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0127.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0129.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0130.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0131.webp',
+        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0132.webp'
     ], [
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0137.jpg"
+        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0137.webp"
     ]
 ];
 

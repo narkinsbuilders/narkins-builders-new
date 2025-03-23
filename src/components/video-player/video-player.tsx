@@ -47,7 +47,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
 
     return (
         <div className="relative w-full rounded-xl overflow-hidden">
-            {isSafari ? <video className="w-full bg-neutral-300" muted poster={poster} playsInline controls>
+            {isSafari ? <video autoPlay className="w-full bg-neutral-300" muted poster={poster} playsInline controls>
                 <source src={src} type="video/mp4" />
                 Your browser does not support the video tag.
             </video> : (
@@ -60,7 +60,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
                         />
                     </div>
                     <video className="w-full h-auto bg-neutral-300" poster={poster} ref={videoRef} preload="yes"
-                        loop playsInline muted controls={false} disablePictureInPicture>
+                        loop autoPlay playsInline muted controls={false} disablePictureInPicture>
                         <source src={src} type="video/mp4" />
                     </video>
                 </Fragment>

@@ -94,7 +94,7 @@ const AdsCampaign: React.FC = ({
         )}
         <div className="form-column bg-[#C88A2D] rounded-lg p-4">
           <div className="flex justify-center items-center w-full">
-            <img src="/default-avatar.jpg" className="rounded-full border-white border-[2.5px]" style={{ width: '5rem', height: 'auto', }} />
+            <img src="/default-avatar.webp" className="rounded-full border-white border-[2.5px]" style={{ width: '5rem', height: 'auto', }} />
           </div>
           <div className="flex justify-center items-center text-center text-white my-4 w-full">
             Fill this form below to schedule your site tour and recieve project details

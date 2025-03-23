@@ -12,11 +12,14 @@
 
 module.exports = {
   reactStrictMode: true,
-  // output: 'standalone',
-  output: 'export',
+  output: 'standalone',
+  // output: 'export',
   typescript: {
     ignoreBuildErrors: true
   },
+  images: {
+    domains: ["admin.narkinsbuilders.com"]
+  }
   // webpack: (config, { dev, isServer }) => {
   //   if (!dev && !isServer) {
   //     Object.assign(config.resolve.alias, {
