@@ -406,7 +406,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     try {
-        const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3&tags=' + process.env.NEXT_PUBLIC_HCR_BLOG_TAG);
+        const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3&tag=' + process.env.NEXT_PUBLIC_HCR_BLOG_TAG);
         const data = await response.json();
 
         const posts: Post[] = data.map((post: any) => ({
