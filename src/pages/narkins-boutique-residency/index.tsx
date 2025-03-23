@@ -1,31 +1,25 @@
+import { GetServerSideProps } from "next";
+import { useState } from "react";
+
+import Image from "next/image";
+import BlogsSection from "@/components/blogs-section/blogs-section";
+
 import Navigation from "@/components/navigation/navigation";
 import VideoPlayer from "@/components/video-player/video-player";
-import { Tab } from "@headlessui/react";
-import {
-  MagnifyingGlassCircleIcon,
-  XCircleIcon,
-} from "@heroicons/react/20/solid";
-import { useState, Fragment } from "react";
-import dynamic from "next/dynamic";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Footer from "@/components/footer/footer";
 import { Lightbox } from "@/components/lightbox/lightbox";
 import Link from "next/link";
-import Head from "next/head";
 import Map from "@/components/map/map";
-const people = [
-  "Durward Reynolds",
-  "Kenton Towne",
-  "Therese Wunsch",
-  "Benedict Kessler",
-  "Katelyn Rohan",
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import Head from "next/head";
 import Carousel from "@/components/carousel-op/carousel-op";
-import AdsCampaign from "@/components/ads-campaign/ads-campaign";
+import { Card, CardHeader, CardContent } from "@/components/ui/card"; // shadcn/ui Card
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
+import { Post } from "../blog/[...blog]";
+import { useLightboxStore } from "@/zustand";
+import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import Testimonials from "@/components/testimonials/testimonials";
+
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
   [
@@ -112,7 +106,7 @@ const cards = [
       image:
         "/images/nbr_3d/platinum-a-new(sky).webp",
     },
-     {
+    {
       title: "Platinium A-1 Corner",
       size: "5340 Square Feet",
       location: "Jinnah & Danzoo Safari View",
@@ -128,49 +122,185 @@ const cards = [
     },
   ],
 ];
+const amenities = [
+  { image: "/nbr-scaled/gym.webp", name: "Gym" },
+  { image: "/nbr-scaled/play-area.webp", name: "Prayer Area" },
+  { image: "/nbr-scaled/steam-bath.webp", name: "Steam Bath" },
+  { image: "/nbr-scaled/reception.webp", name: "Grand Reception" },
+  { image: "/nbr-scaled/snooker.webp", name: "Snooker" },
+];
+const galleryImages = [
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_11.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_12.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.webp",
+  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.webp",
+];
+const youtubeVideos = [
+  { id: "FmEHTzdjXEc", title: "Luxury Living at Hill Crest Residency | A Guided Tour", type: "youtube" },
+  { id: "uzYVdqFHovs", title: "Hill Crest Residency: Modern Amenities and Stunning Views", type: "youtube" },
+  { id: "n8PT4z9MdRA", title: "Why Choose Hill Crest Residency? | Customer Testimonials", type: "youtube" },
+  { id: "DClpf8-xaS8", title: "Hill Crest Residency: Your Dream Home in Bahria Town Karachi", type: "youtube" },
+  { id: "5uMTiRmZXBw", title: "Hill Crest Residency: A Closer Look at Our 2, 3 & 4 Bedroom Apartments", type: "youtube" },
+];
+const testimonials = [
+  {
+    name: "Saad Arshad",
+    stars: [true, true, true, true, "half"],
+    testimonial:
+      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
+  },
+  {
+    name: "Arsalan",
+    stars: [true, true, true, true, true],
+    testimonial:
+      "Smooth booking experience, very transparent throughout the process.",
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
+  },
+  {
+    name: "Umair Iqrar",
+    stars: [true, true, true, true, false],
+    testimonial:
+      "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+    avatar: "/images/sarim-nara.png", // Placeholder avatar
+  },
+];
 
-export default function NarkinsBoutiqueResidency() {
-  const [lightbox, setLightbox] = useState({
-    open: false,
-    image: "",
-  });
-  const openLightbox = ({ image }: { image: string }) => {
-    setLightbox({ ...lightbox, open: true, image });
-  };
-  // const [query, setQuery] = useState('')
-  const matches = useMediaQuery("(min-width: 768px)");
+const Amenities = () => {
   const [amenityIndex, setAmenityIndex] = useState(0);
+  return (
+    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* Heading and Subheading */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+          Amenities in {`Narkin's `} Boutique Residency
+        </h2>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Explore the top-notch amenities designed to enhance your living experience.
+        </p>
+      </div>
+
+      {/* Amenities Grid */}
+      <div className="max-w-7xl w-full mx-auto">
+        <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+          {amenities.map((amenity, index) => (
+            <motion.li
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="group">
+              <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
+                <Image
+                  src={amenity.image}
+                  alt={amenity.name}
+                  width={500}
+                  height={300}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover: bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg font-semibold opacity-0 group-hover: opacity-100 transition-all duration-300">
+                    {amenity.name}
+                  </span>
+                </div>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Carousel Section */}
+      <div className="mt-16 relative h-[30rem] w-full rounded-xl overflow-hidden">
+        <Carousel
+          id="carousel"
+          swipe
+          autoPlay={false}
+          slideShow={false}
+          loop
+          rightToLeft
+          hideIndicators={true}
+          onChange={setAmenityIndex}
+          className="w-full h-full"
+          displayMode="default"
+          dataSource={amenities}
+        />
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
+          <h2 className="text-white text-lg font-bold">
+            {amenities.map(({ name }) => name)[amenityIndex]}
+          </h2>
+        </div>
+      </div>
+    </div>
+  )
+};
+export default function HillCrestResidency({ posts }: { posts: Post[] }) {
+  const openLightbox = useLightboxStore(state => state.openLightbox);
+
   return (
     <main>
       <Head>
-        <title>{`Narkin's Boutique Residency`}</title>
+        {/* Primary Meta Tags */}
+        <title>{`Narkin's `} Boutique Residency | Luxury Apartments in Bahria Town Karachi</title>
+        <meta
+          name="description"
+          content="Discover Narkin's Boutique Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+        />
+        <meta
+          name="keywords"
+          content="Narkin's Boutique Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
+        />
+        <meta name="author" content="Narkin's Builders" />
+
+        {/* Open Graph / Facebook Meta Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi" />
+        <meta
+          property="og:description"
+          content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+        />
+        <meta property="og:url" content="https://narkinsbuilders.com/hill-crest-residency" />
+        <meta
+          property="og:image"
+          content="https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png"
+        />
+        <meta property="og:site_name" content="Hill Crest Residency" />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi" />
+        <meta
+          name="twitter:description"
+          content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+        />
       </Head>
       <Navigation />
-      <Lightbox
-        {...lightbox}
-        onClose={() => setLightbox({ ...lightbox, open: false, image: "" })}
-      />
+      <Lightbox />
       <div className="bg-white pt-[6rem]">
         <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
-          <VideoPlayer
-            src="/nbr.mp4"
-            poster={
-              "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Screenshot-32.webp"
-            }
-          />
+          <VideoPlayer src="/nbr.mp4" poster={'/nbr_video_poster.webp'} />
         </div>
         <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
-              <h2 className="text-4xl font-bold tracking-tight text-black sm:text-7xl">{`Narkin's Boutique Residency`}</h2>
+              <h2 className="text-4xl font-bold tracking-tight text-black sm:text-7xl">{'Narkin\'s '} Boutique Residency</h2>
               <p className="mt-6 text-lg leading-8 text-gray-800">
                 Welcome to {`Narkin's `}Boutique Residency, where luxury meets
                 bespoke design in the heart of Bahria Town Karachi's Heritage
                 Commercial area. Crafted by "Talent & Taste," our premium
                 high-rise apartments redefine upscale living with their
                 exquisite attention to detail.
-                <br />
-                <br />
+
                 Nestled in the esteemed Heritage Commercial area, {`Narkin's`}{" "}
                 Boutique Residency offers residents unparalleled access to a
                 wealth of amenities and attractions. From exclusive luxury
@@ -188,379 +318,230 @@ export default function NarkinsBoutiqueResidency() {
                 Apartment.
                 <br />
                 <br />
-                But the luxury extends beyond your residence. As a resident of{" "}
-                {`Narkin's`} Boutique Residency, you'll enjoy exclusive access
-                to over 10+ premium amenities designed to enrich your lifestyle.
-                From state-of-the-art fitness facilities to indoor swimming pool
-                and recreational areas, every amenity is tailored to cater to
-                your needs and desires.
-                <br />
-                Elevate your lifestyle to new heights with {`Narkin's`} Boutique
-                Residency.
-                <br  />
-                <br  />
-                With great pride, We unveil {`Narkin's`} Boutique Residency! In Collaboration with "Talent & Taste".
-                 This landmark project offers luxurious amenities, a grand reception lobby, and exquisite interiors 
-                 --- featuring Highrise 2, 3 & 4 Bedroom luxury apartments and our exclusive Sky Villa Duplex Apartments, redefining modern sophistication and elevated living.
               </p>
-            </div>
-            <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-              <div className="grid invisible grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-                {[{ name: "Project Info", href: "#our-offerings" }].map(
-                  (link) => (
-                    <Link
-                      key={link.name}
-                      className="text-black"
-                      href={link.href}
-                    >
-                      {link.name} <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  ),
-                )}
-              </div>
-              <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-                {/* {stats.map((stat) => (
-                                <div key={stat.name} className="flex flex-col-reverse">
-                                    <dt className="text-base leading-7 text-gray-300">{stat.name}</dt>
-                                    <dd className="text-2xl font-bold leading-9 tracking-tight text-white">{stat.value}</dd>
-                                </div>
-                            ))} */}
-              </dl>
             </div>
           </div>
         </div>
-        <section className=" bg-black">
-          <div className="mx-auto max-w-7xl py-[5rem] lg:px-8">
-            <div className="mx-auto px-6 max-w-2xl lg:mx-0">
-              <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl capitalize">
-                Our offerings
-              </h3>
+        <section className="bg-black py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            {/* Heading and Subheading */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Explore Our Offerings
+              </h2>
+              <p className="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
+                Discover a range of luxurious apartments designed to meet your lifestyle needs. Each offering combines elegance, comfort, and modern amenities.
+              </p>
             </div>
-            <Tab.Group>
-              <Tab.List className="flex space-x-1 gap-2 px-6 my-5 mb-5 border-b-neutral-900 rounded-xl bg-neutral-900/20 p-1">
+            <Tabs defaultValue={categories[0]} className="w-full mt-10">
+              {/* Tabs List */}
+              <TabsList className="flex space-x-1 gap-2 py-2 mb-5 border-b-neutral-900 rounded-xl bg-neutral-900/20">
                 {categories.map((category) => (
-                  <Tab
+                  <TabsTrigger
                     key={category}
-                    className={({ selected }) =>
-                      classNames(
-                        "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
-                        "ring-white/60 ring-offset-2 ring-offset-neutral-400 focus:outline-none focus:ring-2",
-                        selected
-                          ? "bg-neutral-400 text-neutral-700 shadow"
-                          : "text-neutral-100 hover:bg-white/[0.12] hover:text-white",
-                      )
-                    }
+                    value={category}
+                    className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 data-[state=active]:bg-neutral-400 data-[state=active]:text-neutral-700 data-[state=active]:shadow text-neutral-100 hover:bg-white/[0.12] hover:text-white transition-all duration-300"
                   >
                     {category}
-                  </Tab>
+                  </TabsTrigger>
                 ))}
-              </Tab.List>
-              <Tab.Panels className="mt-2">
-                {cards.map((items, idx) => (
-                  <Tab.Panel key={idx}>
-                    <div className="grid mt-[5rem] overflow-hidden grid-cols-1 md:lg:grid-cols-3 gap-y-[2.5rem]">
-                      {items.map((item, index) => (
-                        <div
-                          key={index}
-                          onClick={() => openLightbox({ image: item.image })}
-                          className="hover:filter group block rounded-xl overflow-hidden hover:scale-[1.025] -hover:bg-neutral-900 hover:brightness-[110%] px-6 duration-[.5s] transition hover:duration-[.5s]"
+              </TabsList>
+
+              {/* Tabs Content */}
+              {cards.map((items, idx) => (
+                <TabsContent key={idx} value={categories[idx]}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid mt-10 overflow-hidden min-h-[25rem] overflow-y-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    {items.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        // whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                        className="group"
+                      >
+                        <Card
+                          onClick={() => openLightbox({ src: item.image, title: item.title })}
+                          className="bg-neutral-900 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-neutral-400 transition-all duration-300"
                         >
-                          <div
-                            className={classNames(
-                              "bg-neutral-900 p-3 rounded-lg group relative",
-                              "ring-white/60 ring-offset-2 ring-offset-neutral-400 focus:outline-none focus:ring-2",
-                            )}
-                          >
-                            <img
+                          <CardHeader className="relative">
+                            <Image
                               src={item.image}
-                              alt=""
-                              className="w-full h-auto"
+                              alt={item.title}
+                              width={500}
+                              height={300}
+                              className="w-full h-auto rounded-t-lg"
                               loading={idx === 0 ? "eager" : "lazy"}
                             />
-                            <div className="duration-[.5s] transition group-hover:duration-[.5s] invisible group-hover:visible left-[85%] top-[85%] absolute">
-                              <MagnifyingGlassCircleIcon
-                                width={"3rem"}
-                                height={"3rem"}
-                                color="white"
-                              />
+                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                              <MagnifyingGlassCircleIcon className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
                             </div>
-                          </div>
-                          <div className="py-2 ">
-                            <h1 className="mt-1 text-1xl font-semibold text-white">
-                              {item.title}
-                            </h1>
-                            {/* <p className="text-neutral-400">Our Magnificent and eminent master piece is located at 29-30A Jinnah Avenue,</p> */}
-                            <p className="text-sm my-2 leading-4 font-medium text-white">
-                              <strong>Size</strong>: {item.size},{" "}
-                              <strong>Location</strong>: {item.location}
+                          </CardHeader>
+                          <CardContent className="p-4">
+                            <h1 className="text-xl font-semibold text-white">{item.title}</h1>
+                            <p className="text-sm mt-2 text-neutral-300">
+                              <strong>Size</strong>: {item.size}, <strong>Location</strong>: {item.location}
                             </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Tab.Panel>
-                ))}
-              </Tab.Panels>
-            </Tab.Group>
-          </div>
-        </section>
-        <section className="bg-white py-5 mx-auto max-w-7xl py-[5rem] lg:px-8">
-          <div className="mx-auto px-6 my-5 max-w-2xl lg:mx-0">
-            <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">
-              Amenities in {`Narkin's Boutique Residency`}
-            </h3>
-            <p className="mt-6 text-lg leading-8 text-gray-800">
-              Top-notch Amenities in our project
-            </p>
-          </div>
-          <div className="max-w-7xl w-full px-5 mx-auto overflow-hidden">
-            <ul className="col-span-3 mb-4 hidden -grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8">
-              {[
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Reception.webp",
-                  "Reception",
-                ],
-                // ["https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Seating.webp", "Seating Area"],
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Snooker.webp",
-                  "Snooker",
-                ],
-                // ["https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Grand-Lobby-1.webp", "Grand Lobby"],
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Gym-1.webp",
-                  "Gym",
-                ],
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Play-Area.webp",
-                  "Play Area",
-                ],
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/Pool.webp",
-                  "Pool",
-                ],
-                [
-                  "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/steam-bath.webp",
-                  "Steam Bath",
-                ],
-              ].map(([image, name], index) => (
-                <li key={index}>
-                  <div className="group relative before:absolute before:-inset-2.5 before:rounded-[20px] before:bg-gray-50 before:opacity-0 hover:before:opacity-100">
-                    <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
-                      <img
-                        src={image}
-                        alt=""
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full"
-                      />
-                    </div>
-                    <h4 className="mt-4 text-sm font-medium text-slate-900 group-hover:text-black">
-                      <div
-                        onClick={() => openLightbox({ image })}
-                        className="cursor-pointer"
-                      >
-                        <span className="absolute -inset-2.5 z-10" />
-                        <span className="relative">{name}</span>
-                      </div>
-                    </h4>
-                    {/* <p className="relative mt-1.5 text-xs font-medium text-slate-500">
-                                            12 components
-                                        </p> */}
-                  </div>
-                </li>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </TabsContent>
               ))}
-            </ul>
-            <div className="relative h-full w-full">
-              <Carousel
-                id="carousel"
-                swipe
-                // hideArrows={!matches}
-                autoPlay={false}
-                slideShow={false}
-                loop
-                rightToLeft
-                hideIndicators={true} onChange={setAmenityIndex}
-                className="w-full rounded-xl h-[30rem]"
-                displayMode="default"
-                dataSource={[
-                  "/ncr-scaled/gym.webp",
-                  "/ncr-scaled/play-area.webp",
-                  "/ncr-scaled/pool.webp",
-                  "/ncr-scaled/reception.webp",
-                  "/ncr-scaled/snooker.webp",
-                  "/hcr-scaled/steam-bath.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Mosque-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Play-Area-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Pool-with-title.webp",
-                 //"http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Reception-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Steam-Bath-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Billiard-Rooms-with-title.webp",
-                  // "http://admin.narkinsbuilders.com/wp-content/uploads/2024/05/Gym-with-title.webp",
-                ].map((i, _) => ({ image: i }))}
-              />
-              <div className="p-4 px-0">
-                <h2 className="mt-2 font-bold text-lg leading-8 text-gray-800">
-                  {['Gym', 'Play Area', 'Pool', 'Reception', 'Snooker', 'Steam Bath'][amenityIndex]}
-                </h2>
-              </div>
-            </div>
-          </div>
-     </section>
-                    <section className="bg-neutral-100 px-5 py-[4rem] lg:px-8">
-                        <div className="py-5 mx-auto max-w-7xl">
-                            <div className="mx-auto -px-6 my-5 max-w-2xl lg:mx-auto">
-                                {/* <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">Gallery</h3> */}
-                            </div>
-                            <div className="max-w-7xl mt-5 mx-auto w-full overflow-hidden">
-                                <Carousel
-                                    id='carousel'
-                                    swipe hideArrows={false} autoPlay={true} slideShow={true} loop={true}
-                                    hideIndicators={true} className={`w-full rounded-xl ${!matches ? 'aspect-video' : 'h-[40rem]'}`} displayMode="default"
-                                    dataSource={[
-                                        // Change These
-    
- "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.webp"
-   
-                                    ].map(i => ({ image: i }))}
-                                />
-                            </div>
-                        </div>
-                        <div className="max-w-7xl mx-auto">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                {[
-                                    // Change These
-    
-                                    [
-                                      "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.webp"
-
-                                    ],
-                                    [
- "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
-
-                                    ],
-                                    [
-                                       "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
-
-                                    ],
-                                    [
-                                        "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
-"/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp"
-
-                                    ]
-                                ].map((images, index) => (
-                                    <div className="grid gap-4" key={images.join()}>
-                                        {images.slice(0, 2).map((src) => <div key={src} className="px-4" onClick={() => openLightbox({ image: src })}>
-                                            <img className={`h-auto max-w-full rounded-lg`} src={src} alt="" />
-                                        </div>)}
-                                    </div>
-                                ))}
-                            </div>
-            {/* <AdsCampaign
-              onlyForm={false}
-              image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/NBR-landing-page-photo.webp'}
-              headline={"2, 3 & 4 Bedroom Luxury Apartments"}
-              features={[
-                "4 mins from the main gate",
-                "Construction on full swing",
-                "Smart Apartment",
-                "Capsule lofts, Reception area & standby generators",
-                "Gym, community hall, indoor swimming pool",
-                "7 floor carparking",
-                "Inhouse Mosque",
-              ]}
-            /> */}
-            <Map
-              map={
-                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.564164811388!2d67.31885989999999!3d25.0149214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34bad638fbbb1%3A0x4aa67ba370e4667b!2sNarkins%20Boutique%20Residency!5e0!3m2!1sen!2s!4v1714296380913!5m2!1sen!2s"
-              }
-            />
+            </Tabs>
           </div>
         </section>
-        <section className="bg-neutral-100 border-t -px-5 lg:px-8 py-[4rem]">
-          <div className="py-5 -px-5 mx-auto max-w-7xl">
-            <div className="mx-auto px-5 my-5 max-w-2xl lg:mx-0">
-              <h3 className="text-3xl font-bold tracking-tight text-black sm:text-4xl capitalize">
-                Testimonials
-              </h3>
+        <section className="bg-white py-20">
+          <Amenities />
+        </section>
+        <section className="bg-neutral-100 px-5 mx-auto py-20 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            {/* Gallery Heading (Optional) */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+                Gallery
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                Explore the stunning visuals of Hill Crest Residency.
+              </p>
             </div>
-            <div className="grid mb-8 px-5 max-w-7xl mt-5 lg:mb-12 gap-2 gap-y-2 lg:grid-cols-2">
-              {[
-                {
-                  name: "Saad Arshad",
-                  stars: [true, true, true, true, "half"],
-                  testimonial:
-                    "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
-                },
-                {
-                  name: "Arsalan",
-                  stars: [true, true, true, true, true],
-                  testimonial:
-                    "Smooth booking experience, very transparent throughout the process.",
-                },
-                {
-                  name: "Umair Iqrar",
-                  stars: [true, true, true, true, false],
-                  testimonial:
-                    "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
-                },
-              ].map((item, index) => (
-                <figure
+
+            {/* Masonry Grid Gallery */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {galleryImages.map((src, index) => (
+                <motion.div
                   key={index}
-                  className="flex border hover:bg-[#FAFAFA] transition transition-duration-100 cursor-pointer flex-col justify-center items-center p-8 text-center bg-white border-b border-gray-200 md:p-12 lg:border rounded-xl"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden rounded-lg cursor-pointer"
+                  onClick={() => openLightbox({ src })}
                 >
-                  <blockquote className="mx-auto mb-8 max-w-2xl text-gray-500">
-                    <h3 className="text-lg font-semibold text-gray-900 -dark:text-white"></h3>
-                    <ul className="flex justify-center my-4">
-                      {item.stars.map((star, starIndex) => (
-                        <li key={starIndex}>
-                          <i
-                            className={`fas ${star === true
-                              ? "fa-star text-yellow-400"
-                              : star === "half"
-                                ? "fa-star-half-alt text-yellow-400"
-                                : "far fa-star text-yellow-400"
-                              }`}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="my-4">{item.testimonial}</p>
-                  </blockquote>
-                  <figcaption className="flex justify-center items-center space-x-3">
-                    {/* <img
-                    className="w-9 h-9 rounded-full"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.webp"
-                    alt="profile picture"
-                  /> */}
-                    <div className="space-y-0.5 font-medium -dark:text-white text-left">
-                      <div>{item.name}</div>
-                      <div className="text-sm font-light text-gray-500 -dark:text-gray-400">
-                        Client
-                      </div>
-                    </div>
-                  </figcaption>
-                </figure>
+                  <Image
+                    src={src}
+                    alt={`Gallery Image ${index + 1}`}
+                    width={500}
+                    height={300}
+                    className="w-full h-auto object-cover rounded-lg"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      View
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </div>
-            {/* <div className="text-center">
-            <a href="#" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 -dark:focus:ring-gray-700 -dark:bg-gray-800 -dark:text-gray-400 -dark:border-gray-600 -dark:hover:text-white -dark:hover:bg-gray-700">Show more...</a>
-          </div> */}
+
+            {/* Map Section (Unchanged) */}
+            <div className="mt-16">
+              <Map map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.871134778674!2d67.3134228!3d25.0044944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1714296481726!5m2!1sen!2s" />
+            </div>
           </div>
         </section>
+
+        <section className="bg-neutral-100 border-t px-5 lg:px-8 py-20">
+          <Testimonials testimonials={testimonials} />
+        </section>
+        <section className="bg-white py-20 border-b border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            {/* Heading */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+                What Social Media is Saying
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                See what people are saying about Hill Crest Residency on YouTube and Facebook.
+              </p>
+            </div>
+
+            {/* Masonry Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 auto-rows-[minmax(200px, auto)]">
+              {youtubeVideos.map((video, index) => (
+                <motion.div
+                  key={video.id}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden min-h-[300px] shadow-lg hover:shadow-xl"
+                >
+                  {/* YouTube Thumbnail */}
+                  <a
+                    href={`https://youtube.com/watch?v=${video.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                  >
+                    <Image
+                      src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
+                      alt={video.title}
+                      width={500}
+                      height={300}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute bottom-[4rem] left-4 flex items-center justify-center">
+                      <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} />
+                    </div>
+                  </a>
+
+                  {/* Overlay with Title and Watch Now Button */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 bg-linear-to-b from-transparent to-black group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <a
+                      href={`https://youtube.com/watch?v=${video.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
+                      <PlayIcon className="w-20 h-20" />
+                    </a>
+                  </div>
+
+                  {/* Video Title */}
+                  <div className="absolute flex items-middle bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                    <p className="text-white text-lg font-semibold">{video.title}</p>
+                    <div className="ml-auto mt-1"><ArrowTopRightOnSquareIcon className="h-4 w-4 text-white" /></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <BlogsSection posts={posts} />
       </div>
       <Footer />
-    </main>
-  );
+    </main >
+  )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3&tags=' + process.env.NEXT_PUBLIC_NBR_BLOG_TAG);
+    const data = await response.json();
+
+    const posts: Post[] = data.map((post: any) => ({
+      id: post.id,
+      title: post.title.rendered,
+      link: post.link,
+      date: new Date(post.date).toLocaleDateString(),
+      datetime: post.date,
+      description: post.excerpt.rendered,
+      category: post.categories?.[0] || 'Uncategorized',
+      author: {
+        name: post._embedded?.author?.[0]?.name || 'Unknown',
+        role: post._embedded?.author?.[0]?.description || '',
+        imageUrl: post._embedded?.author?.[0]?.avatar_urls?.['96'] || '',
+      },
+    }));
+
+    return {
+      props: { posts },
+    };
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return { props: { posts: [] } };
+  }
+};

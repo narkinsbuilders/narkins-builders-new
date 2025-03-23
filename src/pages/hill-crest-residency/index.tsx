@@ -1,38 +1,24 @@
+import { GetServerSideProps } from "next";
+import { useState } from "react";
+
+import Image from "next/image";
+import BlogsSection from "@/components/blogs-section/blogs-section";
+
 import Navigation from "@/components/navigation/navigation";
 import VideoPlayer from "@/components/video-player/video-player";
-import { useState } from "react";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Footer from "@/components/footer/footer";
 import { Lightbox } from "@/components/lightbox/lightbox";
 import Link from "next/link";
 import Map from "@/components/map/map";
 import Head from "next/head";
 import Carousel from "@/components/carousel-op/carousel-op";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"; // shadcn/ui Card
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"; // shadcn/ui Avatar
-
+import { Card, CardHeader, CardContent } from "@/components/ui/card"; // shadcn/ui Card
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import BlogsSection from "@/components/blogs-section/blogs-section";
 import { Post } from "../blog/[...blog]";
-import { GetServerSideProps } from "next";
-import FacebookPageEmbed from "@/components/facebook/post";
 import { useLightboxStore } from "@/zustand";
 import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import Testimonials from "@/components/testimonials/testimonials";
-
-const people = [
-    'Durward Reynolds',
-    'Kenton Towne',
-    'Therese Wunsch',
-    'Benedict Kessler',
-    'Katelyn Rohan',
-]
-
-function classNames(...classes: any[]) {
-    return classes.filter(Boolean).join(' ')
-}
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
@@ -45,7 +31,6 @@ const cards = [[
     { title: '4 Bed Rhodium', size: '2507 Feet', location: 'Jinnah View', image: "/images/Rhodium HCR.webp" },
     { title: '4 Bed Sapphire-A', size: '1762 Feet', location: 'Safari View', image: "/images/Sapphire A 4 bed.webp" },
 ]];
-
 const amenities = [
     { image: "/hcr-scaled/gym.webp", name: "Gym" },
     { image: "/hcr-scaled/mosque.webp", name: "Prayer Area" },
@@ -75,7 +60,6 @@ const youtubeVideos = [
     { id: "iNbSrOL8HD4", title: "Hill Crest Residency Walkthrough", type: "youtube" },
     { id: "cneUzaJe-Cg", title: "Why Choose Hill Crest?", type: "youtube" },
 ];
-
 const testimonials = [
     {
         name: "Saad Arshad",
@@ -156,16 +140,11 @@ const Amenities = () => {
                     onChange={setAmenityIndex}
                     className="w-full h-full"
                     displayMode="default"
-                    dataSource={[
-                        "/hcr-scaled/gym.webp",
-                        "/hcr-scaled/grand-lobby.webp",
-                        "/hcr-scaled/mosque.webp",
-                        "/hcr-scaled/steam-bath.webp",
-                    ].map((i) => ({ image: i }))}
+                    dataSource={amenities}
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
                     <h2 className="text-white text-lg font-bold">
-                        {["Gym", "Grand Lobby", "Mosque", "Steam Bath"][amenityIndex]}
+                        {amenities.map(({name})=> name)[amenityIndex]}
                     </h2>
                 </div>
             </div>
@@ -197,10 +176,10 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                     property="og:description"
                     content="Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                 />
-                <meta property="og:url" content="https://www.hillcrestresidency.com" />
+                <meta property="og:url" content="https://narkinsbuilders.com/hill-crest-residency" />
                 <meta
                     property="og:image"
-                    content="https://www.hillcrestresidency.com/images/hill-crest-residency-og.jpg"
+                    content="https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png"
                 />
                 <meta property="og:site_name" content="Hill Crest Residency" />
 
@@ -227,15 +206,6 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                                 <br /><br />
                                 We are currently providing a variety of 2 bed and 3 bed luxury apartments along with lounge and dining that features panoramic view of the beauty of Bahria town. It will surely let you experience the lifestyle you always dreamed for your family and upcoming generations!
                             </p>
-                        </div>
-                        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-                            <div className="grid invisible grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-                                {[{ name: 'Project Info', href: "#our-offerings" }].map((link) => (
-                                    <Link key={link.name} className="text-black" href={link.href}>
-                                        {link.name} <span aria-hidden="true">&rarr;</span>
-                                    </Link>
-                                ))}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -436,7 +406,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     try {
-        const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3');
+        const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3&tags=' + process.env.NEXT_PUBLIC_HCR_BLOG_TAG);
         const data = await response.json();
 
         const posts: Post[] = data.map((post: any) => ({

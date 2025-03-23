@@ -1,108 +1,122 @@
-import React, { Fragment, useState, FC } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import { useGlobalLeadFormState } from '@/zustand'
+import React, { Fragment, useState, FC, useEffect } from "react";
+import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useGlobalLeadFormState } from "@/zustand";
 
 const navigation = {
   categories: [
     {
-      id: 'curent-projects',
-      name: 'Ongoing projects',
+      id: "curent-projects",
+      name: "Ongoing projects",
       featured: [
         {
-          name: 'Hill Crest Residency',
-          href: '/hill-crest-residency',
+          name: "Hill Crest Residency",
+          href: "/hill-crest-residency",
           imageSrc: "/images/hcr_new.webp",
-          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+          imageAlt: "Models sitting back to back, wearing Basic Tee in black and bone.",
         },
         {
-          name: 'Narkin\'s Boutique Residency',
-          href: '/narkins-boutique-residency',
+          name: "Narkin's Boutique Residency",
+          href: "/narkins-boutique-residency",
           imageSrc: "/images/nbr_nav.jpeg",
-          imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+          imageAlt: "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
         },
       ],
       sections: [
         {
-          id: 'curent',
-          name: 'Ongoing Projects',
+          id: "curent",
+          name: "Ongoing Projects",
           items: [
-            { name: 'Hill Crest Residency', href: '/hill-crest-residency' },
-            { name: 'Narkin\'s Boutique Residency', href: '/narkins-boutique-residency' },
+            { name: "Hill Crest Residency", href: "/hill-crest-residency" },
+            { name: "Narkin's Boutique Residency", href: "/narkins-boutique-residency" },
           ],
         },
       ],
     },
     {
-      id: 'completed-projects',
-      name: 'Completed',
+      id: "completed-projects",
+      name: "Completed",
       featured: [
         {
-          name: 'Al Arz Homes',
-          href: '/completed-projects?p=al-arz-homes',
+          name: "Al Arz Homes",
+          href: "/completed-projects?p=al-arz-homes",
           imageSrc: "/images/al-arz-home-scaled.webp",
-          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+          imageAlt: "Drawstring top with elastic loop closure and textured interior padding.",
         },
         {
-          name: 'Palm Residency',
-          href: '/completed-projects?p=palm-residency',
+          name: "Palm Residency",
+          href: "/completed-projects?p=palm-residency",
           imageSrc: "/images/palm-residency-scaled.webp",
-          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+          imageAlt: "Drawstring top with elastic loop closure and textured interior padding.",
         },
         {
-          name: 'Al Arz Residency',
-          href: '/completed-projects?p=al-arz-residency',
+          name: "Al Arz Residency",
+          href: "/completed-projects?p=al-arz-residency",
           imageSrc: "/images/al-arz-residency-scaled.webp",
           imageAlt:
-            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
+            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
-
         {
-          name: 'Classic Heights',
-          href: '/completed-projects?p=classic-heights',
+          name: "Classic Heights",
+          href: "/completed-projects?p=classic-heights",
           imageSrc: "/images/Sharfabad_resized.webp",
           imageAlt:
-            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
+            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
       ],
       sections: [
         {
-          id: 'completed',
-          name: 'Completed',
+          id: "completed",
+          name: "Completed",
           items: [
-            { name: 'Al Arz Homes', href: '/completed-projects?p=al-arz-homes' },
-            { name: 'Al Arz Residency', href: '/completed-projects?p=al-arz-residency' },
-            { name: 'Palm Residency', href: '/completed-projects?p=palm-heights' },
-            { name: 'Classic Heights', href: '/completed-projects?p=classic-heights' },
+            { name: "Al Arz Homes", href: "/completed-projects?p=al-arz-homes" },
+            { name: "Al Arz Residency", href: "/completed-projects?p=al-arz-residency" },
+            { name: "Palm Residency", href: "/completed-projects?p=palm-heights" },
+            { name: "Classic Heights", href: "/completed-projects?p=classic-heights" },
           ],
         },
       ],
     },
   ],
   pages: [
-    { name: 'Home', href: '/' },
-    { name: 'Blogs', href: '/blogs' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact Us', href: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WA_PHONE}` },
+    { name: "Home", href: "/" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WA_PHONE}` },
   ],
-}
+};
 
 function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 interface NavigationProps {
-  transparent?: boolean
-  fixed?: boolean
+  transparent?: boolean;
+  fixed?: boolean;
 }
 
 const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
+  const isFixed = fixed ?? false;
   const [open, setOpen] = useState(false);
-  const setLeadForm = useGlobalLeadFormState(state => state.setOpen);
-  const isFixed = fixed ?? true;
+  const [isScrolled, setIsScrolled] = useState(!fixed);
+  const setLeadForm = useGlobalLeadFormState((state) => state.setOpen);
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    if (fixed) window.addEventListener("scroll", handleScroll);
+    return () => { if (fixed) window.removeEventListener("scroll", handleScroll); }
+  }, []);
   return (
-    <div className={`text-white ${transparent ? "bg-transparent" : "bg-transparent"}`}>
+    <div className="text-white">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative lg:hidden z-[100]" onClose={setOpen}>
@@ -150,8 +164,8 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'border-neutral-600 text-neutral-600' : 'border-transparent text-gray-900',
-                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
+                              selected ? "border-neutral-600 text-neutral-600" : "border-transparent text-gray-900",
+                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                             )
                           }
                         >
@@ -167,7 +181,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
+                                <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" className="object-cover object-center" />
                               </div>
                               <a href={item.href} className="mt-6 text-black block font-medium ">
                                 <span className="absolute inset-0" aria-hidden="true" />
@@ -215,22 +229,26 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
         </Dialog>
       </Transition.Root>
 
-      <header style={{ backdropFilter: 'blur(5px)', zIndex: 100, background: 'rgba(255, 255, 255, 0.925)' }} className={`${isFixed ? "fixed" : "absolute"} top-0 w-[100vw] ${transparent ? "bg-transparent" : ""} ${transparent ? 'text-white' : 'text-gray-800'}`}>
-        {/* <p className="flex h-10 items-center justify-center bg-black px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
-        </p> */}
-
+      {/* Navbar */}
+      <header
+        style={{
+          zIndex: 100,
+          background: isScrolled ? "rgba(255, 255, 255, 0.925)" : "transparent",
+          transition: "background 0.3s ease",
+        }}
+        className={`${isFixed ? "fixed" : "absolute"} top-0 w-[100vw]`}
+      >
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
               <button
                 type="button"
                 className="relative rounded-md bg-transparent p-2 lg:hidden"
-                onClick={() => setOpen(true)}
+                onClick={() => {setOpen(true); setIsScrolled(true)}}
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open menu</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <Bars3Icon className={`h-6 w-6 ${isScrolled ? "text-gray-800" : "text-white"}`} aria-hidden="true" />
               </button>
 
               {/* Logo */}
@@ -238,7 +256,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                 <Link href="/">
                   <span className="sr-only">Narkins Builders</span>
                   <img
-                    className="h-8 w-auto"
+                    className="h-8 w-auto" loading="eager"
                     src="/images/narkins_logo.webp"
                     alt=""
                   />
@@ -256,9 +274,11 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-neutral-600 text-neutral-600'
-                                  : 'border-transparent text-gray-700 hover:text-gray-800',
-                                'relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
+                                  ? "border-neutral-600 text-neutral-600"
+                                  : "border-transparent hover:text-neutral-300",
+                                `relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out ${
+                                  isScrolled ? "text-gray-800" : "text-white"
+                                }`
                               )}
                             >
                               {category.name}
@@ -275,9 +295,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                             leaveTo="opacity-0"
                           >
                             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
-
                               <div className="relative bg-white">
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
@@ -291,7 +309,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                                               className="object-cover object-center"
                                             />
                                           </div>
-                                          <a href={item.href} className="mt-6 block font-medium">
+                                          <a href={item.href} className="mt-6 block font-medium text-gray-900">
                                             <span className="absolute inset-0" aria-hidden="true" />
                                             {item.name}
                                           </a>
@@ -301,7 +319,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                                     <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                       {category.sections.map((section) => (
                                         <div key={section.name}>
-                                          <p id={`${section.name}-heading`} className="font-medium">
+                                          <p id={`${section.name}-heading`} className="font-medium text-gray-900">
                                             {section.name}
                                           </p>
                                           <ul
@@ -311,7 +329,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                                           >
                                             {section.items.map((item) => (
                                               <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
+                                                <a href={item.href} className="hover:text-neutral-300">
                                                   {item.name}
                                                 </a>
                                               </li>
@@ -334,7 +352,9 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                     <a
                       key={page.name}
                       href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className={`flex items-center text-sm font-medium ${
+                        isScrolled ? "text-gray-800" : "text-white"
+                      } hover:text-neutral-300`}
                     >
                       {page.name}
                     </a>
@@ -347,13 +367,16 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                 <div className="flex hidden lg:ml-6">
                   <a href="#" className="p-2 hover:text-gray-500">
                     <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                    <MagnifyingGlassIcon className={`h-6 w-6 ${isScrolled ? "text-gray-800" : "text-white"}`} aria-hidden="true" />
                   </a>
                 </div>
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <button onClick={() => setLeadForm(true)} className="py-2 px-4 border no-underline rounded-full bg-black text-white font-sans font-semibold text-sm border-orange btn-primary hover:text-white hover:bg-orange-light focus:outline-none active:shadow-none mr-2">
+                  <button
+                    onClick={() => setLeadForm(true)}
+                    className="py-2 px-4 no-underline rounded-full bg-black text-white font-sans font-semibold text-sm border-orange btn-primary hover:text-white hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
+                  >
                     Get Quote
                   </button>
                 </div>
@@ -364,5 +387,6 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
       </header>
     </div>
   );
-}
+};
+
 export default Navigation;

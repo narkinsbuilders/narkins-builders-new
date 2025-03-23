@@ -4,5 +4,7 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/about": "pages/about.js",
-  "/hill-crest-residency": "pages/hill-crest-residency.js"
+  "/blogs": "pages/blogs.js",
+  "/hill-crest-residency": "pages/hill-crest-residency.js",
+  "/narkins-boutique-residency": "pages/narkins-boutique-residency.js"
 }

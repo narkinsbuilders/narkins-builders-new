@@ -115,7 +115,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
             <Link href="/" className="hover:underline">
               {`Narkin's Builders`}™
             </Link>
-            {' '}— All Rights Reserved · Developed by <a href="https://www.linkedin.com/in/imossaidqadri/" className='underline'>Ossaid Qadri</a> & <a href="https://otherdev.com/" className='underline'>The Other Dev</a>
+            {' '}— All Rights Reserved · Developed by <a href="https://otherdev.com/" className='underline'>The Other Dev</a>
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a

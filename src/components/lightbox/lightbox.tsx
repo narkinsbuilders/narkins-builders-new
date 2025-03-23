@@ -85,3 +85,4 @@ export const Lightbox = () => {
         </div>
     );
 };
+export default Lightbox;

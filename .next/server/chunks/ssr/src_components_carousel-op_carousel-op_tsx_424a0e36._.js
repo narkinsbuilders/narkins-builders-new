@@ -209,12 +209,12 @@ function Carousel({ dataSource = [], swipe = true, hideArrows = false, autoPlay 
                         className: `h-2 w-2 rounded-full mx-2 ${idx === currentIndex ? 'bg-yellow-700' : 'bg-white'}`
                     }, idx, false, {
                         fileName: "[project]/src/components/carousel-op/carousel-op.tsx",
-                        lineNumber: 142,
+                        lineNumber: 139,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/carousel-op/carousel-op.tsx",
-                lineNumber: 140,
+                lineNumber: 137,
                 columnNumber: 17
             }, this)
         ]

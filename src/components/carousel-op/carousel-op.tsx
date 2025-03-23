@@ -131,9 +131,6 @@ export function Carousel({
                             </svg>
                         </span>
                     </button>
-                    {/* <button onClick={() => updateIndex(currentIndex + 1)} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-black p-2">
-                        Next
-                    </button> */}
                 </React.Fragment>
             )}
             {!hideIndicators && (

@@ -6,13 +6,15 @@ import Footer from '@/components/footer/footer';
 import Testimonials from '@/components/testimonials/testimonials';
 import BlogsSection from '@/components/blogs-section/blogs-section';
 import dynamic from 'next/dynamic';
+import Image from "next/image";
 
-import { useGlobalLeadFormState } from '@/zustand';
+import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
 import { GetServerSideProps } from 'next';
 import { Button } from '@/components/ui/button'; // shadcn/ui button
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
 import { motion } from 'framer-motion'; // For animations
 
+const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
 const Carousel = dynamic(() => import('@/components/carousel-op/carousel-op'), {
   ssr: false
 });
@@ -33,25 +35,25 @@ interface Post {
 }
 const testimonials = [
   {
-      name: "Saad Arshad",
-      stars: [true, true, true, true, "half"],
-      testimonial:
-          "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
+    name: "Saad Arshad",
+    stars: [true, true, true, true, "half"],
+    testimonial:
+      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
   },
   {
-      name: "Arsalan",
-      stars: [true, true, true, true, true],
-      testimonial:
-          "Smooth booking experience, very transparent throughout the process.",
-      avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
+    name: "Arsalan",
+    stars: [true, true, true, true, true],
+    testimonial:
+      "Smooth booking experience, very transparent throughout the process.",
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
   },
   {
-      name: "Umair Iqrar",
-      stars: [true, true, true, true, false],
-      testimonial:
-          "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
-      avatar: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder avatar
+    name: "Umair Iqrar",
+    stars: [true, true, true, true, false],
+    testimonial:
+      "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+    avatar: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder avatar
   },
 ];
 
@@ -67,7 +69,7 @@ export default function Index({ posts }: { posts: Post[] }) {
       video.play().catch((error) => console.error('Video play failed', error));
     }
   }, []);
-
+  const openLightbox = useLightboxStore(state => state.openLightbox);
   return (
     <>
       <Head>
@@ -75,25 +77,27 @@ export default function Index({ posts }: { posts: Post[] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Narkin&apos;s Builders - Home Page</title>
       </Head>
-      <Navigation fixed={false} />
+      <Navigation fixed={true} />
       <div>
         <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">
-          <div className="relative z-10 text-white text-center">
+          <div className="relative z-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="mx-auto px-4"
             >
-              <p className="caption hidden lg:block text-lg font-semibold">
-                <strong>Welcome to</strong>
+              <p className="text-lg font-semibold text-neutral-300">Welcome to</p>
+              <h1 className="text-4xl lg:text-6xl font-bold mt-4 text-white">
+                Narkin&apos;s Builders
+              </h1>
+              <p className="text-lg lg:text-xl mt-4 text-white">
+                Creating Iconic Living Experiences.
               </p>
-              <h1 className="text-4xl lg:text-6xl font-bold mt-4">Narkin&apos;s Builders</h1>
-              <p className="text-lg lg:text-xl mt-4 text-gray-100">Creating Iconic Living Experiences.</p>
               <div className="mt-8 flex justify-center gap-4">
                 <Button
                   onClick={() => setOpen(true)}
-                  className="bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+                  className="border bg-primary border-white text-primary-foreground hover:bg-primary/90 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
                 >
                   Get More Information
                 </Button>
@@ -101,10 +105,9 @@ export default function Index({ posts }: { posts: Post[] }) {
             </motion.div>
           </div>
           <video
-            ref={videoRef}
             preload="yes"
             poster="/videoframe_0.webp"
-            className="max-h-screen absolute w-auto min-w-full min-h-full filter brightness-50 max-w-none"
+            className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
             loop
             autoPlay
             playsInline
@@ -119,206 +122,189 @@ export default function Index({ posts }: { posts: Post[] }) {
       </div>
 
       {/* Narkin's Boutique Residency Section */}
-      <section className="text-white flex overflow-hidden bg-black">
-        <div className="hidden lg:flex xl:flex md:flex flex-grow w-1/2 flex-1 h-full max-w-[50vw]">
-          <Carousel
-            id="carousel"
-            isNotRounded
-            swipe
-            hideArrows={false}
-            autoPlay
-            slideShow
-            loop
-            rightToLeft
-            hideIndicators
-            keyboard
-            displayMode="default"
-            interval={10000}
-            dataSource={[
-              '/images/NBR_SLIDE_1.webp',
-              '/images/NBR_SLIDE_2.webp',
-              '/images/NBR_SLIDE_3.webp',
-              '/images/NBR_SLIDE_4.webp',
-            ].map((i) => ({ image: i }))}
-          />
-        </div>
-        <div className="max-w-7xl h-full py-[2.5rem] mx-auto px-4">
-          <div className="flex flex-col pt-10 justify-center h-full md:flex-row">
-            <div className="lg:hidden xl:hidden md:hidden w-full rounded">
-              <Carousel
-                id="carousel"
-                swipe
-                hideArrows={false}
-                autoPlay
-                slideShow
-                hideIndicators
-                loop
-                rightToLeft
-                keyboard
-                displayMode="default"
-                interval={10000}
-                dataSource={[
-                  '/images/NBR_SLIDE_1.webp',
-                  '/images/NBR_SLIDE_2.webp',
-                  '/images/NBR_SLIDE_3.webp',
-                  '/images/NBR_SLIDE_4.webp',
-                ].map((i) => ({ image: i }))}
-              />
-            </div>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl text-left md:lg:pr-[10rem] mx-auto pb-[5rem] gap-y-2 py-10 mt-[5%]"
-            >
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <section className="py-16 bg-black text-white">
+        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Carousel for Desktop */}
+          <div className="hidden lg:block">
+            <Carousel
+              swipe
+              hideArrows={false}
+              autoPlay
+              slideShow
+              hideIndicators
+              loop
+              rightToLeft
+              keyboard
+              displayMode="default"
+              interval={10000}
+              dataSource={[
+                '/images/NBR_SLIDE_1.webp',
+                '/images/NBR_SLIDE_2.webp',
+                '/images/NBR_SLIDE_3.webp',
+                '/images/NBR_SLIDE_4.webp',
+              ].map((i) => ({ image: i }))}
+            />
+          </div>
+
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6"
+          >
+            {/* Heading */}
+            <div className="text-left mb-10">
+              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 Narkin&apos;s Boutique Residency
               </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-100">
+              <p className="mt-4 text-lg text-neutral-300">
                 Narkin&apos;s Boutique Residency in Bahria Town Karachi offers luxury and bespoke design in a Heritage
                 Commercial area. With 29 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views.
                 Residents enjoy access to over 10 premium amenities, including fitness facilities, indoor swimming pools,
                 and recreational areas. Experience the epitome of sophistication at Narkin&apos;s Boutique Residency.
               </p>
-              <div className="mt-10">
-                <Link href="/narkins-boutique-residency">
-                  <Button className="bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
-                    Project Info <span aria-hidden="true">&rarr;</span>
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
+            </div>
+            <Button asChild className="bg-primary text-white hover:bg-primary/90">
+              <Link href="/narkins-boutique-residency">
+                Project Info <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </Button>
+          </motion.div>
+
+          {/* Carousel for Mobile */}
+          <div className="lg:hidden">
+            <Carousel
+              swipe
+              hideArrows={false}
+              autoPlay
+              slideShow
+              hideIndicators
+              loop
+              rightToLeft
+              displayMode="default"
+              interval={10000}
+              dataSource={[
+                '/images/NBR_SLIDE_1.webp',
+                '/images/NBR_SLIDE_2.webp',
+                '/images/NBR_SLIDE_3.webp',
+                '/images/NBR_SLIDE_4.webp',
+              ].map((i) => ({ image: i }))}
+            />
           </div>
         </div>
       </section>
 
       {/* Hill Crest Residency Section */}
-      <section
-        className="text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/hcr_new-scaled.webp')`,
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 py-[5rem]">
-          <div className="md:lg:hidden block w-full">
-            <img
-              src="/images/hcr_new.webp"
-              alt="Hill Crest Residency"
-              className="rounded-lg w-full min-w-[40vw]"
-              loading="lazy"
-            />
-          </div>
-          <div className="flex flex-col justify-center h-full md:flex-row">
+      <section className="relative flex items-center justify-center bg-cover bg-center bg-fixed">
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hcr_new-scaled.webp')" }}
+        >
+          <div className="absolute inset-0 bg-black/80"></div>
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto py-10 px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl px-0 md:lg:px-[15px] gap-y-2 py-10 mt-[5%]"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-6"
             >
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Hill Crest Residency</h2>
-              <p className="mt-6 text-lg leading-8 text-gray-100">
+              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Hill Crest Residency
+              </h2>
+              <p className="mt-4 text-lg text-neutral-300">
                 Conveniently situated just two minutes from the main gate of Bahria Town Karachi, Hill Crest Residency
                 presents a selection of luxurious 2, 3, and 4-bedroom apartments. Schedule your free tour today and
                 experience refined living at its finest!
               </p>
-              <div className="mt-10">
+              <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <Link href="/hill-crest-residency">
-                  <Button className="bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
-                    Project Info <span aria-hidden="true">&rarr;</span>
-                  </Button>
+                  Project Info <span aria-hidden="true">&rarr;</span>
                 </Link>
-              </div>
+              </Button>
             </motion.div>
-            <div className="hidden md:block md:w-1/2 ml-[5rem]">
-              <img
+
+            {/* Image for Desktop */}
+            <div className="hidden-lg:block">
+              <Image
                 src="/images/hcr_new.webp"
                 alt="Hill Crest Residency"
-                className="rounded-lg w-full min-w-[40vw]"
-                loading="lazy"
+                width={800}
+                height={600}
+                className="rounded-lg"
+                priority
               />
+              {/* Masonry Grid Gallery */}
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {[
+                  "/images/hcr_appartment/hcr_apartment_slide_1.webp",
+                  "/images/hcr_appartment/hcr_apartment_slide_2.webp",
+                  "/images/hcr_appartment/hcr_apartment_slide_3.webp",
+                  "/images/hcr_appartment/hcr_apartment_slide_4.webp",].map((src, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.3 }}
+                      className="group relative overflow-hidden rounded-lg cursor-pointer"
+                      onClick={() => openLightbox({ src })}
+                    >
+                      <Image
+                        src={src}
+                        alt={`Gallery Image ${index + 1}`}
+                        width={500}
+                        height={300}
+                        className="w-full h-auto object-cover rounded-lg"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          View
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Completed Projects Section */}
-      <section className="bg-gray-100 py-[10vh]">
-        <div className="py-5 max-w-7xl px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="row"
-          >
-            <div className="mx-auto py-4 text-left">
-              <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl">Completed Projects</h2>
-              <p className="text-lg mt-4 leading-8 text-neutral-900">
-                At Narkins Builders & Developers, we deliver what we commit.
-              </p>
-            </div>
-            <div className="mx-auto py-4 my-4 rounded-xl w-full max-w-3xl overflow-hidden">
-              <Carousel
-                swipe
-                autoPlay
-                slideShow
-                loop
-                rightToLeft
-                keyboard
-                displayMode="3d"
-                interval={10000}
-                dataSource={[
-                  '/images/al-arz-residency-scaled.webp',
-                  '/images/al-arz-home-scaled.webp',
-                  '/images/palm-residency-scaled.webp',
-                  '/images/Sharfabad_resized.webp',
-                ].map((i) => ({ image: i }))}
-              />
-            </div>
-          </motion.div>
-        </div>
+      <section className="bg-neutral-50 py-16">
+        <CompletedProjects />
       </section>
-
       {/* Trusted Partners Section */}
-      <section className="bg-black h-[60vh] pt-[10vh]">
-        <div className="py-5 max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="row"
-          >
-            <div className="col-md-12 mx-auto py-4 text-left">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Trusted Partners</h2>
-              <p className="mt-4 text-lg leading-8 text-gray-100">Partners that chose to work with us</p>
-            </div>
-            <div className="mx-auto mt-5 py-4 no-scrollbar flex overflow-x-auto snap-x gap-4 no-scrollbar">
-              {[
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-02-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-03-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-01-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-08-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-09-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-06-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-05-320x202.webp',
-                'https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-04-320x202.webp',
-              ].map((src, index) => (
-                <motion.img
-                  key={index}
-                  src={src}
-                  alt={`Trusted Partner ${index + 1}`}
-                  className="inline-block snap-center rounded-lg border w-40 h-auto hover:scale-105 transition-all duration-300"
-                  loading="lazy"
-                  whileHover={{ scale: 1.05 }}
-                />
-              ))}
-            </div>
-          </motion.div>
-        </div>
+      <section className="bg-neutral-50 border-t py-16">
+        <TrustedPartners />
       </section>
 
       {/* Testimonials Section */}
       <section className="bg-white border-t px-5 lg:px-8 py-20">
         <Testimonials testimonials={testimonials} />
+      </section>
+      <section className='bg-white border-b px-4 lg:px-8 py-20 w-full'>
+        <div className="ml-auto">
+          <figure className="max-w-screen-md ml-auto text-right">
+            <svg className="w-10 h-10 mr-auto mb-3 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+              <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+            </svg>
+            <blockquote>
+              <p className="text-2xl italic font-medium text-gray-900">
+                "At Narkin's Builders, we prioritize commitment, transparency, and innovation. For over 30 years, these values have fueled our success, driving us to deliver cutting-edge construction projects and luxury living spaces that exceed expectations. Our transparent approach ensures our customers are informed and involved, while our innovative solutions push the boundaries of what's possible. Thank you for choosing Narkin's Builders as your trusted partner in building your dream home."
+              </p>
+            </blockquote>
+            <figcaption className="flex items-center justify-end mt-6 space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500">
+                <cite className="pe-3 font-medium text-gray-900">Mr. Ashraf Nara</cite>
+                <cite className="ps-3 text-sm text-gray-500">CEO at Narkin's</cite>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       {/* Blogs Section */}
@@ -326,6 +312,7 @@ export default function Index({ posts }: { posts: Post[] }) {
 
       {/* Footer */}
       <Footer />
+      <Lightbox />
     </>
   );
 };
@@ -358,3 +345,132 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { props: { posts: [] } };
   }
 };
+
+export function CompletedProjects() {
+  const projects = [
+    {
+      image: "/images/al-arz-residency-scaled.webp",
+      title: "Al Arz Residency",
+      description: "Luxury living with panoramic views.",
+    },
+    {
+      image: "/images/al-arz-home-scaled.webp",
+      title: "Al Arz Home",
+      description: "Elegant designs for modern families.",
+    },
+    {
+      image: "/images/palm-residency-scaled.webp",
+      title: "Palm Residency",
+      description: "Tranquil surroundings with premium amenities.",
+    },
+    {
+      image: "/images/Sharfabad_resized.webp",
+      title: "Sharfabad Residency",
+      description: "A blend of tradition and modernity.",
+    },
+  ];
+
+  return (
+    <div className="container mx-auto px-4">
+      {/* Section Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+          Completed Projects
+        </h2>
+        <p className="mt-4 text-lg text-neutral-700">
+          At Narkins Builders & Developers, we deliver what we commit.
+        </p>
+      </motion.div>
+
+      {/* Image Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
+            className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
+            {/* Image */}
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={600}
+              height={400}
+              className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="text-xl font-bold text-white">{project.title}</h3>
+              <p className="mt-2 text-sm text-white">{project.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+export function TrustedPartners() {
+  const partners = [
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-02-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-03-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-01-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-08-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-09-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-06-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-05-320x202.png",
+    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-04-320x202.png",
+  ];
+
+  return (
+    <div className="container mx-auto px-4">
+      {/* Section Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+          Our Trusted Partners
+        </h2>
+        <p className="mt-4 text-lg text-neutral-700">
+          Partners that chose to work with us
+        </p>
+      </motion.div>
+
+      {/* Partner Logos Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {partners.map((src, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+            className="flex items-center justify-center p-0 bg-neutral-700 rounded-lg hover:bg-neutral-700 transition-all duration-300"
+          >
+            <Image
+              src={src}
+              alt={`Trusted Partner ${index + 1}`}
+              width={160}
+              height={100}
+              className="w-full border h-auto rounded-lg object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
