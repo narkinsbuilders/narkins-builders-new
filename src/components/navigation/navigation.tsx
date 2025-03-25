@@ -364,7 +364,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
 
               <div className="ml-auto flex items-center">
                 {/* Search */}
-                <div className="flex hidden lg:ml-6">
+                <div className="hidden lg:ml-6">
                   <a href="#" className="p-2 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className={`h-6 w-6 ${isScrolled ? "text-gray-800" : "text-white"}`} aria-hidden="true" />

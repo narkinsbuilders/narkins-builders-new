@@ -1,95 +1,121 @@
-import React, { FC } from 'react';
-import { Fragment, useRef, useState } from 'react'
-import { Dialog as BaseDialog, Transition } from '@headlessui/react'
-// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-
+import React, { FC, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button"; // shadcn Button
+import { X } from "lucide-react"; // Icon for close button
 
 interface DialogProps {
-  open: boolean, onClose: () => void, body: string, title: string, showButtons: boolean, cancelButton: {
-    title: string, onClick: () => void
-  }, acceptButton: {
-    title: string, onClick: () => void
-  }
+  open: boolean;
+  onClose: () => void;
+  body: string;
+  title: string;
+  showButtons?: boolean;
+  cancelButton?: {
+    title: string;
+    onClick: () => void;
+  };
+  acceptButton?: {
+    title: string;
+    onClick: () => void;
+  };
 }
 
-const Dialog: FC<DialogProps> = ({ open, onClose, title, body, showButtons, cancelButton, acceptButton }) => {
-  const cancelButtonRef = useRef(null);
+const Dialog: FC<DialogProps> = ({
+  open,
+  onClose,
+  title,
+  body,
+  showButtons = true,
+  cancelButton = { title: "Cancel", onClick: () => onClose() },
+  acceptButton = { title: "Confirm", onClick: () => onClose() },
+}) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Handle click outside to close the dialog
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open, onClose]);
+
+  // Handle Escape key to close the dialog
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <BaseDialog as="div" className="relative z-[9999999]" initialFocus={cancelButtonRef} onClose={onClose}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
+    <div className="fixed inset-0 z-[9999999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      {/* Dialog Panel */}
+      <div
+        ref={dialogRef}
+        className="w-full h-full transform p-4 bg-white text-left transition-all"
+      >
+        <div className="mx-auto max-w-4xl mt-4">
 
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <BaseDialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                  <div className="sm:flex sm:items-start">
-                    {/* <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-                    </div> */}
-                    <div className="mt-3 text-center sm:ml-4- sm:mt-0 sm:text-left w-full">
-                      <BaseDialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        {title}
-                      </BaseDialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          {body}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {showButtons && <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => onClose()}
-                  >
-                    {cancelButton.title}
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => onClose()}
-                    ref={cancelButtonRef}
-                  >
-                    {acceptButton.title}
-                  </button>
-                </div>}
-              </BaseDialog.Panel>
-            </Transition.Child>
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </button>
+
+          {/* Title */}
+          <h3 className="text-lg font-semibold leading-6 text-gray-900">{title}</h3>
+
+          {/* Body */}
+          <div className="mt-4">
+            <p className="text-sm text-gray-500">{body}</p>
           </div>
+
+          {/* Buttons */}
+          {showButtons && (
+            <div className="mt-6 flex justify-end gap-3">
+              <Button variant="outline" onClick={cancelButton.onClick}>
+                {cancelButton.title}
+              </Button>
+              <Button variant="default" onClick={acceptButton.onClick}>
+                {acceptButton.title}
+              </Button>
+            </div>
+          )}
         </div>
-      </BaseDialog>
-    </Transition.Root>
+      </div>
+    </div>
   );
-}
+};
 
 export default Dialog;
+
+// Hook to manage dialog state
 export const useDialogState = () => {
-  const [open, setOpen] = useState(false);
-  return ({
+  const [open, setOpen] = React.useState(false);
+  return {
     props: { open, onClose: () => setOpen(false) },
     open: () => setOpen(true),
     close: () => setOpen(false),
-  })
-}
+  };
+};

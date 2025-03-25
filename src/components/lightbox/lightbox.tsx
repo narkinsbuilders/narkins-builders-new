@@ -32,7 +32,7 @@ export const Lightbox = () => {
         >
             {/* Header with Download and Close Buttons */}
             <div className="fixed top-0 left-0 right-0 h-16 flex items-center justify-end p-4 backdrop-blur-sm">
-                <Button
+                {/* <Button
                     variant="ghost"
                     size="icon"
                     onClick={(e) => e.stopPropagation()}
@@ -42,7 +42,7 @@ export const Lightbox = () => {
                     <a href={image} download>
                         <CloudArrowDownIcon className="h-6 w-6" />
                     </a>
-                </Button>
+                </Button> */}
 
                 <Button
                     variant="ghost"

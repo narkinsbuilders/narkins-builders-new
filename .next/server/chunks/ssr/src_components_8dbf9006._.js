@@ -6,7 +6,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "server/chunks/ssr/src_components_dialog_dialog_tsx_ee9c6f14._.js"
+  "server/chunks/ssr/_7f131176._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/dialog/dialog.tsx [ssr] (ecmascript, next/dynamic entry)");
     });
@@ -30,7 +30,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "server/chunks/ssr/src_components_ads-campaign_ads-campaign_tsx_a75fc781._.js"
+  "server/chunks/ssr/[root of the server]__a9b7dc8d._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/ads-campaign/ads-campaign.tsx [ssr] (ecmascript, next/dynamic entry)");
     });

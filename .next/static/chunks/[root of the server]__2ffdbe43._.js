@@ -1240,7 +1240,7 @@ const Navigation = ({ transparent, fixed })=>{
                                     className: "ml-auto flex items-center",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex hidden lg:ml-6",
+                                            className: "hidden lg:ml-6",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: "#",
                                                 className: "p-2 hover:text-gray-500",
@@ -1665,7 +1665,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                             columnNumber: 13
                                         }, this),
                                         ' ',
-                                        "— All Rights Reserved · Developed by ",
+                                        "—All Rights Reserved · With ❤ from  ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                             href: "https://otherdev.com/",
                                             className: "underline",
@@ -1673,7 +1673,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/footer/footer.tsx",
                                             lineNumber: 118,
-                                            columnNumber: 55
+                                            columnNumber: 54
                                         }, this)
                                     ]
                                 }, void 0, true, {
