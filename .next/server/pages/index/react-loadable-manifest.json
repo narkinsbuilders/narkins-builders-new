@@ -9,7 +9,7 @@
   "[project]/src/components/lightbox/lightbox.tsx [client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/src/components/lightbox/lightbox.tsx [client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/_233de16d._.js",
+      "static/chunks/src_components_lightbox_lightbox_tsx_dfdd35ba._.js",
       "static/chunks/src_components_lightbox_lightbox_tsx_77f7821d._.js"
     ]
   }

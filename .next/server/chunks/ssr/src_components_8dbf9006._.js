@@ -42,7 +42,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "server/chunks/ssr/_843a0027._.js"
+  "server/chunks/ssr/src_components_lightbox_lightbox_tsx_6b4de7a9._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/lightbox/lightbox.tsx [ssr] (ecmascript, next/dynamic entry)");
     });

@@ -1598,10 +1598,10 @@ const VideoPlayerControls = ({ progress, size = 48, width = 3, isPaused, onPlayP
                             xmlns: "http://www.w3.org/2000/svg",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
-                                    "clip-path": "url(#clip0_608_6)",
+                                    clipPath: "url(#clip0_608_6)",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                         d: "M2.13275 16.0002C2.51033 16.0002 2.83127 15.8492 3.20886 15.6321L14.2154 9.2698C14.9988 8.80726 15.2726 8.5052 15.2726 8.0049C15.2726 7.5046 14.9988 7.20254 14.2154 6.74944L3.20886 0.377746C2.83127 0.160637 2.51033 0.019043 2.13275 0.019043C1.43422 0.019043 1 0.547657 1 1.3689V14.6409C1 15.4621 1.43422 16.0002 2.13275 16.0002Z",
-                                        "fill-opacity": "0.85"
+                                        fillOpacity: "0.85"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/video-player/video-player-controls.tsx",
                                         lineNumber: 53,
@@ -1646,7 +1646,7 @@ const VideoPlayerControls = ({ progress, size = 48, width = 3, isPaused, onPlayP
                             xmlns: "http://www.w3.org/2000/svg",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
-                                    "clip-path": "url(#clip0_608_6)",
+                                    clipPath: "url(#clip0_608_6)",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                         d: "M3.29883 15.9082H5.52539C6.375 15.9082 6.82422 15.459 6.82422 14.5996V1.29883C6.82422 0.410156 6.375 0 5.52539 0H3.29883C2.44922 0 2 0.449219 2 1.29883V14.5996C2 15.459 2.44922 15.9082 3.29883 15.9082ZM10.3984 15.9082H12.6152C13.4746 15.9082 13.9141 15.459 13.9141 14.5996V1.29883C13.9141 0.410156 13.4746 0 12.6152 0H10.3984C9.53906 0 9.08984 0.449219 9.08984 1.29883V14.5996C9.08984 15.459 9.53906 15.9082 10.3984 15.9082Z",
                                         "fill-opacity": "0.85"
@@ -2203,7 +2203,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                             columnNumber: 13
                                         }, this),
                                         ' ',
-                                        "— All Rights Reserved · Developed by ",
+                                        "—All Rights Reserved · With ❤ from  ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                             href: "https://otherdev.com/",
                                             className: "underline",
@@ -2211,7 +2211,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/footer/footer.tsx",
                                             lineNumber: 118,
-                                            columnNumber: 55
+                                            columnNumber: 54
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -2504,7 +2504,6 @@ __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$CloudArrowDownIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CloudArrowDownIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/outline/esm/CloudArrowDownIcon.js [client] (ecmascript) <export default as CloudArrowDownIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XMarkIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XMarkIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js [client] (ecmascript) <export default as XMarkIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/button.tsx [client] (ecmascript)"); // shadcn/ui Button
@@ -2547,56 +2546,28 @@ const Lightbox = ()=>{
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "fixed top-0 left-0 right-0 h-16 flex items-center justify-end p-4 backdrop-blur-sm",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
-                        variant: "ghost",
-                        size: "icon",
-                        onClick: (e)=>e.stopPropagation(),
-                        className: "text-neutral-700 border-r mr-0 hover:text-black",
-                        asChild: true,
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: image,
-                            download: true,
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$CloudArrowDownIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CloudArrowDownIcon$3e$__["CloudArrowDownIcon"], {
-                                className: "h-6 w-6"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                                lineNumber: 43,
-                                columnNumber: 25
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                            lineNumber: 42,
-                            columnNumber: 21
-                        }, this)
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
+                    variant: "ghost",
+                    size: "icon",
+                    onClick: (e)=>{
+                        console.log('a');
+                        e.stopPropagation();
+                        closeLightbox();
+                    },
+                    className: "text-neutral-700 hover:text-black",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XMarkIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XMarkIcon$3e$__["XMarkIcon"], {
+                        className: "h-10 w-10"
                     }, void 0, false, {
                         fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                        lineNumber: 35,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Button"], {
-                        variant: "ghost",
-                        size: "icon",
-                        onClick: (e)=>{
-                            console.log('a');
-                            e.stopPropagation();
-                            closeLightbox();
-                        },
-                        className: "text-neutral-700 hover:text-black",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$XMarkIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XMarkIcon$3e$__["XMarkIcon"], {
-                            className: "h-10 w-10"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                            lineNumber: 57,
-                            columnNumber: 21
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/lightbox/lightbox.tsx",
-                        lineNumber: 47,
-                        columnNumber: 17
+                        lineNumber: 57,
+                        columnNumber: 21
                     }, this)
-                ]
-            }, void 0, true, {
+                }, void 0, false, {
+                    fileName: "[project]/src/components/lightbox/lightbox.tsx",
+                    lineNumber: 47,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/src/components/lightbox/lightbox.tsx",
                 lineNumber: 34,
                 columnNumber: 13
@@ -4399,7 +4370,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
 {
-const PAGE_PATH = "/";
+const PAGE_PATH = "/narkins-boutique-residency";
 (window.__NEXT_P = window.__NEXT_P || []).push([
     PAGE_PATH,
     ()=>{
