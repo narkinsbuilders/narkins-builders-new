@@ -53,7 +53,7 @@ const testimonials = [
     stars: [true, true, true, true, false],
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder avatar
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
   },
 ];
 
@@ -160,7 +160,7 @@ export default function Index({ posts }: { posts: Post[] }) {
               </h2>
               <p className="mt-4 text-lg text-neutral-300">
                 Narkin&apos;s Boutique Residency in Bahria Town Karachi offers luxury and bespoke design in a Heritage
-                Commercial area. With 29 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views.
+                Commercial area. With 20 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views.
                 Residents enjoy access to over 10 premium amenities, including fitness facilities, indoor swimming pools,
                 and recreational areas. Experience the epitome of sophistication at Narkin&apos;s Boutique Residency.
               </p>
@@ -218,9 +218,9 @@ export default function Index({ posts }: { posts: Post[] }) {
                 Hill Crest Residency
               </h2>
               <p className="mt-4 text-lg text-neutral-300">
-                Conveniently situated just two minutes from the main gate of Bahria Town Karachi, Hill Crest Residency
-                presents a selection of luxurious 2, 3, and 4-bedroom apartments. Schedule your free tour today and
-                experience refined living at its finest!
+              Conveniently located just a minute drive from the main entrance of Bahria Town Karachi, Hill Crest Residency offers an exceptional living experience with a selection of spacious and thoughtfully designed 2, 3, and 4-bedroom luxury apartments. Nestled in a prime and rapidly developing area, 
+              the complex combines comfort, elegance, and modern amenities to create a lifestyle that’s both refined and relaxing. 
+               Schedule your free tour today and discover what elevated living truly feels like.
               </p>
               <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <Link href="/hill-crest-residency">
@@ -350,7 +350,7 @@ export function CompletedProjects() {
   const projects = [
     {
       image: "/images/al-arz-residency-scaled.webp",
-      title: "Al Arz Residency",
+      title: "Al Arz Terrace",
       description: "Luxury living with panoramic views.",
     },
     {

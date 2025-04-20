@@ -2504,7 +2504,7 @@ const testimonials = [
             false
         ],
         testimonial: "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
-        avatar: "https://randomuser.me/api/portraits/men/3.jpg"
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg"
     }
 ];
 var __N_SSP = true;
@@ -2740,7 +2740,7 @@ function Index({ posts }) {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "mt-4 text-lg text-neutral-300",
-                                            children: "Narkin's Boutique Residency in Bahria Town Karachi offers luxury and bespoke design in a Heritage Commercial area. With 29 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views. Residents enjoy access to over 10 premium amenities, including fitness facilities, indoor swimming pools, and recreational areas. Experience the epitome of sophistication at Narkin's Boutique Residency."
+                                            children: "Narkin's Boutique Residency in Bahria Town Karachi offers luxury and bespoke design in a Heritage Commercial area. With 20 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views. Residents enjoy access to over 10 premium amenities, including fitness facilities, indoor swimming pools, and recreational areas. Experience the epitome of sophistication at Narkin's Boutique Residency."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/index.tsx",
                                             lineNumber: 161,
@@ -2875,7 +2875,7 @@ function Index({ posts }) {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "mt-4 text-lg text-neutral-300",
-                                            children: "Conveniently situated just two minutes from the main gate of Bahria Town Karachi, Hill Crest Residency presents a selection of luxurious 2, 3, and 4-bedroom apartments. Schedule your free tour today and experience refined living at its finest!"
+                                            children: "Conveniently located just a minute drive from the main entrance of Bahria Town Karachi, Hill Crest Residency offers an exceptional living experience with a selection of spacious and thoughtfully designed 2, 3, and 4-bedroom luxury apartments. Nestled in a prime and rapidly developing area, the complex combines comfort, elegance, and modern amenities to create a lifestyle that’s both refined and relaxing. Schedule your free tour today and discover what elevated living truly feels like."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/index.tsx",
                                             lineNumber: 220,
@@ -3164,7 +3164,7 @@ function CompletedProjects() {
     const projects = [
         {
             image: "/images/al-arz-residency-scaled.webp",
-            title: "Al Arz Residency",
+            title: "Al Arz Terrace",
             description: "Luxury living with panoramic views."
         },
         {
