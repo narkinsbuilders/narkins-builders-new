@@ -22,14 +22,14 @@ import Testimonials from "@/components/testimonials/testimonials";
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
-    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/DIAMOND PLAN.webp" },
-    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: "/images/hcr_appartment/GOLD PLAN.webp" },
-    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: "/images/hcr_appartment/SAPPHIRE PAGE.webp" },
+    { title: '2 Bed Diamond', size: '1009 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/DIAMOND PLAN.webp" },
+    { title: '2 Bed Gold', size: '933 Square Feet', location: 'Gold Safari View', image: "/images/hcr_appartment/GOLD PLAN.webp" },
+    { title: '2 Bed Sapphire', size: '697 Square Feet', location: 'Sapphire Safari View', image: "/images/hcr_appartment/SAPPHIRE PAGE.webp" },
 ], [
-    { title: '3 Bed Platinum', size: '1884 Feet', location: 'Jinnah View', image: "/images/hcr_appartment/PLATINUM PLAN.webp" },
+    { title: '3 Bed Platinum', size: '1490 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/PLATINUM PLAN.webp" },
 ], [
-    { title: '4 Bed Rhodium', size: '2507 Feet', location: 'Jinnah View', image: "/images/hcr_appartment/RHODIUM PLAN.webp" },
-    { title: '4 Bed Sapphire-A', size: '1756 Feet', location: 'Safari View', image: "/images/hcr_appartment/SAPPHIRE A PAGE.webp" },
+    { title: '4 Bed Rhodium', size: '1996 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/RHODIUM PLAN.webp" },
+    { title: '4 Bed Sapphire-A', size: '1388 Square Feet', location: 'Safari View', image: "/images/hcr_appartment/SAPPHIRE A PAGE.webp" },
 ]];
 const amenities = [
     { image: "/hcr-scaled/gym.webp", name: "Gym" },
