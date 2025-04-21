@@ -3,6 +3,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/hill-crest-residency": "pages/hill-crest-residency.js",
-  "/narkins-boutique-residency": "pages/narkins-boutique-residency.js"
+  "/about": "pages/about.js",
+  "/completed-projects": "pages/completed-projects.js",
+  "/hill-crest-residency": "pages/hill-crest-residency.js"
 }

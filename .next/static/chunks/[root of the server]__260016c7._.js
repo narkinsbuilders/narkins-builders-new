@@ -3280,19 +3280,19 @@ const cards = [
             title: '2 Bed Diamond',
             size: '1276 Square Feet',
             location: 'Jinnah View',
-            image: "/images/Diamond HCR.webp"
+            image: "/images/hcr_appartment/DIAMOND PLAN.webp"
         },
         {
             title: '2 Bed Gold',
             size: '1180 Square Feet',
             location: 'Gold Safari View',
-            image: "/images/Gold HCR.webp"
+            image: "/images/hcr_appartment/GOLD PLAN.webp"
         },
         {
             title: '2 Bed Sapphire',
             size: '881 Square Feet',
             location: 'Sapphire Safari View',
-            image: "/images/Sapphire HCR.webp"
+            image: "/images/hcr_appartment/SAPPHIRE PAGE.webp"
         }
     ],
     [
@@ -3300,7 +3300,7 @@ const cards = [
             title: '3 Bed Platinum',
             size: '1884 Feet',
             location: 'Jinnah View',
-            image: "/images/Platinium HCR.webp"
+            image: "/images/hcr_appartment/PLATINUM PLAN.webp"
         }
     ],
     [
@@ -3308,13 +3308,13 @@ const cards = [
             title: '4 Bed Rhodium',
             size: '2507 Feet',
             location: 'Jinnah View',
-            image: "/images/Rhodium HCR.webp"
+            image: "/images/hcr_appartment/RHODIUM PLAN.webp"
         },
         {
             title: '4 Bed Sapphire-A',
             size: '1756 Feet',
             location: 'Safari View',
-            image: "/images/Sapphire A 4 bed.webp"
+            image: "/images/hcr_appartment/SAPPHIRE A PAGE.webp"
         }
     ]
 ];

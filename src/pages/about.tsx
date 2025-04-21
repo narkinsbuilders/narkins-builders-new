@@ -88,13 +88,13 @@ export default function AboutUs() {
                                 Hill Crest Residency Launch <i>2021</i>
                             </p>
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
-                                Hill Crest Residency Completion <i>2024</i>
+                                Hill Crest Residency Completion <i>2025</i>
                             </p>
-                            <img src={"/images/hill-crest-residency-launch-2.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img src={"/images/hcr_new.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                             <div className="flex flex-col items-center md:lg:hidden">
                                 <img src={"/images/hill-crest-residency-launch.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
-                                    Hill Crest Residency Completion <i>2024</i>
+                                    Hill Crest Residency Completion <i>2025</i>
                                 </p>
                             </div>
                             <div className="flex flex-col items-center md:lg:hidden">
@@ -109,7 +109,7 @@ export default function AboutUs() {
                 <div className="bg-neutral-100 border-b py-[5rem]">
                     <div className="mx-auto max-w-7xl gap-y-2 flex flex-col px-6 lg:px-8">
                         <h3 className="text-3xl font-bold mb-[1rem] tracking-tight text-gray-900 sm:text-5xl">
-                            Narkin{"'"}s Botique Residency Journey
+                            Narkin{"'"}s Boutique Residency Journey
                         </h3>
                         <p className="mt-2 text-lg mb-[5rem] leading-8 max-w-2xl text-gray-600">
                             Narkin's Boutique Residency exemplifies our dedication to timely delivery, exceptional quality, and customer satisfaction. Just as Hill Crest Residency pioneered smart apartments in Bahria Town Karachi, Narkin's Boutique Residency continues this legacy of innovation and excellence. Over the years, we have successfully completed five high-rise projects in prime locations across Karachi, each reflecting our commitment to superior craftsmanship and meticulous attention to detail.

@@ -509,7 +509,6 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$dialog$2f$dialog$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@headlessui/react/dist/components/dialog/dialog.js [client] (ecmascript)");
@@ -634,7 +633,7 @@ const navigation = {
         },
         {
             name: "Contact Us",
-            href: `https://api.whatsapp.com/send?phone=${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_WA_PHONE}`
+            href: `https://api.whatsapp.com/send?phone=+923001234567`
         }
     ]
 };
@@ -3163,17 +3162,17 @@ _c2 = Index;
 function CompletedProjects() {
     const projects = [
         {
-            image: "/images/al-arz-residency-scaled.webp",
+            image: "/images/Al Arz Terrace.webp",
             title: "Al Arz Terrace",
             description: "Luxury living with panoramic views."
         },
         {
-            image: "/images/al-arz-home-scaled.webp",
+            image: "/images/Al Arz Homez.webp",
             title: "Al Arz Home",
             description: "Elegant designs for modern families."
         },
         {
-            image: "/images/palm-residency-scaled.webp",
+            image: "/images/Ferere Town Project.webp",
             title: "Palm Residency",
             description: "Tranquil surroundings with premium amenities."
         },
