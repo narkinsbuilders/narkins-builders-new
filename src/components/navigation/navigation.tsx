@@ -83,7 +83,7 @@ const navigation = {
     { name: "Home", href: "/" },
     { name: "Blogs", href: "/blogs" },
     { name: "About Us", href: "/about" },
-    { name: "Contact Us", href: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WA_PHONE}` },
+    { name: "Contact Us", href: `https://api.whatsapp.com/send?phone=923001234567` },
   ],
 };
 

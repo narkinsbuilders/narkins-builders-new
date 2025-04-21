@@ -8,19 +8,18 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "default": (()=>WAButton)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/link.js [client] (ecmascript)");
 ;
 ;
 function WAButton() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
-        href: `https://api.whatsapp.com/send?phone=${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_WA_PHONE}`,
+        href: "https://api.whatsapp.com/send?phone=923203243970",
         style: {
             bottom: '1rem',
             right: '1rem'
         },
-        className: " z-[998] border justify-space-between items-center w-[10rem] fixed py-2 gap-x-2 flex px-2 shadow bor-der no-underline rounded-full bg-black text-white font-sans font-semibold text-sm -mr-2",
+        className: "z-[998] border justify-space-between items-center w-[10rem] fixed py-2 gap-x-2 flex px-2 shadow bor-der no-underline rounded-full bg-black text-white font-sans font-semibold text-sm -mr-2",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 32 32",
@@ -31,12 +30,12 @@ function WAButton() {
                     fillRule: "evenodd"
                 }, void 0, false, {
                     fileName: "[project]/src/components/sticky-wa-button/wa-button.tsx",
-                    lineNumber: 6,
-                    columnNumber: 92
+                    lineNumber: 11,
+                    columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/sticky-wa-button/wa-button.tsx",
-                lineNumber: 6,
+                lineNumber: 10,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -45,14 +44,14 @@ function WAButton() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/sticky-wa-button/wa-button.tsx",
-                lineNumber: 7,
+                lineNumber: 17,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: "Whatsapp"
             }, void 0, false, {
                 fileName: "[project]/src/components/sticky-wa-button/wa-button.tsx",
-                lineNumber: 8,
+                lineNumber: 18,
                 columnNumber: 13
             }, this)
         ]

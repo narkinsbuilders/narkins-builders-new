@@ -401,7 +401,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                 Gallery
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore the stunning visuals of Hill Crest Residency.
+                Explore the stunning visuals of Narkins Boutique Residency.
               </p>
             </div>
 

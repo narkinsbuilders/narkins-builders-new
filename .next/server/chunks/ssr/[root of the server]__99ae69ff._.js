@@ -78,29 +78,6 @@ function Document() {
                 lineNumber: 7,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
-                async: true,
-                src: "https://www.googletagmanager.com/gtag/js?id=AW-16584105712"
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 8,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
-                children: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());  gtag('config', 'AW-16584105712');`
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 9,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
-                crossOrigin: "anonymous",
-                src: "//unpkg.com/react-scan/dist/auto.global.js"
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 13,
-                columnNumber: 7
-            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("body", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Main"], {}, void 0, false, {
@@ -658,7 +635,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$e
                                             columnNumber: 13
                                         }, this),
                                         ' ',
-                                        "— All Rights Reserved · Developed by ",
+                                        "—All Rights Reserved · With ❤ from  ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                             href: "https://otherdev.com/",
                                             className: "underline",
@@ -666,7 +643,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$e
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/footer/footer.tsx",
                                             lineNumber: 118,
-                                            columnNumber: 55
+                                            columnNumber: 54
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -1008,10 +985,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 const Navigation = ({ transparent, fixed })=>{
+    const isFixed = fixed ?? false;
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
-    const [isScrolled, setIsScrolled] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    const [isScrolled, setIsScrolled] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(!fixed);
     const setLeadForm = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$zustand$2f$index$2e$tsx__$5b$ssr$5d$__$28$ecmascript$29$__["useGlobalLeadFormState"])((state)=>state.setOpen);
-    const isFixed = fixed ?? true;
     // Handle scroll event
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         const handleScroll = ()=>{
@@ -1021,8 +998,10 @@ const Navigation = ({ transparent, fixed })=>{
                 setIsScrolled(false);
             }
         };
-        window.addEventListener("scroll", handleScroll);
-        return ()=>window.removeEventListener("scroll", handleScroll);
+        if (fixed) window.addEventListener("scroll", handleScroll);
+        return ()=>{
+            if (fixed) window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
         className: "text-white",
@@ -1399,7 +1378,7 @@ const Navigation = ({ transparent, fixed })=>{
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                                                     className: "relative flex",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$popover$2f$popover$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Popover"].Button, {
-                                                                        className: classNames(open ? "border-neutral-600 text-neutral-600" : "border-transparent hover:text-gray-800", `relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out ${isScrolled ? "text-gray-800" : "text-white"}`),
+                                                                        className: classNames(open ? "border-neutral-600 text-neutral-600" : "border-transparent hover:text-neutral-300", `relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out ${isScrolled ? "text-gray-800" : "text-white"}`),
                                                                         children: category.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/navigation/navigation.tsx",
@@ -1509,7 +1488,7 @@ const Navigation = ({ transparent, fixed })=>{
                                                                                                                         className: "flex",
                                                                                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                                                                                                             href: item.href,
-                                                                                                                            className: "hover:text-gray-800",
+                                                                                                                            className: "hover:text-neutral-300",
                                                                                                                             children: item.name
                                                                                                                         }, void 0, false, {
                                                                                                                             fileName: "[project]/src/components/navigation/navigation.tsx",
@@ -1573,7 +1552,7 @@ const Navigation = ({ transparent, fixed })=>{
                                                 }, this)),
                                             navigation.pages.map((page)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                                     href: page.href,
-                                                    className: `flex items-center text-sm font-medium ${isScrolled ? "text-gray-800" : "text-white"} hover:text-gray-800`,
+                                                    className: `flex items-center text-sm font-medium ${isScrolled ? "text-gray-800" : "text-white"} hover:text-neutral-300`,
                                                     children: page.name
                                                 }, page.name, false, {
                                                     fileName: "[project]/src/components/navigation/navigation.tsx",
@@ -1595,7 +1574,7 @@ const Navigation = ({ transparent, fixed })=>{
                                     className: "ml-auto flex items-center",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                                            className: "flex hidden lg:ml-6",
+                                            className: "hidden lg:ml-6",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                                 href: "#",
                                                 className: "p-2 hover:text-gray-500",
@@ -1972,7 +1951,7 @@ function AboutUs() {
                                             children: [
                                                 "Hill Crest Residency Completion ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("i", {
-                                                    children: "2024"
+                                                    children: "2025"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/about.tsx",
                                                     lineNumber: 91,
@@ -1985,7 +1964,7 @@ function AboutUs() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
-                                            src: "/images/hill-crest-residency-launch-2.webp",
+                                            src: "/images/hcr_new.webp",
                                             className: "w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/about.tsx",
@@ -2008,7 +1987,7 @@ function AboutUs() {
                                                     children: [
                                                         "Hill Crest Residency Completion ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("i", {
-                                                            children: "2024"
+                                                            children: "2025"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/about.tsx",
                                                             lineNumber: 97,
@@ -2087,7 +2066,7 @@ function AboutUs() {
                                     children: [
                                         "Narkin",
                                         "'",
-                                        "s Botique Residency Journey"
+                                        "s Boutique Residency Journey"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/about.tsx",

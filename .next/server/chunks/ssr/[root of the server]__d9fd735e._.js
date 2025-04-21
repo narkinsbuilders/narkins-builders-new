@@ -456,7 +456,7 @@ const navigation = {
         },
         {
             name: "Contact Us",
-            href: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WA_PHONE}`
+            href: `https://api.whatsapp.com/send?phone=+923001234567`
         }
     ]
 };
@@ -3021,17 +3021,17 @@ const getServerSideProps = async ()=>{
 function CompletedProjects() {
     const projects = [
         {
-            image: "/images/al-arz-residency-scaled.webp",
+            image: "/images/Al Arz Terrace.webp",
             title: "Al Arz Terrace",
             description: "Luxury living with panoramic views."
         },
         {
-            image: "/images/al-arz-home-scaled.webp",
+            image: "/images/Al Arz Homez.webp",
             title: "Al Arz Home",
             description: "Elegant designs for modern families."
         },
         {
-            image: "/images/palm-residency-scaled.webp",
+            image: "/images/Ferere Town Project.webp",
             title: "Palm Residency",
             description: "Tranquil surroundings with premium amenities."
         },
