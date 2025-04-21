@@ -49,85 +49,80 @@ const cards = [
   ],
   [
     {
-      title: "4 Bed Platinum-A",
-      size: "2597 Feet",
-      location: "Jinnah & Theme Park View",
-      image:
-        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
-    },
-    {
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image:
-        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
+      image: "/images/nbr_3d/Platinum A-1 Corner jinnah and theme park view.webp",
     },
     {
       title: "4 Bed Platinum A-1 Boulevard",
       size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
-      image:
-        "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
+      image: "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
     },
     {
-      title: "4 Bed Platinum A-1",
-      size: "2486 Square Feet",
+      title: "4 Bed Platinum-A",
+      size: "2597 Feet",
       location: "Jinnah & Theme Park View",
-      image:
-        "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
-    },
+      image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
+    },    
+    // {
+//   title: "4 Bed Platinum A-1",
+//   size: "2486 Square Feet",
+//   location: "Jinnah & Theme Park View",
+//   image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
+// },
+ 
   ],
   [
     {
-      title: "Diamond A",
-      size: "4242 Square Feet",
-      location: "Jinnah & Theme Park View",
-      image:
-        "/images/nbr_3d/Diamond-A-new(sky).webp",
-    },
-    {
-      title: "Diamond Corner",
-      size: "4968 Square Feet",
-      location: "Heritage Club & Theme Park View",
-      image:
-        "/images/nbr_3d/diamond-corner-new(sky).webp",
-    },
-    {
-      title: "Gold",
-      size: "3094 Square Feet",
-      location: "Heritage Club & Danzoo Safari View",
-      image:
-        "/images/nbr_3d/gold-new(sky).webp",
-    },
-    {
-      title: "Platinium A",
-      size: "5194 Square Feet",
-      location: "Jinnah & Theme Park View",
-      image:
-        "/images/nbr_3d/platinum-a-new(sky).webp",
-    },
-    {
-      title: "Platinium A-1 Corner",
+      title: "Platinium A-1 Corner 6 Bed",
       size: "5340 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image:
-        "/images/nbr_3d/platinum-A1-Corner-new(sky).webp",
+      image: "/images/nbr_3d/platinum-A1-Corner-new(sky).webp",
     },
     {
-      title: "Platinum A-1 Boulevard",
+      title: "Platinum A-1 Boulevard 6 Bed",
       size: "4972 Square Feet",
       location: "Jinnah & Boulevard View",
-      image:
-        "/images/nbr_3d/platinum-A1-boulevard-new(sky).webp",
+      image: "/images/nbr_3d/platinum-A1-boulevard-new(sky).webp",
     },
+    {
+      title: "Platinium A 6 Bed",
+      size: "5194 Square Feet",
+      location: "Jinnah & Theme Park View",
+      image: "/images/nbr_3d/platinum-a-new(sky).webp",
+    },
+    {
+      title: "Diamond A 5 Bed",
+      size: "4242 Square Feet",
+      location: "Jinnah & Theme Park View",
+      image: "/images/nbr_3d/Diamond-A-new(sky).webp",
+    },
+    {
+      title: "Diamond Corner 6 bed",
+      size: "4368 Square Feet",
+      location: "Heritage Club & Theme Park View",
+      image: "/images/nbr_3d/diamond-corner-new(sky).webp",
+    },
+    {
+      title: "Gold 4 Bed",
+      size: "3094 Square Feet",
+      location: "Heritage Club & Danzoo Safari View",
+      image: "/images/nbr_3d/gold-new(sky).webp",
+    },    
   ],
 ];
 const amenities = [
   { image: "/nbr-scaled/gym.webp", name: "Gym" },
-  { image: "/nbr-scaled/play-area.webp", name: "Prayer Area" },
+  { image: "/nbr-scaled/play-area.webp", name: "Kids Area" },
   { image: "/nbr-scaled/steam-bath.webp", name: "Steam Bath" },
   { image: "/nbr-scaled/reception.webp", name: "Grand Reception" },
   { image: "/nbr-scaled/snooker.webp", name: "Snooker" },
+  { image: "/nbr-scaled/Lift-Shot.webp", name: "Elevators" },
+  { image: "/nbr-scaled/Pool.webp", name: "Pool" },
+  { image: "/nbr-scaled/Seating.webp", name: "Community Hall" },
+  { image: "/nbr-scaled/underground-car-parking.webp", name: "5 Floors Parking" },
 ];
 const galleryImages = [
   "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
@@ -311,11 +306,11 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
                 met.
                 <br />
                 <br />
-                With ground + 29 floors, {`Narkin's`} Boutique Residency
+                With ground + 20 floors, {`Narkin's`} Boutique Residency
                 presents a selection of 2, 3, and 4-bedroom luxury apartments,
                 each boasting panoramic views of Bahria Town Karachi. Experience
                 the epitome of sophistication as you unwind in your designer
-                Apartment.
+                Apartment.Adding to its uniqueness, {`Narkin's`} introduces Sky Villa Duplex penthouses—double-story luxury residences with private terraces, expansive layouts, and unmatched privacy, perfect for those seeking a villa experience in the sky.
                 <br />
                 <br />
               </p>

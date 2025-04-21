@@ -29,13 +29,13 @@ const cards = [[
     { title: '3 Bed Platinum', size: '1884 Feet', location: 'Jinnah View', image: "/images/Platinium HCR.webp" },
 ], [
     { title: '4 Bed Rhodium', size: '2507 Feet', location: 'Jinnah View', image: "/images/Rhodium HCR.webp" },
-    { title: '4 Bed Sapphire-A', size: '1762 Feet', location: 'Safari View', image: "/images/Sapphire A 4 bed.webp" },
+    { title: '4 Bed Sapphire-A', size: '1756 Feet', location: 'Safari View', image: "/images/Sapphire A 4 bed.webp" },
 ]];
 const amenities = [
     { image: "/hcr-scaled/gym.webp", name: "Gym" },
     { image: "/hcr-scaled/mosque.webp", name: "Prayer Area" },
     { image: "/hcr-scaled/steam-bath.webp", name: "Steam Bath" },
-    { image: "/hcr-scaled/grand-lobby.webp", name: "Grand Lobby" },
+    { image: "/hcr-scaled/grand-lobby-for-hcr.webp", name: "Grand Lobby" },
 ];
 const galleryImages = [
     "/images/hcr_appartment/hcr_apartment_slide_1.webp",

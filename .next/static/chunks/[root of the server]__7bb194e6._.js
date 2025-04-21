@@ -3300,16 +3300,10 @@ const cards = [
     ],
     [
         {
-            title: "4 Bed Platinum-A",
-            size: "2597 Feet",
-            location: "Jinnah & Theme Park View",
-            image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp"
-        },
-        {
             title: "4 Bed Platinum A-1 Corner",
             size: "2670 Square Feet",
             location: "Jinnah & Danzoo Safari View",
-            image: "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp"
+            image: "/images/nbr_3d/Platinum A-1 Corner jinnah and theme park view.webp"
         },
         {
             title: "4 Bed Platinum A-1 Boulevard",
@@ -3318,48 +3312,48 @@ const cards = [
             image: "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp"
         },
         {
-            title: "4 Bed Platinum A-1",
-            size: "2486 Square Feet",
+            title: "4 Bed Platinum-A",
+            size: "2597 Feet",
             location: "Jinnah & Theme Park View",
             image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp"
         }
     ],
     [
         {
-            title: "Diamond A",
-            size: "4242 Square Feet",
-            location: "Jinnah & Theme Park View",
-            image: "/images/nbr_3d/Diamond-A-new(sky).webp"
-        },
-        {
-            title: "Diamond Corner",
-            size: "4968 Square Feet",
-            location: "Heritage Club & Theme Park View",
-            image: "/images/nbr_3d/diamond-corner-new(sky).webp"
-        },
-        {
-            title: "Gold",
-            size: "3094 Square Feet",
-            location: "Heritage Club & Danzoo Safari View",
-            image: "/images/nbr_3d/gold-new(sky).webp"
-        },
-        {
-            title: "Platinium A",
-            size: "5194 Square Feet",
-            location: "Jinnah & Theme Park View",
-            image: "/images/nbr_3d/platinum-a-new(sky).webp"
-        },
-        {
-            title: "Platinium A-1 Corner",
+            title: "Platinium A-1 Corner 6 Bed",
             size: "5340 Square Feet",
             location: "Jinnah & Danzoo Safari View",
             image: "/images/nbr_3d/platinum-A1-Corner-new(sky).webp"
         },
         {
-            title: "Platinum A-1 Boulevard",
+            title: "Platinum A-1 Boulevard 6 Bed",
             size: "4972 Square Feet",
             location: "Jinnah & Boulevard View",
             image: "/images/nbr_3d/platinum-A1-boulevard-new(sky).webp"
+        },
+        {
+            title: "Platinium A 6 Bed",
+            size: "5194 Square Feet",
+            location: "Jinnah & Theme Park View",
+            image: "/images/nbr_3d/platinum-a-new(sky).webp"
+        },
+        {
+            title: "Diamond A 5 Bed",
+            size: "4242 Square Feet",
+            location: "Jinnah & Theme Park View",
+            image: "/images/nbr_3d/Diamond-A-new(sky).webp"
+        },
+        {
+            title: "Diamond Corner 6 bed",
+            size: "4368 Square Feet",
+            location: "Heritage Club & Theme Park View",
+            image: "/images/nbr_3d/diamond-corner-new(sky).webp"
+        },
+        {
+            title: "Gold 4 Bed",
+            size: "3094 Square Feet",
+            location: "Heritage Club & Danzoo Safari View",
+            image: "/images/nbr_3d/gold-new(sky).webp"
         }
     ]
 ];
@@ -3370,7 +3364,7 @@ const amenities = [
     },
     {
         image: "/nbr-scaled/play-area.webp",
-        name: "Prayer Area"
+        name: "Kids Area"
     },
     {
         image: "/nbr-scaled/steam-bath.webp",
@@ -3383,6 +3377,22 @@ const amenities = [
     {
         image: "/nbr-scaled/snooker.webp",
         name: "Snooker"
+    },
+    {
+        image: "/nbr-scaled/Lift-Shot.webp",
+        name: "Elevators"
+    },
+    {
+        image: "/nbr-scaled/Pool.webp",
+        name: "Pool"
+    },
+    {
+        image: "/nbr-scaled/Seating.webp",
+        name: "Community Hall"
+    },
+    {
+        image: "/nbr-scaled/underground-car-parking.webp",
+        name: "5 Floors Parking"
     }
 ];
 const galleryImages = [
@@ -3485,7 +3495,7 @@ const Amenities = ()=>{
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 186,
+                        lineNumber: 181,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3493,13 +3503,13 @@ const Amenities = ()=>{
                         children: "Explore the top-notch amenities designed to enhance your living experience."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 189,
+                        lineNumber: 184,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 185,
+                lineNumber: 180,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3526,7 +3536,7 @@ const Amenities = ()=>{
                                         loading: "lazy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                        lineNumber: 204,
+                                        lineNumber: 199,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3536,33 +3546,33 @@ const Amenities = ()=>{
                                             children: amenity.name
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 208,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                        lineNumber: 212,
+                                        lineNumber: 207,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                lineNumber: 203,
+                                lineNumber: 198,
                                 columnNumber: 15
                             }, this)
                         }, index, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 198,
+                            lineNumber: 193,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                    lineNumber: 196,
+                    lineNumber: 191,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 195,
+                lineNumber: 190,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3582,7 +3592,7 @@ const Amenities = ()=>{
                         dataSource: amenities
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 225,
+                        lineNumber: 220,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3592,24 +3602,24 @@ const Amenities = ()=>{
                             children: amenities.map(({ name })=>name)[amenityIndex]
                         }, void 0, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 239,
+                            lineNumber: 234,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 238,
+                        lineNumber: 233,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 224,
+                lineNumber: 219,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-        lineNumber: 183,
+        lineNumber: 178,
         columnNumber: 5
     }, this);
 };
@@ -3632,7 +3642,7 @@ function HillCrestResidency({ posts }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 254,
+                        lineNumber: 249,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3640,7 +3650,7 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Narkin's Boutique Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 255,
+                        lineNumber: 250,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3648,7 +3658,7 @@ function HillCrestResidency({ posts }) {
                         content: "Narkin's Boutique Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 259,
+                        lineNumber: 254,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3656,7 +3666,7 @@ function HillCrestResidency({ posts }) {
                         content: "Narkin's Builders"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 263,
+                        lineNumber: 258,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3664,7 +3674,7 @@ function HillCrestResidency({ posts }) {
                         content: "website"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 266,
+                        lineNumber: 261,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3672,7 +3682,7 @@ function HillCrestResidency({ posts }) {
                         content: "Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 267,
+                        lineNumber: 262,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3680,7 +3690,7 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 268,
+                        lineNumber: 263,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3688,7 +3698,7 @@ function HillCrestResidency({ posts }) {
                         content: "https://narkinsbuilders.com/hill-crest-residency"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 272,
+                        lineNumber: 267,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3696,7 +3706,7 @@ function HillCrestResidency({ posts }) {
                         content: "https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 273,
+                        lineNumber: 268,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3704,7 +3714,7 @@ function HillCrestResidency({ posts }) {
                         content: "Hill Crest Residency"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 277,
+                        lineNumber: 272,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3712,7 +3722,7 @@ function HillCrestResidency({ posts }) {
                         content: "summary_large_image"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 280,
+                        lineNumber: 275,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3720,7 +3730,7 @@ function HillCrestResidency({ posts }) {
                         content: "Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 281,
+                        lineNumber: 276,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -3728,23 +3738,23 @@ function HillCrestResidency({ posts }) {
                         content: "Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 282,
+                        lineNumber: 277,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 252,
+                lineNumber: 247,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navigation$2f$navigation$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 287,
+                lineNumber: 282,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$lightbox$2f$lightbox$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Lightbox"], {}, void 0, false, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 288,
+                lineNumber: 283,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3757,12 +3767,12 @@ function HillCrestResidency({ posts }) {
                             poster: '/nbr_video_poster.webp'
                         }, void 0, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 291,
+                            lineNumber: 286,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 290,
+                        lineNumber: 285,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3780,7 +3790,7 @@ function HillCrestResidency({ posts }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 291,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3794,47 +3804,49 @@ function HillCrestResidency({ posts }) {
                                             "Boutique Residency offers residents unparalleled access to a wealth of amenities and attractions. From exclusive luxury farmhouses and the prestigious Heritage Club to the convenience of Imtiaz Mega, shopping malls, and a bustling food street, everything you desire is just a walk away. Additionally, the 24/7 Shop Stop & PSO ensures your daily needs are effortlessly met.",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                lineNumber: 312,
+                                                lineNumber: 307,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                lineNumber: 313,
+                                                lineNumber: 308,
                                                 columnNumber: 17
                                             }, this),
-                                            "With ground + 29 floors, ",
+                                            "With ground + 20 floors, ",
                                             `Narkin's`,
-                                            " Boutique Residency presents a selection of 2, 3, and 4-bedroom luxury apartments, each boasting panoramic views of Bahria Town Karachi. Experience the epitome of sophistication as you unwind in your designer Apartment.",
+                                            " Boutique Residency presents a selection of 2, 3, and 4-bedroom luxury apartments, each boasting panoramic views of Bahria Town Karachi. Experience the epitome of sophistication as you unwind in your designer Apartment.Adding to its uniqueness, ",
+                                            `Narkin's`,
+                                            " introduces Sky Villa Duplex penthouses—double-story luxury residences with private terraces, expansive layouts, and unmatched privacy, perfect for those seeking a villa experience in the sky.",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                lineNumber: 319,
+                                                lineNumber: 314,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                lineNumber: 320,
+                                                lineNumber: 315,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                        lineNumber: 297,
+                                        lineNumber: 292,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                lineNumber: 295,
+                                lineNumber: 290,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 294,
+                            lineNumber: 289,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 293,
+                        lineNumber: 288,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3850,7 +3862,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Explore Our Offerings"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 329,
+                                            lineNumber: 324,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3858,13 +3870,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Discover a range of luxurious apartments designed to meet your lifestyle needs. Each offering combines elegance, comfort, and modern amenities."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 332,
+                                            lineNumber: 327,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 328,
+                                    lineNumber: 323,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -3879,12 +3891,12 @@ function HillCrestResidency({ posts }) {
                                                     children: category
                                                 }, category, false, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 340,
+                                                    lineNumber: 335,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 338,
+                                            lineNumber: 333,
                                             columnNumber: 15
                                         }, this),
                                         cards.map((items, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -3927,7 +3939,7 @@ function HillCrestResidency({ posts }) {
                                                                                 loading: idx === 0 ? "eager" : "lazy"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                lineNumber: 371,
+                                                                                lineNumber: 366,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3936,18 +3948,18 @@ function HillCrestResidency({ posts }) {
                                                                                     className: "w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                    lineNumber: 380,
+                                                                                    lineNumber: 375,
                                                                                     columnNumber: 31
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                lineNumber: 379,
+                                                                                lineNumber: 374,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                        lineNumber: 370,
+                                                                        lineNumber: 365,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -3958,7 +3970,7 @@ function HillCrestResidency({ posts }) {
                                                                                 children: item.title
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                lineNumber: 384,
+                                                                                lineNumber: 379,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3968,7 +3980,7 @@ function HillCrestResidency({ posts }) {
                                                                                         children: "Size"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                        lineNumber: 386,
+                                                                                        lineNumber: 381,
                                                                                         columnNumber: 31
                                                                                     }, this),
                                                                                     ": ",
@@ -3978,7 +3990,7 @@ function HillCrestResidency({ posts }) {
                                                                                         children: "Location"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                        lineNumber: 386,
+                                                                                        lineNumber: 381,
                                                                                         columnNumber: 67
                                                                                     }, this),
                                                                                     ": ",
@@ -3986,63 +3998,63 @@ function HillCrestResidency({ posts }) {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                                lineNumber: 385,
+                                                                                lineNumber: 380,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                        lineNumber: 383,
+                                                                        lineNumber: 378,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                lineNumber: 366,
+                                                                lineNumber: 361,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, index, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 360,
+                                                            lineNumber: 355,
                                                             columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 353,
+                                                    lineNumber: 348,
                                                     columnNumber: 19
                                                 }, this)
                                             }, idx, false, {
                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                lineNumber: 352,
+                                                lineNumber: 347,
                                                 columnNumber: 17
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 336,
+                                    lineNumber: 331,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 326,
+                            lineNumber: 321,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 325,
+                        lineNumber: 320,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                         className: "bg-white py-20",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Amenities, {}, void 0, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 399,
+                            lineNumber: 394,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 398,
+                        lineNumber: 393,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4058,7 +4070,7 @@ function HillCrestResidency({ posts }) {
                                             children: "Gallery"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 405,
+                                            lineNumber: 400,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4066,13 +4078,13 @@ function HillCrestResidency({ posts }) {
                                             children: "Explore the stunning visuals of Hill Crest Residency."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 408,
+                                            lineNumber: 403,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 404,
+                                    lineNumber: 399,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4098,7 +4110,7 @@ function HillCrestResidency({ posts }) {
                                                     loading: "lazy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 423,
+                                                    lineNumber: 418,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4108,23 +4120,23 @@ function HillCrestResidency({ posts }) {
                                                         children: "View"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                        lineNumber: 432,
+                                                        lineNumber: 427,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 431,
+                                                    lineNumber: 426,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 416,
+                                            lineNumber: 411,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 414,
+                                    lineNumber: 409,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4133,23 +4145,23 @@ function HillCrestResidency({ posts }) {
                                         map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.871134778674!2d67.3134228!3d25.0044944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1714296481726!5m2!1sen!2s"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                        lineNumber: 442,
+                                        lineNumber: 437,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 441,
+                                    lineNumber: 436,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 402,
+                            lineNumber: 397,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 401,
+                        lineNumber: 396,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4158,12 +4170,12 @@ function HillCrestResidency({ posts }) {
                             testimonials: testimonials
                         }, void 0, false, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 448,
+                            lineNumber: 443,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 447,
+                        lineNumber: 442,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -4179,7 +4191,7 @@ function HillCrestResidency({ posts }) {
                                             children: "What Social Media is Saying"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 454,
+                                            lineNumber: 449,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4187,13 +4199,13 @@ function HillCrestResidency({ posts }) {
                                             children: "See what people are saying about Hill Crest Residency on YouTube and Facebook."
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 457,
+                                            lineNumber: 452,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 453,
+                                    lineNumber: 448,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4222,7 +4234,7 @@ function HillCrestResidency({ posts }) {
                                                             loading: "lazy"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 478,
+                                                            lineNumber: 473,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4237,18 +4249,18 @@ function HillCrestResidency({ posts }) {
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                lineNumber: 487,
+                                                                lineNumber: 482,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 486,
+                                                            lineNumber: 481,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 472,
+                                                    lineNumber: 467,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4262,17 +4274,17 @@ function HillCrestResidency({ posts }) {
                                                             className: "w-20 h-20"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 499,
+                                                            lineNumber: 494,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                        lineNumber: 493,
+                                                        lineNumber: 488,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 492,
+                                                    lineNumber: 487,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4283,7 +4295,7 @@ function HillCrestResidency({ posts }) {
                                                             children: video.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 505,
+                                                            lineNumber: 500,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4292,64 +4304,64 @@ function HillCrestResidency({ posts }) {
                                                                 className: "h-4 w-4 text-white"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                                lineNumber: 506,
+                                                                lineNumber: 501,
                                                                 columnNumber: 51
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                            lineNumber: 506,
+                                                            lineNumber: 501,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                                    lineNumber: 504,
+                                                    lineNumber: 499,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, video.id, true, {
                                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                            lineNumber: 465,
+                                            lineNumber: 460,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                                    lineNumber: 463,
+                                    lineNumber: 458,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                            lineNumber: 451,
+                            lineNumber: 446,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 450,
+                        lineNumber: 445,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$blogs$2d$section$2f$blogs$2d$section$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         posts: posts
                     }, void 0, false, {
                         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                        lineNumber: 513,
+                        lineNumber: 508,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 289,
+                lineNumber: 284,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$footer$2f$footer$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-                lineNumber: 515,
+                lineNumber: 510,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/narkins-boutique-residency/index.tsx",
-        lineNumber: 251,
+        lineNumber: 246,
         columnNumber: 5
     }, this);
 }
