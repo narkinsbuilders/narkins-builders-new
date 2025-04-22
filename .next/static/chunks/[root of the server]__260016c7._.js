@@ -700,7 +700,6 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$dialog$2f$dialog$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@headlessui/react/dist/components/dialog/dialog.js [client] (ecmascript)");
@@ -825,7 +824,7 @@ const navigation = {
         },
         {
             name: "Contact Us",
-            href: `https://api.whatsapp.com/send?phone=${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_WA_PHONE}`
+            href: `https://api.whatsapp.com/send?phone=923001234567`
         }
     ]
 };
@@ -3278,19 +3277,19 @@ const cards = [
     [
         {
             title: '2 Bed Diamond',
-            size: '1276 Square Feet',
+            size: '1009 Square Feet',
             location: 'Jinnah View',
             image: "/images/hcr_appartment/DIAMOND PLAN.webp"
         },
         {
             title: '2 Bed Gold',
-            size: '1180 Square Feet',
+            size: '933 Square Feet',
             location: 'Gold Safari View',
             image: "/images/hcr_appartment/GOLD PLAN.webp"
         },
         {
             title: '2 Bed Sapphire',
-            size: '881 Square Feet',
+            size: '697 Square Feet',
             location: 'Sapphire Safari View',
             image: "/images/hcr_appartment/SAPPHIRE PAGE.webp"
         }
@@ -3298,7 +3297,7 @@ const cards = [
     [
         {
             title: '3 Bed Platinum',
-            size: '1884 Feet',
+            size: '1490 Square Feet',
             location: 'Jinnah View',
             image: "/images/hcr_appartment/PLATINUM PLAN.webp"
         }
@@ -3306,13 +3305,13 @@ const cards = [
     [
         {
             title: '4 Bed Rhodium',
-            size: '2507 Feet',
+            size: '1996 Square Feet',
             location: 'Jinnah View',
             image: "/images/hcr_appartment/RHODIUM PLAN.webp"
         },
         {
             title: '4 Bed Sapphire-A',
-            size: '1756 Feet',
+            size: '1388 Square Feet',
             location: 'Safari View',
             image: "/images/hcr_appartment/SAPPHIRE A PAGE.webp"
         }
