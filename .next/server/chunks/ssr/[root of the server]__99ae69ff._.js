@@ -977,7 +977,7 @@ const navigation = {
         },
         {
             name: "Contact Us",
-            href: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WA_PHONE}`
+            href: `https://api.whatsapp.com/send?phone=923001234567`
         }
     ]
 };

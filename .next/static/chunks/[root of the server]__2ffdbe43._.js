@@ -633,7 +633,7 @@ const navigation = {
         },
         {
             name: "Contact Us",
-            href: `https://api.whatsapp.com/send?phone=+923001234567`
+            href: `https://api.whatsapp.com/send?phone=923001234567`
         }
     ]
 };

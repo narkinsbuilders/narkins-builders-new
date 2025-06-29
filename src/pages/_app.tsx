@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import { GlobalLeadFormProvider } from "@/contexts/global";
 import { useGlobalLeadFormState } from "@/zustand";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import "@/styles/globals.css";
 
 // Lazy-load components
@@ -20,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isClient, setIsClient] = useState(false); // Track client-side rendering
   const open = useGlobalLeadFormState((state) => state.open);
   const setOpen = useGlobalLeadFormState((state) => state.setOpen);
+  
+  // Initialize analytics tracking
+  useAnalytics();
 
   // Ensure this runs only on the client side
   useEffect(() => {

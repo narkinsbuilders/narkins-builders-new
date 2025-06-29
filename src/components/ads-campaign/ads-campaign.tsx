@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button"; // shadcn Button
 import { Input } from "@/components/ui/input"; // shadcn Input
 import { Label } from "@/components/ui/label"; // shadcn Label
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // shadcn Card
 import { Avatar, AvatarImage } from "@/components/ui/avatar"; // shadcn Avatar
+import { useFormAnalytics } from "@/hooks/useAnalytics";
+import { event as trackEvent } from "@/lib/gtag";
 
 const AdsCampaign: React.FC<{
   headline: string;
@@ -18,10 +20,44 @@ const AdsCampaign: React.FC<{
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
+  const [formStarted, setFormStarted] = useState(false);
+  
+  const { trackFormStart, trackFormSubmit, trackFormError } = useFormAnalytics();
+
+  // Track form start when user begins typing
+  const handleFormStart = () => {
+    if (!formStarted) {
+      setFormStarted(true);
+      trackFormStart('quote');
+      
+      // Track which property they're interested in
+      trackEvent({
+        action: 'property_interest',
+        category: 'Lead Generation',
+        label: residency,
+      });
+    }
+  };
+
+  // Track field completion
+  const handleFieldComplete = (fieldName: string) => {
+    trackEvent({
+      action: 'form_field_complete',
+      category: 'Lead Generation',
+      label: fieldName,
+    });
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
+
+    // Track form submission attempt
+    trackEvent({
+      action: 'form_submit_attempt',
+      category: 'Lead Generation',
+      label: residency,
+    });
 
     const unitTag = await fetch(
       "/api/get-contact-form-7-key"
@@ -54,13 +90,39 @@ const AdsCampaign: React.FC<{
 
       if (response.ok && data.status === "mail_sent") {
         setResponseMessage(data.message);
+        
+        // Track successful form submission
+        trackFormSubmit('quote', residency);
+        
+        // Track as conversion
+        trackEvent({
+          action: 'conversion',
+          category: 'Lead Generation',
+          label: `Quote Request - ${residency}`,
+          value: 1,
+        });
+
+        // Track lead quality based on provided information
+        const leadQuality = email.includes('@gmail.com') || email.includes('@yahoo.com') ? 'consumer' : 'business';
+        trackEvent({
+          action: 'lead_quality',
+          category: 'Lead Generation', 
+          label: leadQuality,
+        });
+
       } else {
         setError(true);
         setResponseMessage("There was an error sending your message.");
+        
+        // Track form submission error
+        trackFormError('quote', 'submission_failed');
       }
     } catch (error) {
       setError(true);
       setResponseMessage("There was an error sending your message.");
+      
+      // Track form submission error
+      trackFormError('quote', 'network_error');
     } finally {
       setLoading(false);
     }
@@ -95,6 +157,7 @@ const AdsCampaign: React.FC<{
           </div>
         </>
       )}
+      
       <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
         <div>
           <Label htmlFor="name" className="text-neutral-700">
@@ -105,11 +168,16 @@ const AdsCampaign: React.FC<{
             id="name"
             placeholder="Your Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              handleFormStart();
+            }}
+            onBlur={() => name && handleFieldComplete('name')}
             required
             className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
           />
         </div>
+        
         <div>
           <Label htmlFor="email" className="text-neutral-700">
             Email
@@ -119,11 +187,16 @@ const AdsCampaign: React.FC<{
             id="email"
             placeholder="Your Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              handleFormStart();
+            }}
+            onBlur={() => email && handleFieldComplete('email')}
             required
             className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
           />
         </div>
+        
         <div>
           <Label htmlFor="number" className="text-neutral-700">
             Phone Number
@@ -133,11 +206,16 @@ const AdsCampaign: React.FC<{
             id="number"
             placeholder="Your Phone Number"
             value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            onChange={(e) => {
+              setNumber(e.target.value);
+              handleFormStart();
+            }}
+            onBlur={() => number && handleFieldComplete('phone')}
             required
             className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
           />
         </div>
+        
         <Button
           type="submit"
           disabled={loading}
@@ -146,6 +224,7 @@ const AdsCampaign: React.FC<{
           {loading ? "Submitting..." : "I AM INTERESTED"}
         </Button>
       </form>
+      
       {responseMessage && (
         <div className={`mt-4 p-4 bg-${error ? "red" : "green"}-100 border border-${error ? "red" : "green"}-400 text-${error ? "red" : "green"}-700 rounded`}>
           {responseMessage}

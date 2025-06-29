@@ -1,11 +1,17 @@
 import Link from "next/link";
+import { trackWhatsAppClick } from "@/lib/gtag";
 
 export default function WAButton() {
+    const handleWhatsAppClick = () => {
+        trackWhatsAppClick('sticky_button');
+    };
+
     return (
         <Link 
             href="https://api.whatsapp.com/send?phone=923203243970" 
             style={{ bottom: '1rem', right: '1rem' }} 
             className="z-[998] border justify-space-between items-center w-[10rem] fixed py-2 gap-x-2 flex px-2 shadow bor-der no-underline rounded-full bg-black text-white font-sans font-semibold text-sm -mr-2"
+            onClick={handleWhatsAppClick}
         >
             <svg viewBox="0 0 32 32" className="w-[2rem] h-[2rem] whatsapp-ico text-white">
                 <path 
