@@ -25,7 +25,9 @@
     "loader": "default",
     "loaderFile": "",
     "domains": [
-      "admin.narkinsbuilders.com"
+      "admin.narkinsbuilders.com",
+      "i.ytimg.com",
+      "gromotions.com"
     ],
     "disableStaticImages": false,
     "minimumCacheTTL": 60,

@@ -1,36 +1,68 @@
-import AdsCampaign from '@/components/ads-campaign/ads-campaign';
-import WAButton from '@/components/sticky-wa-button/wa-button';
-import { GlobalLeadFormProvider } from '@/contexts/global';
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
-import Dialog, { useDialogState } from '@/components/dialog/dialog';
-import { createContext } from 'react';
-import { useGlobalLeadFormState } from '@/zustand';
+import { useEffect, useState } from "react";
+import type { AppProps } from "next/app";
+import dynamic from "next/dynamic";
+import { GlobalLeadFormProvider } from "@/contexts/global";
+import { useGlobalLeadFormState } from "@/zustand";
+import { useAnalytics } from "@/hooks/useAnalytics";
+import "@/styles/globals.css";
 
-export const getMoreInformationContext = createContext
+// Lazy-load components
+const Dialog = dynamic(() => import("@/components/dialog/dialog"), {
+  ssr: false, // Load only on the client side
+});
+const WAButton = dynamic(() => import("@/components/sticky-wa-button/wa-button"), {
+  ssr: false, // Load only on the client side
+});
+const AdsCampaign = dynamic(() => import("@/components/ads-campaign/ads-campaign"), {
+  ssr: false, // Load only on the client side
+});
+
 export default function App({ Component, pageProps }: AppProps) {
-  const open = useGlobalLeadFormState(state => state.open);
-  const setOpen = useGlobalLeadFormState(state => state.setOpen);
+  const [isClient, setIsClient] = useState(false); // Track client-side rendering
+  const open = useGlobalLeadFormState((state) => state.open);
+  const setOpen = useGlobalLeadFormState((state) => state.setOpen);
+  
+  // Initialize analytics tracking
+  useAnalytics();
+
+  // Ensure this runs only on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="text-black dark:text-black">
-      <Dialog title={`Get More Information — Narkin's Builders`} open={open} onClose={() => setOpen(false)} body={
-        <AdsCampaign
-          onlyForm={true} residency="General"
-          image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/Picture1.webp'}
-          headline={"2, 3 & 4 Bedroom Luxury Apartments"}
-          features={[]}
-        />} showButtons={false} cancelButton={{
-          title: '',
-          onClick: function (): void {
-            throw new Error('Function not implemented.');
+      {/* Render Dialog only on the client side */}
+      {isClient && (
+        <Dialog
+          title={`Get More Information — Narkin's Builders`}
+          open={open}
+          onClose={() => setOpen(false)}
+          body={
+            <AdsCampaign
+              onlyForm={true}
+              residency="General"
+              image={"http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/Picture1.webp"}
+              headline={"2, 3 & 4 Bedroom Luxury Apartments"}
+              features={[]}
+            />
           }
-        }} acceptButton={{
-          title: '',
-          onClick: function (): void {
-            throw new Error('Function not implemented.');
-          }
-        }} />
-      <WAButton />
+          showButtons={false}
+          cancelButton={{
+            title: "",
+            onClick: () => {},
+          }}
+          acceptButton={{
+            title: "",
+            onClick: () => {},
+          }}
+        />
+      )}
+
+      {/* Render WAButton only on the client side */}
+      {isClient && <WAButton />}
+
+      {/* Global Lead Form Provider */}
       <GlobalLeadFormProvider>
         <Component {...pageProps} />
       </GlobalLeadFormProvider>

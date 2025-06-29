@@ -23,13 +23,13 @@ export default function AboutUs() {
                     <div className="py-[5rem]">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:max-xl:grid-cols-3 gap-4">
                             {[
-                                // "/images/hill-crest-residency-launch-2.webp",
-                                // "/images/hill-crest-residency-launch.webp",
-                                // "/images/nbr-march.webp",
-                                // "/images/nbr-residency-sept.webp",
-                                "/images/reliability.webp",
-                                "/images/smart-door-lock.webp",
-                                "/images/smart-wifi-switches.webp",
+                                // "/images/hill-crest-residency-construction-progress-2024.webp",
+                                // "/images/hill-crest-residency-launch-ceremony-2021.webp",
+                                // "/images/narkins-boutique-residency-construction-march-2024.webp",
+                                // "/images/narkins-boutique-residency-construction-september-2023.webp",
+                                "/images/smart-apartments-reliability-narkins-builders.webp",
+                                "/images/smart-door-locks-narkins-apartments.webp",
+                                "/images/smart-wifi-switches-narkins-residency.webp",
                             ].map((image, index) => (
                                 <div key={image} className="group">
                                     <img src={image} className="hover:brightness-75 transition duration-[0.5s] border cursor-pointer filter w-full h-auto bg-neutral-100 object-cover rounded-lg" />
@@ -42,10 +42,10 @@ export default function AboutUs() {
                     </div>
                     {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:max-xl:grid-cols-3 gap-4">
                             {[
-                                "/images/hill-crest-residency-launch-2.webp",
-                                "/images/hill-crest-residency-launch.webp",
-                                // "/images/nbr-march.webp",
-                                // "/images/nbr-residency-sept.webp",
+                                "/images/hill-crest-residency-construction-progress-2024.webp",
+                                "/images/hill-crest-residency-launch-ceremony-2021.webp",
+                                // "/images/narkins-boutique-residency-construction-march-2024.webp",
+                                // "/images/narkins-boutique-residency-construction-september-2023.webp",
                             ].map((image, index) => (
                                 <div key={image} className="group">
                                     <img src={image} className="hover:brightness-75 transition duration-[0.5s] border cursor-pointer filter w-full h-auto bg-neutral-100 object-cover rounded-lg" />
@@ -83,22 +83,22 @@ export default function AboutUs() {
                             Hill Crest Residency is an example of our commitment in terms of timeline, quality and customer satisfaction. Hill Crest Residency has also pioneered smart apartments in Bahria Town Karachi. Over the years, we have successfully delivered 5 high-rise projects in the most prime areas of Karachi, each showcasing our dedication to craftsmanship and attention to detail.
                         </p>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 gap-4">
-                            <img src={"/images/hill-crest-residency-launch.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Hill Crest Residency Launch <i>2021</i>
                             </p>
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Hill Crest Residency Completion <i>2025</i>
                             </p>
-                            <img src={"/images/hcr_new.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img src={"/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/hill-crest-residency-launch.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                                <img src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Hill Crest Residency Completion <i>2025</i>
                                 </p>
                             </div>
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/hill-crest-residency-launch-2.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
+                                <img src={"/images/hill-crest-residency-construction-progress-2024.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Hill Crest Residency Launch <i>2021</i>
                                 </p>
@@ -115,22 +115,22 @@ export default function AboutUs() {
                             Narkin's Boutique Residency exemplifies our dedication to timely delivery, exceptional quality, and customer satisfaction. Just as Hill Crest Residency pioneered smart apartments in Bahria Town Karachi, Narkin's Boutique Residency continues this legacy of innovation and excellence. Over the years, we have successfully completed five high-rise projects in prime locations across Karachi, each reflecting our commitment to superior craftsmanship and meticulous attention to detail.
                         </p>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 gap-4">
-                            <img src={"/images/nbr-residency-sept.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img src={"/images/narkins-boutique-residency-construction-september-2023.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Narkin’s Boutique Residency <i>September 2023</i>
                             </p>
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Narkin’s Boutique Residency <i>March 2024</i>
                             </p>
-                            <img src={"/images/nbr-march.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img src={"/images/narkins-boutique-residency-construction-march-2024.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/nbr-residency-sept.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                                <img src={"/images/narkins-boutique-residency-construction-september-2023.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Narkin’s Boutique Residency <i>September 2023</i>
                                 </p>
                             </div>
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/nbr-march.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
+                                <img src={"/images/narkins-boutique-residency-construction-march-2024.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Narkin’s Boutique Residency <i>March 2024</i>
                                 </p>
@@ -171,8 +171,8 @@ export default function AboutUs() {
                             </div>
                         </div>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 py-[5rem] gap-4">
-                            <img src="/images/eastern-wear.webp" className="w-full h-full object-cover rounded-xl" />
-                            <img src="/images/narkins-textile-industries.webp" className="w-full h-full object-cover rounded-xl" />
+                            <img src="/images/narkins-builders-eastern-wear-retail-outlet.webp" className="w-full h-full object-cover rounded-xl" />
+                            <img src="/images/narkins-textile-industries-manufacturing-facility.webp" className="w-full h-full object-cover rounded-xl" />
                         </div>
                         <div className="mx-auto max-w-2xl lg:mx-0">
                             <div className="mx-auto=max-w-2xl=lg:mx-0">

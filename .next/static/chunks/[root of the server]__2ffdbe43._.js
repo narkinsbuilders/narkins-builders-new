@@ -536,13 +536,13 @@ const navigation = {
                 {
                     name: "Hill Crest Residency",
                     href: "/hill-crest-residency",
-                    imageSrc: "/images/hcr_new.webp",
+                    imageSrc: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
                     imageAlt: "Models sitting back to back, wearing Basic Tee in black and bone."
                 },
                 {
                     name: "Narkin's Boutique Residency",
                     href: "/narkins-boutique-residency",
-                    imageSrc: "/images/nbr_nav.jpeg",
+                    imageSrc: "/images/narkins-boutique-residency-navigation-thumbnail.webp",
                     imageAlt: "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees."
                 }
             ],
@@ -588,7 +588,7 @@ const navigation = {
                 {
                     name: "Classic Heights",
                     href: "/completed-projects?p=classic-heights",
-                    imageSrc: "/images/Sharfabad_resized.webp",
+                    imageSrc: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
                     imageAlt: "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt."
                 }
             ],
@@ -1013,7 +1013,7 @@ const Navigation = ({ transparent, fixed })=>{
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                 className: "h-8 w-auto",
                                                 loading: "eager",
-                                                src: "/images/narkins_logo.webp",
+                                                src: "/images/narkins-builders-logo-30-years-experience.webp",
                                                 alt: ""
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/navigation/navigation.tsx",
@@ -1371,7 +1371,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                         href: "https://narkinsbuilders.com/",
                                         className: "flex items-center",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                            src: "/images/narkins_logo.webp",
+                                            src: "/images/narkins-builders-logo-30-years-experience.webp",
                                             className: "h-[5rem] me-3",
                                             alt: "FlowBite Logo"
                                         }, void 0, false, {
@@ -2694,10 +2694,10 @@ function Index({ posts }) {
                                 displayMode: "default",
                                 interval: 10000,
                                 dataSource: [
-                                    '/images/NBR_SLIDE_1.webp',
-                                    '/images/NBR_SLIDE_2.webp',
-                                    '/images/NBR_SLIDE_3.webp',
-                                    '/images/NBR_SLIDE_4.webp'
+                                    '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                                    '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                                    '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                                    '/images/narkins-boutique-residency-grand-lobby-reception-area.webp'
                                 ].map((i)=>({
                                         image: i
                                     }))
@@ -2796,10 +2796,10 @@ function Index({ posts }) {
                                 displayMode: "default",
                                 interval: 10000,
                                 dataSource: [
-                                    '/images/NBR_SLIDE_1.webp',
-                                    '/images/NBR_SLIDE_2.webp',
-                                    '/images/NBR_SLIDE_3.webp',
-                                    '/images/NBR_SLIDE_4.webp'
+                                    '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                                    '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                                    '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                                    '/images/narkins-boutique-residency-grand-lobby-reception-area.webp'
                                 ].map((i)=>({
                                         image: i
                                     }))
@@ -2916,7 +2916,7 @@ function Index({ posts }) {
                                     className: "hidden-lg:block",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
-                                            src: "/images/hcr_new.webp",
+                                            src: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
                                             alt: "Hill Crest Residency",
                                             width: 800,
                                             height: 600,
@@ -2930,10 +2930,10 @@ function Index({ posts }) {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6",
                                             children: [
-                                                "/images/hcr_appartment/hcr_apartment_slide_1.webp",
-                                                "/images/hcr_appartment/hcr_apartment_slide_2.webp",
-                                                "/images/hcr_appartment/hcr_apartment_slide_3.webp",
-                                                "/images/hcr_appartment/hcr_apartment_slide_4.webp"
+                                                "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
+                                                "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
+                                                "/images/hill-crest-residency-apartment-kitchen-modern-design.webp",
+                                                "/images/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp"
                                             ].map((src, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                                     whileHover: {
                                                         scale: 1.03
@@ -3162,22 +3162,22 @@ _c2 = Index;
 function CompletedProjects() {
     const projects = [
         {
-            image: "/images/Al Arz Terrace.webp",
+            image: "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
             title: "Al Arz Terrace",
             description: "Luxury living with panoramic views."
         },
         {
-            image: "/images/Al Arz Homez.webp",
+            image: "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp",
             title: "Al Arz Home",
             description: "Elegant designs for modern families."
         },
         {
-            image: "/images/Ferere Town Project.webp",
+            image: "/images/palm-residency-completed-project-frere-town-karachi.webp",
             title: "Palm Residency",
             description: "Tranquil surroundings with premium amenities."
         },
         {
-            image: "/images/Sharfabad_resized.webp",
+            image: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
             title: "Sharfabad Residency",
             description: "A blend of tradition and modernity."
         }

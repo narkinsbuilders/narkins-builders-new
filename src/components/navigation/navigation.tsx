@@ -13,13 +13,13 @@ const navigation = {
         {
           name: "Hill Crest Residency",
           href: "/hill-crest-residency",
-          imageSrc: "/images/hcr_new.webp",
+          imageSrc: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
           imageAlt: "Models sitting back to back, wearing Basic Tee in black and bone.",
         },
         {
           name: "Narkin's Boutique Residency",
           href: "/narkins-boutique-residency",
-          imageSrc: "/images/nbr_nav.jpeg",
+          imageSrc: "/images/narkins-boutique-residency-navigation-thumbnail.webp",
           imageAlt: "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
         },
       ],
@@ -60,7 +60,7 @@ const navigation = {
         {
           name: "Classic Heights",
           href: "/completed-projects?p=classic-heights",
-          imageSrc: "/images/Sharfabad_resized.webp",
+          imageSrc: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
           imageAlt:
             "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
@@ -257,7 +257,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                   <span className="sr-only">Narkins Builders</span>
                   <img
                     className="h-8 w-auto" loading="eager"
-                    src="/images/narkins_logo.webp"
+                    src="/images/narkins-builders-logo-30-years-experience.webp"
                     alt=""
                   />
                 </Link>
