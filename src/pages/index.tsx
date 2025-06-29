@@ -138,10 +138,10 @@ export default function Index({ posts }: { posts: Post[] }) {
               displayMode="default"
               interval={10000}
               dataSource={[
-                '/images/NBR_SLIDE_1.webp',
-                '/images/NBR_SLIDE_2.webp',
-                '/images/NBR_SLIDE_3.webp',
-                '/images/NBR_SLIDE_4.webp',
+                '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                '/images/narkins-boutique-residency-grand-lobby-reception-area.webp',
               ].map((i) => ({ image: i }))}
             />
           </div>
@@ -185,10 +185,10 @@ export default function Index({ posts }: { posts: Post[] }) {
               displayMode="default"
               interval={10000}
               dataSource={[
-                '/images/NBR_SLIDE_1.webp',
-                '/images/NBR_SLIDE_2.webp',
-                '/images/NBR_SLIDE_3.webp',
-                '/images/NBR_SLIDE_4.webp',
+                '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                '/images/narkins-boutique-residency-grand-lobby-reception-area.webp',
               ].map((i) => ({ image: i }))}
             />
           </div>
@@ -232,7 +232,7 @@ export default function Index({ posts }: { posts: Post[] }) {
             {/* Image for Desktop */}
             <div className="hidden-lg:block">
               <Image
-                src="/images/hcr_new.webp"
+                src="/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"
                 alt="Hill Crest Residency"
                 width={800}
                 height={600}
@@ -242,10 +242,10 @@ export default function Index({ posts }: { posts: Post[] }) {
               {/* Masonry Grid Gallery */}
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {[
-                  "/images/hcr_appartment/hcr_apartment_slide_1.webp",
-                  "/images/hcr_appartment/hcr_apartment_slide_2.webp",
-                  "/images/hcr_appartment/hcr_apartment_slide_3.webp",
-                  "/images/hcr_appartment/hcr_apartment_slide_4.webp",].map((src, index) => (
+                  "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
+                  "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
+                  "/images/hill-crest-residency-apartment-kitchen-modern-design.webp",
+                  "/images/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",].map((src, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.03 }}
@@ -349,22 +349,22 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export function CompletedProjects() {
   const projects = [
     {
-      image: "/images/Al Arz Terrace.webp",
+      image: "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
       title: "Al Arz Terrace",
       description: "Luxury living with panoramic views.",
     },
     {
-      image: "/images/Al Arz Homez.webp",
+      image: "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp",
       title: "Al Arz Home",
       description: "Elegant designs for modern families.",
     },
     {
-      image: "/images/Ferere Town Project.webp",
+      image: "/images/palm-residency-completed-project-frere-town-karachi.webp",
       title: "Palm Residency",
       description: "Tranquil surroundings with premium amenities.",
     },
     {
-      image: "/images/Sharfabad_resized.webp",
+      image: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
       title: "Sharfabad Residency",
       description: "A blend of tradition and modernity.",
     },

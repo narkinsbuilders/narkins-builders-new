@@ -727,13 +727,13 @@ const navigation = {
                 {
                     name: "Hill Crest Residency",
                     href: "/hill-crest-residency",
-                    imageSrc: "/images/hcr_new.webp",
+                    imageSrc: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
                     imageAlt: "Models sitting back to back, wearing Basic Tee in black and bone."
                 },
                 {
                     name: "Narkin's Boutique Residency",
                     href: "/narkins-boutique-residency",
-                    imageSrc: "/images/nbr_nav.jpeg",
+                    imageSrc: "/images/narkins-boutique-residency-navigation-thumbnail.webp",
                     imageAlt: "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees."
                 }
             ],
@@ -779,7 +779,7 @@ const navigation = {
                 {
                     name: "Classic Heights",
                     href: "/completed-projects?p=classic-heights",
-                    imageSrc: "/images/Sharfabad_resized.webp",
+                    imageSrc: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
                     imageAlt: "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt."
                 }
             ],
@@ -1204,7 +1204,7 @@ const Navigation = ({ transparent, fixed })=>{
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                 className: "h-8 w-auto",
                                                 loading: "eager",
-                                                src: "/images/narkins_logo.webp",
+                                                src: "/images/narkins-builders-logo-30-years-experience.webp",
                                                 alt: ""
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/navigation/navigation.tsx",
@@ -1909,7 +1909,7 @@ const Footer = ({ map })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
                                         href: "https://narkinsbuilders.com/",
                                         className: "flex items-center",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                            src: "/images/narkins_logo.webp",
+                                            src: "/images/narkins-builders-logo-30-years-experience.webp",
                                             className: "h-[5rem] me-3",
                                             alt: "FlowBite Logo"
                                         }, void 0, false, {
@@ -3280,7 +3280,7 @@ const cards = [
             title: "2 Bed Gold",
             size: "1547 Square Feet",
             location: "Heritage Club & Danzoo Safari View",
-            image: "/images/nbr_3d/gold_heritage _club_and_danzoo_safari_ view.webp"
+            image: "/images/narkins-boutique-residency-2-bedroom-gold-1547-sqft-heritage-view.webp"
         }
     ],
     [
@@ -3288,13 +3288,13 @@ const cards = [
             title: "3 Bed Diamond Corner",
             size: "2184 Square Feet",
             location: "Heritage Club & Theme Park View",
-            image: "/images/nbr_3d/6.diamond_corner_heritage_club_and_danzoo_safari view.webp"
+            image: "/images/narkins-boutique-residency-3-bedroom-diamond-corner-2184-sqft.webp"
         },
         {
             title: "3 Bed Diamond-A",
             size: "2121 Square Feet",
             location: "Jinnah & Theme Park View",
-            image: "/images/nbr_3d/Diamond-A-blue.webp"
+            image: "/images/narkins-boutique-residency-3-bedroom-diamond-a-2121-sqft.webp"
         }
     ],
     [
@@ -3302,19 +3302,19 @@ const cards = [
             title: "4 Bed Platinum A-1 Corner",
             size: "2670 Square Feet",
             location: "Jinnah & Danzoo Safari View",
-            image: "/images/nbr_3d/Platinum A-1 Corner jinnah and theme park view.webp"
+            image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-corner-2670-sqft.webp"
         },
         {
             title: "4 Bed Platinum A-1 Boulevard",
             size: "2486 Square Feet",
             location: "Jinnah & Boulevard View",
-            image: "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp"
+            image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-boulevard-2486-sqft.webp"
         },
         {
             title: "4 Bed Platinum-A",
             size: "2597 Feet",
             location: "Jinnah & Theme Park View",
-            image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp"
+            image: "/images/narkins-boutique-residency-4-bedroom-platinum-a-2597-sqft.webp"
         }
     ],
     [
@@ -3395,21 +3395,21 @@ const amenities = [
     }
 ];
 const galleryImages = [
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_11.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_12.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.webp",
-    "/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.webp"
+    "/images/narkins-boutique-residency-apartment-living-room-luxury.webp",
+    "/images/narkins-boutique-residency-apartment-master-bedroom.webp",
+    "/images/narkins-boutique-residency-apartment-kitchen-premium.webp",
+    "/images/narkins-boutique-residency-apartment-bathroom-marble.webp",
+    "/images/narkins-boutique-residency-apartment-balcony-heritage-view.webp",
+    "/images/narkins-boutique-residency-apartment-dining-area.webp",
+    "/images/narkins-boutique-residency-apartment-guest-room.webp",
+    "/images/narkins-boutique-residency-apartment-powder-room.webp",
+    "/images/narkins-boutique-residency-apartment-family-lounge.webp",
+    "/images/narkins-boutique-residency-apartment-entrance-foyer.webp",
+    "/images/narkins-boutique-residency-apartment-utility-area.webp",
+    "/images/narkins-boutique-residency-apartment-walk-in-closet.webp",
+    "/images/narkins-boutique-residency-apartment-study-room.webp",
+    "/images/narkins-boutique-residency-apartment-storage-space.webp",
+    "/images/narkins-boutique-residency-apartment-laundry-room.webp"
 ];
 const youtubeVideos = [
     {

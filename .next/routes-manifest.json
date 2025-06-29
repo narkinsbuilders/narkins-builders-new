@@ -76,11 +76,15 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/g234YBJO\\-6XsftF6jSbne/index\\.json$"
+      "dataRouteRegex": "^/_next/data/wvf4e4v96kTOjeck_sstq/index\\.json$"
     },
     {
       "page": "/hill-crest-residency",
-      "dataRouteRegex": "^/_next/data/g234YBJO\\-6XsftF6jSbne/hill-crest-residency\\.json$"
+      "dataRouteRegex": "^/_next/data/wvf4e4v96kTOjeck_sstq/hill-crest-residency\\.json$"
+    },
+    {
+      "page": "/narkins-boutique-residency",
+      "dataRouteRegex": "^/_next/data/wvf4e4v96kTOjeck_sstq/narkins-boutique-residency\\.json$"
     }
   ],
   "rsc": {

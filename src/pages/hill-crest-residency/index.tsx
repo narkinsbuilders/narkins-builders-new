@@ -22,14 +22,14 @@ import Testimonials from "@/components/testimonials/testimonials";
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
-    { title: '2 Bed Diamond', size: '1009 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/DIAMOND PLAN.webp" },
-    { title: '2 Bed Gold', size: '933 Square Feet', location: 'Gold Safari View', image: "/images/hcr_appartment/GOLD PLAN.webp" },
-    { title: '2 Bed Sapphire', size: '697 Square Feet', location: 'Sapphire Safari View', image: "/images/hcr_appartment/SAPPHIRE PAGE.webp" },
+    { title: '2 Bed Diamond', size: '1009 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-2-bedroom-diamond-plan-1009-sqft.webp" },
+    { title: '2 Bed Gold', size: '933 Square Feet', location: 'Gold Safari View', image: "/images/hill-crest-residency-2-bedroom-gold-plan-933-sqft.webp" },
+    { title: '2 Bed Sapphire', size: '697 Square Feet', location: 'Sapphire Safari View', image: "/images/hill-crest-residency-2-bedroom-sapphire-plan-697-sqft.webp" },
 ], [
-    { title: '3 Bed Platinum', size: '1490 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/PLATINUM PLAN.webp" },
+    { title: '3 Bed Platinum', size: '1490 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-3-bedroom-platinum-plan-1490-sqft.webp" },
 ], [
-    { title: '4 Bed Rhodium', size: '1996 Square Feet', location: 'Jinnah View', image: "/images/hcr_appartment/RHODIUM PLAN.webp" },
-    { title: '4 Bed Sapphire-A', size: '1388 Square Feet', location: 'Safari View', image: "/images/hcr_appartment/SAPPHIRE A PAGE.webp" },
+    { title: '4 Bed Rhodium', size: '1996 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
+    { title: '4 Bed Sapphire-A', size: '1388 Square Feet', location: 'Safari View', image: "/images/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
 ]];
 const amenities = [
     { image: "/hcr-scaled/gym.webp", name: "Gym" },
@@ -38,19 +38,19 @@ const amenities = [
     { image: "/hcr-scaled/grand-lobby-for-hcr.webp", name: "Grand Lobby" },
 ];
 const galleryImages = [
-    "/images/hcr_appartment/hcr_apartment_slide_1.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_2.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_3.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_4.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_5.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_6.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_7.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_8.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_9.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_10.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_11.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_12.webp",
-    "/images/hcr_appartment/hcr_apartment_slide_13.webp",
+    "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
+    "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
+    "/images/hill-crest-residency-apartment-kitchen-modern-design.webp",
+    "/images/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",
+    "/images/hill-crest-residency-apartment-balcony-panoramic-view.webp",
+    "/images/hill-crest-residency-apartment-dining-area-modern.webp",
+    "/images/hill-crest-residency-apartment-guest-bedroom.webp",
+    "/images/hill-crest-residency-apartment-guest-bathroom.webp",
+    "/images/hill-crest-residency-apartment-storage-area.webp",
+    "/images/hill-crest-residency-apartment-entrance-lobby.webp",
+    "/images/hill-crest-residency-apartment-utility-room.webp",
+    "/images/hill-crest-residency-apartment-family-lounge.webp",
+    "/images/hill-crest-residency-apartment-powder-room.webp",
 ];
 const youtubeVideos = [
     { id: "TSiLOTW2s4g", title: "Tour of Hill Crest Residency", type: "youtube" },

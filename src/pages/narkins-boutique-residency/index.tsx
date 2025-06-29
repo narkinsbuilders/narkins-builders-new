@@ -28,7 +28,7 @@ const cards = [
       size: "1547 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/nbr_3d/gold_heritage _club_and_danzoo_safari_ view.webp",
+        "/images/narkins-boutique-residency-2-bedroom-gold-1547-sqft-heritage-view.webp",
     },
   ],
   [
@@ -37,14 +37,14 @@ const cards = [
       size: "2184 Square Feet",
       location: "Heritage Club & Theme Park View",
       image:
-        "/images/nbr_3d/6.diamond_corner_heritage_club_and_danzoo_safari view.webp",
+        "/images/narkins-boutique-residency-3-bedroom-diamond-corner-2184-sqft.webp",
     },
     {
       title: "3 Bed Diamond-A",
       size: "2121 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/nbr_3d/Diamond-A-blue.webp",
+        "/images/narkins-boutique-residency-3-bedroom-diamond-a-2121-sqft.webp",
     },
   ],
   [
@@ -52,25 +52,25 @@ const cards = [
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image: "/images/nbr_3d/Platinum A-1 Corner jinnah and theme park view.webp",
+      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-corner-2670-sqft.webp",
     },
     {
       title: "4 Bed Platinum A-1 Boulevard",
       size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
-      image: "/images/nbr_3d/platinum_a-1_jinnah_and_danzoo_safari_view.webp",
+      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-boulevard-2486-sqft.webp",
     },
     {
       title: "4 Bed Platinum-A",
       size: "2597 Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
+      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a-2597-sqft.webp",
     },    
     // {
 //   title: "4 Bed Platinum A-1",
 //   size: "2486 Square Feet",
 //   location: "Jinnah & Theme Park View",
-//   image: "/images/nbr_3d/4_platinum_a_jinnah_and_theme_park_view.webp",
+//   image: "/images/narkins-boutique-residency-4-bedroom-platinum-a-2597-sqft.webp",
 // },
  
   ],
@@ -125,21 +125,21 @@ const amenities = [
   { image: "/nbr-scaled/underground-car-parking.webp", name: "5 Floors Parking" },
 ];
 const galleryImages = [
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_1.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_2.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_3.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_4.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_5.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_6.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_7.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_8.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_9.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_10.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_11.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_12.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_14.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_15.webp",
-  "/images/narkins_appartment_renamed_files/narkins_appartment_slide_16.webp",
+  "/images/narkins-boutique-residency-apartment-living-room-luxury.webp",
+  "/images/narkins-boutique-residency-apartment-master-bedroom.webp",
+  "/images/narkins-boutique-residency-apartment-kitchen-premium.webp",
+  "/images/narkins-boutique-residency-apartment-bathroom-marble.webp",
+  "/images/narkins-boutique-residency-apartment-balcony-heritage-view.webp",
+  "/images/narkins-boutique-residency-apartment-dining-area.webp",
+  "/images/narkins-boutique-residency-apartment-guest-room.webp",
+  "/images/narkins-boutique-residency-apartment-powder-room.webp",
+  "/images/narkins-boutique-residency-apartment-family-lounge.webp",
+  "/images/narkins-boutique-residency-apartment-entrance-foyer.webp",
+  "/images/narkins-boutique-residency-apartment-utility-area.webp",
+  "/images/narkins-boutique-residency-apartment-walk-in-closet.webp",
+  "/images/narkins-boutique-residency-apartment-study-room.webp",
+  "/images/narkins-boutique-residency-apartment-storage-space.webp",
+  "/images/narkins-boutique-residency-apartment-laundry-room.webp",
 ];
 const youtubeVideos = [
   { id: "FmEHTzdjXEc", title: "Luxury Living at Hill Crest Residency | A Guided Tour", type: "youtube" },
