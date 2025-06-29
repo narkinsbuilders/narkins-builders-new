@@ -5,8 +5,7 @@ import { X } from "lucide-react"; // Icon for close button
 interface DialogProps {
   open: boolean;
   onClose: () => void;
-  body: string;
-  title: string;
+body: React.ReactNode;  title: string;
   showButtons?: boolean;
   cancelButton?: {
     title: string;

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"; // shadcn Input
 import { Label } from "@/components/ui/label"; // shadcn Label
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // shadcn Card
 import { Avatar, AvatarImage } from "@/components/ui/avatar"; // shadcn Avatar
-import { useFormAnalytics } from "@/hooks/useAnalytics";
+import { useFormAnalytics } from "../../hooks/useAnalytics";
 import { event as trackEvent } from "@/lib/gtag";
 
 const AdsCampaign: React.FC<{

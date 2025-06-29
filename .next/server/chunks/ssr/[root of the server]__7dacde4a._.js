@@ -60,46 +60,165 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/document.js [ssr] (ecmascript)");
 ;
 ;
+// Use environment variable (your real GA ID)
+const GA_TRACKING_ID = ("TURBOPACK compile-time value", "G-JBMXQDSW7T") || 'G-JBMXQDSW7T';
 function Document() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Html"], {
         lang: "en",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Head"], {}, void 0, false, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Head"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
+                        async: true,
+                        src: `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 11,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
+                        dangerouslySetInnerHTML: {
+                            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname
+              });
+              console.log('🟢 Google Analytics initialized:', '${GA_TRACKING_ID}');
+            `
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 15,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        name: "google-site-verification",
+                        content: "6r3wQXNZVGZ59xXsuU_8z_Z4oGpeIaiEPvmNuf78Mzk"
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 30,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("script", {
+                        type: "application/ld+json",
+                        dangerouslySetInnerHTML: {
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "Organization",
+                                "name": "Narkin's Builders",
+                                "url": "https://narkinsbuilders.com",
+                                "logo": "https://narkinsbuilders.com/images/narkins_logo.webp",
+                                "description": "Leading real estate developers in Bahria Town Karachi with over 30 years of experience in luxury residential projects.",
+                                "foundingDate": "1994",
+                                "sameAs": [
+                                    "https://www.facebook.com/narkinsbuilders",
+                                    "https://www.instagram.com/narkinsbuilders",
+                                    "https://www.linkedin.com/company/narkins-builders-and-developers",
+                                    "https://youtu.be/tT7kkMM0pz0"
+                                ],
+                                "address": {
+                                    "@type": "PostalAddress",
+                                    "addressLocality": "Karachi",
+                                    "addressRegion": "Sindh",
+                                    "addressCountry": "Pakistan"
+                                },
+                                "contactPoint": {
+                                    "@type": "ContactPoint",
+                                    "telephone": "+92-320-324-3970",
+                                    "contactType": "customer service",
+                                    "availableLanguage": [
+                                        "English",
+                                        "Urdu"
+                                    ]
+                                },
+                                "areaServed": {
+                                    "@type": "Place",
+                                    "name": "Bahria Town Karachi, Pakistan"
+                                },
+                                "hasOfferCatalog": {
+                                    "@type": "OfferCatalog",
+                                    "name": "Real Estate Properties",
+                                    "itemListElement": [
+                                        {
+                                            "@type": "Offer",
+                                            "itemOffered": {
+                                                "@type": "Product",
+                                                "name": "Hill Crest Residency Apartments",
+                                                "category": "Luxury Apartments"
+                                            }
+                                        },
+                                        {
+                                            "@type": "Offer",
+                                            "itemOffered": {
+                                                "@type": "Product",
+                                                "name": "Narkin's Boutique Residency",
+                                                "category": "Premium Apartments"
+                                            }
+                                        }
+                                    ]
+                                }
+                            })
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 33,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        "data-rh": "true",
+                        name: "theme-color",
+                        content: "#FFFFFF"
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 93,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
+                        name: "robots",
+                        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 94,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("link", {
+                        rel: "canonical",
+                        href: "https://narkinsbuilders.com"
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/_document.tsx",
+                        lineNumber: 95,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 6,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
-                "data-rh": "true",
-                name: "theme-color",
-                content: "#FFFFFF"
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 7,
+                lineNumber: 9,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("body", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Main"], {}, void 0, false, {
                         fileName: "[project]/src/pages/_document.tsx",
-                        lineNumber: 24,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$document$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["NextScript"], {}, void 0, false, {
                         fileName: "[project]/src/pages/_document.tsx",
-                        lineNumber: 25,
+                        lineNumber: 99,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/_document.tsx",
-                lineNumber: 23,
+                lineNumber: 97,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/_document.tsx",
-        lineNumber: 5,
+        lineNumber: 8,
         columnNumber: 5
     }, this);
 }

@@ -1,5 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { GA_TRACKING_ID } from '../lib/gtag'
+
+// Use environment variable (your real GA ID)
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-JBMXQDSW7T';
 
 export default function Document() {
   return (
@@ -17,12 +19,15 @@ export default function Document() {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-                send_page_view: false
+                page_path: window.location.pathname
               });
+              console.log('🟢 Google Analytics initialized:', '${GA_TRACKING_ID}');
             `,
           }}
         />
+
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="6r3wQXNZVGZ59xXsuU_8z_Z4oGpeIaiEPvmNuf78Mzk" />
         
         {/* Schema.org Structured Data for Organization */}
         <script
@@ -84,9 +89,6 @@ export default function Document() {
           }}
         />
 
-        {/* Search Console Verification */}
-        <meta name="google-site-verification" content="YOUR_SEARCH_CONSOLE_CODE" />
-        
         {/* Additional Meta Tags for SEO */}
         <meta data-rh="true" name="theme-color" content="#FFFFFF" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

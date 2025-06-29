@@ -1,5 +1,14 @@
-// lib/gtag.ts
+// lib/gtag.ts - Enhanced with debugging
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID as string;
+
+// Debug function to check GA status
+export const checkGAStatus = () => {
+  console.log('🔍 GA Debug Info:', {
+    GA_ID: GA_TRACKING_ID,
+    windowGtag: typeof window !== 'undefined' ? !!window.gtag : 'server-side',
+    dataLayer: typeof window !== 'undefined' ? !!window.dataLayer : 'server-side'
+  });
+};
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
@@ -7,6 +16,7 @@ export const pageview = (url: string) => {
     window.gtag('config', GA_TRACKING_ID, {
       page_path: url,
     });
+    console.log('📄 Page view tracked:', url);
   }
 };
 
@@ -19,13 +29,33 @@ type GtagEvent = {
 };
 
 export const event = ({ action, category, label, value }: GtagEvent) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      value: value,
-    });
+  // Always log for debugging
+  console.log('🔵 Analytics Event Triggered:', { action, category, label, value });
+  
+  if (typeof window === 'undefined') {
+    console.log('⚠️ Server-side rendering - event not sent');
+    return;
   }
+  
+  if (!GA_TRACKING_ID) {
+    console.error('❌ No Google Analytics ID found');
+    return;
+  }
+  
+  if (!window.gtag) {
+    console.error('❌ gtag function not available');
+    checkGAStatus();
+    return;
+  }
+
+  // Send the event
+  window.gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
+  
+  console.log('✅ Event sent to Google Analytics successfully');
 };
 
 // Real Estate Specific Events

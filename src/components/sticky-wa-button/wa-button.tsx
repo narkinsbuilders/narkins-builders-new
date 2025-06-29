@@ -1,14 +1,30 @@
 import Link from "next/link";
-import { trackWhatsAppClick } from "@/lib/gtag";
 
 export default function WAButton() {
-    const handleWhatsAppClick = () => {
-        trackWhatsAppClick('sticky_button');
+    const handleWhatsAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        // Prevent navigation temporarily to see tracking
+        e.preventDefault();
+        
+        console.log('WhatsApp button clicked!');
+        
+        // Direct gtag call
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'whatsapp_click', {
+                event_category: 'Contact',
+                event_label: 'sticky_button_test'
+            });
+            console.log('gtag event sent!');
+        }
+        
+        // Open WhatsApp after delay
+        setTimeout(() => {
+            window.open('https://api.whatsapp.com/send?phone=923203243970', '_blank');
+        }, 1000);
     };
 
     return (
         <Link 
-            href="https://api.whatsapp.com/send?phone=923203243970" 
+            href="#"
             style={{ bottom: '1rem', right: '1rem' }} 
             className="z-[998] border justify-space-between items-center w-[10rem] fixed py-2 gap-x-2 flex px-2 shadow bor-der no-underline rounded-full bg-black text-white font-sans font-semibold text-sm -mr-2"
             onClick={handleWhatsAppClick}
