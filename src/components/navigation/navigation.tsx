@@ -14,13 +14,13 @@ const navigation = {
           name: "Hill Crest Residency",
           href: "/hill-crest-residency",
           imageSrc: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
-          imageAlt: "Models sitting back to back, wearing Basic Tee in black and bone.",
+          imageAlt: "Hill Crest Residency luxury apartments in Bahria Town Karachi with modern amenities",
         },
         {
           name: "Narkin's Boutique Residency",
-          href: "/narkins-boutique-residency",
+          href: "/narkins-boutique-residency", 
           imageSrc: "/images/narkins-boutique-residency-navigation-thumbnail.webp",
-          imageAlt: "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+          imageAlt: "Narkin's Boutique Residency luxury apartments in Heritage Commercial Bahria Town Karachi",
         },
       ],
       sections: [
@@ -41,38 +41,36 @@ const navigation = {
         {
           name: "Al Arz Homes",
           href: "/completed-projects?p=al-arz-homes",
-          imageSrc: "/images/al-arz-home-scaled.webp",
-          imageAlt: "Drawstring top with elastic loop closure and textured interior padding.",
+          imageSrc: "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp",
+          imageAlt: "Al Arz Homes completed residential project by Narkin's Builders in Karachi",
         },
         {
-          name: "Palm Residency",
+          name: "Palm Residency", 
           href: "/completed-projects?p=palm-residency",
-          imageSrc: "/images/palm-residency-scaled.webp",
-          imageAlt: "Drawstring top with elastic loop closure and textured interior padding.",
+          imageSrc: "/images/palm-residency-completed-project-frere-town-karachi.webp",
+          imageAlt: "Palm Residency completed residential project in Frere Town Karachi by Narkin's Builders",
         },
         {
           name: "Al Arz Residency",
           href: "/completed-projects?p=al-arz-residency",
-          imageSrc: "/images/al-arz-residency-scaled.webp",
-          imageAlt:
-            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
+          imageSrc: "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
+          imageAlt: "Al Arz Terrace completed residential project by Narkin's Builders in Karachi",
         },
         {
           name: "Classic Heights",
           href: "/completed-projects?p=classic-heights",
           imageSrc: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
-          imageAlt:
-            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
+          imageAlt: "Classic Heights completed residential project in Sharfabad Karachi by Narkin's Builders",
         },
       ],
       sections: [
         {
-          id: "completed",
-          name: "Completed",
+          id: "housing",
+          name: "Completed Projects",
           items: [
             { name: "Al Arz Homes", href: "/completed-projects?p=al-arz-homes" },
+            { name: "Palm Residency", href: "/completed-projects?p=palm-residency" },
             { name: "Al Arz Residency", href: "/completed-projects?p=al-arz-residency" },
-            { name: "Palm Residency", href: "/completed-projects?p=palm-heights" },
             { name: "Classic Heights", href: "/completed-projects?p=classic-heights" },
           ],
         },
@@ -82,44 +80,37 @@ const navigation = {
   pages: [
     { name: "Home", href: "/" },
     { name: "Blogs", href: "/blogs" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact Us", href: `https://api.whatsapp.com/send?phone=923001234567` },
+    { name: "About", href: "/about" },
   ],
 };
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 interface NavigationProps {
-  transparent?: boolean;
   fixed?: boolean;
+  transparent?: boolean;
 }
 
-const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
-  const isFixed = fixed ?? false;
-  const [open, setOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(!fixed);
-  const setLeadForm = useGlobalLeadFormState((state) => state.setOpen);
+function classNames(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ');
+}
 
-  // Handle scroll event
+const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false }) => {
+  const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const setGlobalFormOpen = useGlobalLeadFormState((state) => state.setOpen);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
 
-    if (fixed) window.addEventListener("scroll", handleScroll);
-    return () => { if (fixed) window.removeEventListener("scroll", handleScroll); }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   return (
-    <div className="text-white">
-      {/* Mobile menu */}
+    <div className="bg-white">
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative lg:hidden z-[100]" onClose={setOpen}>
+        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -132,7 +123,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 flex">
+          <div className="fixed inset-0 z-40 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -155,7 +146,6 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                   </button>
                 </div>
 
-                {/* Links */}
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
@@ -164,8 +154,8 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
-                              selected ? "border-neutral-600 text-neutral-600" : "border-transparent text-gray-900",
-                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
+                              selected ? 'border-neutral-600 text-neutral-600' : 'border-transparent text-gray-900',
+                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
                             )
                           }
                         >
@@ -181,7 +171,11 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" className="object-cover object-center" />
+                                <img
+                                  src={item.imageSrc}
+                                  alt={item.imageAlt}
+                                  className="object-cover object-center"
+                                />
                               </div>
                               <a href={item.href} className="mt-6 text-black block font-medium ">
                                 <span className="absolute inset-0" aria-hidden="true" />
@@ -214,6 +208,7 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                     ))}
                   </Tab.Panels>
                 </Tab.Group>
+
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
@@ -229,14 +224,15 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
         </Dialog>
       </Transition.Root>
 
-      {/* Navbar */}
       <header
         style={{
+          backdropFilter: 'blur(5px)',
           zIndex: 100,
-          background: isScrolled ? "rgba(255, 255, 255, 0.925)" : "transparent",
-          transition: "background 0.3s ease",
+          background: 'rgba(255, 255, 255, 0.925)',
         }}
-        className={`${isFixed ? "fixed" : "absolute"} top-0 w-[100vw]`}
+        className={`${fixed ?? true ? 'fixed' : 'absolute'} top-0 w-[100vw] ${
+          transparent ? 'bg-transparent' : ''
+        } ${transparent ? 'text-white' : 'text-gray-800'}`}
       >
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
@@ -244,26 +240,24 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
               <button
                 type="button"
                 className="relative rounded-md bg-transparent p-2 lg:hidden"
-                onClick={() => {setOpen(true); setIsScrolled(true)}}
+                onClick={() => setOpen(true)}
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open menu</span>
-                <Bars3Icon className={`h-6 w-6 ${isScrolled ? "text-gray-800" : "text-white"}`} aria-hidden="true" />
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
 
-              {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
                   <span className="sr-only">Narkins Builders</span>
-                  <img
-                    className="h-8 w-auto" loading="eager"
-                    src="/images/narkins-builders-logo-30-years-experience.webp"
-                    alt=""
+                  <img 
+                    className="h-8 w-auto" 
+                    src="/images/narkins-builders-logo-30-years-experience.webp" 
+                    alt="Narkin's Builders - 30 years of construction excellence in Karachi" 
                   />
                 </Link>
               </div>
 
-              {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
@@ -274,11 +268,9 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? "border-neutral-600 text-neutral-600"
-                                  : "border-transparent hover:text-neutral-300",
-                                `relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out ${
-                                  isScrolled ? "text-gray-800" : "text-white"
-                                }`
+                                  ? 'border-neutral-600 text-neutral-600'
+                                  : 'border-transparent text-gray-700 hover:text-gray-800',
+                                'relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
                               {category.name}
@@ -296,10 +288,11 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                           >
                             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+
                               <div className="relative bg-white">
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-y-4 gap-x-8">
+                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
                                       {category.featured.map((item) => (
                                         <div key={item.name} className="group relative text-base sm:text-sm">
                                           <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
@@ -353,8 +346,12 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
                       key={page.name}
                       href={page.href}
                       className={`flex items-center text-sm font-medium ${
-                        isScrolled ? "text-gray-800" : "text-white"
-                      } hover:text-neutral-300`}
+                        isScrolled
+                          ? 'text-gray-700 hover:text-gray-800'
+                          : transparent
+                          ? 'text-white hover:text-gray-300'
+                          : 'text-gray-700 hover:text-gray-800'
+                      }`}
                     >
                       {page.name}
                     </a>
@@ -363,21 +360,12 @@ const Navigation: FC<NavigationProps> = ({ transparent, fixed }) => {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                {/* Search */}
-                <div className="hidden lg:ml-6">
-                  <a href="#" className="p-2 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon className={`h-6 w-6 ${isScrolled ? "text-gray-800" : "text-white"}`} aria-hidden="true" />
-                  </a>
-                </div>
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <button
-                    onClick={() => setLeadForm(true)}
-                    className="py-2 px-4 no-underline rounded-full bg-black text-white font-sans font-semibold text-sm border-orange btn-primary hover:text-white hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
+                    onClick={() => setGlobalFormOpen(true)}
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md text-sm font-medium transition duration-200"
                   >
-                    Get Quote
+                    Get Information
                   </button>
                 </div>
               </div>

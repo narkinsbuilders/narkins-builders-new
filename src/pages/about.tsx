@@ -32,7 +32,11 @@ export default function AboutUs() {
                                 "/images/smart-wifi-switches-narkins-residency.webp",
                             ].map((image, index) => (
                                 <div key={image} className="group">
-                                    <img src={image} className="hover:brightness-75 transition duration-[0.5s] border cursor-pointer filter w-full h-auto bg-neutral-100 object-cover rounded-lg" />
+                                    <img 
+                                        src={image} 
+                                        alt={`${Inovations[index]} - Narkin's Builders innovation in Bahria Town Karachi`}
+                                        className="hover:brightness-75 transition duration-[0.5s] border cursor-pointer filter w-full h-auto bg-neutral-100 object-cover rounded-lg" 
+                                    />
                                     <p className="text-lg my-2 font-medium text-gray-900">
                                         {Inovations[index]}
                                     </p>
@@ -83,22 +87,38 @@ export default function AboutUs() {
                             Hill Crest Residency is an example of our commitment in terms of timeline, quality and customer satisfaction. Hill Crest Residency has also pioneered smart apartments in Bahria Town Karachi. Over the years, we have successfully delivered 5 high-rise projects in the most prime areas of Karachi, each showcasing our dedication to craftsmanship and attention to detail.
                         </p>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 gap-4">
-                            <img src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img 
+                                src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} 
+                                alt="Hill Crest Residency launch ceremony 2021 in Bahria Town Karachi by Narkin's Builders"
+                                className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                            />
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Hill Crest Residency Launch <i>2021</i>
                             </p>
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
                                 Hill Crest Residency Completion <i>2025</i>
                             </p>
-                            <img src={"/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img 
+                                src={"/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"} 
+                                alt="Hill Crest Residency completed exterior view Bahria Town Karachi luxury apartments"
+                                className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                            />
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                                <img 
+                                    src={"/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"} 
+                                    alt="Hill Crest Residency completed exterior view Bahria Town Karachi luxury apartments"
+                                    className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                                />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Hill Crest Residency Completion <i>2025</i>
                                 </p>
                             </div>
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/hill-crest-residency-construction-progress-2024.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
+                                <img 
+                                    src={"/images/hill-crest-residency-launch-ceremony-2021.webp"} 
+                                    alt="Hill Crest Residency launch ceremony 2021 in Bahria Town Karachi by Narkin's Builders"
+                                    className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" 
+                                />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
                                     Hill Crest Residency Launch <i>2021</i>
                                 </p>
@@ -115,24 +135,40 @@ export default function AboutUs() {
                             Narkin's Boutique Residency exemplifies our dedication to timely delivery, exceptional quality, and customer satisfaction. Just as Hill Crest Residency pioneered smart apartments in Bahria Town Karachi, Narkin's Boutique Residency continues this legacy of innovation and excellence. Over the years, we have successfully completed five high-rise projects in prime locations across Karachi, each reflecting our commitment to superior craftsmanship and meticulous attention to detail.
                         </p>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 gap-4">
-                            <img src={"/images/narkins-boutique-residency-construction-september-2023.webp"} className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img 
+                                src={"/images/narkins-boutique-residency-construction-september-2023.webp"} 
+                                alt="Narkin's Boutique Residency construction progress September 2023 Heritage Commercial Bahria Town"
+                                className="hidden md:lg:block w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                            />
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
-                                Narkin’s Boutique Residency <i>September 2023</i>
+                                Narkin's Boutique Residency <i>September 2023</i>
                             </p>
                             <p className="text-lg my-2 font-medium text-gray-900 py-[1rem] hidden md:lg:block">
-                                Narkin’s Boutique Residency <i>March 2024</i>
+                                Narkin's Boutique Residency <i>March 2024</i>
                             </p>
-                            <img src={"/images/narkins-boutique-residency-construction-march-2024.webp"} className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                            <img 
+                                src={"/images/narkins-boutique-residency-construction-march-2024.webp"} 
+                                alt="Narkin's Boutique Residency construction progress March 2024 Heritage Commercial Bahria Town"
+                                className="w-full hidden md:lg:block h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                            />
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/narkins-boutique-residency-construction-september-2023.webp"} className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" />
+                                <img 
+                                    src={"/images/narkins-boutique-residency-construction-september-2023.webp"} 
+                                    alt="Narkin's Boutique Residency construction progress September 2023 Heritage Commercial Bahria Town"
+                                    className="w-full h-auto bg-neutral-100 rounded-xl cursor-pointer" 
+                                />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
-                                    Narkin’s Boutique Residency <i>September 2023</i>
+                                    Narkin's Boutique Residency <i>September 2023</i>
                                 </p>
                             </div>
                             <div className="flex flex-col items-center md:lg:hidden">
-                                <img src={"/images/narkins-boutique-residency-construction-march-2024.webp"} className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" />
+                                <img 
+                                    src={"/images/narkins-boutique-residency-construction-march-2024.webp"} 
+                                    alt="Narkin's Boutique Residency construction progress March 2024 Heritage Commercial Bahria Town"
+                                    className="w-full bg-neutral-100 h-auto rounded-xl cursor-pointer" 
+                                />
                                 <p className="text-lg my-2 font-medium text-gray-900 px-[1rem]">
-                                    Narkin’s Boutique Residency <i>March 2024</i>
+                                    Narkin's Boutique Residency <i>March 2024</i>
                                 </p>
                             </div>
                         </div>
@@ -155,7 +191,8 @@ export default function AboutUs() {
                                 frameborder="0"
                                 allowfullscreen="true"
                                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                allowFullScreen="true">
+                                allowFullScreen="true"
+                                title="Narkin's Builders Hill Crest Residency customer testimonial video">
                             </iframe>
                         </div>
                     </div>
@@ -167,16 +204,24 @@ export default function AboutUs() {
                             <h2 className="text-3xl font-bold mb-[1rem] tracking-tight text-gray-900 sm:text-5xl">Narkin's Textile Industries</h2>
                             <div className="mx-auto=max-w-2xl=lg:mx-0">
                                 <p className="mt-2 text-lg leading-8 text-gray-600">Narkin's is also a prominent player in the textile industry. As one of the largest manufacturers of garments in Pakistan, we have retail outlets spread across Karachi. Our manufacturing factory, Narkin's Textile Industries, located in the S.I.T.E area of Karachi, is a testament to our commitment to excellence and innovation across industries.</p>
-                                {/* <p className="mt-4 text-lg leading-8 text-gray-600">Narkin's Builders continues to push the boundaries of construction and development in Karachi. We invite you to experience the Narkin's difference—where quality, reliability, and innovation converge to create exceptional living spaces.</p> */}
+                                {/* <p className="mt-4 text-lg leading-8 text-gray-600">Narkin's Builders continues to push the boundaries of construction and development in Karachi. We invite you to experience the Narkin's difference—where quality, reliability, and innovation converge to create exceptional living spaces.</p> */}
                             </div>
                         </div>
                         <div className="grid grid-cols-1 md:lg:grid-cols-2 py-[5rem] gap-4">
-                            <img src="/images/narkins-builders-eastern-wear-retail-outlet.webp" className="w-full h-full object-cover rounded-xl" />
-                            <img src="/images/narkins-textile-industries-manufacturing-facility.webp" className="w-full h-full object-cover rounded-xl" />
+                            <img 
+                                src="/images/narkins-builders-eastern-wear-retail-outlet.webp" 
+                                alt="Narkin's Builders eastern wear retail outlet in Karachi"
+                                className="w-full h-full object-cover rounded-xl" 
+                            />
+                            <img 
+                                src="/images/narkins-textile-industries-manufacturing-facility.webp" 
+                                alt="Narkin's Textile Industries manufacturing facility in S.I.T.E area Karachi"
+                                className="w-full h-full object-cover rounded-xl" 
+                            />
                         </div>
                         <div className="mx-auto max-w-2xl lg:mx-0">
                             <div className="mx-auto=max-w-2xl=lg:mx-0">
-                                <p className="mt-4 text-lg leading-8 text-gray-600">Narkin's Builders continues to push the boundaries of construction and development in Karachi. We invite you to experience the Narkin's difference—where quality, reliability, and innovation converge to create exceptional living spaces.</p>
+                                <p className="mt-4 text-lg leading-8 text-gray-600">Narkin's Builders continues to push the boundaries of construction and development in Karachi. We invite you to experience the Narkin's difference—where quality, reliability, and innovation converge to create exceptional living spaces.</p>
                             </div>
                         </div>
                     </div>
