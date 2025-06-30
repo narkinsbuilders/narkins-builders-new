@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ChevronDown, Building2, Building, MapPin, Shield } from "lucide-react";
+import { ChevronDown, Building2, Building, MapPin } from "lucide-react";
 import { useFormAnalytics } from "@/hooks/useAnalytics";
 import { event as trackEvent } from "@/lib/gtag";
 
@@ -11,7 +11,7 @@ const residencyOptions = [
   {
     id: "nbr",
     value: "Narkins Boutique Residency",
-    label: "Narkins Boutique Residency (NBR)",
+    label: "Narkin's Boutique Residency (NBR)",
     shortLabel: "NBR",
     description: "Luxury apartments with modern amenities",
     features: ["2, 3 & 4 Bedroom Apartments", "Premium Location", "Modern Architecture"],
@@ -23,7 +23,7 @@ const residencyOptions = [
     value: "Hill Crest Residency",
     label: "Hill Crest Residency (HCR)",
     shortLabel: "HCR",
-    description: "Serene  living with panoramic views",
+    description: "Serene living with panoramic views",
     features: ["2, 3 & 4 Bedroom Apartments", "Jinnah View", "Premium Finishes"],
     icon: Building,
     color: "bg-green-50 border-green-200 text-green-800"
@@ -49,49 +49,50 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [selectedResidency, setSelectedResidency] = useState(
-    residency === "General" ? residencyOptions[0] : 
-    residencyOptions.find(option => option.value === residency) || residencyOptions[0]
+    residency === "General" 
+      ? residencyOptions[0] 
+      : residencyOptions.find(r => r.value === residency) || residencyOptions[0]
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
-  const [formStarted, setFormStarted] = useState(false);
-  const [backupStatus, setBackupStatus] = useState({ 
-    primaryForm: false, 
-    backupForm: false, 
-    localSaved: false 
+  const [error, setError] = useState(false);
+  const [backupStatus, setBackupStatus] = useState({
+    primaryForm: false,
+    backupForm: false,
+    localSaved: false
   });
-  
+
   const { trackFormStart, trackFormSubmit, trackFormError } = useFormAnalytics();
 
-  // Auto-save form data to localStorage as user types
+  // Auto-save form data to localStorage
   useEffect(() => {
-    const formData = { 
-      name, 
-      email, 
-      number, 
-      property: selectedResidency.value,
-      timestamp: new Date().toISOString(),
-      url: window.location.href
-    };
+    const formData = { name, email, number, property: selectedResidency.value };
     localStorage.setItem('leadFormData', JSON.stringify(formData));
-    setBackupStatus(prev => ({ ...prev, localSaved: true }));
   }, [name, email, number, selectedResidency]);
 
-  // Track form start when user begins typing
-  const handleFormStart = () => {
-    if (!formStarted) {
-      setFormStarted(true);
-      trackFormStart('quote');
-      
-      // Track which property they're interested in
-      trackEvent({
-        action: 'property_interest',
-        category: 'Lead Generation',
-        label: selectedResidency.value,
-      });
+  // Load saved form data on component mount
+  useEffect(() => {
+    const savedData = localStorage.getItem('leadFormData');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        if (parsed.name) setName(parsed.name);
+        if (parsed.email) setEmail(parsed.email);
+        if (parsed.number) setNumber(parsed.number);
+        if (parsed.property) {
+          const savedResidency = residencyOptions.find(r => r.value === parsed.property);
+          if (savedResidency) setSelectedResidency(savedResidency);
+        }
+      } catch (error) {
+        console.error('Error loading saved form data:', error);
+      }
     }
+  }, []);
+
+  // Track form start
+  const handleFormStart = () => {
+    trackFormStart('quote');
   };
 
   // Handle residency selection
@@ -306,18 +307,10 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
       )}
       
       <div className="relative">
-        {/* Google Security Badge */}
-        <div className="absolute -top-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg z-10">
-          <Shield className="w-4 h-4" />
-        </div>
+        {/* Removed: Google Security Badge */}
         
         <form className="space-y-4 mt-4 bg-white p-6 rounded-lg border border-gray-200 shadow-sm" onSubmit={handleSubmit}>
-          <div className="text-center mb-4">
-            <p className="text-xs text-gray-600 flex items-center justify-center gap-1">
-              <Shield className="w-3 h-3" />
-              Google-Protected Lead Capture - Dual backup system
-            </p>
-          </div>
+          {/* Removed: Google Protection Text */}
 
           {/* Residency Selection Dropdown */}
           <div>
@@ -449,23 +442,7 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
             />
           </div>
 
-          {/* Google Backup Status Indicators */}
-          {loading && (
-            <div className="flex justify-center space-x-3 py-2">
-              <div className="flex flex-col items-center">
-                <div className={`w-3 h-3 rounded-full ${backupStatus.primaryForm ? 'bg-green-500' : 'bg-gray-300'} transition-colors`}></div>
-                <span className="text-xs text-gray-500 mt-1">Primary</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className={`w-3 h-3 rounded-full ${backupStatus.backupForm ? 'bg-green-500' : 'bg-gray-300'} transition-colors`}></div>
-                <span className="text-xs text-gray-500 mt-1">Backup</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className={`w-3 h-3 rounded-full ${backupStatus.localSaved ? 'bg-blue-500' : 'bg-gray-300'} transition-colors`}></div>
-                <span className="text-xs text-gray-500 mt-1">Local</span>
-              </div>
-            </div>
-          )}
+          {/* Removed: Backup Status Indicators */}
           
           <Button
             type="submit"
@@ -475,19 +452,14 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
             {loading ? (
               <div className="flex items-center justify-center space-x-2">
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Securing with Google...</span>
+                <span>Submitting...</span>
               </div>
             ) : (
               `Get Information About ${selectedResidency.shortLabel}`
             )}
           </Button>
 
-          {/* Auto-save indicator */}
-          <div className="text-center">
-            <p className="text-xs text-gray-500">
-              ✅ Your information is automatically saved as you type
-            </p>
-          </div>
+          {/* Removed: Auto-save indicator */}
         </form>
       </div>
       

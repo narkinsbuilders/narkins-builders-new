@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {/* Render Dialog only on the client side */}
       {isClient && (
         <Dialog
-          title={`Get More Information — Narkin's Builders`}
+          title=""
           open={open}
           onClose={() => setOpen(false)}
           body={
