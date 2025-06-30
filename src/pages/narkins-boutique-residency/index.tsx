@@ -113,17 +113,55 @@ const cards = [
     },    
   ],
 ];
+
 const amenities = [
-  { image: "/nbr-scaled/gym.webp", name: "Gym" },
-  { image: "/nbr-scaled/play-area.webp", name: "Kids Area" },
-  { image: "/nbr-scaled/steam-bath.webp", name: "Steam Bath" },
-  { image: "/nbr-scaled/reception.webp", name: "Grand Reception" },
-  { image: "/nbr-scaled/snooker.webp", name: "Snooker" },
-  { image: "/nbr-scaled/Lift-Shot.webp", name: "Elevators" },
-  { image: "/nbr-scaled/Pool.webp", name: "Pool" },
-  { image: "/nbr-scaled/Seating.webp", name: "Community Hall" },
-  { image: "/nbr-scaled/underground-car-parking.webp", name: "5 Floors Parking" },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-gym-fitness-center.webp", 
+    name: "Gym",
+    alt: "Narkin's Boutique Residency state-of-the-art gym and fitness center with modern equipment"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-kids-play-area.webp", 
+    name: "Kids Area",
+    alt: "Narkin's Boutique Residency dedicated kids play area and children's facilities"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-steam-bath-wellness.webp", 
+    name: "Steam Bath",
+    alt: "Narkin's Boutique Residency steam bath and wellness center for relaxation"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-grand-reception-lobby.webp", 
+    name: "Grand Reception",
+    alt: "Narkin's Boutique Residency grand reception and lobby area with luxury finishes"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-snooker-recreation-room.webp", 
+    name: "Snooker",
+    alt: "Narkin's Boutique Residency snooker and recreation room for residents"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-high-speed-elevators.webp", 
+    name: "Elevators",
+    alt: "Narkin's Boutique Residency high-speed elevators and lift facilities"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-swimming-pool-indoor.webp", 
+    name: "Pool",
+    alt: "Narkin's Boutique Residency indoor swimming pool facility for residents"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-community-hall-seating.webp", 
+    name: "Community Hall",
+    alt: "Narkin's Boutique Residency community hall with premium seating arrangements"
+  },
+  { 
+    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-underground-parking-5-floors.webp", 
+    name: "5 Floors Parking",
+    alt: "Narkin's Boutique Residency 5-floor underground car parking facility"
+  },
 ];
+
 const galleryImages = [
   "/images/narkins-boutique-residency-apartment-living-room-luxury.webp",
   "/images/narkins-boutique-residency-apartment-master-bedroom.webp",
@@ -141,6 +179,7 @@ const galleryImages = [
   "/images/narkins-boutique-residency-apartment-storage-space.webp",
   "/images/narkins-boutique-residency-apartment-laundry-room.webp",
 ];
+
 const youtubeVideos = [
   { id: "FmEHTzdjXEc", title: "Luxury Living at Hill Crest Residency | A Guided Tour", type: "youtube" },
   { id: "uzYVdqFHovs", title: "Hill Crest Residency: Modern Amenities and Stunning Views", type: "youtube" },
@@ -148,12 +187,13 @@ const youtubeVideos = [
   { id: "DClpf8-xaS8", title: "Hill Crest Residency: Your Dream Home in Bahria Town Karachi", type: "youtube" },
   { id: "5uMTiRmZXBw", title: "Hill Crest Residency: A Closer Look at Our 2, 3 & 4 Bedroom Apartments", type: "youtube" },
 ];
+
 const testimonials = [
   {
     name: "Saad Arshad",
     stars: [true, true, true, true, "half"],
     testimonial:
-      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
     avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
   },
   {
@@ -167,7 +207,7 @@ const testimonials = [
     name: "Umair Iqrar",
     stars: [true, true, true, true, false],
     testimonial:
-      "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+      "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
     avatar: "/images/sarim-nara.png", // Placeholder avatar
   },
 ];
@@ -198,14 +238,14 @@ const Amenities = () => {
               <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
                 <Image
                   src={amenity.image}
-                  alt={amenity.name}
+                  alt={amenity.alt}
                   width={500}
                   height={300}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover: bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg font-semibold opacity-0 group-hover: opacity-100 transition-all duration-300">
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
                     {amenity.name}
                   </span>
                 </div>
@@ -239,6 +279,7 @@ const Amenities = () => {
     </div>
   )
 };
+
 export default function HillCrestResidency({ posts }: { posts: Post[] }) {
   const openLightbox = useLightboxStore(state => state.openLightbox);
 

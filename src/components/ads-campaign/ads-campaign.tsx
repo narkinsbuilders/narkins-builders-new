@@ -11,7 +11,7 @@ const residencyOptions = [
   {
     id: "nbr",
     value: "Narkins Boutique Residency",
-    label: "Narkin's Boutique Residency (NBR)",
+    label: "Narkins Boutique Residency (NBR)",
     shortLabel: "NBR",
     description: "Luxury apartments with modern amenities",
     features: ["2, 3 & 4 Bedroom Apartments", "Premium Location", "Modern Architecture"],
@@ -229,9 +229,7 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
     // Determine success
     if (successCount > 0) {
       setResponseMessage(
-        `Thank you! Your inquiry has been submitted successfully. ` +
-        `(${successCount}/2 Google Forms confirmed) ` +
-        `${successCount === 2 ? '🛡️ Fully protected!' : '⚠️ Partial backup - but secured!'}`
+        "Thank you for submitting your inquiry! We'll get back to you shortly."
       );
       
       // Track successful form submission
@@ -455,7 +453,7 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
                 <span>Submitting...</span>
               </div>
             ) : (
-              `Get Information About ${selectedResidency.shortLabel}`
+              "Submit"
             )}
           </Button>
 

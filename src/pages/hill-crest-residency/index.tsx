@@ -31,12 +31,30 @@ const cards = [[
     { title: '4 Bed Rhodium', size: '1996 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
     { title: '4 Bed Sapphire-A', size: '1388 Square Feet', location: 'Safari View', image: "/images/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
 ]];
+
 const amenities = [
-    { image: "/hcr-scaled/gym.webp", name: "Gym" },
-    { image: "/hcr-scaled/mosque.webp", name: "Prayer Area" },
-    { image: "/hcr-scaled/steam-bath.webp", name: "Steam Bath" },
-    { image: "/hcr-scaled/grand-lobby-for-hcr.webp", name: "Grand Lobby" },
+    { 
+        image: "/images/amenities/hill-crest-residency/hill-crest-residency-gym-fitness-center.webp", 
+        name: "Gym",
+        alt: "Hill Crest Residency modern gym and fitness center with premium equipment"
+    },
+    { 
+        image: "/images/amenities/hill-crest-residency/hill-crest-residency-prayer-area-mosque.webp", 
+        name: "Prayer Area",
+        alt: "Hill Crest Residency in-house prayer area and mosque facility for residents"
+    },
+    { 
+        image: "/images/amenities/hill-crest-residency/hill-crest-residency-steam-bath-wellness.webp", 
+        name: "Steam Bath",
+        alt: "Hill Crest Residency steam bath and spa wellness center for residents"
+    },
+    { 
+        image: "/images/amenities/hill-crest-residency/hill-crest-residency-grand-lobby-reception.webp", 
+        name: "Grand Lobby",
+        alt: "Hill Crest Residency grand lobby and reception area with luxury finishes"
+    },
 ];
+
 const galleryImages = [
     "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
     "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
@@ -52,6 +70,7 @@ const galleryImages = [
     "/images/hill-crest-residency-apartment-family-lounge.webp",
     "/images/hill-crest-residency-apartment-powder-room.webp",
 ];
+
 const youtubeVideos = [
     { id: "TSiLOTW2s4g", title: "Tour of Hill Crest Residency", type: "youtube" },
     { id: "5zv639iO31w", title: "Luxury Living at Hill Crest", type: "youtube" },
@@ -60,12 +79,13 @@ const youtubeVideos = [
     { id: "iNbSrOL8HD4", title: "Hill Crest Residency Walkthrough", type: "youtube" },
     { id: "cneUzaJe-Cg", title: "Why Choose Hill Crest?", type: "youtube" },
 ];
+
 const testimonials = [
     {
         name: "Saad Arshad",
         stars: [true, true, true, true, "half"],
         testimonial:
-            "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+            "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
         avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
     },
     {
@@ -79,7 +99,7 @@ const testimonials = [
         name: "Umair Iqrar",
         stars: [true, true, true, true, false],
         testimonial:
-            "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+            "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
         avatar: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder avatar
     },
 ];
@@ -110,14 +130,14 @@ const Amenities = () => {
                             <div className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-900/10">
                                 <Image
                                     src={amenity.image}
-                                    alt={amenity.name}
+                                    alt={amenity.alt}
                                     width={500}
                                     height={300}
                                     className="absolute inset-0 h-full w-full object-cover"
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover: bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                    <span className="text-white text-lg font-semibold opacity-0 group-hover: opacity-100 transition-all duration-300">
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                    <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
                                         {amenity.name}
                                     </span>
                                 </div>
@@ -151,6 +171,7 @@ const Amenities = () => {
         </div>
     )
 };
+
 export default function HillCrestResidency({ posts }: { posts: Post[] }) {
     const openLightbox = useLightboxStore(state => state.openLightbox);
 
