@@ -464,16 +464,8 @@ body {
   right: -3rem;
 }
 
-.-right-2 {
-  right: -.5rem;
-}
-
 .-top-12 {
   top: -3rem;
-}
-
-.-top-2 {
-  top: -.5rem;
 }
 
 .-top-52 {
@@ -538,6 +530,22 @@ body {
 
 .top-full {
   top: 100%;
+}
+
+.-right-2 {
+  right: -.5rem;
+}
+
+.-top-2 {
+  top: -.5rem;
+}
+
+.right-2 {
+  right: .5rem;
+}
+
+.top-2 {
+  top: .5rem;
 }
 
 .isolate {
@@ -2178,6 +2186,10 @@ body {
 
 .opacity-70 {
   opacity: .7;
+}
+
+.opacity-80 {
+  opacity: .8;
 }
 
 .shadow {

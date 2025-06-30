@@ -71,28 +71,30 @@ const Dialog: FC<DialogProps> = ({
 
   return (
     <div className="fixed inset-0 z-[9999999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      {/* Dialog Panel - Centered Modal */}
+      {/* Dialog Panel - Removed white box styling */}
       <div
         ref={dialogRef}
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl transform transition-all"
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto transform transition-all"
       >
-        <div className="p-6">
+        <div className="relative">
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10"
+            className="absolute right-2 top-2 rounded-full bg-white p-2 shadow-lg opacity-80 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10"
           >
-            <X className="h-4 w-4" />
+            <X className="h-5 w-5 text-gray-600" />
             <span className="sr-only">Close</span>
           </button>
 
-          {/* Title */}
-          <h3 className="text-lg font-semibold leading-6 text-gray-900 pr-8 mb-4">
-            {title}
-          </h3>
+          {/* Title - Only show if title exists */}
+          {title && (
+            <h3 className="text-lg font-semibold leading-6 text-gray-900 pr-8 mb-4">
+              {title}
+            </h3>
+          )}
 
           {/* Body */}
-          <div className="mt-4">
+          <div className={title ? "mt-4" : ""}>
             {typeof body === 'string' ? (
               <p className="text-sm text-gray-500">{body}</p>
             ) : (
