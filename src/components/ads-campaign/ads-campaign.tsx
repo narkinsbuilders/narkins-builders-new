@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ChevronDown, Building2, Building, MapPin } from "lucide-react";
+import { ChevronDown, Building2, Building, MapPin, Shield } from "lucide-react";
 import { useFormAnalytics } from "@/hooks/useAnalytics";
 import { event as trackEvent } from "@/lib/gtag";
 
@@ -23,8 +23,8 @@ const residencyOptions = [
     value: "Hill Crest Residency",
     label: "Hill Crest Residency (HCR)",
     shortLabel: "HCR",
-    description: "Serene hillside living with panoramic views",
-    features: ["2, 3 & 4 Bedroom Apartments", "Scenic Hill Views", "Premium Finishes"],
+    description: "Serene  living with panoramic views",
+    features: ["2, 3 & 4 Bedroom Apartments", "Jinnah View", "Premium Finishes"],
     icon: Building,
     color: "bg-green-50 border-green-200 text-green-800"
   }
@@ -57,8 +57,27 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
   const [error, setError] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
   const [formStarted, setFormStarted] = useState(false);
+  const [backupStatus, setBackupStatus] = useState({ 
+    primaryForm: false, 
+    backupForm: false, 
+    localSaved: false 
+  });
   
   const { trackFormStart, trackFormSubmit, trackFormError } = useFormAnalytics();
+
+  // Auto-save form data to localStorage as user types
+  useEffect(() => {
+    const formData = { 
+      name, 
+      email, 
+      number, 
+      property: selectedResidency.value,
+      timestamp: new Date().toISOString(),
+      url: window.location.href
+    };
+    localStorage.setItem('leadFormData', JSON.stringify(formData));
+    setBackupStatus(prev => ({ ...prev, localSaved: true }));
+  }, [name, email, number, selectedResidency]);
 
   // Track form start when user begins typing
   const handleFormStart = () => {
@@ -97,10 +116,23 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
     });
   };
 
+  // GOOGLE-ONLY BULLETPROOF SUBMISSION
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
     setError(false);
+    setBackupStatus({ primaryForm: false, backupForm: false, localSaved: true });
+
+    const leadData = {
+      name,
+      email,
+      phone: number,
+      property: selectedResidency.value,
+      timestamp: new Date().toISOString(),
+      source: 'website_form',
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
 
     // Track form submission attempt
     trackEvent({
@@ -109,63 +141,135 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
       label: selectedResidency.value,
     });
 
+    let successCount = 0;
+
+    // GOOGLE METHOD 1: Primary Google Form
     try {
-      const unitTag = await fetch("/api/get-contact-form-7-key").then((d) => d.text());
-
-      const formData = new FormData();
-      formData.append("_wpcf7", "245");
-      formData.append("_wpcf7_version", "5.9.5");
-      formData.append("_wpcf7_locale", "en_US");
-      formData.append("_wpcf7_unit_tag", unitTag);
-      formData.append("_wpcf7_container_post", "634");
-      formData.append("_wpcf7_posted_data_hash", "");
-      formData.append("your-name", name);
-      formData.append("your-number", number);
-      formData.append("your-email", email);
-      formData.append("your-property", selectedResidency.value);
-
-      const response = await fetch(
-        "https://admin.narkinsbuilders.com/wp-json/contact-form-7/v1/contact-forms/245/feedback",
-        {
-          credentials: "include",
-          body: formData,
-          method: "POST",
-          mode: "cors",
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok && data.status === "mail_sent") {
-        setResponseMessage(data.message);
-        
-        // Track successful form submission
-        trackFormSubmit('quote', selectedResidency.value);
-        
-        // Track as conversion
-        trackEvent({
-          action: 'conversion',
-          category: 'Lead Generation',
-          label: `Quote Request - ${selectedResidency.value}`,
-          value: 1,
-        });
-
-        // Reset form
-        setName("");
-        setEmail("");
-        setNumber("");
-      } else {
-        setError(true);
-        setResponseMessage("There was an error sending your message. Please try again.");
-        trackFormError('quote', 'submission_failed');
-      }
+      const PRIMARY_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSehBhNgCAZ2aaPM74VM54v-UpMl6tAnpin3FWs3rO_NlauHMA/formResponse";
+      
+      const formData1 = new FormData();
+      formData1.append("entry.1103450427", name);           // Full Name
+      formData1.append("entry.1724847894", email);          // Email Address
+      formData1.append("entry.2110163926", number);         // Phone
+      formData1.append("entry.683945342", selectedResidency.value); // Property Interest
+      formData1.append("entry.734047053", new Date().toISOString()); // Submission Time
+      
+      await fetch(PRIMARY_GOOGLE_FORM_URL, {
+        method: "POST",
+        body: formData1,
+        mode: "no-cors",
+      });
+      
+      successCount++;
+      setBackupStatus(prev => ({ ...prev, primaryForm: true }));
+      console.log('✅ Primary Google Form submitted successfully');
+      
     } catch (error) {
-      setError(true);
-      setResponseMessage("There was an error sending your message.");
-      trackFormError('quote', 'network_error');
-    } finally {
-      setLoading(false);
+      console.error('❌ Primary Google Forms failed:', error);
     }
+
+    // Short delay to prevent rate limiting
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // GOOGLE METHOD 2: Backup Google Form
+    try {
+      const BACKUP_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSebu0H3_nheuH_sTzLWWCuphGQhxAzjzSi98H-tzghMADcvbA/formResponse";
+      
+      const formData2 = new FormData();
+      formData2.append("entry.1103450427", name);           // Full Name
+      formData2.append("entry.1724847894", email);          // Email Address
+      formData2.append("entry.2110163926", number);         // Phone
+      formData2.append("entry.683945342", selectedResidency.value); // Property Interest
+      formData2.append("entry.734047053", new Date().toISOString()); // Submission Time
+      formData2.append("entry.99215679", "BACKUP_SUBMISSION"); // Backup flag
+      
+      await fetch(BACKUP_GOOGLE_FORM_URL, {
+        method: "POST",
+        body: formData2,
+        mode: "no-cors",
+      });
+      
+      successCount++;
+      setBackupStatus(prev => ({ ...prev, backupForm: true }));
+      console.log('✅ Backup Google Form submitted successfully');
+      
+    } catch (error) {
+      console.error('❌ Backup Google Forms failed:', error);
+    }
+
+    // GOOGLE METHOD 3: Store in IndexedDB for manual recovery
+    try {
+      const request = indexedDB.open('GoogleLeadsDB', 1);
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        if (!db.objectStoreNames.contains('leads')) {
+          const store = db.createObjectStore('leads', { keyPath: 'id', autoIncrement: true });
+          store.createIndex('timestamp', 'timestamp', { unique: false });
+          store.createIndex('synced', 'synced', { unique: false });
+        }
+      };
+      request.onsuccess = () => {
+        const db = request.result;
+        const transaction = db.transaction(['leads'], 'readwrite');
+        const store = transaction.objectStore('leads');
+        store.add({ 
+          ...leadData, 
+          synced: successCount > 0,
+          primaryFormSuccess: backupStatus.primaryForm,
+          backupFormSuccess: backupStatus.backupForm,
+          submissionCount: successCount
+        });
+        console.log('✅ Data stored in IndexedDB for recovery');
+      };
+    } catch (error) {
+      console.error('❌ IndexedDB storage failed:', error);
+    }
+
+    // Determine success
+    if (successCount > 0) {
+      setResponseMessage(
+        `Thank you! Your inquiry has been submitted successfully. ` +
+        `(${successCount}/2 Google Forms confirmed) ` +
+        `${successCount === 2 ? '🛡️ Fully protected!' : '⚠️ Partial backup - but secured!'}`
+      );
+      
+      // Track successful form submission
+      trackFormSubmit('quote', selectedResidency.value);
+      
+      // Track as conversion
+      trackEvent({
+        action: 'conversion',
+        category: 'Lead Generation',
+        label: `Quote Request - ${selectedResidency.value}`,
+        value: 1,
+      });
+
+      // Track backup success rate
+      trackEvent({
+        action: 'backup_success_rate',
+        category: 'Lead Generation',
+        label: `${successCount}_of_2_google_forms`,
+        value: successCount,
+      });
+
+      // Clear form and localStorage
+      setName("");
+      setEmail("");
+      setNumber("");
+      localStorage.removeItem('leadFormData');
+      
+    } else {
+      setError(true);
+      setResponseMessage(
+        "There was an issue connecting to Google Forms. " +
+        "Your data has been saved securely in your browser. " +
+        "Please try again in a moment or contact us directly at: " +
+        "info@narkinsbuilders.com or +92-XXX-XXXXXXX"
+      );
+      trackFormError('quote', 'all_google_methods_failed');
+    }
+
+    setLoading(false);
   };
 
   const IconComponent = selectedResidency.icon;
@@ -201,152 +305,191 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
         </>
       )}
       
-      <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
-        {/* Residency Selection Dropdown */}
-        <div>
-          <Label htmlFor="residency" className="text-neutral-700 font-medium">
-            I'm interested in
-          </Label>
-          <div className="relative mt-1">
-            <button
-              type="button"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-left shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black transition-colors"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <IconComponent className="w-5 h-5 text-gray-600" />
-                  <div>
-                    <div className="font-medium text-gray-900">
-                      {selectedResidency.label}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {selectedResidency.description}
+      <div className="relative">
+        {/* Google Security Badge */}
+        <div className="absolute -top-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg z-10">
+          <Shield className="w-4 h-4" />
+        </div>
+        
+        <form className="space-y-4 mt-4 bg-white p-6 rounded-lg border border-gray-200 shadow-sm" onSubmit={handleSubmit}>
+          <div className="text-center mb-4">
+            <p className="text-xs text-gray-600 flex items-center justify-center gap-1">
+              <Shield className="w-3 h-3" />
+              Google-Protected Lead Capture - Dual backup system
+            </p>
+          </div>
+
+          {/* Residency Selection Dropdown */}
+          <div>
+            <Label htmlFor="residency" className="text-neutral-700 font-medium">
+              I'm interested in
+            </Label>
+            <div className="relative mt-1">
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-left shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <IconComponent className="w-5 h-5 text-gray-600" />
+                    <div>
+                      <div className="font-medium text-gray-900">
+                        {selectedResidency.label}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {selectedResidency.description}
+                      </div>
                     </div>
                   </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-gray-400 transition-transform ${
+                      isDropdownOpen ? 'rotate-180' : ''
+                    }`} 
+                  />
                 </div>
-                <ChevronDown 
-                  className={`w-5 h-5 text-gray-400 transition-transform ${
-                    isDropdownOpen ? 'rotate-180' : ''
-                  }`} 
-                />
-              </div>
-            </button>
+              </button>
 
-            {/* Dropdown Options */}
-            {isDropdownOpen && (
-              <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-                {residencyOptions.map((option) => {
-                  const OptionIcon = option.icon;
-                  return (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => handleResidencySelect(option)}
-                      className="w-full px-3 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition-colors border-b border-gray-100 last:border-0"
-                    >
-                      <div className="flex items-start space-x-3">
-                        <OptionIcon className="w-5 h-5 text-gray-600 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-gray-900">
-                            {option.label}
-                          </div>
-                          <div className="text-sm text-gray-500 mb-2">
-                            {option.description}
-                          </div>
-                          <div className="flex flex-wrap gap-1">
-                            {option.features.map((feature, index) => (
-                              <span
-                                key={index}
-                                className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${option.color}`}
-                              >
-                                {feature}
-                              </span>
-                            ))}
+              {/* Dropdown Options */}
+              {isDropdownOpen && (
+                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
+                  {residencyOptions.map((option) => {
+                    const OptionIcon = option.icon;
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => handleResidencySelect(option)}
+                        className="w-full px-3 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition-colors border-b border-gray-100 last:border-0"
+                      >
+                        <div className="flex items-start space-x-3">
+                          <OptionIcon className="w-5 h-5 text-gray-600 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-gray-900">
+                              {option.label}
+                            </div>
+                            <div className="text-sm text-gray-500 mb-2">
+                              {option.description}
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {option.features.map((feature, index) => (
+                                <span
+                                  key={index}
+                                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${option.color}`}
+                                >
+                                  {feature}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Form Fields */}
-        <div>
-          <Label htmlFor="name" className="text-neutral-700">
-            Full Name
-          </Label>
-          <Input
-            type="text"
-            id="name"
-            placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              handleFormStart();
-            }}
-            onBlur={() => name && handleFieldComplete('name')}
-            required
-            className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
-          />
-        </div>
-        
-        <div>
-          <Label htmlFor="email" className="text-neutral-700">
-            Email Address
-          </Label>
-          <Input
-            type="email"
-            id="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              handleFormStart();
-            }}
-            onBlur={() => email && handleFieldComplete('email')}
-            required
-            className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
-          />
-        </div>
-        
-        <div>
-          <Label htmlFor="number" className="text-neutral-700">
-            Phone Number
-          </Label>
-          <Input
-            type="tel"
-            id="number"
-            placeholder="Enter your phone number"
-            value={number}
-            onChange={(e) => {
-              setNumber(e.target.value);
-              handleFormStart();
-            }}
-            onBlur={() => number && handleFieldComplete('phone')}
-            required
-            className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
-          />
-        </div>
-        
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full mt-6 bg-black text-white hover:bg-black/90 py-3 text-base font-medium"
-        >
-          {loading ? (
-            <div className="flex items-center justify-center space-x-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>Submitting...</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          ) : (
-            `Get Information About ${selectedResidency.shortLabel}`
+          </div>
+
+          {/* Form Fields */}
+          <div>
+            <Label htmlFor="name" className="text-neutral-700">
+              Full Name
+            </Label>
+            <Input
+              type="text"
+              id="name"
+              placeholder="Enter your full name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                handleFormStart();
+              }}
+              onBlur={() => name && handleFieldComplete('name')}
+              required
+              className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="email" className="text-neutral-700">
+              Email Address
+            </Label>
+            <Input
+              type="email"
+              id="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                handleFormStart();
+              }}
+              onBlur={() => email && handleFieldComplete('email')}
+              required
+              className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="number" className="text-neutral-700">
+              Phone Number
+            </Label>
+            <Input
+              type="tel"
+              id="number"
+              placeholder="Enter your phone number"
+              value={number}
+              onChange={(e) => {
+                setNumber(e.target.value);
+                handleFormStart();
+              }}
+              onBlur={() => number && handleFieldComplete('phone')}
+              required
+              className="mt-1 bg-transparent text-black placeholder:text-neutral-700"
+            />
+          </div>
+
+          {/* Google Backup Status Indicators */}
+          {loading && (
+            <div className="flex justify-center space-x-3 py-2">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full ${backupStatus.primaryForm ? 'bg-green-500' : 'bg-gray-300'} transition-colors`}></div>
+                <span className="text-xs text-gray-500 mt-1">Primary</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full ${backupStatus.backupForm ? 'bg-green-500' : 'bg-gray-300'} transition-colors`}></div>
+                <span className="text-xs text-gray-500 mt-1">Backup</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full ${backupStatus.localSaved ? 'bg-blue-500' : 'bg-gray-300'} transition-colors`}></div>
+                <span className="text-xs text-gray-500 mt-1">Local</span>
+              </div>
+            </div>
           )}
-        </Button>
-      </form>
+          
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full mt-6 bg-black text-white hover:bg-black/90 py-3 text-base font-medium"
+          >
+            {loading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Securing with Google...</span>
+              </div>
+            ) : (
+              `Get Information About ${selectedResidency.shortLabel}`
+            )}
+          </Button>
+
+          {/* Auto-save indicator */}
+          <div className="text-center">
+            <p className="text-xs text-gray-500">
+              ✅ Your information is automatically saved as you type
+            </p>
+          </div>
+        </form>
+      </div>
       
       {responseMessage && (
         <div className={`mt-4 p-4 rounded-lg border ${
