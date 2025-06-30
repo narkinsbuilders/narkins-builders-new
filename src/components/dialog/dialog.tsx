@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button"; // shadcn Button
-import { X } from "lucide-react"; // Icon for close button
+import React, { FC, useRef, useEffect } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface DialogProps {
   open: boolean;
   onClose: () => void;
-body: React.ReactNode;  title: string;
+  title: string;
+  body: React.ReactNode;
   showButtons?: boolean;
   cancelButton?: {
     title: string;
@@ -38,10 +39,14 @@ const Dialog: FC<DialogProps> = ({
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      // Restore body scroll when modal is closed
+      document.body.style.overflow = 'unset';
     };
   }, [open, onClose]);
 
@@ -65,29 +70,34 @@ const Dialog: FC<DialogProps> = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      {/* Dialog Panel */}
+    <div className="fixed inset-0 z-[9999999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      {/* Dialog Panel - Centered Modal */}
       <div
         ref={dialogRef}
-        className="w-full h-full transform p-4 bg-white text-left transition-all"
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl transform transition-all"
       >
-        <div className="mx-auto max-w-4xl mt-4">
-
+        <div className="p-6">
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </button>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold leading-6 text-gray-900">{title}</h3>
+          <h3 className="text-lg font-semibold leading-6 text-gray-900 pr-8 mb-4">
+            {title}
+          </h3>
 
           {/* Body */}
           <div className="mt-4">
-            <p className="text-sm text-gray-500">{body}</p>
+            {typeof body === 'string' ? (
+              <p className="text-sm text-gray-500">{body}</p>
+            ) : (
+              body
+            )}
           </div>
 
           {/* Buttons */}
