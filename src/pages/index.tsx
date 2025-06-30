@@ -38,7 +38,7 @@ const testimonials = [
     name: "Saad Arshad",
     stars: [true, true, true, true, "half"],
     testimonial:
-      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin’s Builders.",
+      "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
     avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
   },
   {
@@ -52,7 +52,7 @@ const testimonials = [
     name: "Umair Iqrar",
     stars: [true, true, true, true, false],
     testimonial:
-      "I decided to invest during the initial launch phase, and after just two years, I’ve seen substantial returns. It’s been a fantastic investment opportunity!",
+      "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
     avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
   },
 ];
@@ -197,10 +197,10 @@ export default function Index({ posts }: { posts: Post[] }) {
 
       {/* Hill Crest Residency Section */}
       <section className="relative flex items-center justify-center bg-cover bg-center bg-fixed">
-        {/* Background Image with Overlay */}
+        {/* Background Image with Overlay - FIXED */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hcr_new-scaled.webp')" }}
+          style={{ backgroundImage: "url('/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp')" }}
         >
           <div className="absolute inset-0 bg-black/80"></div>
         </div>
@@ -219,7 +219,7 @@ export default function Index({ posts }: { posts: Post[] }) {
               </h2>
               <p className="mt-4 text-lg text-neutral-300">
               Conveniently located just a minute drive from the main entrance of Bahria Town Karachi, Hill Crest Residency offers an exceptional living experience with a selection of spacious and thoughtfully designed 2, 3, and 4-bedroom luxury apartments. Nestled in a prime and rapidly developing area, 
-              the complex combines comfort, elegance, and modern amenities to create a lifestyle that’s both refined and relaxing. 
+              the complex combines comfort, elegance, and modern amenities to create a lifestyle that's both refined and relaxing. 
                Schedule your free tour today and discover what elevated living truly feels like.
               </p>
               <Button asChild className="bg-primary text-white hover:bg-primary/90">
@@ -277,6 +277,7 @@ export default function Index({ posts }: { posts: Post[] }) {
       <section className="bg-neutral-50 py-16">
         <CompletedProjects />
       </section>
+      
       {/* Trusted Partners Section */}
       <section className="bg-neutral-50 border-t py-16">
         <TrustedPartners />
@@ -421,56 +422,106 @@ export function CompletedProjects() {
     </div>
   );
 }
+
 export function TrustedPartners() {
+  // SEO-optimized partner data with descriptive alt texts
   const partners = [
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-02-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-03-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-01-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-08-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/02/Trusted-Partners-09-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-06-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-05-320x202.png",
-    "https://gromotions.com/narkin/wp-content/uploads/2024/01/Trusted-Partners-04-320x202.png",
+    {
+      src: "/images/trusted-partners/agha-steel-industries-construction-manufacturing-partner-pakistan.webp",
+      alt: "Agha Steel Industries - Leading steel manufacturing partner for construction projects in Pakistan",
+      company: "Agha Steel Industries"
+    },
+    {
+      src: "/images/trusted-partners/city-tiles-ceramics-flooring-construction-partner-karachi-pakistan.webp", 
+      alt: "City Tiles - Premium ceramic tiles and flooring solutions partner for luxury apartments in Karachi",
+      company: "City Tiles"
+    },
+    {
+      src: "/images/trusted-partners/ghani-glass-industries-float-glass-manufacturing-partner-pakistan.webp",
+      alt: "Ghani Glass Industries - Float glass and container glass manufacturing partner for construction projects",
+      company: "Ghani Glass Industries"
+    },
+    {
+      src: "/images/trusted-partners/gobis-paints-construction-coating-solutions-partner-pakistan.webp",
+      alt: "Gobis Paints - Premium paint and coating solutions partner for luxury residential projects",
+      company: "Gobis Paints"
+    },
+    {
+      src: "/images/trusted-partners/lacasa-architects-engineering-consultants-design-partner-pakistan.webp",
+      alt: "LACASA Architects & Engineering Consultants - Architectural design and engineering partner for Bahria Town projects",
+      company: "LACASA Architects"
+    },
+    {
+      src: "/images/trusted-partners/lucky-cement-construction-materials-manufacturing-partner-pakistan.webp",
+      alt: "Lucky Cement - Premium cement and construction materials manufacturing partner for residential projects",
+      company: "Lucky Cement"
+    },
+    {
+      src: "/images/trusted-partners/patex-engineering-construction-technology-partner-pakistan.webp",
+      alt: "Patex Engineering - Construction technology and engineering solutions partner for modern apartments",
+      company: "Patex Engineering"
+    }
   ];
 
   return (
-    <div className="container mx-auto px-4">
-      {/* Section Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-          Our Trusted Partners
-        </h2>
-        <p className="mt-4 text-lg text-neutral-700">
-          Partners that chose to work with us
-        </p>
-      </motion.div>
+    <section className="bg-black py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Our Trusted Partners
+          </h2>
+          <p className="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
+            We collaborate with Pakistan's leading construction, manufacturing, and design companies to deliver exceptional quality in every project
+          </p>
+        </motion.div>
 
-      {/* Partner Logos Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {partners.map((src, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-            className="flex items-center justify-center p-0 bg-neutral-700 rounded-lg hover:bg-neutral-700 transition-all duration-300"
-          >
-            <Image
-              src={src}
-              alt={`Trusted Partner ${index + 1}`}
-              width={160}
-              height={100}
-              className="w-full border h-auto rounded-lg object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
+        {/* Partner Logos Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          {partners.map((partner, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+              className="flex items-center justify-center p-4 bg-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              <Image
+                src={partner.src}
+                alt={partner.alt}
+                width={160}
+                height={100}
+                className="w-full h-auto rounded-lg object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+                title={`${partner.company} - Trusted Partner of Narkin's Builders`}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Partner Categories */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <p className="text-sm text-neutral-400 max-w-4xl mx-auto">
+            Our partnership network spans across <strong className="text-white">Steel Manufacturing</strong>, 
+            <strong className="text-white"> Ceramic Tiles</strong>, 
+            <strong className="text-white"> Glass Industries</strong>, 
+            <strong className="text-white"> Premium Paints</strong>, 
+            <strong className="text-white"> Architecture & Engineering</strong>, 
+            <strong className="text-white"> Cement Manufacturing</strong>, and 
+            <strong className="text-white"> Construction Technology</strong> - ensuring world-class quality in every Narkin's Builders project.
+          </p>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
