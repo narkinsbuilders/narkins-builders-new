@@ -141,3 +141,68 @@ body {
 /* * {
   outline: solid 1px red;
 } */
+/* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#__next {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure images don't cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix iframe overflow */
+iframe {
+  max-width: 100%;
+}
+
+/* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#__next {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure images don't cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix iframe overflow */
+iframe {
+  max-width: 100%;
+}
+
+/* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#__next {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure images don't cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix iframe overflow */
+iframe {
+  max-width: 100%;
+}
