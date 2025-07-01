@@ -33,27 +33,29 @@ interface Post {
     imageUrl: string;
   };
 }
+// Replace your testimonials array with this properly formatted version:
+
 const testimonials = [
   {
     name: "Saad Arshad",
     stars: [true, true, true, true, "half"],
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
+    avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
     stars: [true, true, true, true, true],
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
-    avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
+    avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
     stars: [true, true, true, true, false],
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder avatar
+    avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
   },
 ];
 

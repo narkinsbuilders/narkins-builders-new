@@ -1,15 +1,16 @@
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+// Replace your entire src/components/testimonials/testimonials.tsx with this:
+
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
-
 
 interface TestimonialsProps {
   testimonials: Array<{
     name: string,
     stars: Array<true | "half">,
     testimonial: string,
-    avatar: string, // Placeholder avatar
+    avatar: string,
   }>;
 }
 
@@ -21,7 +22,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials }: TestimonialsProps
         What Our Clients Say
       </h2>
       <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-        Hear from our satisfied clients about their experiences with Narkin’s Builders.
+        Hear from our satisfied clients about their experiences with Narkin's Builders.
       </p>
     </div>
 
@@ -35,9 +36,15 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials }: TestimonialsProps
         >
           <Card className="h-full bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl">
             <CardHeader className="flex flex-col items-center text-center p-6">
-              <Avatar className="w-16 h-16 mb-4 rounded-full overflow-hidden">
-                <AvatarImage src={item.avatar} alt={item.name} />
-                <AvatarFallback>{item.name[0]}</AvatarFallback>
+              <Avatar className="w-20 h-20 mb-4">
+                <AvatarImage 
+                  src={item.avatar} 
+                  alt={`${item.name} - Customer testimonial photo`}
+                  className="object-cover"
+                />
+                <AvatarFallback className="bg-gray-200 text-gray-600 font-semibold text-xl">
+                  {item.name[0]}
+                </AvatarFallback>
               </Avatar>
               <CardTitle className="text-xl font-semibold text-gray-900">
                 {item.name}

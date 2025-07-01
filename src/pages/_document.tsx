@@ -6,7 +6,7 @@ const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-JBMXQDSW7T';
 export default function Document() {
   return (
     <Html lang="en">
-      <Head>
+      <Head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         {/* Google Analytics */}
         <script
           async
