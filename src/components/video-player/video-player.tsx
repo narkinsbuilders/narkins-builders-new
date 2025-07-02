@@ -14,8 +14,8 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
             setVideoDuration(video.duration);
         }
         function isMobileSafari() {
-            return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) || (window.safari !== undefined)
-        }
+    return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) || ('safari' in window)
+}
         setIsSafari(!!isMobileSafari());
     }, []);
 

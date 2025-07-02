@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllPostsServer, getPostBySlugServer } from '../../lib/blog-server'
-import { BlogPost } from '../../lib/blog'
+import { type BlogPost } from '../../lib/blog'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'

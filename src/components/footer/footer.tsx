@@ -107,7 +107,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
             </div>
           </div>
         </div>
-        {map && <iframe src={map} className="border rounded-xl my-5 mt-[5rem]" height="600" style={{ width: '100%' }} allowFullScreen={true} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>}
+        {map && <iframe src={map} className="border rounded-xl my-5 mt-[5rem]" height="600" style={{ width: '100%' }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>}
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center -dark:text-gray-400">
