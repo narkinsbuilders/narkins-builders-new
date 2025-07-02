@@ -9,7 +9,8 @@ import dynamic from 'next/dynamic';
 import Image from "next/image";
 
 import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next'
+import { getAllPosts, type BlogPost } from '@/lib/blog';
 import { Button } from '@/components/ui/button'; // shadcn/ui button
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
 import { motion } from 'framer-motion'; // For animations
@@ -59,7 +60,7 @@ const testimonials = [
   },
 ];
 
-export default function Index({ posts }: { posts: Post[] }) {
+export default function Index({ posts }: { posts: BlogPost[] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const setOpen = useGlobalLeadFormState((state: { setOpen: any }) => state.setOpen);
 
@@ -314,34 +315,20 @@ export default function Index({ posts }: { posts: Post[] }) {
       <BlogsSection posts={posts} />
 
       {/* Footer */}
-      <Footer />
+      <Footer map="" />
       <Lightbox />
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// CHANGED: Replace WordPress with MDX
+export const getStaticProps: GetStaticProps = async () => {
   try {
-    const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3');
-    const data = await response.json();
-
-    const posts: Post[] = data.map((post: any) => ({
-      id: post.id,
-      title: post.title.rendered,
-      link: post.link,
-      date: new Date(post.date).toLocaleDateString(),
-      datetime: post.date,
-      description: post.excerpt.rendered,
-      category: post.categories?.[0] || 'Uncategorized',
-      author: {
-        name: post._embedded?.author?.[0]?.name || 'Unknown',
-        role: post._embedded?.author?.[0]?.description || '',
-        imageUrl: post._embedded?.author?.[0]?.avatar_urls?.['96'] || '',
-      },
-    }));
+    // Get latest 3 blog posts from MDX instead of WordPress
+    const posts = getAllPosts().slice(0, 3);
 
     return {
-      props: { posts },
+      props: { posts }
     };
   } catch (error) {
     console.error('Error fetching posts:', error);

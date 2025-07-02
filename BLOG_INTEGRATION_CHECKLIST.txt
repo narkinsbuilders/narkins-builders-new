@@ -1,0 +1,31 @@
+MANUAL INTEGRATION TASKS TO COMPLETE:
+
+□ 1. NAVIGATION LINKS
+   - Ensure navigation component links to /blog (not WordPress URLs)
+   - Update any "Blogs" menu items to point to /blog
+   - Remove any WordPress admin links
+
+□ 2. HOMEPAGE BLOG SECTION  
+   - Update homepage to use: import { getAllPosts } from '@/lib/blog'
+   - Change getServerSideProps to getStaticProps
+   - Remove WordPress API calls (admin.narkinsbuilders.com)
+
+□ 3. FOOTER LINKS
+   - Update footer blog links to point to /blog
+   - Remove any WordPress-related links
+
+□ 4. INTERNAL LINKING
+   - Update any internal links pointing to WordPress blog
+   - Use new format: /blog/post-slug instead of WordPress URLs
+
+□ 5. SEO & METADATA
+   - Update sitemap to include new blog posts
+   - Update robots.txt if needed
+   - Add blog to site navigation for crawlers
+
+□ 6. TESTING
+   - Test all blog links work correctly
+   - Verify blog posts load without errors
+   - Check mobile responsiveness
+   - Test SEO metadata on blog pages
+
