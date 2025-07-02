@@ -1,80 +1,65 @@
-import React, { useState, useEffect, useRef } from 'react';
+// src/components/carousel-op/carousel-op.tsx
+import React, { useState, useEffect, useRef } from "react";
+import SEOImage from "@/components/seo-image/seo-image";
 
-interface CarouselItem {
-    image: string;
-}
-
-interface CarouselProps {
-    dataSource?: CarouselItem[];
-    swipe?: boolean;
-    hideArrows?: boolean;
+interface CarouselOpProps {
+    dataSource: { image: string }[];
     autoPlay?: boolean;
-    slideShow?: boolean;
-    loop?: boolean;
-    rightToLeft?: boolean;
+    autoPlayInterval?: number;
+    hideArrows?: boolean;
     hideIndicators?: boolean;
-    interval?: number;
-    isNotRounded?: boolean;
-    onChange?: (newIndex: number) => void;
+    height?: string;
+    borderRadius?: boolean;
 }
 
-export function Carousel({
-    dataSource = [],
-    swipe = true,
+const CarouselOp: React.FC<CarouselOpProps> = ({
+    dataSource,
+    autoPlay = false,
+    autoPlayInterval = 3000,
     hideArrows = false,
-    autoPlay = true,
-    slideShow = true,
-    loop = true,
-    rightToLeft = false,
     hideIndicators = false,
-    interval = 10000, 
-    isNotRounded = false, 
-    onChange = (newIndex: number) => { }
-}: CarouselProps) {
+    height = "500px",
+    borderRadius = false,
+}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [touchStart, setTouchStart] = useState(0);
-    const [touchEnd, setTouchEnd] = useState(0);
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-    
-    useEffect(() => {
-        onChange(currentIndex);
-    }, [currentIndex])
-    
-    useEffect(() => {
-        if (autoPlay) {
-            startSlideShow();
-        }
-        return () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-        };
-    }, [currentIndex, autoPlay, slideShow, interval]);
-
-    const startSlideShow = () => {
-        stopSlideShow();
-        timeoutRef.current = setTimeout(() => {
-            updateIndex(currentIndex + (rightToLeft ? -1 : 1));
-        }, interval);
-    };
-
-    const stopSlideShow = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-    };
+    const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const updateIndex = (newIndex: number) => {
         if (newIndex < 0) {
-            newIndex = loop ? dataSource.length - 1 : 0;
+            newIndex = dataSource.length - 1;
         } else if (newIndex >= dataSource.length) {
-            newIndex = loop ? 0 : dataSource.length - 1;
+            newIndex = 0;
         }
         setCurrentIndex(newIndex);
     };
 
+    // Auto-play functionality
+    useEffect(() => {
+        if (isAutoPlaying && dataSource.length > 1) {
+            intervalRef.current = setInterval(() => {
+                updateIndex(currentIndex + 1);
+            }, autoPlayInterval);
+        } else {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        }
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [currentIndex, isAutoPlaying, autoPlayInterval, dataSource.length]);
+
+    // Touch handlers
     const handleTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
+        setIsAutoPlaying(false);
     };
 
     const handleTouchMove = (e: React.TouchEvent) => {
@@ -82,18 +67,27 @@ export function Carousel({
     };
 
     const handleTouchEnd = () => {
-        if (swipe) {
-            if (touchStart - touchEnd > 75) {
-                updateIndex(currentIndex + 1);
-            }
-            if (touchStart - touchEnd < -75) {
-                updateIndex(currentIndex - 1);
-            }
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+
+        if (isLeftSwipe) {
+            updateIndex(currentIndex + 1);
+        } else if (isRightSwipe) {
+            updateIndex(currentIndex - 1);
         }
+
+        setIsAutoPlaying(autoPlay);
     };
 
     return (
-        <div className={`relative w-full overflow-hidden z-[0] h-full ${!isNotRounded ? "rounded-xl" : ""}`}>
+        <div 
+            className={`relative overflow-hidden ${borderRadius ? "rounded-xl" : ""}`} 
+            style={{ height }}
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(autoPlay)}
+        >
             <div
                 className="flex transition-transform duration-500 ease-in-out h-full"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -103,13 +97,25 @@ export function Carousel({
             >
                 {dataSource.map((item, index) => (
                     <div key={index} className="flex-none w-full h-full flex items-center justify-center">
-                        <img src={item.image} loading={index === 0 ? "eager" : "lazy"} alt={`Slide ${index}`} style={{ objectFit: 'cover', flex: 1 }} className="w-full h-full" />
+                        <SEOImage 
+                            src={item.image} 
+                            loading={index === 0 ? "eager" : "lazy"} 
+                            width={800}
+                            height={500}
+                            context="carousel"
+                            index={index}
+                            style={{ objectFit: 'cover', flex: 1 }} 
+                            className="w-full h-full" 
+                        />
                     </div>
                 ))}
             </div>
-            {!hideArrows && (
+
+            {/* Navigation Arrows */}
+            {!hideArrows && dataSource.length > 1 && (
                 <React.Fragment>
-                    <button onClick={() => updateIndex(currentIndex - 1)}
+                    <button 
+                        onClick={() => updateIndex(currentIndex - 1)}
                         className="absolute px-4 left-0 top-1/2 transform -translate-y-1/2 group"
                         data-testid="carousel-left-control"
                         type="button"
@@ -131,8 +137,9 @@ export function Carousel({
                             </svg>
                         </span>
                     </button>
-                    <button onClick={() => updateIndex(currentIndex + 1)}
-                        className="group px-4 absolute right-0 top-1/2 transform -translate-y-1/2 "
+                    <button 
+                        onClick={() => updateIndex(currentIndex + 1)}
+                        className="group px-4 absolute right-0 top-1/2 transform -translate-y-1/2"
                         data-testid="carousel-right-control"
                         type="button"
                         aria-label="Next slide"
@@ -155,19 +162,26 @@ export function Carousel({
                     </button>
                 </React.Fragment>
             )}
-            {!hideIndicators && (
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 py-4 flex">
-                    {dataSource.map((_, idx) => (
+
+            {/* Indicators */}
+            {!hideIndicators && dataSource.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {dataSource.map((_, index) => (
                         <button
-                            key={idx}
-                            onClick={() => updateIndex(idx)}
-                            className={`h-2 w-2 rounded-full mx-2 ${idx === currentIndex ? 'bg-yellow-700' : 'bg-white'}`}
-                        ></button>
+                            key={index}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                index === currentIndex 
+                                    ? "bg-white" 
+                                    : "bg-white/50 hover:bg-white/75"
+                            }`}
+                            onClick={() => setCurrentIndex(index)}
+                            aria-label={`Go to slide ${index + 1}`}
+                        />
                     ))}
                 </div>
             )}
         </div>
     );
-}
+};
 
-export default Carousel;
+export default CarouselOp;

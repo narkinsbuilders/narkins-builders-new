@@ -1,6 +1,8 @@
-import React, { FC, useRef, useEffect } from "react";
+// src/components/dialog/dialog.tsx
+import React, { FC, useRef } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useDialogBehavior } from "@/hooks/useDialogBehavior";
 
 interface DialogProps {
   open: boolean;
@@ -18,6 +20,10 @@ interface DialogProps {
   };
 }
 
+/**
+ * Reusable Dialog component with automatic behavior handling
+ * Supports click-outside, escape key, and body scroll prevention
+ */
 const Dialog: FC<DialogProps> = ({
   open,
   onClose,
@@ -29,49 +35,21 @@ const Dialog: FC<DialogProps> = ({
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Handle click outside to close the dialog
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
-        onClose();
-      }
-    };
+  // Use custom hook for all dialog behaviors
+  useDialogBehavior({
+    isOpen: open,
+    onClose,
+    dialogRef,
+    enableClickOutside: true,
+    enableEscapeKey: true,
+    preventBodyScroll: true
+  });
 
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      // Restore body scroll when modal is closed
-      document.body.style.overflow = 'unset';
-    };
-  }, [open, onClose]);
-
-  // Handle Escape key to close the dialog
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    if (open) {
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [open, onClose]);
-
+  // Early return if dialog is closed
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[9999999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      {/* Dialog Panel - Removed white box styling */}
       <div
         ref={dialogRef}
         className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto transform transition-all"
@@ -93,22 +71,30 @@ const Dialog: FC<DialogProps> = ({
             </h3>
           )}
 
-          {/* Body */}
+          {/* Body Content */}
           <div className={title ? "mt-4" : ""}>
             {typeof body === 'string' ? (
-              <p className="text-sm text-gray-500">{body}</p>
+              <div 
+                className="text-gray-700"
+                dangerouslySetInnerHTML={{ __html: body }}
+              />
             ) : (
               body
             )}
           </div>
 
-          {/* Buttons */}
+          {/* Action Buttons */}
           {showButtons && (
-            <div className="mt-6 flex justify-end gap-3">
-              <Button variant="outline" onClick={cancelButton.onClick}>
+            <div className="flex justify-end space-x-3 mt-6">
+              <Button
+                variant="outline"
+                onClick={cancelButton.onClick}
+              >
                 {cancelButton.title}
               </Button>
-              <Button variant="default" onClick={acceptButton.onClick}>
+              <Button
+                onClick={acceptButton.onClick}
+              >
                 {acceptButton.title}
               </Button>
             </div>
@@ -120,13 +106,3 @@ const Dialog: FC<DialogProps> = ({
 };
 
 export default Dialog;
-
-// Hook to manage dialog state
-export const useDialogState = () => {
-  const [open, setOpen] = React.useState(false);
-  return {
-    props: { open, onClose: () => setOpen(false) },
-    open: () => setOpen(true),
-    close: () => setOpen(false),
-  };
-};
