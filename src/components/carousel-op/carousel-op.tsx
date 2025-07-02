@@ -14,10 +14,12 @@ export function Carousel({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
-    const timeoutRef = useRef(null);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    
     useEffect(() => {
         onChange(currentIndex);
     }, [currentIndex])
+    
     useEffect(() => {
         if (autoPlay) {
             startSlideShow();
@@ -42,7 +44,7 @@ export function Carousel({
         }
     };
 
-    const updateIndex = (newIndex) => {
+    const updateIndex = (newIndex: number) => {
         if (newIndex < 0) {
             newIndex = loop ? dataSource.length - 1 : 0;
         } else if (newIndex >= dataSource.length) {
@@ -51,11 +53,11 @@ export function Carousel({
         setCurrentIndex(newIndex);
     };
 
-    const handleTouchStart = (e) => {
+    const handleTouchStart = (e: React.TouchEvent) => {
         setTouchStart(e.targetTouches[0].clientX);
     };
 
-    const handleTouchMove = (e) => {
+    const handleTouchMove = (e: React.TouchEvent) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
 
