@@ -1,0 +1,8 @@
+import Head from 'next/head';
+export const ReviewSchema = () => (
+  <Head>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify({"aggregateRating":{"reviewCount":"47","@type":"AggregateRating","ratingValue":"4.8"},"name":"Narkin's Builders and Developers","@context":"https://schema.org","@type":"Organization","review":[{"author":"@{name=Ahmed Hassan; @type=Person}","reviewBody":"Excellent quality construction and timely delivery.","reviewRating":"@{ratingValue=5; @type=Rating}","@type":"Review"}]})
+    }} />
+  </Head>
+);

@@ -1,0 +1,8 @@
+import Head from 'next/head';
+export const HillCrestSchema = () => (
+  <Head>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify({"name":"Hill Crest Residency - Luxury Apartments in Bahria Town Karachi","@type":"RealEstateListing","url":"https://narkinsbuilders.com/hill-crest-residency","numberOfBedrooms":"3","address":{"addressCountry":"PK","streetAddress":"29-30A Jinnah Avenue","addressLocality":"Bahria Town","@type":"PostalAddress","addressRegion":"Karachi, Sindh"},"seller":{"name":"Narkin's Builders and Developers","telephone":"+92-320-324-3970","@type":"RealEstateAgent"},"@context":"https://schema.org","price":"28000000","priceCurrency":"PKR"})
+    }} />
+  </Head>
+);
