@@ -1,5 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+interface CarouselItem {
+    image: string;
+}
+
+interface CarouselProps {
+    dataSource?: CarouselItem[];
+    swipe?: boolean;
+    hideArrows?: boolean;
+    autoPlay?: boolean;
+    slideShow?: boolean;
+    loop?: boolean;
+    rightToLeft?: boolean;
+    hideIndicators?: boolean;
+    interval?: number;
+    isNotRounded?: boolean;
+    onChange?: (newIndex: number) => void;
+}
+
 export function Carousel({
     dataSource = [],
     swipe = true,
@@ -9,8 +27,10 @@ export function Carousel({
     loop = true,
     rightToLeft = false,
     hideIndicators = false,
-    interval = 10000, isNotRounded = false, onChange = (newIndex: number) => { }
-}) {
+    interval = 10000, 
+    isNotRounded = false, 
+    onChange = (newIndex: number) => { }
+}: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
