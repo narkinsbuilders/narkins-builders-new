@@ -1,95 +1,67 @@
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
-
+// src/components/blog/mdx-components.tsx
 export const mdxComponents = {
-  // Property card component
-  PropertyCard: ({ title, price, location, image, features, link }: {
+  PropertyCard: ({ title, price, location, bedrooms, bathrooms, area, image }: {
     title: string
     price: string
     location: string
+    bedrooms: number
+    bathrooms: number
+    area: string
     image: string
-    features: string[]
-    link: string
   }) => (
-    <Card className="p-6 my-8 border rounded-lg">
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-1/3">
-          <Image 
-            src={image} 
-            alt={title}
-            width={300}
-            height={200}
-            className="rounded-lg object-cover w-full"
-          />
-        </div>
-        <div className="lg:w-2/3">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-          <p className="text-2xl font-bold text-green-600 mb-2">{price}</p>
-          <p className="text-gray-600 mb-4">{location}</p>
-          <ul className="space-y-1 mb-4">
-            {features.map((feature, index) => (
-              <li key={index} className="text-sm text-gray-700">✓ {feature}</li>
-            ))}
-          </ul>
-          <Button asChild className="bg-black text-white hover:bg-gray-800">
-            <Link href={link}>View Details</Link>
-          </Button>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden my-6">
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-4">
+        <h3 className="font-semibold text-lg mb-2">{title}</h3>
+        <p className="text-2xl font-bold text-blue-600 mb-2">{price}</p>
+        <p className="text-gray-600 mb-2">{location}</p>
+        <div className="flex justify-between text-sm text-gray-500">
+          <span>{bedrooms} Bedrooms</span>
+          <span>{bathrooms} Bathrooms</span>
+          <span>{area}</span>
         </div>
       </div>
-    </Card>
+    </div>
   ),
-
-  // Call to action component
-  CallToAction: ({ title = "Ready to Invest?", buttonText = "Contact Us", link = "/contact" }: {
-    title?: string
-    buttonText?: string
-    link?: string
-  }) => (
-    <Card className="bg-neutral-50 p-8 my-8 text-center">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-      <p className="text-gray-600 mb-6">
-        Schedule a consultation with our property experts.
-      </p>
-      <Button asChild className="bg-black text-white hover:bg-gray-800">
-        <Link href={link}>{buttonText}</Link>
-      </Button>
-    </Card>
-  ),
-
-  // Market comparison table
-  MarketTable: ({ data, title }: { data: any; title?: string }) => (
-    <Card className="my-8 overflow-hidden">
-      {title && (
-        <div className="bg-gray-50 px-6 py-4 border-b">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        </div>
-      )}
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              {data.headers.map((header: string, index: number) => (
-                <th key={index} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {header}
-                </th>
-              ))}
+  
+  MarketTable: ({ data }: { data: Array<{area: string, avgPrice: string, growth: string}> }) => (
+    <div className="overflow-x-auto my-6">
+      <table className="min-w-full bg-white border border-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Area</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Price</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">YoY Growth</th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {data.map((row, index) => (
+            <tr key={index}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.area}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.avgPrice}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">{row.growth}</td>
             </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {data.rows.map((row: any[], rowIndex: number) => (
-              <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                {row.map((cell, cellIndex) => (
-                  <td key={cellIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </Card>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ),
+  
+  CallToAction: ({ title, description, buttonText, buttonLink }: {
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+  }) => (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+      <h3 className="text-xl font-semibold text-blue-900 mb-2">{title}</h3>
+      <p className="text-blue-700 mb-4">{description}</p>
+      <a
+        href={buttonLink}
+        className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        {buttonText}
+      </a>
+    </div>
   )
 }

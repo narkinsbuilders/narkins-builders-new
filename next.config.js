@@ -1,34 +1,65 @@
 /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-//   output: 'export',
-//   typescript: {
-//     ignoreBuildErrors: true
-//   }
-// }
-// const withPreact = require('next-plugin-preact');
-
-// module.exports = withPreact(nextConfig);
-
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
-  // output: 'export',
-  typescript: {
-    ignoreBuildErrors: true
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Exclude fs module from client-side bundle
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+      }
+    }
+    return config
   },
   images: {
-    domains: ["admin.narkinsbuilders.com", "i.ytimg.com", "gromotions.com"]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        port: '',
+        pathname: '/vi/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        port: '',
+        pathname: '/vi/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.narkinsbuilders.com',
+        port: '',
+        pathname: '/wp-content/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'admin.narkinsbuilders.com',
+        port: '',
+        pathname: '/wp-content/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'narkinsbuilders.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/**',
+      }
+    ],
+    domains: [
+      'i.ytimg.com',
+      'img.youtube.com', 
+      'admin.narkinsbuilders.com',
+      'narkinsbuilders.com',
+      'localhost'
+    ]
   }
-  // webpack: (config, { dev, isServer }) => {
-  //   if (!dev && !isServer) {
-  //     Object.assign(config.resolve.alias, {
-  //       "react/jsx-runtime.js": "preact/compat/jsx-runtime",
-  //       react: "preact/compat",
-  //       "react-dom/test-utils": "preact/test-utils",
-  //       "react-dom": "preact/compat",
-  //     });
-  //   }
-  //   return config;
-  // },
-};
+}
+
+module.exports = nextConfig

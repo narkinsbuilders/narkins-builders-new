@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { useState } from "react";
 
-import Image from "next/image";
+import Image from "next/image"; 
 import BlogsSection from "@/components/blogs-section/blogs-section";
 
 import Navigation from "@/components/navigation/navigation";
@@ -19,6 +19,7 @@ import { Post } from "../blog/[...blog]";
 import { useLightboxStore } from "@/zustand";
 import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import Testimonials from "@/components/testimonials/testimonials";
+import { getAllPostsServer } from "@/lib/blog-server";
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -552,35 +553,36 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
     </main >
   )
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
+// CHANGED: Transform MDX data to match BlogsSection expected format
+export const getStaticProps: GetStaticProps = async () => {
   try {
-    const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=3&tag=' + process.env.NEXT_PUBLIC_NBR_BLOG_TAG);
-    const data = await response.json();
+    // Get latest 3 blog posts from MDX
+    const mdxPosts = getAllPostsServer().slice(0, 3);
 
-    const posts: Post[] = data.map((post: any) => ({
-      id: post.id,
-      title: post.title.rendered,
-      link: post.link,
-      date: new Date(post.date).toLocaleDateString(),
+    // Transform MDX format to match BlogsSection expected format
+    const posts = mdxPosts.map((post, index) => ({
+      id: index + 1,
+      slug: post.slug,
+      title: post.title,
+      link: `/blog/${post.slug}`,
+      date: post.date,
       datetime: post.date,
-      description: post.excerpt.rendered,
-      category: post.categories?.[0] || 'Uncategorized',
+      description: post.excerpt,
+      excerpt: post.excerpt,
+      category: "Real Estate",
       author: {
-        name: post._embedded?.author?.[0]?.name || 'Unknown',
-        role: post._embedded?.author?.[0]?.description || '',
-        imageUrl: post._embedded?.author?.[0]?.avatar_urls?.['96'] || '',
-      },
+        name: "Narkin's Builders",
+        role: "Real Estate Expert",
+        imageUrl: "/images/narkins-builders-logo-30-years-experience.webp"
+      }
     }));
 
     return {
       props: { posts },
+      revalidate: 60
     };
   } catch (error) {
     console.error('Error fetching posts:', error);
     return { props: { posts: [] } };
   }
 };
-
-
-

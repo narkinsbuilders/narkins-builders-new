@@ -7,12 +7,10 @@ import Testimonials from '@/components/testimonials/testimonials';
 import BlogsSection from '@/components/blogs-section/blogs-section';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
-
+import { getAllPostsServer } from '../lib/blog-server';
 import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
 import { GetStaticProps } from 'next'
-import { getAllPosts, type BlogPost } from '@/lib/blog';
 import { Button } from '@/components/ui/button'; // shadcn/ui button
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
 import { motion } from 'framer-motion'; // For animations
 
 const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
@@ -60,7 +58,7 @@ const testimonials = [
   },
 ];
 
-export default function Index({ posts }: { posts: BlogPost[] }) {
+export default function Index({ posts }: { posts: any[] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const setOpen = useGlobalLeadFormState((state: { setOpen: any }) => state.setOpen);
 
@@ -321,14 +319,33 @@ export default function Index({ posts }: { posts: BlogPost[] }) {
   );
 };
 
-// CHANGED: Replace WordPress with MDX
+// CHANGED: Transform MDX data to match BlogsSection expected format
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    // Get latest 3 blog posts from MDX instead of WordPress
-    const posts = getAllPosts().slice(0, 3);
+    // Get latest 3 blog posts from MDX
+    const mdxPosts = getAllPostsServer().slice(0, 3);
+
+    // Transform MDX format to match BlogsSection expected format
+    const posts = mdxPosts.map((post, index) => ({
+      id: index + 1,
+      slug: post.slug,
+      title: post.title,
+      link: `/blog/${post.slug}`,
+      date: post.date,
+      datetime: post.date,
+      description: post.excerpt,
+      excerpt: post.excerpt,
+      category: "Real Estate",
+      author: {
+        name: "Narkin's Builders",
+        role: "Real Estate Expert",
+        imageUrl: "/images/narkins-builders-logo-30-years-experience.webp"
+      }
+    }));
 
     return {
-      props: { posts }
+      props: { posts },
+      revalidate: 60
     };
   } catch (error) {
     console.error('Error fetching posts:', error);

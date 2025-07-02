@@ -2,29 +2,23 @@ import Navigation from '@/components/navigation/navigation'
 import Footer from '@/components/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
+import { BlogPost } from '../../lib/blog'
 
 interface BlogLayoutProps {
-  title: string
-  date: string
-  category: string
-  readTime: string
-  featuredImage: string
+  post: BlogPost
   children: React.ReactNode
 }
 
-export default function BlogLayout({ 
-  title, 
-  date, 
-  category, 
-  readTime, 
-  featuredImage, 
-  children 
-}: BlogLayoutProps) {
+export default function BlogLayout({ post, children }: BlogLayoutProps) {
   return (
     <>
       <Head>
-        <title>{title} | Narkin's Builders Blog</title>
-        <meta name="description" content={`${title} - Real estate insights from Narkin's Builders`} />
+        <title>{post.title} | Narkin's Builders Blog</title>
+        <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.image} />
+        <meta property="og:type" content="article" />
       </Head>
       
       <Navigation />
@@ -37,10 +31,10 @@ export default function BlogLayout({
               {/* Meta Info */}
               <div className="flex items-center justify-center gap-x-4 text-sm mb-6">
                 <span className="bg-black text-white px-3 py-1 rounded-full font-medium">
-                  {category}
+                  Real Estate
                 </span>
                 <time className="text-gray-500">
-                  {new Date(date).toLocaleDateString('en-US', { 
+                  {new Date(post.date).toLocaleDateString('en-US', { 
                     year: 'numeric', 
                     month: 'long', 
                     day: 'numeric',
@@ -48,12 +42,12 @@ export default function BlogLayout({
                   })}
                 </time>
                 <span className="text-gray-500">·</span>
-                <span className="text-gray-500">{readTime} read</span>
+                <span className="text-gray-500">{post.readTime}</span>
               </div>
 
               {/* Title */}
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8">
-                {title}
+                {post.title}
               </h1>
             </div>
           </div>
@@ -63,8 +57,8 @@ export default function BlogLayout({
         <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
           <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
             <Image
-              src={featuredImage}
-              alt={title}
+              src={post.image}
+              alt={post.title}
               fill
               className="object-cover"
               priority
