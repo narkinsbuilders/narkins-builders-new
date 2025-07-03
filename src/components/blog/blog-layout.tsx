@@ -16,13 +16,15 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
       <Head>
         <title>{post.title} | Narkin's Builders Blog</title>
         <meta name="description" content={post.excerpt} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Narkin's Builders" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.image} />
         <meta property="og:type" content="article" />
       </Head>
            
-            {/* ✅ ADD THIS SCHEMA COMPONENT ✅ */}
+      {/* ✅ ADD THIS SCHEMA COMPONENT ✅ */}
       <BlogPostSchema 
         title={post.title}
         excerpt={post.excerpt}
@@ -44,21 +46,34 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
                   Real Estate
                 </span>
                 <time className="text-gray-500">
-                  {new Date(post.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    timeZone: 'UTC'
-                  })}
+                  {(() => {
+                    try {
+                      return new Date(post.date).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        timeZone: 'UTC'
+                      });
+                    } catch (error) {
+                      return 'Date unavailable';
+                    }
+                  })()}
                 </time>
                 <span className="text-gray-500">·</span>
                 <span className="text-gray-500">{post.readTime}</span>
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
                 {post.title}
               </h1>
+
+              {/* Excerpt */}
+              {post.excerpt && (
+                <p className="text-xl leading-8 text-gray-600 max-w-3xl mx-auto">
+                  {post.excerpt}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -77,7 +92,7 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
         </div>
 
         {/* Content */}
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 pb-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 pb-12">
           <div className="prose prose-lg max-w-none
             prose-headings:text-gray-900 prose-headings:font-bold
             prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
@@ -89,6 +104,25 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
             {children}
           </div>
         </div>
+
+        {/* Call to Action */}
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-blue-900 mb-2">
+              Ready to Invest in Bahria Town?
+            </h3>
+            <p className="text-blue-700 mb-4">
+              Contact Narkin's Builders for expert guidance on your real estate investment.
+            </p>
+            <a
+              href="tel:+923203243970"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              Call Now: +92-320-324-3970
+            </a>
+          </div>
+        </div>
+        
       </article>
       
       <Footer map="" />

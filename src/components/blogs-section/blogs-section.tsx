@@ -46,50 +46,62 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Heading and Subheading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
             From our blog
           </h2>
           <p className="mt-4 text-lg text-neutral-700 mx-auto">
-            Checkout what we're publishing on our blog
+            Latest insights on real estate investment in Bahria Town
           </p>
         </div>
 
-        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {/* ✅ FIXED: Improved responsive grid layout */}
+        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 lg:max-w-none">
           {posts.map((post, index) => (
-            <article key={post.id || post.slug || index} className="bg-neutral-50 border p-4 rounded flex max-w-xl flex-col items-start justify-between">
-              <div className="flex items-center gap-x-4 text-xs">
+            <article key={post.id || post.slug || index} 
+              className="bg-neutral-50 border border-gray-200 p-6 rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+              
+              <div className="flex items-center gap-x-4 text-xs mb-4">
                 <time dateTime={post.datetime || post.date} className="text-gray-500">
-                  {new Date(post.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    timeZone: 'UTC'
-                  })}
+                  {(() => {
+                    try {
+                      return new Date(post.date).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        timeZone: 'UTC'
+                      });
+                    } catch (error) {
+                      return 'Date unavailable';
+                    }
+                  })()}
                 </time>
-                <Link href="/blog" className="relative z-10 rounded-full bg-white px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
-                  {post.category || "Uncategorized"}
-                </Link>
+                <span className="bg-black text-white px-3 py-1.5 rounded-full font-medium text-xs">
+                  {post.category || "Real Estate"}
+                </span>
               </div>
-              <div className="group relative" suppressHydrationWarning>
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+              
+              <div className="group relative flex-grow">
+                <h3 className="text-lg font-semibold leading-6 text-gray-900 group-hover:text-blue-600 transition-colors mb-3">
                   <Link href={post.link || `/blog/${post.slug}`}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                  {(post.description || post.excerpt || '').replace(/<\/?[^>]+(>|$)/g, "")}
+                {/* ✅ FIXED: Proper HTML regex to remove tags */}
+                <p className="line-clamp-3 text-sm leading-6 text-gray-600 mb-4">
+                  {(post.description || post.excerpt || '').replace(/<[^>]*>/g, "")}
                 </p>
               </div>
+              
               {post.author?.name && (
-                <div className="relative mt-8 flex items-center gap-x-4">
+                <div className="flex items-center gap-x-3 mt-4 pt-4 border-t border-gray-200">
                   {post.author.imageUrl && (
-                    <img src={post.author.imageUrl} alt={post.author.name} className="h-10 w-10 rounded-full bg-gray-50" />
+                    <img src={post.author.imageUrl} alt={post.author.name} 
+                      className="h-8 w-8 rounded-full bg-gray-50" />
                   )}
-                  <div className="text-sm leading-6">
-                    <p className="font-semibold text-gray-900">{post.author.name}</p>
+                  <div className="text-sm">
+                    <p className="font-medium text-gray-900">{post.author.name}</p>
                     {post.author.role && <p className="text-gray-600">{post.author.role}</p>}
                   </div>
                 </div>
