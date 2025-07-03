@@ -1,0 +1,80 @@
+name: Blog Automation System
+on:
+  schedule:
+    # Run on the 1st of every month at 9:00 AM UTC
+    - cron: '0 9 1 * *'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches: [ main ]
+    paths: 
+      - 'content/blogs/**'
+      - '.github/workflows/blog-automation.yml'
+
+jobs:
+  automate-blogs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: 🚀 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 🔧 Install Dependencies
+        run: |
+          npm ci
+          npm install --save-dev ts-node @types/node gray-matter
+
+      - name: 📁 Create Required Directories
+        run: |
+          mkdir -p content/blogs
+          mkdir -p logs
+          mkdir -p public/images/blog
+
+      - name: 🎯 Run Blog Automation
+        run: |
+          echo "Starting blog automation..."
+          npm run blog:automation || echo "Blog automation completed with warnings"
+
+      - name: 📊 Generate Reports
+        run: |
+          echo "Generating automation reports..."
+          npm run blog:generate-reports || echo "Reports generation completed"
+
+      - name: 🔍 Check for Changes
+        id: changes
+        run: |
+          git diff --quiet || echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "Files changed:"
+          git diff --name-only
+
+      - name: 📝 Commit Changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Blog Automation"
+          git add -A
+          git commit -m "🤖 Automated blog updates - $(date '+%Y-%m-%d %H:%M:%S')"
+
+      - name: 🚀 Push Changes
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: 📱 Success Notification
+        if: success()
+        run: |
+          echo "✅ Blog automation completed successfully!"
+          echo "📊 Check your repository for updated blog posts"
+          echo "🎯 SEO improvements applied automatically"

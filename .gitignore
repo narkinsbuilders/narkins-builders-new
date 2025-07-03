@@ -210,3 +210,9 @@ public/**/*.tiff
 
 # Backup folders from image conversion
 OLD_IMAGE_FORMATS_BACKUP*/
+
+# Blog automation
+logs/
+*.log
+.env.local
+scripts/temp/
