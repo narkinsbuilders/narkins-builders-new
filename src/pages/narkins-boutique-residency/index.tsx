@@ -82,7 +82,7 @@ const cards = [
       title: "Platinium A-1 Corner 6 Bed",
       size: "5340 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image: "/images/nbr_3d/platinum-A1-Corner-new(sky).webp",
+      image: "/images/narkins-boutique-residency-6-bedroom-platinum-a1-corner-updated-design.webp",
     },
     {
       title: "Platinum A-1 Boulevard 6 Bed",
@@ -94,17 +94,17 @@ const cards = [
       title: "Platinium A 6 Bed",
       size: "5194 Square Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/nbr_3d/platinum-a-new(sky).webp",
+      image: "/images/narkins-boutique-residency-6-bedroom-platinum-a-updated-design.webp",
     },
     {
       title: "Diamond A 5 Bed",
       size: "4242 Square Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/nbr_3d/Diamond-A-new(sky).webp",
+      image: "/images/narkins-boutique-residency-5-bedroom-diamond-a-sky-villa-design.webp",
     },
     {
       title: "Diamond Corner 6 bed",
-      size: "4368 Square Feet",
+      size: "4968 Square Feet",
       location: "Heritage Club & Theme Park View",
       image: "/images/nbr_3d/diamond-corner-new(sky).webp",
     },
@@ -112,7 +112,7 @@ const cards = [
       title: "Gold 4 Bed",
       size: "3094 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
-      image: "/images/nbr_3d/gold-new(sky).webp",
+      image: "/images/narkins-boutique-residency-2-bedroom-gold-updated-design.webp",
     },    
   ],
 ];
