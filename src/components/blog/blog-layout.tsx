@@ -3,6 +3,7 @@ import Footer from '@/components/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
 import { BlogPost } from '../../lib/blog'
+import { BlogPostSchema } from '@/components/schema/BlogPostSchema';
 
 interface BlogLayoutProps {
   post: BlogPost
@@ -20,7 +21,16 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
         <meta property="og:image" content={post.image} />
         <meta property="og:type" content="article" />
       </Head>
-      
+           
+            {/* ✅ ADD THIS SCHEMA COMPONENT ✅ */}
+      <BlogPostSchema 
+        title={post.title}
+        excerpt={post.excerpt}
+        date={post.date}
+        image={post.image}
+        url={`https://narkinsbuilders.com/blog/${post.slug}`}
+      />
+
       <Navigation />
       
       <article className="bg-white min-h-screen">

@@ -13,6 +13,10 @@ import { GetStaticProps } from 'next'
 import SEOImage from "@/components/seo-image/seo-image";
 import { Button } from '@/components/ui/button'; // shadcn/ui button
 import { motion } from 'framer-motion'; // For animations
+import { OrganizationSchema } from '@/components/schema/OrganizationSchema';
+import { LocalBusinessSchema } from '@/components/schema/LocalBusinessSchema';
+import { ReviewSchema } from '@/components/schema/ReviewSchema';
+
 
 const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
 const Carousel = dynamic(() => import('@/components/carousel-op/carousel-op'), {
@@ -79,6 +83,9 @@ export default function Index({ posts }: { posts: any[] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Narkin&apos;s Builders - Home Page</title>
       </Head>
+      <OrganizationSchema />
+      <LocalBusinessSchema />
+      <ReviewSchema />
       <Navigation fixed={true} />
       <div>
         <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">

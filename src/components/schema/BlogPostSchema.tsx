@@ -17,8 +17,8 @@ export const BlogPostSchema: React.FC<BlogPostSchemaProps> = ({
     "headline": title,
     "description": excerpt,
     "datePublished": date,
-    "image": https://narkinsbuilders.com,
-    "url": https://narkinsbuilders.com,
+    "image": image,  // ✅ FIXED: was "https://narkinsbuilders.com"
+    "url": url,      // ✅ FIXED: was "https://narkinsbuilders.com"
     "author": {
       "@type": "Organization",
       "name": "Narkin's Builders and Developers"
