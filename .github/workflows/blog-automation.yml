@@ -29,10 +29,10 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: 🔧 Install Dependencies
+      - name: 🔧 Install Dependencies (with conflict resolution)
         run: |
-          npm ci
-          npm install --save-dev ts-node @types/node gray-matter
+          npm ci --legacy-peer-deps
+          npm install --save-dev ts-node @types/node gray-matter --legacy-peer-deps
 
       - name: 📁 Create Required Directories
         run: |
@@ -43,12 +43,12 @@ jobs:
       - name: 🎯 Run Blog Automation
         run: |
           echo "Starting blog automation..."
-          npm run blog:automation || echo "Blog automation completed with warnings"
+          npx ts-node scripts/blog-automation.ts || echo "Blog automation completed with warnings"
 
       - name: 📊 Generate Reports
         run: |
           echo "Generating automation reports..."
-          npm run blog:generate-reports || echo "Reports generation completed"
+          npx ts-node scripts/generate-reports.ts || echo "Reports generation completed"
 
       - name: 🔍 Check for Changes
         id: changes
