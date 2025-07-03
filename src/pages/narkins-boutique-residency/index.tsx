@@ -308,7 +308,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
           property="og:description"
           content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
         />
-        <meta property="og:url" content="https://narkinsbuilders.com/hill-crest-residency" />
+        <meta property="og:url" content="https://narkinsbuilders.com/narkins-boutique-residency" />
         <meta
           property="og:image"
           content="https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png"

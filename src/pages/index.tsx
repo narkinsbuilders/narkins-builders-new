@@ -79,9 +79,44 @@ export default function Index({ posts }: { posts: any[] }) {
   return (
     <>
       <Head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Narkin&apos;s Builders - Home Page</title>
+         {/* Primary Meta Tags */}
+  <title>Narkin's Builders | Premium Apartments in Bahria Town Karachi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta 
+    name="description" 
+    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Boutique Residency available." 
+  />
+  <meta 
+    name="keywords" 
+    content="Narkin's Builders, Bahria Town Karachi apartments, luxury apartments Karachi, Hill Crest Residency, Boutique Residency, 2 bedroom apartments, 3 bedroom apartments" 
+  />
+  <meta name="author" content="Narkin's Builders" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  
+  {/* Open Graph / Facebook */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Narkin's Builders | Premium Apartments in Bahria Town Karachi" />
+  <meta 
+    property="og:description" 
+    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Boutique Residency available." 
+  />
+  <meta property="og:url" content="https://narkinsbuilders.com/" />
+  <meta property="og:image" content="https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png" />
+  <meta property="og:site_name" content="Narkin's Builders" />
+  <meta property="og:locale" content="en_US" />
+  
+  {/* Instagram/Social Media Optimization */}
+  <meta name="instagram:account" content="@narkinsbuilders" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Narkin's Builders - Premium Apartments in Bahria Town Karachi" />
+  
+  {/* Canonical URL */}
+  <link rel="canonical" href="https://narkinsbuilders.com/" />
+  
+  {/* Favicon (if you have one) */}
+  <link rel="icon" href="/favicon.ico" />
       </Head>
       <OrganizationSchema />
       <LocalBusinessSchema />

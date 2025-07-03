@@ -68,7 +68,37 @@ export default function NarkinsBoutiqueResidency() {
     return (
         <main>
             <Head>
-                <title>Completed Projects</title>
+               <title>Completed Projects | Narkin's Builders Portfolio in Karachi</title>
+  <meta 
+    name="description" 
+    content="Explore Narkin's Builders completed projects in Karachi. View our portfolio of residential developments, apartments, and construction achievements across the city." 
+  />
+  <meta 
+    name="keywords" 
+    content="Narkin's Builders completed projects, Karachi construction portfolio, residential developments, apartment buildings, construction achievements" 
+  />
+  <meta name="author" content="Narkin's Builders" />
+  <meta name="robots" content="index, follow" />
+  
+  {/* Open Graph Tags */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Completed Projects | Narkin's Builders Portfolio in Karachi" />
+  <meta 
+    property="og:description" 
+    content="Explore Narkin's Builders completed projects in Karachi. View our portfolio of residential developments and construction achievements." 
+  />
+  <meta property="og:url" content="https://narkinsbuilders.com/completed-projects" />
+  <meta property="og:image" content="https://narkinsbuilders.com/images/projects-hero.jpg" />
+  <meta property="og:site_name" content="Narkin's Builders" />
+  
+  {/* Instagram/Social Media Optimization */}
+  <meta name="instagram:account" content="@narkinsbuilders" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Narkin's Builders Completed Projects Portfolio" />
+  
+  <link rel="canonical" href="https://narkinsbuilders.com/completed-projects" />
+
             </Head>
             <Navigation />
             <Lightbox {...lightbox} onClose={() => setLightbox({ ...lightbox, open: false, image: '' })} />

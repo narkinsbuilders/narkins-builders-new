@@ -8,7 +8,36 @@ export default function AboutUs() {
     return (
         <Fragment>
             <Head>
-                <title>About {`Narkin\'s Builders`}</title>
+                   <title>About Narkin's Builders | 30+ Years of Excellence in Karachi Real Estate</title>
+  <meta 
+    name="description" 
+    content="Learn about Narkin's Builders - over 30 years of trusted construction and development in Karachi. Discover our commitment to quality, innovation, and customer satisfaction." 
+  />
+  <meta 
+    name="keywords" 
+    content="Narkin's Builders about, Karachi construction company, real estate developers Karachi, construction experience, building company history" 
+  />
+  <meta name="author" content="Narkin's Builders" />
+  <meta name="robots" content="index, follow" />
+  
+  {/* Open Graph Tags */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Narkin's Builders | 30+ Years of Excellence in Karachi Real Estate" />
+  <meta 
+    property="og:description" 
+    content="Learn about Narkin's Builders - over 30 years of trusted construction and development in Karachi. Discover our commitment to quality, innovation, and customer satisfaction." 
+  />
+  <meta property="og:url" content="https://narkinsbuilders.com/about" />
+  <meta property="og:image" content="https://narkinsbuilders.com/images/about-hero.jpg" />
+  <meta property="og:site_name" content="Narkin's Builders" />
+  
+  {/* Instagram/Social Media Optimization */}
+  <meta name="instagram:account" content="@narkinsbuilders" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="About Narkin's Builders - 30+ Years of Excellence" />
+  
+  <link rel="canonical" href="https://narkinsbuilders.com/about" />
             </Head>
             <Navigation />
             <div className={"mt-[10rem]"}>
