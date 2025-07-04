@@ -1,0 +1,13 @@
+# Robots.txt for Narkin's Builders
+# https://narkinsbuilders.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Block admin and development routes
+# Disallow: /_next/
+Disallow: /admin/
+
+
+# Sitemap location
+Sitemap: https://www.narkinsbuilders.com/api/sitemap.xml
