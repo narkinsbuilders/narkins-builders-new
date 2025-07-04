@@ -1,4 +1,4 @@
-// pages/api/robots.txt.ts - FIXED VERSION
+// pages/api/robots.txt.ts - ENHANCED WITH SPAM BLOCKING
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
@@ -26,9 +26,30 @@ Allow: /_next/static
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin
+
+# Block spam URL patterns
+Disallow: /*?anapaestic=*
+Disallow: /*?acetosoluble=*
+Disallow: /*?Lohana=*
+Disallow: /*?basicopic=*
+Disallow: /*?lapcock=*
+Disallow: /*?crouse=*
+Disallow: /*?intriguing=*
+Disallow: /*?aeronetics=*
+Disallow: /*?*DZGiYHrlDu=*
+Disallow: /*?*bUswm=*
+Disallow: /*?*RzqtclLPgV=*
+
+# Block common spam patterns
 Disallow: /*?*utm_source=
 Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
+Disallow: /*?ref=*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+
+# Block URLs with multiple random parameters
+Disallow: /*?*&*&*
 
 # Sitemap location
 Sitemap: ${SITE_URL}/api/sitemap.xml
@@ -52,7 +73,17 @@ User-agent: LinkedInBot
 Allow: /
 
 User-agent: WhatsApp
-Allow: /`;
+Allow: /
+
+# Block known spam bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /`;
 
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Cache-Control', 'public, max-age=86400');
