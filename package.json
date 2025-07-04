@@ -9,9 +9,9 @@
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
-    "blog:automation": "ts-node scripts/blog-automation.ts",
-    "blog:generate-reports": "ts-node scripts/generate-reports.ts",
-    "blog:verify-setup": "ts-node scripts/verify-setup.ts"
+    "blog:automation": "bun scripts/blog-automation.ts",
+    "blog:generate-reports": "bun scripts/generate-reports.ts",
+    "blog:verify-setup": "bun scripts/verify-setup.ts"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
