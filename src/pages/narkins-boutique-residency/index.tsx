@@ -21,7 +21,7 @@ import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "
 import Testimonials from "@/components/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
 import SEOImage from "@/components/seo-image/seo-image";
-import { BoutiqueSchema } from '@/components/schema/BoutiqueSchema';
+import { NarkinsBoutiqueResidencySchema } from '@/components/schema/NarkinsBoutiqueResidencySchema';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -323,7 +323,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
           content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
         />
       </Head>
-      <BoutiqueSchema />
+      <NarkinsBoutiqueResidencySchema />
       <Navigation />
       <Lightbox />
       <div className="bg-white pt-[6rem]">
