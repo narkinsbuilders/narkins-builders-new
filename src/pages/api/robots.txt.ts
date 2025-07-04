@@ -1,4 +1,4 @@
-// pages/api/robots.txt.ts
+// pages/api/robots.txt.ts - FIXED VERSION
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
@@ -15,7 +15,7 @@ Allow: /hill-crest-residency
 Allow: /narkins-boutique-residency
 Allow: /completed-projects
 Allow: /about
-Allow: /blogs
+Allow: /blog
 
 # Allow image crawling for property photos
 Allow: /images/

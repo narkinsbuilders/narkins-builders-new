@@ -1,5 +1,6 @@
-// pages/api/sitemap.xml.ts
+// pages/api/sitemap.xml.ts - FIXED VERSION
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getAllPostsServer } from '../../lib/blog-server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
 
@@ -44,27 +45,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       priority: 0.8
     },
     {
-      loc: `${SITE_URL}/blogs`,
+      loc: `${SITE_URL}/blog`,
       lastmod: new Date().toISOString(),
       changefreq: 'daily',
       priority: 0.7
     },
   ];
 
-  // Fetch blog posts from WordPress
+  // Fetch MDX blog posts (NOT WordPress)
   let blogPosts: SitemapUrl[] = [];
   try {
-    const response = await fetch('https://admin.narkinsbuilders.com/wp-json/wp/v2/posts?per_page=100');
-    const posts = await response.json();
+    const posts = await getAllPostsServer();
     
-    blogPosts = posts.map((post: any) => ({
-      loc: post.link,
-      lastmod: post.modified,
+    blogPosts = posts.map((post) => ({
+      loc: `${SITE_URL}/blog/${post.slug}`,
+      lastmod: post.date,
       changefreq: 'monthly' as const,
       priority: 0.6
     }));
   } catch (error) {
-    console.error('Error fetching blog posts for sitemap:', error);
+    console.error('Error fetching MDX blog posts for sitemap:', error);
   }
 
   // Combine all URLs
