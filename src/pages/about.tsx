@@ -2,12 +2,16 @@ import Footer from "@/components/footer/footer";
 import Navigation from "@/components/navigation/navigation";
 import Head from "next/head";
 import { Fragment } from "react";
+import { AboutPageSchema } from '@/components/schema/AboutPageSchema';
+
 
 const Inovations = ['Reliability', 'Smart Door Locks', 'Smart Switches'];
 export default function AboutUs() {
     return (
         <Fragment>
             <Head>
+            <AboutPageSchema />
+
                    <title>About Narkin's Builders | 30+ Years of Excellence in Karachi Real Estate</title>
   <meta 
     name="description" 
