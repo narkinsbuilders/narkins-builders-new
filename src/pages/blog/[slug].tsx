@@ -1,4 +1,4 @@
-'use server';
+
 // bun add @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
 // 
 import { GetStaticPaths, GetStaticProps } from 'next'
