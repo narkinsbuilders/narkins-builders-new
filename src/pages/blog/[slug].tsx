@@ -1,405 +1,286 @@
-// bun add next-mdx-remote @mdx-js/react
-// Note: @next/mdx is for Next.js App Router MDX integration,
-// @mdx-js/loader is for Webpack,
-// @mdx-js/react is for the MDX components,
-// @types/mdx for types.
-// For pages directory with getStaticProps, you primarily need 'next-mdx-remote' and '@mdx-js/react'.
+// src/pages/blog/[slug].tsx - FINAL FIXED VERSION with table processing
 
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote' // <<< IMPORTANT: Removed /rsc
-import { serialize } from 'next-mdx-remote/serialize' // <<< IMPORTANT: Added serialize
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { getAllPostsServer, getPostBySlugServer } from '../../lib/blog-server'
-import { BlogPost as BlogPostType } from '../../lib/blog' // Renamed to avoid conflict
+import { BlogPost } from '../../lib/blog'
 import BlogLayout from '../../components/blog/blog-layout'
 
+// Add remark plugins for better markdown processing
+import remarkGfm from 'remark-gfm'
+
 interface BlogPostProps {
-  post: BlogPostType // Use the renamed type
-  mdxSource: MDXRemoteSerializeResult // <<< Reintroduced and required
+  post: BlogPost
+  mdxSource: MDXRemoteSerializeResult
 }
 
+// ✅ COMPLETE MDX components with full table support
 const components = {
-  // Custom heading components
+  // ===== BASIC HTML ELEMENTS =====
   h1: (props: any) => (
-    <h1 className="blog-h1" {...props} />
+    <h1 className="text-4xl font-bold text-gray-900 mt-8 mb-6" {...props} />
   ),
   h2: (props: any) => (
-    <h2 className="blog-h2" {...props} />
+    <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6" {...props} />
   ),
   h3: (props: any) => (
-    <h3 className="blog-h3" {...props} />
+    <h3 className="text-2xl font-semibold text-gray-900 mt-8 mb-4" {...props} />
   ),
-
-  // Custom paragraph with better spacing
+  h4: (props: any) => (
+    <h4 className="text-xl font-semibold text-gray-800 mt-6 mb-3" {...props} />
+  ),
   p: (props: any) => (
-    <p className="blog-content blog-p" {...props} /> // Apply base content style + specific paragraph spacing
+    <p className="text-gray-700 leading-relaxed mb-6" {...props} />
   ),
-
-  // Custom list components
   ul: (props: any) => (
-    <ul className="blog-content blog-ul" {...props} />
+    <ul className="list-disc list-inside mb-6 space-y-2 text-gray-700" {...props} />
   ),
   ol: (props: any) => (
-    <ol className="blog-content blog-ol" {...props} />
+    <ol className="list-decimal list-inside mb-6 space-y-2 text-gray-700" {...props} />
   ),
   li: (props: any) => (
-    <li className="blog-content blog-li" {...props} />
+    <li className="text-gray-700 leading-relaxed" {...props} />
   ),
-
-  // Custom link styling
   a: (props: any) => (
-    <a className="blog-a" {...props} />
+    <a className="text-blue-600 hover:text-blue-800 hover:underline font-medium" {...props} />
   ),
-
-  // Custom blockquote
   blockquote: (props: any) => (
-    <blockquote className="blog-blockquote" {...props} />
+    <blockquote className="border-l-4 border-blue-500 pl-6 my-8 italic text-gray-600 bg-blue-50 py-4" {...props} />
   ),
-
-  // Custom code blocks
   code: (props: any) => (
-    <code className="blog-code" {...props} />
+    <code className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono" {...props} />
   ),
-
-  // Custom pre blocks for code
   pre: (props: any) => (
-    <pre className="blog-pre" {...props} />
+    <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto my-8" {...props} />
   ),
 
-  // Custom table styling
+  // ===== ENHANCED TABLE COMPONENTS =====
   table: (props: any) => (
-    <div className="blog-table-container">
-      <table className="blog-table" {...props} />
+    <div className="overflow-x-auto my-8 shadow-lg rounded-lg">
+      <table className="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg bg-white" {...props} />
     </div>
   ),
-  th: (props: any) => (
-    <th className="blog-th" {...props} />
+  
+  thead: (props: any) => (
+    <thead className="bg-gradient-to-r from-blue-50 to-blue-100" {...props} />
   ),
+  
+  tbody: (props: any) => (
+    <tbody className="bg-white divide-y divide-gray-200" {...props} />
+  ),
+  
+  tr: (props: any) => (
+    <tr className="hover:bg-gray-50 transition-colors" {...props} />
+  ),
+  
+  th: (props: any) => (
+    <th className="px-6 py-4 text-left text-sm font-bold text-blue-900 uppercase tracking-wider border-b-2 border-blue-200" {...props} />
+  ),
+  
   td: (props: any) => (
-    <td className="blog-td" {...props} />
+    <td className="px-6 py-4 text-sm text-gray-900 font-medium" {...props} />
   ),
 
-  // Custom CTA component for within blog posts
-  CallToAction: ({
-    title,
-    description,
-    buttonText,
-    buttonLink
-  }: {
+  // ===== CUSTOM COMPONENTS =====
+  
+  // CallToAction component (Enhanced with contact)
+  CallToAction: ({ title, description, buttonText, buttonLink }: {
     title: string
     description: string
     buttonText: string
     buttonLink: string
   }) => (
-    <div className="blog-cta-base blog-cta-blue">
-      <h3 className="blog-cta-title text-blue-900">{title}</h3>
-      <p className="blog-cta-desc text-blue-700">{description}</p>
-      <a
-        href={buttonLink}
-        className="blog-cta-button blog-cta-button-blue"
-      >
-        {buttonText}
-      </a>
+    <div className="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-200 rounded-lg p-8 my-8 shadow-lg">
+      <h3 className="text-2xl font-semibold text-blue-900 mb-3">{title}</h3>
+      <p className="text-blue-700 mb-6 text-lg">{description}</p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a
+          href={buttonLink}
+          className="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg"
+        >
+          {buttonText}
+        </a>
+        <a
+          href="tel:+923203243970"
+          className="inline-flex items-center justify-center bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors font-medium text-lg"
+        >
+          📞 Call: +92-320-324-3970
+        </a>
+        <a
+          href="https://wa.me/923203243970"
+          className="inline-flex items-center justify-center bg-green-500 text-white px-8 py-4 rounded-lg hover:bg-green-600 transition-colors font-medium text-lg"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
     </div>
   ),
-
-  // Custom contact CTA
-  ContactCTA: () => (
-    <div className="blog-cta-base blog-cta-green">
-      <h3 className="blog-cta-title text-green-900">
-        Ready to Invest in Bahria Town?
-      </h3>
-      <p className="blog-cta-desc text-green-700">
-        Contact Narkin's Builders for expert guidance on your real estate investment.
-      </p>
-      <a
-        href="tel:+923203243970"
-        className="blog-cta-button blog-cta-button-green mr-4"
-      >
-        Call Now: +92-320-324-3970
-      </a>
-      <a
-        href="https://wa.me/923203243970"
-        className="blog-cta-button blog-cta-button-green"
-      >
-        WhatsApp Us
-      </a>
-    </div>
-  ),
-
-  // Market Table component
-  MarketTable: ({ data }: { data?: any[] }) => (
-    <div className="blog-table-container">
-      <table className="blog-table">
-        <thead className="bg-gray-50">
+  
+  // Market comparison table
+  PriceComparisonTable: () => (
+    <div className="overflow-x-auto my-8 shadow-lg rounded-lg">
+      <h4 className="text-xl font-semibold mb-4 text-gray-900">2025 Price Comparison - Bahria Town Karachi</h4>
+      <table className="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg bg-white">
+        <thead className="bg-gradient-to-r from-blue-50 to-blue-100">
           <tr>
-            <th className="blog-th">
-              Property Type
-            </th>
-            <th className="blog-th">
-              Average Price
-            </th>
-            <th className="blog-th">
-              Size
-            </th>
-            <th className="blog-th">
-              ROI
-            </th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-blue-900 uppercase tracking-wider">Property Type</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-blue-900 uppercase tracking-wider">Size Range</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-blue-900 uppercase tracking-wider">Price Range</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-blue-900 uppercase tracking-wider">ROI Potential</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          <tr>
-            <td className="blog-td font-medium text-gray-900">
-              2 Bedroom Apartment
-            </td>
-            <td className="blog-td text-gray-900">
-              PKR 1.2 - 1.8 Crore
-            </td>
-            <td className="blog-td text-gray-900">
-              900-1200 sq ft
-            </td>
-            <td className="blog-td text-green-600 font-medium">
-              8-12%
-            </td>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2 Bedroom Standard</td>
+            <td className="px-6 py-4 text-sm text-gray-700">1,100-1,300 sq ft</td>
+            <td className="px-6 py-4 text-sm text-blue-600 font-semibold">PKR 1.2-1.8 Crore</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-bold">6-8% Annual</td>
           </tr>
-          <tr>
-            <td className="blog-td font-medium text-gray-900">
-              3 Bedroom Apartment
-            </td>
-            <td className="blog-td text-gray-900">
-              PKR 1.8 - 2.5 Crore
-            </td>
-            <td className="blog-td text-gray-900">
-              1200-1500 sq ft
-            </td>
-            <td className="blog-td text-green-600 font-medium">
-              10-15%
-            </td>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2 Bedroom Premium</td>
+            <td className="px-6 py-4 text-sm text-gray-700">1,300-1,500 sq ft</td>
+            <td className="px-6 py-4 text-sm text-blue-600 font-semibold">PKR 1.8-2.5 Crore</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-bold">7-9% Annual</td>
           </tr>
-          <tr>
-            <td className="blog-td font-medium text-gray-900">
-              Luxury Apartment
-            </td>
-            <td className="blog-td text-gray-900">
-              PKR 2.5 - 4 Crore
-            </td>
-            <td className="blog-td text-gray-900">
-              1500+ sq ft
-            </td>
-            <td className="blog-td text-green-600 font-medium">
-              12-18%
-            </td>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">3 Bedroom Standard</td>
+            <td className="px-6 py-4 text-sm text-gray-700">1,500-1,800 sq ft</td>
+            <td className="px-6 py-4 text-sm text-blue-600 font-semibold">PKR 2.0-3.0 Crore</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-bold">8-10% Annual</td>
+          </tr>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">3 Bedroom Luxury</td>
+            <td className="px-6 py-4 text-sm text-gray-700">1,800-2,200 sq ft</td>
+            <td className="px-6 py-4 text-sm text-blue-600 font-semibold">PKR 3.0-4.5 Crore</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-bold">10-12% Annual</td>
           </tr>
         </tbody>
       </table>
     </div>
   ),
 
-  // Property Card component
-  PropertyCard: ({
-    title,
-    price,
-    size,
-    features,
-    image,
-    link
+  // Investment analysis table
+  InvestmentAnalysisTable: () => (
+    <div className="overflow-x-auto my-8 shadow-lg rounded-lg">
+      <h4 className="text-xl font-semibold mb-4 text-gray-900">Investment Performance Analysis (2020-2024)</h4>
+      <table className="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg bg-white">
+        <thead className="bg-gradient-to-r from-green-50 to-green-100">
+          <tr>
+            <th className="px-6 py-4 text-left text-sm font-bold text-green-900 uppercase tracking-wider">Year</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-green-900 uppercase tracking-wider">Appreciation Rate</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-green-900 uppercase tracking-wider">Rental Yield</th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-green-900 uppercase tracking-wider">Market Activity</th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2020</td>
+            <td className="px-6 py-4 text-sm text-orange-600 font-semibold">8%</td>
+            <td className="px-6 py-4 text-sm text-blue-600">6-8%</td>
+            <td className="px-6 py-4 text-sm text-gray-700">Pandemic Impact</td>
+          </tr>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2021</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-semibold">16%</td>
+            <td className="px-6 py-4 text-sm text-blue-600">7-9%</td>
+            <td className="px-6 py-4 text-sm text-gray-700">Market Recovery</td>
+          </tr>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2022</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-semibold">22%</td>
+            <td className="px-6 py-4 text-sm text-blue-600">8-10%</td>
+            <td className="px-6 py-4 text-sm text-gray-700">Strong Demand</td>
+          </tr>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2023</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-semibold">18%</td>
+            <td className="px-6 py-4 text-sm text-blue-600">9-11%</td>
+            <td className="px-6 py-4 text-sm text-gray-700">Sustained Growth</td>
+          </tr>
+          <tr className="hover:bg-gray-50">
+            <td className="px-6 py-4 text-sm font-medium text-gray-900">2024</td>
+            <td className="px-6 py-4 text-sm text-green-600 font-semibold">20%</td>
+            <td className="px-6 py-4 text-sm text-blue-600">10-12%</td>
+            <td className="px-6 py-4 text-sm text-gray-700">Continued Appreciation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  ),
+
+  // PropertyCard component (Enhanced)
+  PropertyCard: ({ 
+    title, 
+    price, 
+    size, 
+    features, 
+    image, 
+    link 
   }: {
     title: string
     price: string
-    size: string
-    features: string[]
+    size?: string
+    features?: string[]
     image?: string
     link?: string
   }) => (
-    <div className="blog-property-card">
+    <div className="bg-white border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden my-8">
       {image && (
-        <div className="blog-property-image-wrapper">
-          <img
-            src={image}
+        <div className="aspect-[16/9] relative">
+          <img 
+            src={image} 
             alt={title}
-            className="blog-property-image"
+            className="w-full h-full object-cover"
           />
         </div>
       )}
-      <div className="blog-property-content">
-        <h3 className="blog-property-title">{title}</h3>
-        <div className="blog-property-price-size">
-          <span className="blog-property-price">{price}</span>
-          <span className="blog-property-size">{size}</span>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-2xl font-bold text-blue-600">{price}</span>
+          {size && <span className="text-gray-500 font-medium bg-gray-100 px-3 py-1 rounded">{size}</span>}
         </div>
         {features && features.length > 0 && (
-          <ul className="blog-property-features-list">
-            {features.map((feature, index) => (
-              <li key={index} className="blog-property-feature-item">{feature}</li>
-            ))}
-          </ul>
+          <div className="mb-4">
+            <h4 className="text-sm font-semibold text-gray-700 mb-2">Key Features:</h4>
+            <ul className="grid grid-cols-1 gap-1 text-gray-600">
+              {features.map((feature, index) => (
+                <li key={index} className="text-sm flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        {link && (
+        <div className="flex flex-col sm:flex-row gap-3">
+          {link && (
+            <a
+              href={link}
+              className="inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+            >
+              View Details
+            </a>
+          )}
           <a
-            href={link}
-            className="blog-property-button"
+            href="tel:+923203243970"
+            className="inline-flex items-center justify-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
           >
-            View Details
+            📞 Call Now
           </a>
-        )}
+        </div>
       </div>
     </div>
   )
 }
 
-// <<< IMPORTANT: Changed prop destructuring
 export default function BlogPost({ post, mdxSource }: BlogPostProps) {
   return (
     <BlogLayout post={post}>
       <div className="prose prose-lg max-w-none mx-auto">
-        {/* <<< IMPORTANT: Removed lazy prop as it's not supported by standard MDXRemote */}
         <MDXRemote {...mdxSource} components={components} />
       </div>
-      <style>{`
-/* Base styles for the blog content */
-.blog-content {
-  @apply text-gray-700 leading-relaxed;
-}
-
-/* Headings */
-.blog-h1 {
-  @apply text-4xl font-bold text-gray-900 mt-8 mb-6;
-}
-.blog-h2 {
-  @apply text-3xl font-bold text-gray-900 mt-12 mb-6;
-}
-.blog-h3 {
-  @apply text-2xl font-semibold text-gray-900 mt-8 mb-4;
-}
-
-/* Paragraph */
-.blog-p {
-  @apply mb-6; /* Inherits text-gray-700 leading-relaxed from blog-content */
-}
-
-/* Lists */
-.blog-ul {
-  @apply list-disc list-inside mb-6 space-y-2; /* Inherits text-gray-700 from blog-content */
-}
-.blog-ol {
-  @apply list-decimal list-inside mb-6 space-y-2; /* Inherits text-gray-700 from blog-content */
-}
-.blog-li {
-  /* Inherits text-gray-700 leading-relaxed from blog-content */
-}
-
-/* Links */
-.blog-a {
-  @apply text-blue-600 hover:text-blue-800 hover:underline font-medium;
-}
-
-/* Blockquote */
-.blog-blockquote {
-  @apply border-l-4 border-blue-500 pl-6 my-8 italic text-gray-600 bg-blue-50 py-4;
-}
-
-/* Inline Code */
-.blog-code {
-  @apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono;
-}
-
-/* Preformatted Code Blocks */
-.blog-pre {
-  @apply bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto my-8;
-}
-
-/* Table */
-.blog-table-container {
-  @apply overflow-x-auto my-8;
-}
-.blog-table {
-  @apply min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg;
-}
-.blog-th {
-  @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
-}
-.blog-td {
-  @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
-}
-
-
-/* CTAs */
-.blog-cta-base {
-  @apply rounded-lg p-6 my-8;
-}
-
-.blog-cta-blue {
-  @apply bg-blue-50 border border-blue-200;
-}
-
-.blog-cta-green {
-  @apply bg-green-50 border border-green-200;
-}
-
-.blog-cta-title {
-  @apply text-xl font-semibold mb-2;
-}
-
-.blog-cta-desc {
-  @apply mb-4;
-}
-
-.blog-cta-button {
-  @apply inline-block px-6 py-3 rounded-lg hover:transition-colors font-medium;
-}
-
-.blog-cta-button-blue {
-  @apply bg-blue-600 text-white hover:bg-blue-700;
-}
-
-.blog-cta-button-green {
-  @apply bg-green-600 text-white hover:bg-green-700;
-}
-
-
-/* Property Card */
-.blog-property-card {
-  @apply bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden my-6;
-}
-
-.blog-property-image-wrapper {
-  @apply aspect-[16/9] relative;
-}
-
-.blog-property-image {
-  @apply w-full h-full object-cover;
-}
-
-.blog-property-content {
-  @apply p-6;
-}
-
-.blog-property-title {
-  @apply text-xl font-semibold text-gray-900 mb-2;
-}
-
-.blog-property-price-size {
-  @apply flex items-center justify-between mb-4;
-}
-
-.blog-property-price {
-  @apply text-2xl font-bold text-blue-600;
-}
-
-.blog-property-size {
-  @apply text-gray-500;
-}
-
-.blog-property-features-list {
-  @apply list-disc list-inside space-y-1 mb-4 text-gray-700;
-}
-
-.blog-property-feature-item {
-  @apply text-sm;
-}
-
-.blog-property-button {
-  @apply inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium;
-}`}</style>
     </BlogLayout>
   )
 }
@@ -426,19 +307,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  // ✅ FIXED: Enhanced MDX serialization with better options
+  // ✅ ENHANCED: MDX serialization with table processing plugins
   const mdxSource = await serialize(post.content, {
-     mdxOptions: {
-       remarkPlugins: [], // Add any remark plugins here if needed
-       rehypePlugins: [], // Add any rehype plugins here if needed
-       development: process.env.NODE_ENV === 'development',
-     },
+    mdxOptions: {
+      remarkPlugins: [
+        remarkGfm // Enables GitHub Flavored Markdown including tables
+      ],
+      rehypePlugins: [],
+      development: process.env.NODE_ENV === 'development',
+    },
   })
 
   return {
     props: {
       post,
-      mdxSource // <<< Now passing the serialized MDX content
+      mdxSource
     },
     revalidate: 60
   }
