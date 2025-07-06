@@ -1,17 +1,20 @@
+// bun add next-mdx-remote @mdx-js/react
+// Note: @next/mdx is for Next.js App Router MDX integration,
+// @mdx-js/loader is for Webpack,
+// @mdx-js/react is for the MDX components,
+// @types/mdx for types.
+// For pages directory with getStaticProps, you primarily need 'next-mdx-remote' and '@mdx-js/react'.
 
-// bun add @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
-// 
 import { GetStaticPaths, GetStaticProps } from 'next'
-// Might not work, as i requires server components not sure though
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc' 
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote' // <<< IMPORTANT: Removed /rsc
+import { serialize } from 'next-mdx-remote/serialize' // <<< IMPORTANT: Added serialize
 import { getAllPostsServer, getPostBySlugServer } from '../../lib/blog-server'
-import { BlogPost } from '../../lib/blog'
+import { BlogPost as BlogPostType } from '../../lib/blog' // Renamed to avoid conflict
 import BlogLayout from '../../components/blog/blog-layout'
 
 interface BlogPostProps {
-  post: BlogPost,
-  // Content is not nessesary in rendering UI, and increases page size. 
-  // mdxSource: MDXRemoteSerializeResult
+  post: BlogPostType // Use the renamed type
+  mdxSource: MDXRemoteSerializeResult // <<< Reintroduced and required
 }
 
 const components = {
@@ -243,11 +246,13 @@ const components = {
   )
 }
 
-export default function BlogPost({ post: {content, ...post} }: BlogPostProps) {
+// <<< IMPORTANT: Changed prop destructuring
+export default function BlogPost({ post, mdxSource }: BlogPostProps) {
   return (
     <BlogLayout post={post}>
       <div className="prose prose-lg max-w-none mx-auto">
-        <MDXRemote source={content} components={components} lazy={true} />
+        {/* <<< IMPORTANT: Removed lazy prop as it's not supported by standard MDXRemote */}
+        <MDXRemote {...mdxSource} components={components} />
       </div>
       <style>{`
 /* Base styles for the blog content */
@@ -422,18 +427,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   // ✅ FIXED: Enhanced MDX serialization with better options
-  // const mdxSource = await serialize(post.content, {
-  //   mdxOptions: {
-  //     remarkPlugins: [],
-  //     rehypePlugins: [],
-  //     development: process.env.NODE_ENV === 'development',
-  //   },
-  // })
+  const mdxSource = await serialize(post.content, {
+     mdxOptions: {
+       remarkPlugins: [], // Add any remark plugins here if needed
+       rehypePlugins: [], // Add any rehype plugins here if needed
+       development: process.env.NODE_ENV === 'development',
+     },
+  })
 
   return {
     props: {
       post,
-      // mdxSource
+      mdxSource // <<< Now passing the serialized MDX content
     },
     revalidate: 60
   }
