@@ -36,6 +36,7 @@
     "lucide-react": "^0.483.0",
     "mailtoui": "1.0.3",
     "mysql2": "^3.14.1",
+    "nara": ".",
     "next": "^15.3.5",
     "next-mdx-remote": "^5.0.0",
     "next-purgecss": "^4.0.0",

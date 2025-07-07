@@ -24,7 +24,7 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
         <meta property="og:type" content="article" />
       </Head>
            
-      {/* ✅ ADD THIS SCHEMA COMPONENT ✅ */}
+      { /* ADD THIS SCHEMA COMPONENT  */ }
       <BlogPostSchema 
         title={post.title}
         excerpt={post.excerpt}
@@ -106,22 +106,22 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
         </div>
 
         {/* Call to Action */}
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-blue-900 mb-2">
-              Ready to Invest in Bahria Town?
-            </h3>
-            <p className="text-blue-700 mb-4">
-              Contact Narkin's Builders for expert guidance on your real estate investment.
-            </p>
-            <a
-              href="tel:+923203243970"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            >
-              Call Now: +92-320-324-3970
-            </a>
-          </div>
-        </div>
+<div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
+  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+      Ready to Invest in Bahria Town?
+    </h3>
+    <p className="text-gray-700 mb-4">
+      Contact Narkin's Builders for expert guidance on your real estate investment.
+    </p>
+    <a
+      href="tel:+923203243970"
+      className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
+    >
+      Call Now: +92-320-324-3970
+    </a>
+  </div>
+</div>
         
       </article>
       
