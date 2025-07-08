@@ -62,30 +62,8 @@ export default function Document() {
               "areaServed": {
                 "@type": "Place",
                 "name": "Bahria Town Karachi, Pakistan"
-              },
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Real Estate Properties",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Hill Crest Residency Apartments",
-                      "category": "Luxury Apartments"
-                    }
-                  },
-                  {
-                    "@type": "Offer", 
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Narkin's Boutique Residency",
-                      "category": "Premium Apartments"
-                    }
-                  }
-                ]
               }
-            })
+            })  
           }}
         />
 
