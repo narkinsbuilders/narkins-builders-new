@@ -1,5 +1,5 @@
 // src/components/blog/mdx-components.tsx
-export const mdxComponents = {
+const components = {
   PropertyCard: ({ title, price, location, bedrooms, bathrooms, area, image }: {
     title: string
     price: string
@@ -65,3 +65,6 @@ export const mdxComponents = {
     </div>
   )
 }
+
+export default components
+
