@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Footer from '@/components/Footer/footer'; // Adjust path if needed
+import Footer from '@/components/footerooter/footer';
 
 const Privacy = () => {
   return (

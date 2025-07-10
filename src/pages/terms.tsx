@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Footer from '@/components/Footer/footer'; // assuming the file is in Footer/footer.tsx
+import Footer from '@/components/footerooter/footer'; 
 
 const Terms = () => {
   return (
