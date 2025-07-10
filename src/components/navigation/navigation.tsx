@@ -177,10 +177,10 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                                   className="object-cover object-center"
                                 />
                               </div>
-                              <a href={item.href} className="mt-6 text-black block font-medium ">
+                              <Link href={item.href} className="mt-6 text-black block font-medium ">
                                 <span className="absolute inset-0" aria-hidden="true" />
                                 {item.name}
-                              </a>
+                              </Link>
                             </div>
                           ))}
                         </div>
@@ -196,9 +196,9 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <a href={item.href} className="-m-2 block p-2 text-black">
+                                  <Link href={item.href} className="-m-2 block p-2 text-black">
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </ul>
@@ -212,9 +212,9 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a href={page.href} className="-m-2 block p-2 text-black font-medium">
+                      <Link href={page.href} className="-m-2 block p-2 text-black font-medium">
                         {page.name}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -286,30 +286,32 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 z-50">
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
                               <div className="relative bg-white">
                                 <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {category.featured.map((item) => (
-                                        <div key={item.name} className="group relative text-base sm:text-sm">
-                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
-                                              src={item.imageSrc}
-                                              alt={item.imageAlt}
-                                              className="object-cover object-center"
-                                            />
+                                  <div className="grid grid-cols-2 gap-x-8 gap-y-6 py-12">
+                                    <div className="col-start-2">
+                                      <div className="grid grid-cols-2 gap-x-3 gap-y-3">
+                                        {category.featured.map((item) => (
+                                          <div key={item.name} className="group relative text-sm">
+                                            <div className="aspect-[3/2] overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
+                                              <img
+                                                src={item.imageSrc}
+                                                alt={item.imageAlt}
+                                                className="w-full h-full object-cover object-center"
+                                              />
+                                            </div>
+                                            <Link href={item.href} className="mt-2 block font-medium text-gray-900 text-sm">
+                                              <span className="absolute inset-0" aria-hidden="true" />
+                                              {item.name}
+                                            </Link>
                                           </div>
-                                          <a href={item.href} className="mt-6 block font-medium text-gray-900">
-                                            <span className="absolute inset-0" aria-hidden="true" />
-                                            {item.name}
-                                          </a>
-                                        </div>
-                                      ))}
+                                        ))}
+                                      </div>
                                     </div>
-                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-6 text-sm">
                                       {category.sections.map((section) => (
                                         <div key={section.name}>
                                           <p id={`${section.name}-heading`} className="font-medium text-gray-900">
@@ -318,13 +320,13 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                                           <ul
                                             role="list"
                                             aria-labelledby={`${section.name}-heading`}
-                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                            className="mt-4 space-y-4"
                                           >
                                             {section.items.map((item) => (
                                               <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-neutral-300">
+                                                <Link href={item.href} className="hover:text-neutral-600 transition-colors">
                                                   {item.name}
-                                                </a>
+                                                </Link>
                                               </li>
                                             ))}
                                           </ul>
@@ -342,7 +344,7 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                   ))}
 
                   {navigation.pages.map((page) => (
-                    <a
+                    <Link
                       key={page.name}
                       href={page.href}
                       className={`flex items-center text-sm font-medium ${
@@ -354,7 +356,7 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                       }`}
                     >
                       {page.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Group>
