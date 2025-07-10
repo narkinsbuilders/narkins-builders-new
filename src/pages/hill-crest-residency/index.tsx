@@ -220,7 +220,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
             <Lightbox />
             <div className="bg-white pt-[6rem]">
                 <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
-                    <VideoPlayer src="/hillcrest.mp4" poster={'/images/hcr_video_poster.png'} />
+                    <VideoPlayer src="/hillcrest.mp4" poster={'/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp'} />
                 </div>
                 <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">

@@ -5,7 +5,7 @@ import { useState, Fragment } from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Footer from "@/components/footer/footer";
-import { Lightbox } from "@/components/lightbox/lightbox";
+import { useLightboxStore } from "@/zustand";
 import Link from "next/link";
 import Head from "next/head";
 const people = [
@@ -29,40 +29,24 @@ const maps = [
 ]
 const cards = [
     [
-       // "https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0116-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0107-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0108-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0109-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0111-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0112-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0114-1.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0115-1.webp"
+        // Palm Residency image
+        "/images/palm-residency-completed-project-frere-town-karachi.webp"
     ], [
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0118.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0119.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0120.webp",
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0121.webp"
-    ], [//'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0123.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0124.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0125.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0126.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0127.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0129.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0130.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0131.webp',
-        //'https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0132.webp'
+        // AL Arz Terrace image
+        "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp"
     ], [
-        //"https://admin.narkinsbuilders.com/wp-content/uploads/2024/04/DJI_0137.webp"
+        // AL Arz Homes image
+        "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp"
+    ], [
+        // Classic Homes image
+        "/images/classic-heights-completed-project-sharfabad-karachi.webp"
     ]
 ];
 
+const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
+
 export default function NarkinsBoutiqueResidency() {
-    const [lightbox, setLightbox] = useState({
-        open: false, image: ''
-    });
-    const openLightbox = ({ image }: { image: string }) => {
-        setLightbox({ ...lightbox, open: true, image });
-    }
+    const openLightbox = useLightboxStore(state => state.openLightbox);
     // const [query, setQuery] = useState('')
     // const matches = useMediaQuery('(min-width: 768px)');
     return (
@@ -101,7 +85,7 @@ export default function NarkinsBoutiqueResidency() {
 
             </Head>
             <Navigation />
-            <Lightbox {...lightbox} onClose={() => setLightbox({ ...lightbox, open: false, image: '' })} />
+            <Lightbox />
             <div className="bg-white pt-[10vh]">
                 <div className="relative isolate h-[40vh] overflow-hidden py-20 pt-10 sm:py-[28px]">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -131,47 +115,120 @@ export default function NarkinsBoutiqueResidency() {
                         </div>
                     </div>
                 </div>
-                <section className="bg-white">
-                    <div className="mx-auto max-w-7xl py-[5rem] lg:px-8">
+                <section className="bg-neutral-50 py-20">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        {/* Section Header */}
+                        <div className="text-center mb-16">
+                            <div className="flex items-center justify-center gap-2 mb-4">
+                                <div className="w-8 h-0.5 bg-primary"></div>
+                                <span className="text-primary text-sm font-semibold uppercase tracking-wider">Our Portfolio</span>
+                                <div className="w-8 h-0.5 bg-primary"></div>
+                            </div>
+                            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+                                Completed Projects
+                            </h2>
+                            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                                Explore our successful developments across Karachi, each representing our commitment to quality and excellence.
+                            </p>
+                        </div>
+
                         <Tab.Group>
-                            <Tab.List className="flex space-x-1 gap-2 px-6 my-5 mb-5 border-b-neutral-900 rounded-xl p-1">
-                                {categories.map(category => (
+                            {/* Enhanced Tab Navigation */}
+                            <Tab.List className="flex flex-wrap justify-center gap-2 mb-12 bg-white p-2 rounded-2xl shadow-lg max-w-4xl mx-auto overflow-x-auto">
+                                {categories.map((category) => (
                                     <Tab
                                         key={category}
                                         className={({ selected }) =>
                                             classNames(
-                                                'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-                                                'ring-white/60 ring-offset-2 ring-offset-neutral-400 focus:outline-none focus:ring-2',
+                                                'px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 whitespace-nowrap flex-shrink-0',
+                                                'focus:outline-none focus:ring-2 focus:ring-primary/50',
                                                 selected
-                                                    ? 'bg-black text-white shadow'
-                                                    : 'text-black hover:bg-white/[0.12] hover:text-neutral-900'
+                                                    ? 'bg-primary text-white shadow-md'
+                                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                                             )
                                         }>
                                         {category}
                                     </Tab>
                                 ))}
                             </Tab.List>
-                            <Tab.Panels className="mt-2">
+
+                            {/* Enhanced Tab Content */}
+                            <Tab.Panels>
                                 {cards.map((items, idx) => (
                                     <Tab.Panel key={idx}>
-                                        <div className="grid mt-[1rem] overflow-hidden grid-cols-1 md:lg:grid-cols-3 gap-y-[2.5rem]">
-                                            {items.map((item, index) => (
-                                                <div key={index} onClick={() => openLightbox({ image: item })} className="hover:filter group block rounded-xl overflow-hidden hover:scale-[1.025] -hover:bg-neutral-900 hover:brightness-[110%] px-6 duration-[.5s] transition hover:duration-[.5s]">
-                                                    <div
-                                                        className={classNames(
-                                                            'bg-neutral-900 p-3- rounded-lg group relative',
-                                                            'ring-white/60 ring-offset-2 ring-offset-neutral-400 focus:outline-none focus:ring-2'
-                                                        )}>
-                                                        <img src={item} alt="" className="w-full rounded h-auto" loading={index === 0 ? "eager" : "lazy"} />
-                                                        <div className="duration-[.5s] transition group-hover:duration-[.5s] invisible group-hover:visible left-[85%] top-[80%] absolute">
-                                                            <MagnifyingGlassCircleIcon width={'3rem'} height={'3rem'} color="white" />
+                                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto">
+                                            {/* Project Image Section */}
+                                            <div className="relative">
+                                                {items.map((item, index) => (
+                                                    <div key={index} className="relative group">
+                                                        <div className="aspect-video overflow-hidden">
+                                                            <img 
+                                                                src={item} 
+                                                                alt={`${categories[idx]} project view`} 
+                                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                                                                loading={index === 0 ? "eager" : "lazy"} 
+                                                            />
+                                                        </div>
+                                                        {/* Image Overlay */}
+                                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                                                            <div 
+                                                                onClick={() => openLightbox({ src: item })}
+                                                                className="opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30"
+                                                            >
+                                                                <MagnifyingGlassCircleIcon className="w-8 h-8 text-white" />
+                                                            </div>
+                                                        </div>
+                                                        {/* Project Badge */}
+                                                        <div className="absolute top-4 left-4">
+                                                            <div className="bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg">
+                                                                {categories[idx]}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            {/* Project Details Section */}
+                                            <div className="p-8">
+                                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                                                    {/* Project Info */}
+                                                    <div>
+                                                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                                                            {categories[idx]}
+                                                        </h3>
+                                                        <div className="space-y-3">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                                                <span className="text-gray-600">Status: <span className="font-semibold text-gray-900">Completed</span></span>
+                                                            </div>
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                                                <span className="text-gray-600">Type: <span className="font-semibold text-gray-900">Residential Development</span></span>
+                                                            </div>
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                                                <span className="text-gray-600">Location: <span className="font-semibold text-gray-900">Karachi, Pakistan</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Location Map */}
+                                                    <div>
+                                                        <h4 className="text-lg font-semibold text-gray-900 mb-4">Project Location</h4>
+                                                        <div className="rounded-xl overflow-hidden shadow-md">
+                                                            <iframe 
+                                                                src={maps[idx]} 
+                                                                className="w-full h-64" 
+                                                                style={{ border: 0 }}
+                                                                allowFullScreen 
+                                                                loading="lazy" 
+                                                                referrerPolicy="no-referrer-when-downgrade"
+                                                                title={`${categories[idx]} location map`}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </div>
-                                        <div className="px-6 mt-[2.5rem]">
-                                            <iframe src={maps[idx]} className="border rounded-xl my-5 mt-[1rem]" height="300" style={{ width: '100%' }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            </div>
                                         </div>
                                     </Tab.Panel>
                                 ))}
@@ -180,7 +237,7 @@ export default function NarkinsBoutiqueResidency() {
                     </div>
                 </section>
             </div>
-            <Footer />
+            <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
         </main>
     )
 }

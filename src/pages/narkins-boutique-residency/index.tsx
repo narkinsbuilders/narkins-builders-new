@@ -290,7 +290,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
     <main>
       <Head>
         {/* Primary Meta Tags */}
-        <title>{`Narkin's `} Boutique Residency | Luxury Apartments in Bahria Town Karachi</title>
+        <title>Narkin's Boutique Residency | Luxury Apartments in Bahria Town Karachi</title>
         <meta
           name="description"
           content="Discover Narkin's Boutique Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."

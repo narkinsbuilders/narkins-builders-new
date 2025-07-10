@@ -14,7 +14,6 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
   return (
     <>
       <Head>
-        <title>{post.title} | Narkin's Builders Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Narkin's Builders" />

@@ -125,7 +125,7 @@ const AboutPage = () => {
         transition={{ duration: 0.6 }}
         className={`flex-1 ${size === "sm" ? "max-w-xs" : "max-w-md"} relative z-30`}
       >
-        <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${status === "current" ? "border-2 border-gray-700" : ""}`}>
+        <div className={`bg-white rounded-xl border-2 overflow-hidden ${status === "current" ? "border-gray-700" : "border-gray-300"}`}>
           {image ? (
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -269,7 +269,7 @@ const AboutPage = () => {
                 </svg>
               </div>
               
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-20">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20">
                 <JourneyStage
                   image="/images/narkins-boutique-residency-construction-september-2023.webp"
                   stage="FOUNDATION"
@@ -333,7 +333,7 @@ const AboutPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                    className="bg-white rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors duration-300 overflow-hidden"
                   >
                     {/* Project Image */}
                     <motion.div
