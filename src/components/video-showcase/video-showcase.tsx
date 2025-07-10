@@ -3,28 +3,19 @@ import { motion } from 'framer-motion';
 import { PlayIcon } from '@heroicons/react/24/solid';
 import { featuredVideos } from '@/data/about-data';
 
-// Lazy loading video component with intersection observer
+// Lazy loading video component - loads on page load
 const LazyVideoEmbed = ({ video, index }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect(); // Stop observing once visible
-        }
-      },
-      { 
-        threshold: 0.1,
-        rootMargin: '50px' // Start loading 50px before coming into view
-      }
-    );
+    // Load videos immediately when component mounts (page load)
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Small delay to prevent blocking initial render
     
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => clearTimeout(timer);
   }, []);
 
   return (
