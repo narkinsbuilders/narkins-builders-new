@@ -311,7 +311,7 @@ export default function HillCrestResidency({ posts }: { posts: Post[] }) {
         <meta property="og:url" content="https://narkinsbuilders.com/narkins-boutique-residency" />
         <meta
           property="og:image"
-          content="https://narkinsbuilders.com/images/hcr_appartment/hcr_apartment_slide_1.png"
+          content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp"
         />
         <meta property="og:site_name" content="Hill Crest Residency" />
 

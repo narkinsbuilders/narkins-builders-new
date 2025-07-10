@@ -632,7 +632,7 @@ const DiversifiedBusiness = () => (
           content="Learn about Narkin's Builders - 30+ years of real estate excellence in Karachi. Discover our commitment to quality, innovation, and customer satisfaction." 
         />
         <meta property="og:url" content="https://narkinsbuilders.com/about" />
-        <meta property="og:image" content="https://narkinsbuilders.com/images/about-hero.jpg" />
+        <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
         <meta property="og:site_name" content="Narkin's Builders" />
         
         {/* Instagram/Social Media Optimization */}

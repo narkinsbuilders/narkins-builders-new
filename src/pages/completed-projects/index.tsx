@@ -72,7 +72,7 @@ export default function NarkinsBoutiqueResidency() {
     content="Explore Narkin's Builders completed projects in Karachi. View our portfolio of residential developments and construction achievements." 
   />
   <meta property="og:url" content="https://narkinsbuilders.com/completed-projects" />
-  <meta property="og:image" content="https://narkinsbuilders.com/images/projects-hero.jpg" />
+  <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
   <meta property="og:site_name" content="Narkin's Builders" />
   
   {/* Instagram/Social Media Optimization */}
