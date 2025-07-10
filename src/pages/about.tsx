@@ -3,7 +3,9 @@ import Navigation from '@/components/navigation/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import Footer from '@/components/footer/footer';
 import Image from 'next/image';
+import VideoShowcase from '@/components/video-showcase/video-showcase';
 import { useLightboxStore } from '@/zustand';
 import { PlayIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
 import SEOImage from '@/components/seo-image/seo-image';
@@ -12,8 +14,7 @@ import {
   achievements, 
   values, 
   projects, 
-  hcrYoutubeVideos, 
-  nbrYoutubeVideos,
+  featuredVideos,
   innovationFeatures,
   whyChooseUs 
 } from '@/data/about-data';
@@ -23,9 +24,6 @@ const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: 
 const AboutPage = () => {
   const [contactOpen, setContactOpen] = useState(false);
   const openLightbox = useLightboxStore(state => state.openLightbox);
-
-  // Combine video arrays
-  const allVideos = [...hcrYoutubeVideos, ...nbrYoutubeVideos];
 
   // Hero Section Component
   const HeroSection = () => (
@@ -383,205 +381,207 @@ const AboutPage = () => {
     </section>
   );
 
-  // Video Showcase Section
-  const VideoShowcase = () => (
-    <section className="bg-neutral-50 py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Project Videos & Tours</h2>
-          <p className="text-lg text-gray-600">Watch our project tours and see what customers are saying about us</p>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allVideos.map((video, index) => (
-            <motion.div
-              key={video.id}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl"
-            >
-              <a
-                href={`https://youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-              >
-                <div className="relative">
-                  <Image
-                    src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
-                    alt={video.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-auto object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <PlayIcon className="w-16 h-16 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                  </div>
-                  <div className="absolute bottom-2 left-2">
-                    <div className={`px-2 py-1 rounded text-xs font-semibold ${
-                      video.project === 'HCR' 
-                        ? 'bg-primary text-white' 
-                        : 'bg-gray-700 text-white'
-                    }`}>
-                      {video.project}
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{video.title}</h3>
-                <p className="text-sm text-gray-600">
-                  {video.project === 'HCR' ? 'Hill Crest Residency' : "Narkin's Boutique Residency"}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-
-  // Leadership Quote Section
-  const LeadershipQuote = () => (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <motion.figure
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+  
+  // Leadership Quote Section with Facebook Video
+const LeadershipQuote = () => (
+  <section className="bg-white py-20">
+    <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Quote Section */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="order-2 lg:order-1"
         >
-          <svg className="w-10 h-10 mx-auto mb-6 text-gray-400" fill="currentColor" viewBox="0 0 32 32">
+          <svg className="w-8 h-8 mb-4 text-gray-400" fill="currentColor" viewBox="0 0 32 32">
             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
           </svg>
-          <blockquote className="text-xl italic font-medium text-gray-900 mb-8">
+          <blockquote className="text-lg italic font-medium text-gray-900 mb-6">
             "At Narkin's Builders, we prioritize commitment, transparency, and innovation. For over 30 years, 
             these values have fueled our success, driving us to deliver cutting-edge construction projects and 
-            luxury living spaces that exceed expectations. Our transparent approach ensures our customers are 
-            informed and involved, while our innovative solutions push the boundaries of what's possible."
+            luxury living spaces that exceed expectations."
           </blockquote>
-          <figcaption className="flex items-center justify-center gap-4">
-            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">N</span>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-lg">N</span>
             </div>
-            <div className="text-left">
+            <div>
               <div className="font-semibold text-gray-900">Mr. Ashraf Nara</div>
               <div className="text-gray-600">CEO at Narkin's</div>
               <div className="text-sm text-gray-500">Narkin's Builders</div>
             </div>
-          </figcaption>
-        </motion.figure>
-      </div>
-    </section>
-  );
-
-  // Diversified Business Section
-  const DiversifiedBusiness = () => (
-    <section className="bg-neutral-50 py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Beyond Real Estate</h2>
-          <p className="text-lg text-gray-600">Our commitment to excellence extends across multiple industries</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Real Estate Development</h3>
-            <p className="text-gray-600 mb-4">
-              Our primary focus remains on creating exceptional residential projects in Karachi's most desirable locations, 
-              with specialized expertise in Bahria Town developments.
-            </p>
-            <div className="text-sm text-gray-500 mb-4">
-              • Premium apartment complexes • Smart home technology • Luxury amenities
-            </div>
           </div>
-          
-          <div className="bg-white p-8 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Textile Manufacturing</h3>
-            <p className="text-gray-600 mb-4">
-              As one of Pakistan's prominent textile manufacturers, Narkin's Textile Industries operates from our 
-              state-of-the-art facility in the S.I.T.E area of Karachi.
-            </p>
-            <div className="text-sm text-gray-500 mb-4">
-              • Garment manufacturing • Retail outlets across Karachi • Quality textile products
-            </div>
-            <div className="flex gap-4 mt-4">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group relative overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => openLightbox({ src: "/images/narkins-textile-industries-manufacturing-facility.webp" })}
-              >
-                <SEOImage
-                  src="/images/narkins-textile-industries-manufacturing-facility.webp"
-                  width={120}
-                  height={80}
-                  className="w-[120px] h-[80px] object-cover rounded-lg"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                  <MagnifyingGlassCircleIcon className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group relative overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => openLightbox({ src: "/images/narkins-builders-eastern-wear-retail-outlet.webp" })}
-              >
-                <SEOImage
-                  src="/images/narkins-builders-eastern-wear-retail-outlet.webp"
-                  width={120}
-                  height={80}
-                  className="w-[120px] h-[80px] object-cover rounded-lg"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                  <MagnifyingGlassCircleIcon className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </motion.div>
 
-  // CTA Section
-  const CallToAction = () => (
-    <section className="bg-primary py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+        {/* Facebook Video Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
+          className="order-1 lg:order-2"
         >
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Invest in Your Dream Home?</h2>
-          <p className="text-lg text-white/90 mb-8">
-            Join hundreds of satisfied families who have made Narkin's Builders their trusted partner. 
-            With Hill Crest Residency successfully delivered and Narkin's Boutique Residency completing soon, 
-            now is the perfect time to secure your luxury apartment in Bahria Town Karachi.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              onClick={() => setContactOpen(true)}
-              className="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              Get More Information
-            </Button>
-            <a
-              href="tel:+923203243970"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105"
-            >
-              Call +923203243970
-            </a>
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden shadow-2xl bg-black">
+              <div 
+                className="relative w-full"
+                style={{ paddingBottom: '56.25%' }} // 16:9 aspect ratio
+              >
+                <iframe 
+                  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fnarkinsbuilders%2Fvideos%2F881472746899551%2F&show_text=0&width=560" 
+                  style={{ 
+                    border: 'none', 
+                    overflow: 'hidden',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%'
+                  }} 
+                  scrolling="no" 
+                  frameBorder="0" 
+                  allowFullScreen={true} 
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                />
+              </div>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600">Watch our CEO discuss our commitment to excellence</p>
+            </div>
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
+
+  // Diversified Business Section
+const DiversifiedBusiness = () => (
+  <section className="bg-neutral-50 py-16">
+    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Beyond Real Estate</h2>
+        <p className="text-lg text-gray-600">Our commitment to excellence extends across multiple industries</p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white p-6 lg:p-4 rounded-lg">
+          <h3 className="text-base font-semibold text-gray-900 mb-2 lg:mb-1">Real Estate Development</h3>
+          <p className="text-gray-600 mb-2 text-xs lg:text-xs lg:mb-1">
+            Creating exceptional residential projects in Karachi's prime locations with specialized Bahria Town expertise.
+          </p>
+          <div className="text-xs text-gray-500 mb-3 lg:mb-2">
+            • Premium complexes • Smart technology • Luxury amenities
+          </div>
+          <div className="space-y-2 lg:space-y-1">
+            {/* First row - 2 images */}
+            <div className="grid grid-cols-2 gap-2 lg:gap-1">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="group relative overflow-hidden rounded-lg cursor-pointer"
+                onClick={() => openLightbox({ src: "/images/smart-apartments-reliability-narkins-builders.webp" })}
+              >
+                <SEOImage
+                  src="/images/smart-apartments-reliability-narkins-builders.webp"
+                  width={180}
+                  height={110}
+                  className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <MagnifyingGlassCircleIcon className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </div>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="group relative overflow-hidden rounded-lg cursor-pointer"
+                onClick={() => openLightbox({ src: "/images/smart-door-locks-narkins-apartments.webp" })}
+              >
+                <SEOImage
+                  src="/images/smart-door-locks-narkins-apartments.webp"
+                  width={180}
+                  height={110}
+                  className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <MagnifyingGlassCircleIcon className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Second row - 1 centered larger image */}
+            <div className="flex justify-center">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="group relative overflow-hidden rounded-lg cursor-pointer w-2/3 lg:w-3/4"
+                onClick={() => openLightbox({ src: "/images/smart-wifi-switches-narkins-residency.webp" })}
+              >
+                <SEOImage
+                  src="/images/smart-wifi-switches-narkins-residency.webp"
+                  width={240}
+                  height={120}
+                  className="w-full h-[120px] lg:h-[150px] object-cover rounded-lg"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <MagnifyingGlassCircleIcon className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-white p-6 lg:p-4 rounded-lg">
+          <h3 className="text-base font-semibold text-gray-900 mb-2 lg:mb-1">Textile Manufacturing</h3>
+          <p className="text-gray-600 mb-2 text-xs lg:text-xs lg:mb-1">
+            Leading textile manufacturer operating from our state-of-the-art S.I.T.E facility in Karachi.
+          </p>
+          <div className="text-xs text-gray-500 mb-3 lg:mb-2">
+            • Manufacturing • Retail outlets • Quality products
+          </div>
+          <div className="grid grid-cols-2 gap-2 lg:gap-1">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="group relative overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => openLightbox({ src: "/images/narkins-textile-industries-manufacturing-facility.webp" })}
+            >
+              <SEOImage
+                src="/images/narkins-textile-industries-manufacturing-facility.webp"
+                width={180}
+                height={110}
+                className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                <MagnifyingGlassCircleIcon className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              </div>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="group relative overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => openLightbox({ src: "/images/narkins-builders-eastern-wear-retail-outlet.webp" })}
+            >
+              <SEOImage
+                src="/images/narkins-builders-eastern-wear-retail-outlet.webp"
+                width={180}
+                height={110}
+                className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                <MagnifyingGlassCircleIcon className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
   return (
-    <main>
+    <>
       <Head>
         <title>About Narkin's Builders | 30+ Years of Excellence in Karachi Real Estate</title>
         <meta 
@@ -615,18 +615,21 @@ const AboutPage = () => {
         <link rel="canonical" href="https://narkinsbuilders.com/about" />
       </Head>
       
-      <Navigation />
-      <HeroSection />
-      <AchievementStats />
-      <CoreValues />
-      <ProjectJourney />
-      <InnovationSection />
-      <VideoShowcase />
-      <LeadershipQuote />
-      <DiversifiedBusiness />
-      <CallToAction />
-      <Lightbox />
-    </main>
+      <main>
+        <Navigation />
+        <HeroSection />
+        <AchievementStats />
+        <CoreValues />
+        <ProjectJourney />
+        <InnovationSection />
+        <VideoShowcase />
+        <LeadershipQuote />
+        <DiversifiedBusiness />
+        <Lightbox />
+      </main>
+      
+      <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
+    </>
   );
 };
 

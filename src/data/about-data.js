@@ -86,3 +86,31 @@ export const whyChooseUs = [
   "Premium location selection and market analysis",
   "Post-delivery support and maintenance services"
 ];
+
+// Add this new export at the end of your about-data.js file
+export const featuredVideos = [
+  { 
+    id: "tT7kkMM0pz0", // Replace with actual YouTube video ID
+    title: "Client Reviews & Testimonials", 
+    description: "Hear what our satisfied customers say about their experience with Narkin's Builders",
+    category: "testimonials"
+  },
+  { 
+    id: "9pJsF3BciCA", // Replace with actual YouTube video ID
+    title: "Meet Our Architects", 
+    description: "Get insights from the creative minds behind our innovative designs",
+    category: "team"
+  },
+  { 
+    id: "A3WkwMWBZ_8", // Replace with actual YouTube video ID
+    title: "Sales Head Interview", 
+    description: "Learn about our commitment to customer satisfaction and market expertise",
+    category: "team"
+  },
+  { 
+    id: "BLnpB8VTnJA", // NEW: Replace with actual YouTube video ID
+    title: "NBR Construction Update", 
+    description: "Latest progress on Narkin's Boutique Residency construction and development",
+    category: "project"
+  }
+];
