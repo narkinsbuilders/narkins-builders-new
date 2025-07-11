@@ -1,38 +1,136 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Narkin's Builders Website
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.5-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.4.5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+
+A modern responsive website for Narkin's Builders, a premium real estate development company in Karachi, Pakistan. Built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- Responsive property showcases with interactive galleries
+- Automated blog content management with MDX
+- SEO optimization with structured data
+- Server-side rendering and static generation
+- Real-time construction progress updates
+
+## Tech Stack
+
+- **Frontend**: Next.js 15.3.5, React 18.3.1, TypeScript 5.4.5
+- **Styling**: Tailwind CSS 3.4.3, Framer Motion
+- **Content**: MDX, Gray Matter, Remark
+- **UI Components**: Radix UI, Headless UI, Lucide React
+- **Development**: Bun, ESLint, PostCSS
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.0 or higher
+- Bun (recommended) or npm/yarn
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-username/narkins-builders.git
+   cd narkins-builders
+   ```
+
+2. Install dependencies
+   ```bash
+   bun install
+   ```
+
+3. Set up environment variables
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Run the development server
+   ```bash
+   bun dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000)
+
+### Build for Production
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+bun run check    # Type check and lint
+bun run build    # Build application
+bun run start    # Start production server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Available Scripts
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| Command | Description |
+|---------|-------------|
+| `bun dev` | Start development server |
+| `bun build` | Build for production |
+| `bun start` | Start production server |
+| `bun lint` | Run ESLint |
+| `bun typecheck` | Run TypeScript checking |
+| `bun check` | Run linting and type checking |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Project Structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+src/
+├── components/          # React components
+├── pages/              # Next.js pages and API routes
+├── lib/                # Utility functions
+├── hooks/              # Custom React hooks
+├── data/               # Static data and configuration
+└── styles/             # Global styles
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+content/
+└── blogs/              # MDX blog posts
 
-## Learn More
+public/
+├── images/             # Property images and media
+└── videos/             # Property showcase videos
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Create `.env.local`:
+```env
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your-ga-id
+NEXT_PUBLIC_SITE_URL=https://narkinsbuilders.com
+DATABASE_URL=your-database-url
+```
 
-## Deploy on Vercel
+### Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Image optimization for external domains
+- TypeScript strict mode enabled
+- ESLint configuration
+- Automated blog content generation
+- SEO optimization with meta tags
+- Structured data markup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/name`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to branch (`git push origin feature/name`)
+5. Open a Pull Request
+
+## License
+
+This project is proprietary and confidential. All rights reserved by Narkin's Builders.
+
+## Support
+
+For technical support:
+- **Email**: hello@otherdev.com
+- **Website**: [The Other Dev](https://otherdev.com)
+- **LinkedIn**: [The Other Dev](https://www.linkedin.com/company/theotherdev)
+
+---
+
+© 2025 Narkin's Builders. All rights reserved.
