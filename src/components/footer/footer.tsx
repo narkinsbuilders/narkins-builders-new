@@ -22,6 +22,9 @@ const Footer: FC<FooterProps> = ({ map }) => (
                   alt="Narkin's Builders Logo"
                   width={200}
                   height={80}
+                  quality={90}
+                  loading="lazy"
+                  sizes="200px"
                 />
               </a>
             </div>

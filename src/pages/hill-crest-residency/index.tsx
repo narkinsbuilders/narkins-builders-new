@@ -408,9 +408,11 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                                             height={300}
                                             className="w-full h-full object-cover"
                                             loading="lazy"
+                                            quality={80}
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
                                         <div className="absolute bottom-[4rem] left-4 flex items-center justify-center">
-                                            <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} />
+                                            <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} quality={90} sizes="50px" />
                                         </div>
                                     </a>
 

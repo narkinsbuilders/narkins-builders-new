@@ -259,6 +259,9 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                     alt="Narkin's Builders - 30 years of construction excellence in Karachi" 
                     width={120}
                     height={32}
+                    quality={90}
+                    priority
+                    sizes="120px"
                   />
                 </Link>
               </div>

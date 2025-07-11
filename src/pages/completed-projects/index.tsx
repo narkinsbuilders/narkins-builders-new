@@ -124,11 +124,14 @@ export default function NarkinsBoutiqueResidency() {
                                                 {items.map((item, index) => (
                                                     <div key={index} className="relative group">
                                                         <div className="aspect-video overflow-hidden">
-                                                            <img 
+                                                            <Image 
                                                                 src={item} 
                                                                 alt={`${categories[idx]} project view`} 
                                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                                                                loading={index === 0 ? "eager" : "lazy"} 
+                                                                priority={index === 0}
+                                                                width={800}
+                                                                height={450}
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                             />
                                                         </div>
                                                         {/* Image Overlay */}

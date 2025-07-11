@@ -90,6 +90,8 @@ export const Lightbox: React.FC = () => {
                     onError={handleImageError}
                     width={800}
                     height={600}
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                     className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
                         isLoading ? "opacity-0" : "opacity-100"
                     }`}

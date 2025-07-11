@@ -282,6 +282,8 @@ export default function Index({ posts }: { posts: any[] }) {
                 height={600}
                 className="rounded-lg"
                 priority
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
               />
               {/* Masonry Grid Gallery */}
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -456,7 +458,9 @@ export function CompletedProjects() {
               width={600}
               height={400}
               className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
-              priority
+              priority={index < 2}
+              quality={85}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
 
             {/* Overlay */}
@@ -548,7 +552,9 @@ export function TrustedPartners() {
                 width={160}
                 height={100}
                 className="w-full h-auto rounded-lg object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                quality={85}
                 loading="lazy"
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 160px"
                 title={`${partner.company} - Trusted Partner of Narkin's Builders`}
               />
             </motion.div>
