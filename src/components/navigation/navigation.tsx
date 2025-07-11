@@ -2,6 +2,7 @@ import React, { Fragment, useState, FC, useEffect } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 import { useGlobalLeadFormState } from "@/zustand";
 
 const navigation = {
@@ -171,10 +172,12 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img
+                                <Image
                                   src={item.imageSrc}
                                   alt={item.imageAlt}
                                   className="object-cover object-center"
+                                  width={200}
+                                  height={200}
                                 />
                               </div>
                               <Link href={item.href} className="mt-6 text-black block font-medium ">
@@ -250,10 +253,12 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
                   <span className="sr-only">Narkins Builders</span>
-                  <img 
+                  <Image 
                     className="h-8 w-auto" 
                     src="/images/narkins-builders-logo-30-years-experience.webp" 
                     alt="Narkin's Builders - 30 years of construction excellence in Karachi" 
+                    width={120}
+                    height={32}
                   />
                 </Link>
               </div>
@@ -297,10 +302,12 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                                         {category.featured.map((item) => (
                                           <div key={item.name} className="group relative text-sm">
                                             <div className="aspect-[3/2] overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                              <img
+                                              <Image
                                                 src={item.imageSrc}
                                                 alt={item.imageAlt}
                                                 className="w-full h-full object-cover object-center"
+                                                width={200}
+                                                height={133}
                                               />
                                             </div>
                                             <Link href={item.href} className="mt-2 block font-medium text-gray-900 text-sm">

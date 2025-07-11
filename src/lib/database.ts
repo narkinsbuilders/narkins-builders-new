@@ -14,11 +14,10 @@ const dbConfig = {
   timezone: '+00:00',
   acquireTimeout: 60000,
   timeout: 60000,
-  reconnect: true,
   // SSL configuration for production
   ssl: process.env.NODE_ENV === 'production' ? {
     rejectUnauthorized: false
-  } : false
+  } : undefined
 };
 
 // Connection pool for better performance
@@ -30,10 +29,7 @@ function createPool() {
       ...dbConfig,
       waitForConnections: true,
       connectionLimit: 10,
-      queueLimit: 0,
-      acquireTimeout: 60000,
-      timeout: 60000,
-      reconnect: true
+      queueLimit: 0
     });
   }
   return pool;

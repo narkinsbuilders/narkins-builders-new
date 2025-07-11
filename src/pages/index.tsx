@@ -42,26 +42,26 @@ interface Post {
 const testimonials = [
   {
     name: "Saad Arshad",
-    stars: [true, true, true, true, "half"],
+    stars: [true, true, true, true, "half"] as const,
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
     avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
-    stars: [true, true, true, true, true],
+    stars: [true, true, true, true, true] as const,
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
     avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
-    stars: [true, true, true, true, false],
+    stars: [true, true, true, true, "half"] as const,
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
     avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
   },
-];
+] as const;
 
 export default function Index({ posts }: { posts: any[] }) {
   const videoRef = useRef<HTMLVideoElement>(null);

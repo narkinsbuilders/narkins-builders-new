@@ -62,7 +62,7 @@ const SEOImage: FC<SEOImageProps> = ({
     ...(fill ? { fill: true } : { width, height })
   };
 
-  return <Image {...imageProps} />;
+  return <Image {...imageProps} alt={seoAltText} />;
 };
 
 export default SEOImage;

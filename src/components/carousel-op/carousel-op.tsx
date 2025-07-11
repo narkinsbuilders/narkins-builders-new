@@ -10,6 +10,16 @@ interface CarouselOpProps {
     hideIndicators?: boolean;
     height?: string;
     borderRadius?: boolean;
+    swipe?: boolean;
+    slideShow?: boolean;
+    loop?: boolean;
+    rightToLeft?: boolean;
+    keyboard?: boolean;
+    displayMode?: string;
+    interval?: number;
+    id?: string;
+    className?: string;
+    onChange?: (index: number) => void;
 }
 
 const CarouselOp: React.FC<CarouselOpProps> = ({

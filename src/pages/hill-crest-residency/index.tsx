@@ -15,7 +15,20 @@ import Carousel from "@/components/carousel-op/carousel-op";
 import { Card, CardHeader, CardContent } from "@/components/ui/card"; // shadcn/ui Card
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import { Post } from "../blog/[...blog]";
+import type { BlogPost } from "@/lib/blog";
+
+interface PostWithCategory extends BlogPost {
+  id: number;
+  link: string;
+  datetime: string;
+  description: string;
+  category: string;
+  author: {
+    name: string;
+    role: string;
+    imageUrl: string;
+  };
+}
 import { useLightboxStore } from "@/zustand";
 import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import Testimonials from "@/components/testimonials/testimonials";
@@ -86,21 +99,21 @@ const youtubeVideos = [
 const testimonials = [
   {
     name: "Saad Arshad",
-    stars: [true, true, true, true, "half"],
+    stars: [true, true, true, true, "half"] as const,
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
     avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
-    stars: [true, true, true, true, true],
+    stars: [true, true, true, true, true] as const,
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
     avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
-    stars: [true, true, true, true, false],
+    stars: [true, true, true, true, "half"] as const,
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
     avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
@@ -175,7 +188,7 @@ const Amenities = () => {
     )
 };
 
-export default function HillCrestResidency({ posts }: { posts: Post[] }) {
+export default function HillCrestResidency({ posts }: { posts: PostWithCategory[] }) {
     const openLightbox = useLightboxStore(state => state.openLightbox);
 
     return (

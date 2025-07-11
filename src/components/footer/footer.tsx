@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 interface FooterProps {
@@ -15,10 +16,12 @@ const Footer: FC<FooterProps> = ({ map }) => (
           <div className="flex flex-col md:flex-row gap-4 md:gap-8">
             <div className="mb-6 md:mb-0">
               <a href="https://narkinsbuilders.com/" className="flex items-center">
-                <img
+                <Image
                   src="/images/narkins-builders-logo-30-years-experience.webp"
                   className="h-[5rem] me-3"
                   alt="Narkin's Builders Logo"
+                  width={200}
+                  height={80}
                 />
               </a>
             </div>
@@ -88,14 +91,14 @@ const Footer: FC<FooterProps> = ({ map }) => (
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Legal</h2>
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
-                  <a href="/privacy-policy" className="hover:underline">
+                  <Link href="/privacy-policy" className="hover:underline">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/terms" className="hover:underline">
+                  <Link href="/terms" className="hover:underline">
                     Terms & Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

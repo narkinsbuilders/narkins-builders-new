@@ -1,5 +1,6 @@
 // src/components/lightbox/lightbox.tsx
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useLightboxStore } from "@/zustand";
@@ -81,12 +82,14 @@ export const Lightbox: React.FC = () => {
                 )}
 
                 {/* Main Image with SEO Alt Text */}
-                <img
+                <Image
                     src={image.src}
                     alt={lightboxAltText}
                     onClick={(e) => e.stopPropagation()}
                     onLoad={handleImageLoad}
                     onError={handleImageError}
+                    width={800}
+                    height={600}
                     className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
                         isLoading ? "opacity-0" : "opacity-100"
                     }`}

@@ -7,6 +7,7 @@ export interface BlogPost {
   image: string
   content: string
   readTime: string
+  lastModified?: string
 }
 
 // This will be populated by getStaticProps

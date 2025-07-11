@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -278,10 +279,12 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
       {!onlyForm && (
         <>
           <div className="image-column">
-            <img
+            <Image
               src={image ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKae8kU5_6tMlx_wVGwVbbPTMbhekm6x__Sg&s"}
               alt="Residency"
               className="w-full rounded-lg h-auto mb-4"
+              width={400}
+              height={300}
             />
           </div>
           <div className="text-center">

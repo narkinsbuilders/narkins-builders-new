@@ -6,12 +6,12 @@ import React, { FC } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 
 interface TestimonialsProps {
-  testimonials: Array<{
-    name: string,
-    stars: Array<true | "half">,
-    testimonial: string,
-    avatar: string,
-  }>;
+  testimonials: readonly {
+    readonly name: string,
+    readonly stars: readonly (true | "half")[],
+    readonly testimonial: string,
+    readonly avatar: string,
+  }[];
 }
 
 const Testimonials: FC<TestimonialsProps> = ({ testimonials }: TestimonialsProps) => (

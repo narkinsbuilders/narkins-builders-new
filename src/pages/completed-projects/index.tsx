@@ -2,9 +2,9 @@ import Navigation from "@/components/navigation/navigation";
 import { Tab } from "@headlessui/react";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Footer from "@/components/footer/footer";
 import { useLightboxStore } from "@/zustand";
-import Link from "next/link";
 import Head from "next/head";
 
 function classNames(...classes: string[]) {
@@ -124,11 +124,13 @@ export default function NarkinsBoutiqueResidency() {
                                                 {items.map((item, index) => (
                                                     <div key={index} className="relative group">
                                                         <div className="aspect-video overflow-hidden">
-                                                            <img 
+                                                            <Image 
                                                                 src={item} 
                                                                 alt={`${categories[idx]} project view`} 
                                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                                                                loading={index === 0 ? "eager" : "lazy"} 
+                                                                priority={index === 0} 
+                                                                width={800}
+                                                                height={450}
                                                             />
                                                         </div>
                                                         {/* Image Overlay */}

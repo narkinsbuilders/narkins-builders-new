@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build-export": "next build && next export",
-    "build": "next build",
+    "build": "bunx tsc --noEmit && next lint && next build",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
+    "typecheck": "bunx tsc --noEmit",
+    "check": "bunx tsc --noEmit && next lint",
     "blog:automation": "bun scripts/blog-automation.ts",
     "blog:generate-reports": "bun scripts/generate-reports.ts",
     "blog:verify-setup": "bun scripts/verify-setup.ts"

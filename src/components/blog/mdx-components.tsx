@@ -1,5 +1,6 @@
 // src/components/blog/mdx-components.tsx
 import React from 'react'
+import Image from 'next/image'
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -68,7 +69,7 @@ const customComponents = {
     image: string
   }) => (
     <div className="bg-white rounded-lg shadow-md overflow-hidden my-8 border border-gray-200">
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <Image src={image} alt={title} className="w-full h-48 object-cover" width={400} height={200} />
       <div className="p-6">
         <h3 className="font-semibold text-xl mb-3 text-gray-900">{title}</h3>
         <p className="text-3xl font-bold text-blue-600 mb-3">{price}</p>
