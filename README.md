@@ -13,6 +13,7 @@ A modern responsive website for Narkin's Builders, a premium real estate develop
 - SEO optimization with structured data
 - Server-side rendering and static generation
 - Real-time construction progress updates
+- Google Sheets API integration for reliable form submissions
 
 ## Tech Stack
 
@@ -20,6 +21,7 @@ A modern responsive website for Narkin's Builders, a premium real estate develop
 - **Styling**: Tailwind CSS 3.4.3, Framer Motion
 - **Content**: MDX, Gray Matter, Remark
 - **UI Components**: Radix UI, Headless UI, Lucide React
+- **APIs**: Google Sheets API (googleapis)
 - **Development**: Bun, ESLint, PostCSS
 
 ## Getting Started
@@ -111,6 +113,8 @@ DATABASE_URL=your-database-url
 - Automated blog content generation
 - SEO optimization with meta tags
 - Structured data markup
+- Google Sheets API integration with service account authentication
+- IndexedDB backup for form data recovery
 
 ## Contributing
 
