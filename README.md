@@ -123,6 +123,7 @@ DATABASE_URL=your-database-url
 ## License
 
 This project is proprietary and confidential. All rights reserved by Narkin's Builders.
+Website development by The Other Dev.
 
 ## Support
 
@@ -133,4 +134,4 @@ For technical support:
 
 ---
 
-© 2025 Narkin's Builders. All rights reserved.
+© 2025 Narkin's Builders. All rights reserved. Website by The Other Dev.
