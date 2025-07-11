@@ -1,22 +1,13 @@
 import Navigation from "@/components/navigation/navigation";
 import { Tab } from "@headlessui/react";
-import { MagnifyingGlassCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
-import { useState, Fragment } from "react";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Footer from "@/components/footer/footer";
 import { useLightboxStore } from "@/zustand";
 import Link from "next/link";
 import Head from "next/head";
-const people = [
-    'Durward Reynolds',
-    'Kenton Towne',
-    'Therese Wunsch',
-    'Benedict Kessler',
-    'Katelyn Rohan',
-]
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
@@ -86,36 +77,7 @@ export default function NarkinsBoutiqueResidency() {
             </Head>
             <Navigation />
             <Lightbox />
-            <div className="bg-white pt-[10vh]">
-                <div className="relative isolate h-[40vh] overflow-hidden py-20 pt-10 sm:py-[28px]">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div className="mx-auto lg:mx-0">
-                            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-4xl">{`Completed Projects`}</h2>
-                            <p className="mt-6 text-lg leading-8 text-gray-800">
-                                Our journey began three decades ago, and since then, we have embarked on numerous remarkable ventures that stand as a testament to our dedication and expertise. Our recent projects have left an indelible mark on Karachi’s skyline.
-                            </p>
-                        </div>
-                        <div className="mx-auto mt-10 max-w-2xl hidden lg:mx-0 lg:max-w-none">
-                            <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-                                {[{ name: 'Project Info', href: "#our-offerings" }].map((link) => (
-                                    <Link key={link.name} className="text-black" href={link.href}>
-                                        {link.name} <span aria-hidden="true">&rarr;</span>
-                                    </Link>
-                                ))}
-                            </div>
-                            <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-
-                                {/* {stats.map((stat) => (
-                                <div key={stat.name} className="flex flex-col-reverse">
-                                    <dt className="text-base leading-7 text-gray-300">{stat.name}</dt>
-                                    <dd className="text-2xl font-bold leading-9 tracking-tight text-white">{stat.value}</dd>
-                                </div>
-                            ))} */}
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-                <section className="bg-neutral-50 py-20">
+            <section className="bg-neutral-50 py-20">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         {/* Section Header */}
                         <div className="text-center mb-16">
@@ -236,7 +198,6 @@ export default function NarkinsBoutiqueResidency() {
                         </Tab.Group>
                     </div>
                 </section>
-            </div>
             <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
         </main>
     )
