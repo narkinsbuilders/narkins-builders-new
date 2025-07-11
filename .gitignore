@@ -36,6 +36,9 @@ next-env.d.ts
 *.swo
 *~
 
+# AI Assistant files
+CLAUDE.md
+
 # OS generated files
 .DS_Store
 .DS_Store?
