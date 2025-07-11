@@ -97,7 +97,7 @@ const LeadForm: FC<LeadFormProps> = () => (
                   name="residency"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  <option>Narkins Boutique Residency</option>
+                  <option>Narkin's Boutique Residency</option>
                   <option>Hill Crest Residency</option>
                 </select>
               </div>

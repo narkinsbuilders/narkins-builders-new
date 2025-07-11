@@ -11,8 +11,8 @@ import { event as trackEvent } from "@/lib/gtag";
 const residencyOptions = [
   {
     id: "nbr",
-    value: "Narkins Boutique Residency",
-    label: "Narkins Boutique Residency (NBR)",
+    value: "Narkin's Boutique Residency",
+    label: "Narkin's Boutique Residency (NBR)",
     shortLabel: "NBR",
     description: "Luxury apartments with modern amenities",
     features: ["2, 3 & 4 Bedroom Apartments", "Premium Location", "Modern Architecture"],
@@ -36,7 +36,7 @@ interface AdsCampaignProps {
   image?: string;
   onlyForm: boolean;
   features: Array<string>;
-  residency: "Narkins Boutique Residency" | "Hill Crest Residency" | "General";
+  residency: "Narkin's Boutique Residency" | "Hill Crest Residency" | "General";
 }
 
 const AdsCampaign: React.FC<AdsCampaignProps> = ({ 

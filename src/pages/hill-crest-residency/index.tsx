@@ -459,6 +459,7 @@ export const getStaticProps: GetStaticProps = async () => {
       description: post.excerpt,
       excerpt: post.excerpt,
       category: "Real Estate",
+      image: post.image,
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",

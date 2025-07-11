@@ -84,11 +84,11 @@ export default function Index({ posts }: { posts: any[] }) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta 
     name="description" 
-    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Boutique Residency available." 
+    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Narkin's Boutique Residency available." 
   />
   <meta 
     name="keywords" 
-    content="Narkin's Builders, Bahria Town Karachi apartments, luxury apartments Karachi, Hill Crest Residency, Boutique Residency, 2 bedroom apartments, 3 bedroom apartments" 
+    content="Narkin's Builders, Bahria Town Karachi apartments, luxury apartments Karachi, Hill Crest Residency, Narkin's Boutique Residency, 2 bedroom apartments, 3 bedroom apartments" 
   />
   <meta name="author" content="Narkin's Builders" />
   <meta name="robots" content="index, follow" />
@@ -99,7 +99,7 @@ export default function Index({ posts }: { posts: any[] }) {
   <meta property="og:title" content="Narkin's Builders | Premium Apartments in Bahria Town Karachi" />
   <meta 
     property="og:description" 
-    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Boutique Residency available." 
+    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Narkin's Boutique Residency available." 
   />
   <meta property="og:url" content="https://narkinsbuilders.com/" />
   <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
@@ -339,7 +339,7 @@ export default function Index({ posts }: { posts: any[] }) {
               <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
             </svg>
             <blockquote>
-              <p className="text-2xl italic font-medium text-gray-900">
+              <p className="text-lg italic font-medium text-gray-900">
                 "At Narkin's Builders, we prioritize commitment, transparency, and innovation. For over 30 years, these values have fueled our success, driving us to deliver cutting-edge construction projects and luxury living spaces that exceed expectations. Our transparent approach ensures our customers are informed and involved, while our innovative solutions push the boundaries of what's possible. Thank you for choosing Narkin's Builders as your trusted partner in building your dream home."
               </p>
             </blockquote>
@@ -380,6 +380,7 @@ export const getStaticProps: GetStaticProps = async () => {
       description: post.excerpt,
       excerpt: post.excerpt,
       category: "Real Estate",
+      image: post.image,
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",

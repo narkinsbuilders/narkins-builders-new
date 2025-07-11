@@ -459,7 +459,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                 Gallery
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore the stunning visuals of Narkins Boutique Residency.
+                Explore the stunning visuals of Narkin's Boutique Residency.
               </p>
             </div>
 
@@ -587,6 +587,7 @@ export const getStaticProps: GetStaticProps = async () => {
       description: post.excerpt,
       excerpt: post.excerpt,
       category: "Real Estate",
+      image: post.image,
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",

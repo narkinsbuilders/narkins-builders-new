@@ -18,7 +18,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
               <a href="https://narkinsbuilders.com/" className="flex items-center">
                 <Image
                   src="/images/narkins-builders-logo-30-years-experience.webp"
-                  className="h-[5rem] me-3"
+                  className="h-[5rem] w-auto me-3"
                   alt="Narkin's Builders Logo"
                   width={200}
                   height={80}
