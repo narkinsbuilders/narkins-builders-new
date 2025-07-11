@@ -118,18 +118,8 @@ const Footer: FC<FooterProps> = ({ map }) => (
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
 
         {/* Footer Bottom */}
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center">
-            © 2025{" "}
-            <Link href="/" className="hover:underline">
-              Narkin's Builders™
-            </Link>{" "}
-            — All Rights Reserved · With ❤ from{" "}
-            <a href="https://otherdev.com/" className="underline">
-              The Other Dev
-            </a>
-          </span>
-          <div className="flex mt-4 sm:justify-center sm:mt-0 space-x-4">
+        <div className="relative flex flex-col sm:flex-row sm:items-center">
+          <div className="flex justify-center sm:justify-start mt-4 sm:mt-0 space-x-4 sm:relative sm:z-10">
             {/* Facebook */}
             <a
               href="https://www.facebook.com/narkinsbuilders"
@@ -174,6 +164,16 @@ const Footer: FC<FooterProps> = ({ map }) => (
               <span className="sr-only">LinkedIn</span>
             </a>
           </div>
+          <span className="text-sm text-gray-500 text-center mt-4 sm:mt-0 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:w-full">
+            © 2025{" "}
+            <Link href="/" className="hover:underline">
+              Narkin's Builders<sup className="text-xs">™</sup>
+            </Link>{" "}
+            with ❤ from{" "}
+            <a href="https://otherdev.com/" className="underline">
+              The Other Dev
+            </a>
+          </span>
         </div>
       </div>
     </footer>
