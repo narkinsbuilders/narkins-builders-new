@@ -118,7 +118,7 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
     });
   };
 
-  // GOOGLE-ONLY BULLETPROOF SUBMISSION
+  // GOOGLE SHEETS API SUBMISSION
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
@@ -145,61 +145,31 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
 
     let successCount = 0;
 
-    // GOOGLE METHOD 1: Primary Google Form
+    // GOOGLE SHEETS API METHOD
     try {
-      const PRIMARY_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSehBhNgCAZ2aaPM74VM54v-UpMl6tAnpin3FWs3rO_NlauHMA/formResponse";
-      
-      const formData1 = new FormData();
-      formData1.append("entry.1103450427", name);           // Full Name
-      formData1.append("entry.1724847894", email);          // Email Address
-      formData1.append("entry.2110163926", number);         // Phone
-      formData1.append("entry.683945342", selectedResidency.value); // Property Interest
-      formData1.append("entry.734047053", new Date().toISOString()); // Submission Time
-      
-      await fetch(PRIMARY_GOOGLE_FORM_URL, {
-        method: "POST",
-        body: formData1,
-        mode: "no-cors",
+      const response = await fetch('/api/sheets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
       });
-      
-      successCount++;
-      setBackupStatus(prev => ({ ...prev, primaryForm: true }));
-      console.log('✅ Primary Google Form submitted successfully');
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        successCount++;
+        setBackupStatus(prev => ({ ...prev, primaryForm: true }));
+        console.log('✅ Data submitted to Google Sheets successfully');
+      } else {
+        throw new Error(result.message || 'Failed to submit to Google Sheets');
+      }
       
     } catch (error) {
-      console.error('❌ Primary Google Forms failed:', error);
+      console.error('❌ Google Sheets API failed:', error);
     }
 
-    // Short delay to prevent rate limiting
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    // GOOGLE METHOD 2: Backup Google Form
-    try {
-      const BACKUP_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSebu0H3_nheuH_sTzLWWCuphGQhxAzjzSi98H-tzghMADcvbA/formResponse";
-      
-      const formData2 = new FormData();
-      formData2.append("entry.1103450427", name);           // Full Name
-      formData2.append("entry.1724847894", email);          // Email Address
-      formData2.append("entry.2110163926", number);         // Phone
-      formData2.append("entry.683945342", selectedResidency.value); // Property Interest
-      formData2.append("entry.734047053", new Date().toISOString()); // Submission Time
-      formData2.append("entry.99215679", "BACKUP_SUBMISSION"); // Backup flag
-      
-      await fetch(BACKUP_GOOGLE_FORM_URL, {
-        method: "POST",
-        body: formData2,
-        mode: "no-cors",
-      });
-      
-      successCount++;
-      setBackupStatus(prev => ({ ...prev, backupForm: true }));
-      console.log('✅ Backup Google Form submitted successfully');
-      
-    } catch (error) {
-      console.error('❌ Backup Google Forms failed:', error);
-    }
-
-    // GOOGLE METHOD 3: Store in IndexedDB for manual recovery
+    // BACKUP METHOD: Store in IndexedDB for manual recovery
     try {
       const request = indexedDB.open('GoogleLeadsDB', 1);
       request.onupgradeneeded = () => {
@@ -217,8 +187,7 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
         store.add({ 
           ...leadData, 
           synced: successCount > 0,
-          primaryFormSuccess: backupStatus.primaryForm,
-          backupFormSuccess: backupStatus.backupForm,
+          sheetsSuccess: successCount > 0,
           submissionCount: successCount
         });
         console.log('✅ Data stored in IndexedDB for recovery');
@@ -244,11 +213,11 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
         value: 1,
       });
 
-      // Track backup success rate
+      // Track sheets success
       trackEvent({
-        action: 'backup_success_rate',
+        action: 'sheets_success',
         category: 'Lead Generation',
-        label: `${successCount}_of_2_google_forms`,
+        label: 'google_sheets_api',
         value: successCount,
       });
 
@@ -261,12 +230,12 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
     } else {
       setError(true);
       setResponseMessage(
-        "There was an issue connecting to Google Forms. " +
+        "There was an issue submitting your inquiry. " +
         "Your data has been saved securely in your browser. " +
         "Please try again in a moment or contact us directly at: " +
         "info@narkinsbuilders.com or +92-XXX-XXXXXXX"
       );
-      trackFormError('quote', 'all_google_methods_failed');
+      trackFormError('quote', 'google_sheets_failed');
     }
 
     setLoading(false);

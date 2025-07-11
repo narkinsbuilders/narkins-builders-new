@@ -7,7 +7,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-  // Security headers
+  // Security headers (re-enabled after confirming not the issue)
   async headers() {
     return [
       {
@@ -15,7 +15,7 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
