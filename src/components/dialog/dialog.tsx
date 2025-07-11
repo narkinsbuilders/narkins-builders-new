@@ -1,8 +1,9 @@
 // src/components/dialog/dialog.tsx
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useMemo } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDialogBehavior } from "@/hooks/useDialogBehavior";
+import DOMPurify from "dompurify";
 
 interface DialogProps {
   open: boolean;
@@ -76,7 +77,7 @@ const Dialog: FC<DialogProps> = ({
             {typeof body === 'string' ? (
               <div 
                 className="text-gray-700"
-                dangerouslySetInnerHTML={{ __html: body }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
               />
             ) : (
               body

@@ -356,9 +356,6 @@ const AboutPage = () => {
                     {/* Project Info */}
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="bg-primary text-white px-3 py-1 rounded-lg font-semibold text-sm">
-                          {project.year}
-                        </div>
                         <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded">
                           {project.status}
                         </span>

@@ -40,6 +40,26 @@ export default async function handler(
     });
   }
 
+  // Security: Only allow in development or with proper authentication
+  if (process.env.NODE_ENV === 'production') {
+    const authHeader = req.headers.authorization;
+    const validToken = process.env.DB_TEST_TOKEN;
+    
+    if (!authHeader || !validToken || authHeader !== `Bearer ${validToken}`) {
+      return res.status(401).json({
+        success: false,
+        database: 'Unauthorized',
+        timestamp: new Date().toISOString(),
+        tests: {
+          connection: false,
+          tableCount: 0,
+          sampleQuery: false,
+          environment: process.env.NODE_ENV || 'unknown'
+        }
+      });
+    }
+  }
+
   try {
     console.log('🔍 Testing production database connection...');
     
