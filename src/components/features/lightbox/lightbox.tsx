@@ -1,7 +1,7 @@
 // src/components/lightbox/lightbox.tsx
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/ui/button";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useLightboxStore } from "@/zustand";
 import { getImageAltText } from "@/data/image-alt-texts";

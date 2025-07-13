@@ -1,10 +1,19 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PlayIcon } from '@heroicons/react/24/solid';
 import { featuredVideos } from '@/data/about-data';
 
-// Lazy loading video component - loads on page load
-const LazyVideoEmbed = ({ video, index }) => {
+interface VideoEmbedProps {
+  video: {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+  };
+  index: number;
+}
+
+const LazyVideoEmbed: React.FC<VideoEmbedProps> = ({ video, index }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const ref = useRef(null);
@@ -84,8 +93,9 @@ const LazyVideoEmbed = ({ video, index }) => {
   );
 };
 
-// Main VideoShowcase component
-const VideoShowcase = () => {
+interface VideoShowcaseProps {}
+
+const VideoShowcase: React.FC<VideoShowcaseProps> = () => {
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

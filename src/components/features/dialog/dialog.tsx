@@ -1,7 +1,7 @@
 // src/components/dialog/dialog.tsx
 import React, { FC, useRef, useMemo } from "react";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/ui/button";
 import { useDialogBehavior } from "@/hooks/useDialogBehavior";
 import DOMPurify from "dompurify";
 

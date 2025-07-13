@@ -1,4 +1,4 @@
-import VideoPlayerControls from "@/components/video-player/video-player-controls";
+import VideoPlayerControls from "@/components/features/video-player/video-player-controls";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 export default function VideoPlayer({ src, poster }: { src: string, poster?: string }) {

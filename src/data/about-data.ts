@@ -1,12 +1,43 @@
-// data/about-data.js
-export const achievements = [
+// data/about-data.ts
+interface Achievement {
+  number: string;
+  label: string;
+}
+
+interface CompanyValue {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Project {
+  year: string;
+  title: string;
+  description: string;
+  status: string;
+}
+
+interface YoutubeVideo {
+  id: string;
+  title: string;
+  project: string;
+}
+
+interface FeaturedVideo {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+}
+
+export const achievements: Achievement[] = [
   { number: "30+", label: "Years of Excellence" },
   { number: "5", label: "Projects Delivered" },
   { number: "500+", label: "Happy Families" },
   { number: "100%", label: "On-Time Delivery" }
 ];
 
-export const values = [
+export const values: CompanyValue[] = [
   {
     title: "Reliability",
     description: "30+ years of on-time project delivery in Karachi's most sought-after locations",
@@ -24,7 +55,7 @@ export const values = [
   }
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     year: "2025",
     title: "Narkin's Boutique Residency",
@@ -57,28 +88,28 @@ export const projects = [
   }
 ];
 
-export const hcrYoutubeVideos = [
+export const hcrYoutubeVideos: YoutubeVideo[] = [
   { id: "TSiLOTW2s4g", title: "Hill Crest Residency Tour", project: "HCR" },
   { id: "5zv639iO31w", title: "Luxury Living at Hill Crest", project: "HCR" },
   { id: "D5YaV4CdaxE", title: "HCR Customer Review", project: "HCR" },
   { id: "iNbSrOL8HD4", title: "Hill Crest Residency Walkthrough", project: "HCR" }
 ];
 
-export const nbrYoutubeVideos = [
+export const nbrYoutubeVideos: YoutubeVideo[] = [
   { id: "FmEHTzdjXEc", title: "Narkin's Boutique Residency Tour", project: "NBR" },
   { id: "uzYVdqFHovs", title: "NBR Modern Amenities", project: "NBR" },
   { id: "n8PT4z9MdRA", title: "NBR Customer Testimonials", project: "NBR" },
   { id: "DClpF8-xaS8", title: "NBR Dream Home Experience", project: "NBR" }
 ];
 
-export const innovationFeatures = [
+export const innovationFeatures: string[] = [
   "Smart door locks and automated security systems",
   "Energy-efficient smart switches and lighting", 
   "Advanced building management systems",
   "Premium amenities and recreational facilities"
 ];
 
-export const whyChooseUs = [
+export const whyChooseUs: string[] = [
   "30+ years of proven track record in Karachi",
   "Specialized expertise in Bahria Town developments", 
   "100% on-time project delivery commitment",
@@ -87,8 +118,8 @@ export const whyChooseUs = [
   "Post-delivery support and maintenance services"
 ];
 
-// Add this new export at the end of your about-data.js file
-export const featuredVideos = [
+// Featured videos for the about page
+export const featuredVideos: FeaturedVideo[] = [
   { 
     id: "tT7kkMM0pz0", // Replace with actual YouTube video ID
     title: "Client Reviews & Testimonials", 

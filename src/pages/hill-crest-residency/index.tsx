@@ -2,18 +2,18 @@ import { GetServerSideProps, GetStaticProps } from "next";
 import { useState } from "react";
 
 import Image from "next/image";
-import BlogsSection from "@/components/blogs-section/blogs-section";
+import BlogsSection from "@/components/features/blogs-section/blogs-section";
 
-import Navigation from "@/components/navigation/navigation";
-import VideoPlayer from "@/components/video-player/video-player";
-import Footer from "@/components/footer/footer";
-import { Lightbox } from "@/components/lightbox/lightbox";
+import Navigation from "@/components/layout/navigation/navigation";
+import VideoPlayer from "@/components/features/video-player/video-player";
+import Footer from "@/components/layout/footer/footer";
+import { Lightbox } from "@/components/features/lightbox/lightbox";
 import Link from "next/link";
-import Map from "@/components/map/map";
+import Map from "@/components/features/map/map";
 import Head from "next/head";
-import Carousel from "@/components/carousel-op/carousel-op";
-import { Card, CardHeader, CardContent } from "@/components/ui/card"; // shadcn/ui Card
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import Carousel from "@/components/features/carousel-op/carousel-op";
+import { Card, CardHeader, CardContent } from "@/components/common/ui/card"; // shadcn/ui Card
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/common/ui/tabs";
 import { motion } from "framer-motion";
 import type { BlogPost } from "@/lib/blog";
 
@@ -31,10 +31,10 @@ interface PostWithCategory extends BlogPost {
 }
 import { useLightboxStore } from "@/zustand";
 import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import Testimonials from "@/components/testimonials/testimonials";
+import Testimonials from "@/components/features/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
-import SEOImage from "@/components/seo-image/seo-image";
-import { HillCrestResidencySchema } from '@/components/schema/HillCrestResidencySchema';
+import SEOImage from "@/components/common/seo-image/seo-image";
+import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestResidencySchema';
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[

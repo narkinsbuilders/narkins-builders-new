@@ -1,9 +1,9 @@
 // Replace your entire src/components/testimonials/testimonials.tsx with this:
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/common/ui/avatar';
 import { motion } from 'framer-motion';
 import React, { FC } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/common/ui/card';
 
 interface TestimonialsProps {
   testimonials: readonly {

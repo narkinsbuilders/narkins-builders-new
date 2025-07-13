@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/common/ui/button";
+import { Input } from "@/components/common/ui/input";
+import { Label } from "@/components/common/ui/label";
 import { ChevronDown, Building2, Building, MapPin } from "lucide-react";
 import { useFormAnalytics } from "@/hooks/useAnalytics";
 import { event as trackEvent } from "@/lib/gtag";

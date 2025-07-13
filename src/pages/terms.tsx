@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Navigation from '@/components/navigation/navigation';
-import Footer from '@/components/footer/footer';
+import Navigation from '@/components/layout/navigation/navigation';
+import Footer from '@/components/layout/footer/footer';
 
 const Terms = () => {
   return (

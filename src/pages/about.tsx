@@ -1,14 +1,14 @@
 import Head from 'next/head';
-import Navigation from '@/components/navigation/navigation';
+import Navigation from '@/components/layout/navigation/navigation';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/common/ui/button';
 import { useState } from 'react';
-import Footer from '@/components/footer/footer';
+import Footer from '@/components/layout/footer/footer';
 import Image from 'next/image';
-import VideoShowcase from '@/components/video-showcase/video-showcase';
+import VideoShowcase from '@/components/features/video-showcase/video-showcase';
 import { useLightboxStore } from '@/zustand';
 import { PlayIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
-import SEOImage from '@/components/seo-image/seo-image';
+import SEOImage from '@/components/common/seo-image/seo-image';
 import dynamic from 'next/dynamic';
 import { 
   achievements, 
@@ -19,7 +19,7 @@ import {
   whyChooseUs 
 } from '@/data/about-data';
 
-const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
+const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
 
 const AboutPage = () => {
   const [contactOpen, setContactOpen] = useState(false);

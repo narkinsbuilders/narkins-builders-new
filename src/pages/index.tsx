@@ -1,25 +1,25 @@
 import { useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Navigation from '@/components/navigation/navigation';
-import Footer from '@/components/footer/footer';
-import Testimonials from '@/components/testimonials/testimonials';
-import BlogsSection from '@/components/blogs-section/blogs-section';
+import Navigation from '@/components/layout/navigation/navigation';
+import Footer from '@/components/layout/footer/footer';
+import Testimonials from '@/components/features/testimonials/testimonials';
+import BlogsSection from '@/components/features/blogs-section/blogs-section';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
 import { getAllPostsServer } from '../lib/blog-server';
 import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
 import { GetStaticProps } from 'next'
-import SEOImage from "@/components/seo-image/seo-image";
-import { Button } from '@/components/ui/button'; // shadcn/ui button
+import SEOImage from "@/components/common/seo-image/seo-image";
+import { Button } from '@/components/common/ui/button'; // shadcn/ui button
 import { motion } from 'framer-motion'; // For animations
-import { OrganizationSchema } from '@/components/schema/OrganizationSchema';
-import { LocalBusinessSchema } from '@/components/schema/LocalBusinessSchema';
-import { ReviewSchema } from '@/components/schema/ReviewSchema';
+import { OrganizationSchema } from '@/components/common/schema/OrganizationSchema';
+import { LocalBusinessSchema } from '@/components/common/schema/LocalBusinessSchema';
+import { ReviewSchema } from '@/components/common/schema/ReviewSchema';
 
 
-const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
-const Carousel = dynamic(() => import('@/components/carousel-op/carousel-op'), {
+const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
+const Carousel = dynamic(() => import('@/components/features/carousel-op/carousel-op'), {
   ssr: false
 });
 

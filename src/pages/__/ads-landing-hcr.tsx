@@ -1,6 +1,6 @@
-import Navigation from "@/components/navigation/navigation";
-import AdsCampaign from "@/components/ads-campaign/ads-campaign";
-import Footer from "@/components/footer/footer";
+import Navigation from "@/components/layout/navigation/navigation";
+import AdsCampaign from "@/components/features/ads-campaign/ads-campaign";
+import Footer from "@/components/layout/footer/footer";
 export default function AdsLandingPage() {
   return (
     <main>

@@ -1,9 +1,9 @@
-import Navigation from '@/components/navigation/navigation'
-import Footer from '@/components/footer/footer'
+import Navigation from '@/components/layout/navigation/navigation'
+import Footer from '@/components/layout/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
-import { BlogPost } from '../../lib/blog'
-import { BlogPostSchema } from '@/components/schema/BlogPostSchema';
+import { BlogPost } from '@/lib/blog'
+import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema';
 
 interface BlogLayoutProps {
   post: BlogPost

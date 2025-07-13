@@ -38,6 +38,8 @@ next-env.d.ts
 
 # AI Assistant files
 CLAUDE.md
+.claude/
+claude.md
 
 # OS generated files
 .DS_Store
@@ -47,6 +49,8 @@ CLAUDE.md
 .Trashes
 ehthumbs.db
 Thumbs.db
+# Windows Zone Identifier files
+*:Zone.Identifier
 
 # Logs
 logs/

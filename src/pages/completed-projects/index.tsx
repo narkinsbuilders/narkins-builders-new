@@ -1,9 +1,9 @@
-import Navigation from "@/components/navigation/navigation";
+import Navigation from "@/components/layout/navigation/navigation";
 import { Tab } from "@headlessui/react";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Footer from "@/components/footer/footer";
+import Footer from "@/components/layout/footer/footer";
 import { useLightboxStore } from "@/zustand";
 import Head from "next/head";
 
@@ -34,7 +34,7 @@ const cards = [
     ]
 ];
 
-const Lightbox = dynamic(() => import('@/components/lightbox/lightbox'), { ssr: false });
+const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
 
 export default function NarkinsBoutiqueResidency() {
     const openLightbox = useLightboxStore(state => state.openLightbox);

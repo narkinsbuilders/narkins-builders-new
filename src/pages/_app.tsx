@@ -8,13 +8,13 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import "@/styles/globals.css";
 
 // Lazy-load components
-const Dialog = dynamic(() => import("@/components/dialog/dialog"), {
+const Dialog = dynamic(() => import("@/components/features/dialog/dialog"), {
   ssr: false, // Load only on the client side
 });
-const WAButton = dynamic(() => import("@/components/sticky-wa-button/wa-button"), {
+const WAButton = dynamic(() => import("@/components/features/sticky-wa-button/wa-button"), {
   ssr: false, // Load only on the client side
 });
-const AdsCampaign = dynamic(() => import("@/components/ads-campaign/ads-campaign"), {
+const AdsCampaign = dynamic(() => import("@/components/features/ads-campaign/ads-campaign"), {
   ssr: false, // Load only on the client side
 });
 
