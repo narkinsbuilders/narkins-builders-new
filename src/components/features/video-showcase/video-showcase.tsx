@@ -97,7 +97,7 @@ interface VideoShowcaseProps {}
 
 const VideoShowcase: React.FC<VideoShowcaseProps> = () => {
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section className="py-16 lg:py-24" style={{backgroundColor: '#FAFAFA'}}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <motion.div 
@@ -146,7 +146,7 @@ const VideoShowcase: React.FC<VideoShowcaseProps> = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <div className="bg-neutral-50 rounded-2xl p-8 lg:p-12">
+          <div className="rounded-2xl p-8 lg:p-12" style={{backgroundColor: '#FAFAFA'}}>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               Ready to Start Your Journey?
             </h3>
