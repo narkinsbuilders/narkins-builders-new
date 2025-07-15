@@ -67,6 +67,10 @@ export default function Document() {
           }}
         />
 
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        
         {/* Additional Meta Tags for SEO */}
         <meta data-rh="true" name="theme-color" content="#FFFFFF" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
