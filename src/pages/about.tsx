@@ -7,7 +7,10 @@ import Footer from '@/components/layout/footer/footer';
 import Image from 'next/image';
 import VideoShowcase from '@/components/features/video-showcase/video-showcase';
 import { useLightboxStore } from '@/zustand';
-import { PlayIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
+import { PlayIcon, MagnifyingGlassCircleIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
+import { MdSecurity } from 'react-icons/md';
+import { IoRocketSharp } from 'react-icons/io5';
+import { FaAward, FaHammer } from 'react-icons/fa';
 import SEOImage from '@/components/common/seo-image/seo-image';
 import dynamic from 'next/dynamic';
 import { 
@@ -27,7 +30,7 @@ const AboutPage = () => {
 
   // Hero Section Component
   const HeroSection = () => (
-    <section className="relative isolate overflow-hidden pt-[10rem] pb-16">
+    <section className="relative isolate overflow-hidden pt-[10rem] pb-16" style={{backgroundColor: '#FAFAFA'}}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <motion.div
@@ -39,7 +42,7 @@ const AboutPage = () => {
               <div className="bg-primary text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold">
                 30+ Years
               </div>
-              <div className="bg-neutral-50 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium">
+              <div className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium" style={{backgroundColor: '#FAFAFA'}}>
                 5 Projects Delivered
               </div>
               <div className="bg-primary/10 text-primary px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium">
@@ -64,7 +67,7 @@ const AboutPage = () => {
 
   // Achievement Stats Section
   const AchievementStats = () => (
-    <section className="bg-neutral-50 py-16">
+    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {achievements.map((achievement, index) => (
@@ -86,7 +89,7 @@ const AboutPage = () => {
 
   // Core Values Section  
   const CoreValues = () => (
-    <section className="bg-neutral-50 py-16">
+    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Narkin's Builders</h2>
@@ -102,9 +105,11 @@ const AboutPage = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center group"
             >
-              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
                 <div className="w-12 h-12 bg-primary rounded-lg mx-auto mb-6 flex items-center justify-center">
-                  <div className="w-6 h-6 bg-white rounded-sm"></div>
+                  {value.title === 'Reliability' && <MdSecurity className="w-6 h-6 text-white" />}
+                  {value.title === 'Innovation' && <IoRocketSharp className="w-6 h-6 text-white" />}
+                  {value.title === 'Quality' && <FaAward className="w-6 h-6 text-white" />}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
@@ -123,9 +128,9 @@ const AboutPage = () => {
         initial={{ opacity: 0, x: status === "current" ? 20 : -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className={`flex-1 ${size === "sm" ? "max-w-xs" : "max-w-md"} relative z-30`}
+        className={`flex-1 ${size === "sm" ? "max-w-md lg:max-w-xs" : "max-w-md"} relative z-30`}
       >
-        <div className={`bg-white rounded-xl border-2 overflow-hidden ${status === "current" ? "border-gray-700" : "border-gray-300"}`}>
+        <div className={`rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden ${status === "current" ? "ring-gray-700" : "ring-gray-900/10"}`} style={{backgroundColor: '#FAFAFA'}}>
           {image ? (
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -137,31 +142,29 @@ const AboutPage = () => {
                 src={image}
                 width={size === "sm" ? 300 : 400}
                 height={size === "sm" ? 200 : 250}
-                className={`w-full ${size === "sm" ? "h-40" : "h-48"} object-cover`}
+                className={`w-full ${size === "sm" ? "h-48 lg:h-40" : "h-48"} object-cover`}
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                <MagnifyingGlassCircleIcon className={`${size === "sm" ? "w-10 h-10" : "w-12 h-12"} text-white opacity-0 group-hover:opacity-100 transition-all duration-300`} />
+                <MagnifyingGlassCircleIcon className={`${size === "sm" ? "w-12 h-12 lg:w-10 lg:h-10" : "w-12 h-12"} text-white opacity-0 group-hover:opacity-100 transition-all duration-300`} />
               </div>
             </motion.div>
           ) : (
-            <div className={`w-full ${size === "sm" ? "h-40" : "h-48"} bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center`}>
+            <div className={`w-full ${size === "sm" ? "h-48 lg:h-40" : "h-48"} flex items-center justify-center`} style={{backgroundColor: '#FAFAFA'}}>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m0 0h4m0 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0v-4" />
-                  </svg>
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3">
+                  <FaHammer className="w-8 h-8 text-white" />
                 </div>
-                <span className="text-gray-700 font-semibold text-sm">COMPLETING</span>
+                <span className="text-primary font-semibold text-sm">COMPLETING SOON</span>
               </div>
             </div>
           )}
-          <div className={`${size === "sm" ? "p-4" : "p-6"}`}>
+          <div className={`${size === "sm" ? "p-6 lg:p-4" : "p-6"}`}>
             <div className="flex items-center gap-2 mb-3">
-              <div className={`${size === "sm" ? "w-2 h-2" : "w-3 h-3"} rounded-full ${status === "current" ? "bg-gray-700 animate-pulse" : "bg-primary"}`}></div>
+              <div className={`${size === "sm" ? "w-3 h-3 lg:w-2 lg:h-2" : "w-3 h-3"} rounded-full ${status === "current" ? "bg-gray-700 animate-pulse" : "bg-primary"}`}></div>
               <span className="text-sm font-semibold text-primary">{stage}</span>
             </div>
-            <h4 className={`${size === "sm" ? "text-lg" : "text-xl"} font-bold text-gray-900 mb-2`}>{title}</h4>
+            <h4 className={`${size === "sm" ? "text-xl lg:text-lg" : "text-xl"} font-bold text-gray-900 mb-2`}>{title}</h4>
             <p className="text-gray-600 text-sm">{description}</p>
           </div>
         </div>
@@ -169,7 +172,7 @@ const AboutPage = () => {
     );
 
     return (
-      <section className="bg-neutral-50 py-16">
+      <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Hill Crest Residency */}
           <div className="mb-16">
@@ -333,7 +336,7 @@ const AboutPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors duration-300 overflow-hidden"
+                    className="rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden" style={{backgroundColor: '#FAFAFA'}}
                   >
                     {/* Project Image */}
                     <motion.div
@@ -375,7 +378,7 @@ const AboutPage = () => {
 
   // Innovation Section
   const InnovationSection = () => (
-    <section className="bg-white py-16">
+    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -394,7 +397,7 @@ const AboutPage = () => {
               ))}
             </div>
           </div>
-          <div className="bg-neutral-50 p-8 rounded-lg">
+          <div className="p-8 rounded-lg" style={{backgroundColor: '#FAFAFA'}}>
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Choose Narkin's Builders?</h3>
             <ul className="space-y-3 text-gray-600">
               {whyChooseUs.map((reason, index) => (
@@ -410,7 +413,7 @@ const AboutPage = () => {
   
   // Leadership Quote Section with Facebook Video
 const LeadershipQuote = () => (
-  <section className="bg-white py-20">
+  <section className="py-20" style={{backgroundColor: '#FAFAFA'}}>
     <div className="mx-auto max-w-6xl px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Quote Section */}
@@ -483,7 +486,7 @@ const LeadershipQuote = () => (
 
   // Diversified Business Section
 const DiversifiedBusiness = () => (
-  <section className="bg-neutral-50 py-16">
+  <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Beyond Real Estate</h2>
@@ -491,7 +494,7 @@ const DiversifiedBusiness = () => (
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white p-6 lg:p-8 rounded-lg">
+        <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
           <h3 className="text-xl font-semibold text-gray-900 mb-3">Real Estate Development</h3>
           <p className="text-gray-600 mb-4 text-sm leading-relaxed">
             Creating exceptional residential projects in Karachi's prime locations with specialized Bahria Town expertise.
@@ -558,7 +561,7 @@ const DiversifiedBusiness = () => (
           </div>
         </div>
         
-        <div className="bg-white p-6 lg:p-8 rounded-lg">
+        <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
           <h3 className="text-xl font-semibold text-gray-900 mb-3">Textile Manufacturing</h3>
           <p className="text-gray-600 mb-4 text-sm leading-relaxed">
             Leading textile manufacturer operating from our state-of-the-art S.I.T.E facility in Karachi.
