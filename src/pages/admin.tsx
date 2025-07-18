@@ -145,7 +145,7 @@ export const getStaticProps: GetStaticProps = async () => {
         slug,
         title: data.title || '',
         excerpt: data.excerpt || '',
-        date: data.date || '',
+        date: data.date ? new Date(data.date).toISOString() : '',
         content: content.slice(0, 200) + '...' // Truncate for preview
       }
     })
