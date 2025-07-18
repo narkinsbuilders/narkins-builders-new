@@ -8,6 +8,10 @@ Allow: /
 # Disallow: /_next/
 Disallow: /admin/
 
+# Block admin subdomain and all its subdomains
+Disallow: https://admin.narkinsbuilders.com/
+Disallow: https://*.admin.narkinsbuilders.com/
+
 
 # Sitemap location
 Sitemap: https://www.narkinsbuilders.com/api/sitemap.xml
