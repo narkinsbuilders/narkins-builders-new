@@ -22,6 +22,10 @@ export default function AdminPage({ posts }: AdminPageProps) {
 
   useEffect(() => {
     setIsClient(true)
+    // Redirect to actual TinaCMS admin if credentials are set
+    if (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.NEXT_PUBLIC_TINA_CLIENT_ID !== 'your_tina_client_id_here') {
+      window.location.href = '/admin/index.html'
+    }
   }, [])
 
   if (!isClient) {
@@ -33,11 +37,22 @@ export default function AdminPage({ posts }: AdminPageProps) {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Blog Admin</h1>
         
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-          <h2 className="text-lg font-semibold text-blue-900 mb-2">TinaCMS Setup Required</h2>
-          <p className="text-blue-800">
-            To enable visual editing, please follow the instructions in <code>TINACMS_CREDENTIALS_SETUP.md</code> to set up your TinaCMS credentials.
+        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
+          <h2 className="text-lg font-semibold text-green-900 mb-2">TinaCMS Access</h2>
+          <p className="text-green-800 mb-4">
+            Your TinaCMS credentials are configured! Access the visual editor here:
           </p>
+          <div className="space-y-2">
+            <a 
+              href="/admin/index.html" 
+              className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+            >
+              Open TinaCMS Editor
+            </a>
+            <p className="text-sm text-green-700">
+              Or try: <a href="http://localhost:4001/admin/index.html" className="underline">http://localhost:4001/admin/index.html</a>
+            </p>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
