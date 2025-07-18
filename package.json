@@ -4,9 +4,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "tinacms dev -c \"next dev --turbopack\"",
+    "dev:next": "next dev --turbopack",
     "build-export": "next build && next export",
-    "build": "bunx tsc --noEmit && next lint && next build",
+    "build": "bunx tsc --noEmit && next lint && tinacms build && next build",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
@@ -14,7 +15,10 @@
     "check": "bunx tsc --noEmit && next lint",
     "blog:automation": "bun scripts/blog-automation.ts",
     "blog:generate-reports": "bun scripts/generate-reports.ts",
-    "blog:verify-setup": "bun scripts/verify-setup.ts"
+    "blog:verify-setup": "bun scripts/verify-setup.ts",
+    "tina:dev": "tinacms dev -c \"next dev\"",
+    "tina:build": "tinacms build",
+    "tina:init": "tinacms init"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
@@ -25,6 +29,8 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tinacms/cli": "^1.10.1",
+    "@tinacms/datalayer": "^1.4.0",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
     "autoprefixer": "10.4.19",
@@ -58,6 +64,7 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "3.4.3",
     "tailwindcss-animate": "^1.0.7",
+    "tinacms": "^2.8.1",
     "typescript": "5.4.5",
     "zustand": "^5.0.6"
   },
