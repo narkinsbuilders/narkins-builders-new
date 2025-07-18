@@ -5,8 +5,6 @@ import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
 import Image from 'next/image'
-import Navigation from '@/components/layout/navigation/navigation'
-import Footer from '@/components/layout/footer/footer'
 
 interface BlogPost {
   slug: string
@@ -21,9 +19,13 @@ interface AdminPageProps {
 }
 
 export default function AdminPage({ posts }: AdminPageProps) {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
   const [isClient, setIsClient] = useState(false)
   const [tinaUrl, setTinaUrl] = useState('')
+  const [stats, setStats] = useState({
+    totalPosts: 0,
+    recentPosts: 0,
+    publishedThisMonth: 0
+  })
 
   useEffect(() => {
     setIsClient(true)
@@ -34,22 +36,36 @@ export default function AdminPage({ posts }: AdminPageProps) {
     } else {
       setTinaUrl('http://localhost:4001/admin/index.html')
     }
-  }, [])
+
+    // Calculate stats
+    const now = new Date()
+    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
+    const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+
+    setStats({
+      totalPosts: posts.length,
+      recentPosts: posts.filter(post => new Date(post.date) >= thirtyDaysAgo).length,
+      publishedThisMonth: posts.filter(post => new Date(post.date) >= thisMonth).length
+    })
+  }, [posts])
 
   if (!isClient) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-pulse">
-            <Image
-              src="/images/narkins-builders-logo.webp"
-              alt="Narkin's Builders"
-              width={150}
-              height={60}
-              className="mx-auto mb-4"
-            />
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full blur-lg opacity-60 animate-pulse"></div>
+            <div className="relative bg-white rounded-2xl p-6 shadow-2xl">
+              <Image
+                src="/images/narkins-builders-logo.webp"
+                alt="Narkin's Builders"
+                width={120}
+                height={48}
+                className="mx-auto"
+              />
+            </div>
           </div>
-          <p className="text-gray-600">Loading admin interface...</p>
+          <p className="text-slate-300 mt-6 text-lg font-medium">Initializing admin interface...</p>
         </div>
       </div>
     )
@@ -58,197 +74,175 @@ export default function AdminPage({ posts }: AdminPageProps) {
   return (
     <>
       <Head>
-        <title>Blog Admin | Narkin's Builders</title>
-        <meta name="description" content="Content management system for Narkin's Builders blog" />
+        <title>Content Management | Narkin's Builders</title>
+        <meta name="description" content="Professional content management system for Narkin's Builders" />
         <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navigation />
-      
-      <div className="min-h-screen bg-neutral-50">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-black to-neutral-800 py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-4">
-                Blog Management
-              </h1>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Professional content management system for Narkin's Builders
-              </p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        
+        <div className="relative">
+          {/* Header */}
+          <div className="pt-12 pb-8">
+            <div className="max-w-6xl mx-auto px-6 lg:px-8">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-2xl shadow-2xl mb-6 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                  <svg className="w-10 h-10 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3v9m0 0h-2m2 0h2M9 7h6" />
+                  </svg>
+                </div>
+                <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+                  Content Hub
+                </h1>
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                  Professional content management for <span className="text-amber-400 font-semibold">Narkin's Builders</span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          {/* TinaCMS Access Card */}
-          <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-8 mb-12 shadow-lg">
-            <div className="flex items-start space-x-6">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Stats Cards */}
+          <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-slate-300 text-sm font-medium">Total Posts</p>
+                    <p className="text-3xl font-bold text-white">{stats.totalPosts}</p>
+                  </div>
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-slate-300 text-sm font-medium">Recent Posts</p>
+                    <p className="text-3xl font-bold text-white">{stats.recentPosts}</p>
+                  </div>
+                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-slate-300 text-sm font-medium">This Month</p>
+                    <p className="text-3xl font-bold text-white">{stats.publishedThisMonth}</p>
+                  </div>
+                  <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main CTA Section */}
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
+              <div className="mb-8">
+                <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full shadow-2xl mb-6">
+                  <svg className="w-12 h-12 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                   </svg>
                 </div>
-              </div>
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">Visual Content Editor</h2>
-                <p className="text-gray-700 mb-6 text-lg">
-                  Access the professional TinaCMS visual editor to create and manage blog content with ease.
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Visual Content Editor
+                </h2>
+                <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                  Create, edit, and manage your blog content with our powerful visual editor. 
+                  Professional tools for professional content.
                 </p>
-                <div className="space-y-4">
-                  {tinaUrl && (
-                    <a 
-                      href={tinaUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-black to-neutral-800 text-white font-semibold rounded-lg hover:from-neutral-800 hover:to-neutral-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Open TinaCMS Editor
-                    </a>
-                  )}
-                  <div className="bg-white/50 rounded-lg p-4">
-                    <p className="text-sm text-gray-600 mb-1">
-                      <span className="font-semibold">Direct Access:</span>
-                    </p>
-                    <code className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded font-mono">
+              </div>
+
+              {tinaUrl && (
+                <div className="space-y-6">
+                  <a 
+                    href={tinaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-900 font-bold text-lg rounded-2xl hover:from-amber-300 hover:to-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-amber-400/25 transform hover:-translate-y-1 hover:scale-105"
+                  >
+                    <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Launch TinaCMS Editor
+                  </a>
+                  
+                  <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-slate-400 font-medium">Direct Access URL:</span>
+                      <button
+                        onClick={() => navigator.clipboard.writeText(tinaUrl)}
+                        className="text-amber-400 hover:text-amber-300 font-medium flex items-center gap-2 transition-colors"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Copy URL
+                      </button>
+                    </div>
+                    <code className="text-slate-300 text-sm font-mono break-all mt-2 block">
                       {tinaUrl}
                     </code>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Content Overview Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Blog Posts List */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-black to-neutral-800 px-6 py-4">
-                  <h2 className="text-xl font-bold text-white flex items-center">
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Blog Posts ({posts.length})
-                  </h2>
-                </div>
-                <div className="p-6">
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {posts.map((post) => (
-                      <button
-                        key={post.slug}
-                        onClick={() => setSelectedPost(post)}
-                        className={`w-full text-left p-4 rounded-lg transition-all duration-200 border ${
-                          selectedPost?.slug === post.slug
-                            ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-200 shadow-md'
-                            : 'bg-gray-50 hover:bg-gray-100 border-gray-200 hover:border-gray-300'
-                        }`}
-                      >
-                        <div className="font-semibold text-gray-900 truncate mb-1">
-                          {post.title}
-                        </div>
-                        <div className="text-sm text-gray-500 flex items-center">
-                          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                          {new Date(post.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Content Preview Area */}
-            <div className="lg:col-span-2">
-              {selectedPost ? (
-                <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-                  <div className="bg-gradient-to-r from-black to-neutral-800 px-6 py-4">
-                    <h2 className="text-xl font-bold text-white flex items-center">
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      Post Preview
-                    </h2>
-                  </div>
-                  <div className="p-8">
-                    <div className="prose max-w-none">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{selectedPost.title}</h3>
-                      <p className="text-gray-600 text-lg mb-6 leading-relaxed">{selectedPost.excerpt}</p>
-                      
-                      <div className="flex items-center justify-between py-4 border-t border-b border-gray-200 mb-6">
-                        <div className="flex items-center text-sm text-gray-500">
-                          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                          </svg>
-                          Published: {new Date(selectedPost.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-500">
-                          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          {selectedPost.slug}.mdx
-                        </div>
-                      </div>
-                      
-                      <div className="bg-gradient-to-r from-neutral-50 to-gray-50 p-6 rounded-lg border border-gray-200">
-                        <div className="flex items-start space-x-4">
-                          <div className="flex-shrink-0">
-                            <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full flex items-center justify-center">
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900 mb-2">File Location</h4>
-                            <p className="text-gray-600 text-sm mb-3">
-                              This blog post is stored at: <code className="bg-gray-200 px-2 py-1 rounded text-xs font-mono">content/blogs/{selectedPost.slug}.mdx</code>
-                            </p>
-                            <p className="text-gray-600 text-sm">
-                              Use the TinaCMS Visual Editor above for the best editing experience, or modify the MDX file directly for advanced customization.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-12 text-center">
-                  <div className="max-w-md mx-auto">
-                    <div className="w-20 h-20 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Select a Blog Post</h3>
-                    <p className="text-gray-600">
-                      Choose a blog post from the list to view its details and preview content.
-                    </p>
                   </div>
                 </div>
               )}
             </div>
           </div>
+
+          {/* Quick Actions */}
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 mt-12 pb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
+                    <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Content Guidelines</h3>
+                    <p className="text-slate-300 text-sm">
+                      Best practices for creating engaging real estate content that converts visitors into leads.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                    <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Analytics Dashboard</h3>
+                    <p className="text-slate-300 text-sm">
+                      Track content performance, engagement metrics, and lead generation from your blog posts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
     </>
   )
 }
