@@ -22,10 +22,6 @@ export default function AdminPage({ posts }: AdminPageProps) {
 
   useEffect(() => {
     setIsClient(true)
-    // Redirect to actual TinaCMS admin if credentials are set
-    if (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.NEXT_PUBLIC_TINA_CLIENT_ID !== 'your_tina_client_id_here') {
-      window.location.href = '/admin/index.html'
-    }
   }, [])
 
   if (!isClient) {
@@ -44,13 +40,15 @@ export default function AdminPage({ posts }: AdminPageProps) {
           </p>
           <div className="space-y-2">
             <a 
-              href="/admin/index.html" 
+              href="http://localhost:4001/admin/index.html" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
             >
               Open TinaCMS Editor
             </a>
             <p className="text-sm text-green-700">
-              Or try: <a href="http://localhost:4001/admin/index.html" className="underline">http://localhost:4001/admin/index.html</a>
+              Direct link: <a href="http://localhost:4001/admin/index.html" target="_blank" className="underline">http://localhost:4001/admin/index.html</a>
             </p>
           </div>
         </div>
