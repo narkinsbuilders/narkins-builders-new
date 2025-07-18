@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { TinaCMSProvider } from "tinacms";
 import { GlobalLeadFormProvider } from "@/contexts/global";
 import { useGlobalLeadFormState } from "@/zustand";
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -71,7 +72,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Global Lead Form Provider */}
         <GlobalLeadFormProvider>
-          <Component {...pageProps} />
+          <TinaCMSProvider>
+            <Component {...pageProps} />
+          </TinaCMSProvider>
         </GlobalLeadFormProvider>
       </div>
     </>
