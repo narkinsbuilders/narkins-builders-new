@@ -7,5 +7,5 @@ const DynamicTinaAdmin = dynamic(() => import('tinacms').then(mod => ({ default:
 })
 
 export default function AdminPage() {
-  return <DynamicTinaAdmin />
+  return <DynamicTinaAdmin config={{}} />
 }

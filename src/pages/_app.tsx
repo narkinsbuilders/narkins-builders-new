@@ -72,7 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Global Lead Form Provider */}
         <GlobalLeadFormProvider>
-          <TinaCMSProvider>
+          <TinaCMSProvider cms={undefined}>
             <Component {...pageProps} />
           </TinaCMSProvider>
         </GlobalLeadFormProvider>
