@@ -19,9 +19,17 @@ interface AdminPageProps {
 export default function AdminPage({ posts }: AdminPageProps) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const [tinaUrl, setTinaUrl] = useState('')
 
   useEffect(() => {
     setIsClient(true)
+    // Set the correct TinaCMS URL based on environment
+    const isProduction = window.location.hostname !== 'localhost'
+    if (isProduction) {
+      setTinaUrl(`${window.location.origin}/admin/index.html`)
+    } else {
+      setTinaUrl('http://localhost:4001/admin/index.html')
+    }
   }, [])
 
   if (!isClient) {
@@ -39,16 +47,18 @@ export default function AdminPage({ posts }: AdminPageProps) {
             Your TinaCMS credentials are configured! Access the visual editor here:
           </p>
           <div className="space-y-2">
-            <a 
-              href="http://localhost:4001/admin/index.html" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-            >
-              Open TinaCMS Editor
-            </a>
+            {tinaUrl && (
+              <a 
+                href={tinaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+              >
+                Open TinaCMS Editor
+              </a>
+            )}
             <p className="text-sm text-green-700">
-              Direct link: <a href="http://localhost:4001/admin/index.html" target="_blank" className="underline">http://localhost:4001/admin/index.html</a>
+              Direct link: <a href={tinaUrl} target="_blank" className="underline">{tinaUrl}</a>
             </p>
           </div>
         </div>
