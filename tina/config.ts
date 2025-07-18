@@ -7,6 +7,7 @@ export default defineConfig({
   build: {
     outputFolder: 'admin',
     publicFolder: 'public',
+    skipSDK: true,
   },
   media: {
     tina: {
