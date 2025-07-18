@@ -7,7 +7,7 @@
     "dev": "tinacms dev -c \"next dev --turbopack\"",
     "dev:next": "next dev --turbopack",
     "build-export": "next build && next export",
-    "build": "bunx tsc --noEmit && next lint && tinacms build && next build",
+    "build": "bunx tsc --noEmit && next lint && next build",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
