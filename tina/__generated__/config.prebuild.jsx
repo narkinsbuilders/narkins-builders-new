@@ -6,8 +6,7 @@ var config_default = defineConfig({
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
-    skipSDK: true
+    publicFolder: "public"
   },
   media: {
     tina: {
