@@ -17,6 +17,9 @@ const WAButton = dynamic(() => import("@/components/features/sticky-wa-button/wa
 const AdsCampaign = dynamic(() => import("@/components/features/ads-campaign/ads-campaign"), {
   ssr: false, // Load only on the client side
 });
+const PWAInstallPrompt = dynamic(() => import("@/components/features/pwa-install/pwa-install"), {
+  ssr: false, // Load only on the client side
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isClient, setIsClient] = useState(false); // Track client-side rendering
@@ -29,6 +32,18 @@ export default function App({ Component, pageProps }: AppProps) {
   // Ensure this runs only on the client side
   useEffect(() => {
     setIsClient(true);
+    
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered successfully:', registration);
+        })
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
   }, []);
 
   return (
@@ -68,6 +83,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Render WAButton only on the client side */}
         {isClient && <WAButton />}
+        
+        {/* PWA Install Prompt */}
+        {isClient && <PWAInstallPrompt />}
 
         {/* Global Lead Form Provider */}
         <GlobalLeadFormProvider>
