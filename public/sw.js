@@ -7,8 +7,11 @@ const urlsToCache = [
   '/blog',
   '/completed-projects',
   '/manifest.json',
+  '/offline.html',
   '/images/narkins-builders-logo.webp',
-  '/favicon.ico'
+  '/favicon.ico',
+  '/icons/icon-192x192.png',
+  '/icons/icon-512x512.png'
 ];
 
 // Install service worker
@@ -31,11 +34,29 @@ self.addEventListener('fetch', event => {
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        return fetch(event.request).catch(() => {
+          // If offline and no cache, show offline page for navigation requests
+          if (event.request.destination === 'document') {
+            return caches.match('/offline.html');
+          }
+        });
       }
     )
   );
 });
+
+// Background sync for offline actions
+self.addEventListener('sync', event => {
+  if (event.tag === 'background-sync') {
+    event.waitUntil(doBackgroundSync());
+  }
+});
+
+function doBackgroundSync() {
+  // Handle background sync logic here
+  console.log('Background sync triggered');
+  return Promise.resolve();
+}
 
 // Activate service worker
 self.addEventListener('activate', event => {
