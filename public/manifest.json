@@ -71,6 +71,38 @@
       "purpose": "maskable any"
     }
   ],
-  "splash_pages": null,
-  "categories": ["business", "lifestyle"]
+  "categories": ["business", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "Browse our luxury apartment projects",
+      "url": "/narkins-boutique-residency",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with our sales team",
+      "url": "/#contact",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Latest Blog",
+      "short_name": "Blog",
+      "description": "Read our latest real estate insights",
+      "url": "/blog",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
