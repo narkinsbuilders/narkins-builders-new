@@ -11,7 +11,7 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const categories = ['Palm Residency', 'AL Arz Terrace', 'AL Arz Homes', 'Classic Homes'];
+const categories = ['Palm Residency', 'AL Arz Terrace', 'AL Arz Homes', 'Classic Heights'];
 const maps = [
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2757.942943695933!2d67.0382979!3d24.840475599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33dd1da9b421f%3A0xed57a16e28104a84!2sPalm%20Residency%2C%20McNeil%20Rd%2C%20Frere%20Town%2C%20Karachi%2C%20Pakistan!5e1!3m2!1sen!2sus!4v1742636653877!5m2!1sen!2sus',
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4967.554989137014!2d67.03420337649223!3d24.876732177918772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e5c5fea0781%3A0x49dd2ea8b9422ee6!2sAl-Arz%20Terrace!5e1!3m2!1sen!2s!4v1714414177304!5m2!1sen!2s',
@@ -29,7 +29,7 @@ const cards = [
         // AL Arz Homes image
         "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp"
     ], [
-        // Classic Homes image
+        // Classic Heigths image
         "/images/classic-heights-completed-project-sharfabad-karachi.webp"
     ]
 ];
