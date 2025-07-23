@@ -306,7 +306,7 @@ const AboutPage = () => {
                 <JourneyStage
                   image={null}
                   stage="FINISHING"
-                  title="2025"
+                  title="Completing Soon"
                   description="Final touches and handover preparation"
                   status="current"
                   size="sm"
