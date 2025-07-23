@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import SEOImage from "@/components/common/seo-image/seo-image";
 
 interface CarouselOpProps {
-    dataSource: { image: string }[];
+    dataSource: { image: string; name?: string }[];
     autoPlay?: boolean;
     autoPlayInterval?: number;
     hideArrows?: boolean;
