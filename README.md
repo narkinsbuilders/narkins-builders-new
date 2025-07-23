@@ -7,7 +7,7 @@
 
 A comprehensive **digital real estate business platform** for Narkin's Builders, showcasing luxury developments in Bahria Town Karachi. This isn't just a website—it's a complete business solution with CRM integration, strategic content automation, and advanced PWA capabilities.
 
-## 🏢 Active Property Projects
+## Active Property Projects
 
 ### **Hill Crest Residency** (Delivered)
 - Premium 2/3/4 bedroom apartments
@@ -19,51 +19,51 @@ A comprehensive **digital real estate business platform** for Narkin's Builders,
 - Sky Villa Duplex penthouses
 - ROI calculators and pricing tables
 
-## 🚀 Core Platform Features
+## Core Platform Features
 
 ### **Progressive Web App Excellence**
-- 📱 **App Installation** - Smart browser-specific install prompts (Safari/Chrome)
-- 📴 **Offline Support** - Service worker with custom offline page
-- 🏠 **App Shortcuts** - Quick access to Projects, Contact, Blog from home screen
-- 🔄 **Share Target API** - Receive shared content from other apps
-- 🎯 **Manifest Configuration** - Complete PWA with multiple icon sizes
+- **App Installation** - Smart browser-specific install prompts (Safari/Chrome)
+- **Offline Support** - Service worker with custom offline page
+- **App Shortcuts** - Quick access to Projects, Contact, Blog from home screen
+- **Share Target API** - Receive shared content from other apps
+- **Manifest Configuration** - Complete PWA with multiple icon sizes
 
 ### **Real Estate Business Platform**
-- 🏗️ **Interactive Property Showcases** - Floor plans, galleries, virtual tours
-- 📊 **Investment Analysis** - ROI calculators and price comparison tools
-- 🎨 **Advanced Galleries** - Lightbox system with Framer Motion animations
-- 📍 **Location Intelligence** - Interactive maps and area information
-- 🏆 **Customer Testimonials** - Structured reviews with star ratings
+- **Interactive Property Showcases** - Floor plans, galleries, virtual tours
+- **Investment Analysis** - ROI calculators and price comparison tools
+- **Advanced Galleries** - Lightbox system with Framer Motion animations
+- **Location Intelligence** - Interactive maps and area information
+- **Customer Testimonials** - Structured reviews with star ratings
 
 ### **Integrated CRM & Lead Generation**
-- 📋 **Google Sheets CRM** - Automatic lead capture with source tracking
-- 📧 **Smart Forms** - Property-specific interest selection
-- 📱 **WhatsApp Integration** - Sticky contact button with analytics
-- 📈 **Lead Analytics** - User agent, referrer, and attribution tracking
-- 🕐 **Pakistan Timezone** - Localized timestamp tracking
+- **Google Sheets CRM** - Automatic lead capture with source tracking
+- **Smart Forms** - Property-specific interest selection
+- **WhatsApp Integration** - Sticky contact button with analytics
+- **Lead Analytics** - User agent, referrer, and attribution tracking
+- **Pakistan Timezone** - Localized timestamp tracking
 
 ### **Strategic Content Marketing System**
-- 🤖 **Blog Automation** - Market timing-based content scheduling
-- 📅 **Season Intelligence** - Peak/moderate/low season content distribution
-- 🎯 **SEO Optimization** - Automated meta descriptions and keyword targeting
-- 📝 **MDX Content** - Rich content with custom components (InfoBox, PriceTable, FAQ)
-- 📊 **Performance Tracking** - Content analytics and engagement metrics
+- **Blog Automation** - Market timing-based content scheduling
+- **Season Intelligence** - Peak/moderate/low season content distribution
+- **SEO Optimization** - Automated meta descriptions and keyword targeting
+- **MDX Content** - Rich content with custom components (InfoBox, PriceTable, FAQ)
+- **Performance Tracking** - Content analytics and engagement metrics
 
 ### **Advanced Analytics & Social Integration**
-- 📊 **Google Analytics 4** - Custom event tracking for property views
-- 📱 **Social Media Integration** - Facebook posts, Instagram optimization
-- 🎬 **Video Analytics** - YouTube integration with play tracking
-- 📲 **WhatsApp Analytics** - Click tracking and engagement metrics
-- 🔍 **SEO Excellence** - Schema.org markup for organization and properties
+- **Google Analytics 4** - Custom event tracking for property views
+- **Social Media Integration** - Facebook posts, Instagram optimization
+- **Video Analytics** - YouTube integration with play tracking
+- **WhatsApp Analytics** - Click tracking and engagement metrics
+- **SEO Excellence** - Schema.org markup for organization and properties
 
 ### **Technical Excellence**
-- ⚡ **Performance Optimized** - SSR, image optimization, lazy loading
-- 🎨 **Design System** - shadcn/ui components with custom Tailwind styling
-- 🔧 **TypeScript** - Full type safety across the application
-- 🗄️ **Database Ready** - MySQL integration capabilities
-- 📱 **Responsive Design** - Mobile-first with tablet optimizations
+- **Performance Optimized** - SSR, image optimization, lazy loading
+- **Design System** - shadcn/ui components with custom Tailwind styling
+- **TypeScript** - Full type safety across the application
+- **Database Ready** - MySQL integration capabilities
+- **Responsive Design** - Mobile-first with tablet optimizations
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 15, React 18, TypeScript
 - **Styling**: Tailwind CSS, Framer Motion, shadcn/ui
@@ -109,7 +109,7 @@ A comprehensive **digital real estate business platform** for Narkin's Builders,
 | `bun start` | Start production server |
 | `bun typecheck` | Run TypeScript checking |
 
-## 🔧 Environment Variables
+## Environment Variables
 
 ```env
 # Required - Site Configuration
@@ -128,7 +128,7 @@ GOOGLE_SHEET_ID=your-sheet-id
 DATABASE_URL=your-mysql-connection-string
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Build
 ```bash
@@ -148,7 +148,7 @@ bun run start      # Start production server
 3. Configure TinaCMS for content management
 4. Test PWA installation prompts on mobile devices
 
-## 📊 Key Features in Production
+## Key Features in Production
 
 - **Automatic Lead Capture** - Forms integrate directly with Google Sheets CRM
 - **SEO-Optimized Content** - Blog automation with market timing intelligence  
