@@ -30,6 +30,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
     hideIndicators = false,
     height = "500px",
     borderRadius = false,
+    onChange,
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
@@ -44,6 +45,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
             newIndex = 0;
         }
         setCurrentIndex(newIndex);
+        onChange?.(newIndex);
     };
 
     // Auto-play functionality
@@ -106,17 +108,24 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
                 onTouchEnd={handleTouchEnd}
             >
                 {dataSource.map((item, index) => (
-                    <div key={index} className="flex-none w-full h-full flex items-center justify-center">
+                    <div key={index} className="flex-none w-full h-full flex items-center justify-center relative">
                         <SEOImage 
                             src={item.image} 
                             loading={index === 0 ? "eager" : "lazy"} 
-                            width={800}
-                            height={500}
+                            width={1600}
+                            height={1000}
                             context="carousel"
                             index={index}
                             style={{ objectFit: 'cover', flex: 1 }} 
-                            className="w-full h-full" 
+                            className="w-full h-full rounded-xl" 
+                            quality={95}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                         />
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 rounded-b-xl">
+                            <h2 className="text-white text-lg font-bold">
+                                {item.name || ""}
+                            </h2>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -184,7 +193,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
                                     ? "bg-white" 
                                     : "bg-white/50 hover:bg-white/75"
                             }`}
-                            onClick={() => setCurrentIndex(index)}
+                            onClick={() => updateIndex(index)}
                             aria-label={`Go to slide ${index + 1}`}
                         />
                     ))}

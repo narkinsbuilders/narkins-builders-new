@@ -38,14 +38,14 @@ import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestRe
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
-    { title: '2 Bed Diamond', size: '1009 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-2-bedroom-diamond-plan-1009-sqft.webp" },
-    { title: '2 Bed Gold', size: '933 Square Feet', location: 'Gold Safari View', image: "/images/hill-crest-residency-2-bedroom-gold-plan-933-sqft.webp" },
-    { title: '2 Bed Sapphire', size: '697 Square Feet', location: 'Sapphire Safari View', image: "/images/hill-crest-residency-2-bedroom-sapphire-plan-697-sqft.webp" },
+    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-2-bedroom-diamond-plan-1009-sqft.webp" },
+    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: "/images/hill-crest-residency-2-bedroom-gold-plan-933-sqft.webp" },
+    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: "/images/hill-crest-residency-2-bedroom-sapphire-plan-697-sqft.webp" },
 ], [
-    { title: '3 Bed Platinum', size: '1490 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-3-bedroom-platinum-plan-1490-sqft.webp" },
+    { title: '3 Bed Platinum', size: '1884 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-3-bedroom-platinum-plan-1490-sqft.webp" },
 ], [
-    { title: '4 Bed Rhodium', size: '1996 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
-    { title: '4 Bed Sapphire-A', size: '1388 Square Feet', location: 'Safari View', image: "/images/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
+    { title: '4 Bed Rhodium', size: '2594 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
+    { title: '4 Bed Sapphire-A', size: '1756 Square Feet', location: 'Safari View', image: "/images/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
 ]];
 
 const amenities = [
@@ -164,7 +164,7 @@ const Amenities = () => {
             </div>
 
             {/* Carousel Section */}
-            <div className="mt-16 relative h-[30rem] w-full rounded-xl overflow-hidden">
+            <div className="mt-16 relative h-[30rem] md:h-[35rem] lg:h-[40rem] w-full rounded-xl overflow-hidden">
                 <Carousel
                     id="carousel"
                     swipe
@@ -178,11 +178,6 @@ const Amenities = () => {
                     displayMode="default"
                     dataSource={amenities}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
-                    <h2 className="text-white text-lg font-bold">
-                        {amenities.map(({name})=> name)[amenityIndex]}
-                    </h2>
-                </div>
             </div>
         </div>
     )
