@@ -8,7 +8,6 @@ import Navigation from "@/components/layout/navigation/navigation";
 import VideoPlayer from "@/components/features/video-player/video-player";
 import Footer from "@/components/layout/footer/footer";
 import { Lightbox } from "@/components/features/lightbox/lightbox";
-import Link from "next/link";
 import Map from "@/components/features/map/map";
 import Head from "next/head";
 import Carousel from "@/components/features/carousel-op/carousel-op";
@@ -272,7 +271,7 @@ const Amenities = () => {
       </div>
 
       {/* Carousel Section */}
-      <div className="mt-16 relative h-[30rem] w-full rounded-xl overflow-hidden">
+      <div className="mt-16 relative h-[30rem] md:h-[35rem] lg:h-[40rem] w-full rounded-xl overflow-hidden">
         <Carousel
           id="carousel"
           swipe
@@ -286,11 +285,6 @@ const Amenities = () => {
           displayMode="default"
           dataSource={amenities}
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient from-transparent to-black bg-opacity-40 p-4 backdrop-blur-md">
-          <h2 className="text-white text-lg font-bold">
-            {amenities.map(({ name }) => name)[amenityIndex]}
-          </h2>
-        </div>
       </div>
     </div>
   )
@@ -515,7 +509,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
 
             {/* Masonry Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 auto-rows-[minmax(200px, auto)]">
-              {youtubeVideos.map((video, index) => (
+              {youtubeVideos.map((video) => (
                 <motion.div
                   key={video.id}
                   whileHover={{ scale: 1.03 }}
