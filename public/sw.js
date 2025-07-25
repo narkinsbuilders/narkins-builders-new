@@ -10,8 +10,8 @@ const urlsToCache = [
   '/offline.html',
   '/images/narkins-builders-logo.webp',
   '/favicon.ico',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/icons/icon-192x192.svg',
+  '/icons/icon-512x512.svg'
 ];
 
 // Install service worker
@@ -78,8 +78,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('push', event => {
   const options = {
     body: event.data ? event.data.text() : 'New update available!',
-    icon: '/icons/icon-192x192.png',
-    badge: '/icons/icon-72x72.png',
+    icon: '/icons/icon-192x192.svg',
+    badge: '/icons/icon-72x72.svg',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -89,12 +89,12 @@ self.addEventListener('push', event => {
       {
         action: 'explore',
         title: 'View Projects',
-        icon: '/icons/icon-192x192.png'
+        icon: '/icons/icon-192x192.svg'
       },
       {
         action: 'close',
         title: 'Close',
-        icon: '/icons/icon-192x192.png'
+        icon: '/icons/icon-192x192.svg'
       }
     ]
   };
