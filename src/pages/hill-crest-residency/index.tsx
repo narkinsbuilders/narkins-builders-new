@@ -35,6 +35,8 @@ import Testimonials from "@/components/features/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestResidencySchema';
+import FAQ from '@/components/features/faq/faq';
+import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
@@ -224,6 +226,15 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                 />
             </Head>
             <HillCrestResidencySchema />
+            <VideoSchema 
+              title="Hill Crest Residency Virtual Tour | Luxury Apartments in Bahria Town Karachi"
+              description="Take a virtual tour of Hill Crest Residency featuring luxury 2, 3 & 4 bedroom apartments with modern amenities in Bahria Town Karachi by Narkin's Builders."
+              videoUrl="https://youtube.com/watch?v=TSiLOTW2s4g"
+              thumbnailUrl="https://i.ytimg.com/vi/TSiLOTW2s4g/maxresdefault.jpg"
+              uploadDate="2024-01-15"
+              duration="PT3M45S"
+              pageUrl="https://narkinsbuilders.com/hill-crest-residency"
+            />
             <Navigation />
             <Lightbox />
             <div className="bg-white pt-[6rem]">
@@ -433,6 +444,35 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                         </div>
                     </div>
                 </section>
+                <FAQ 
+                  staticFaqs={[
+                    {
+                      question: "What apartment sizes are available in Hill Crest Residency?",
+                      answer: "Hill Crest Residency offers 2, 3, and 4 bedroom luxury apartments ranging from 697 sq ft to 1996 sq ft. We have multiple floor plans including Sapphire (697 sq ft), Gold (933 sq ft), Diamond (1009 sq ft), Platinum (1490 sq ft), and Rhodium (1996 sq ft) plans."
+                    },
+                    {
+                      question: "What amenities are included in Hill Crest Residency?",
+                      answer: "Hill Crest Residency features world-class amenities including a grand lobby reception, fully equipped gym and fitness center, prayer area/mosque, steam bath and wellness facilities, high-speed elevators, and 24/7 security services."
+                    },
+                    {
+                      question: "When will Hill Crest Residency be completed?",
+                      answer: "Hill Crest Residency is currently under construction with expected completion in 2025. The project was launched in 2021 and construction is progressing on schedule. Regular updates are provided to our investors."
+                    },
+                    {
+                      question: "What is the payment plan for Hill Crest Residency apartments?",
+                      answer: "We offer flexible payment plans starting with a down payment followed by quarterly installments. Specific payment terms vary by apartment size and can be customized based on your financial preferences. Contact our sales team for detailed payment options."
+                    },
+                    {
+                      question: "Is Hill Crest Residency a good investment opportunity?",
+                      answer: "Yes, Hill Crest Residency is located in the prime Bahria Town Karachi area, which has shown consistent property value appreciation. With Narkin's Builders' 30+ years of experience and track record of delivering quality projects, it represents a solid investment opportunity."
+                    }
+                  ]}
+                  title="Hill Crest Residency - Frequently Asked Questions"
+                  description="Get answers to common questions about Hill Crest Residency luxury apartments in Bahria Town Karachi."
+                  pageUrl="https://narkinsbuilders.com/hill-crest-residency"
+                  contextType="property"
+                  searchable={true}
+                />
                 <BlogsSection posts={posts} />
             </div>
             <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />

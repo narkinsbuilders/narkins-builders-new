@@ -56,10 +56,13 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   blog(relativePath: String): Blog!
   blogConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: BlogFilter): BlogConnection!
+  faq(relativePath: String): Faq!
+  faqConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FaqFilter): FaqConnection!
 }
 
 input DocumentFilter {
   blog: BlogFilter
+  faq: FaqFilter
 }
 
 type DocumentConnectionEdges {
@@ -85,7 +88,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blog | Folder
+union DocumentNode = Blog | Faq | Folder
 
 type Blog implements Node & Document {
   title: String!
@@ -157,12 +160,33 @@ input BlogBodyPriceTableFilter {
   rows: BlogBodyPriceTableRowsFilter
 }
 
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
 input BlogBodyFAQItemsFilter {
+  id: StringFilter
   question: StringFilter
   answer: RichTextFilter
+  tags: StringFilter
+  priority: NumberFilter
 }
 
 input BlogBodyFAQFilter {
+  title: StringFilter
+  description: StringFilter
+  source: StringFilter
+  collection: StringFilter
+  category: StringFilter
+  tags: StringFilter
+  limit: NumberFilter
+  searchable: BooleanFilter
   items: BlogBodyFAQItemsFilter
 }
 
@@ -199,6 +223,52 @@ type BlogConnection implements Connection {
   edges: [BlogConnectionEdges]
 }
 
+type FaqFaqs {
+  id: String!
+  question: String!
+  answer: JSON!
+  tags: [String]
+  priority: Float!
+}
+
+type Faq implements Node & Document {
+  title: String!
+  description: String!
+  category: String!
+  projectId: String
+  faqs: [FaqFaqs]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input FaqFaqsFilter {
+  id: StringFilter
+  question: StringFilter
+  answer: RichTextFilter
+  tags: StringFilter
+  priority: NumberFilter
+}
+
+input FaqFilter {
+  title: StringFilter
+  description: StringFilter
+  category: StringFilter
+  projectId: StringFilter
+  faqs: FaqFaqsFilter
+}
+
+type FaqConnectionEdges {
+  cursor: String!
+  node: Faq
+}
+
+type FaqConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [FaqConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -207,15 +277,19 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updateBlog(relativePath: String!, params: BlogMutation!): Blog!
   createBlog(relativePath: String!, params: BlogMutation!): Blog!
+  updateFaq(relativePath: String!, params: FaqMutation!): Faq!
+  createFaq(relativePath: String!, params: FaqMutation!): Faq!
 }
 
 input DocumentUpdateMutation {
   blog: BlogMutation
+  faq: FaqMutation
   relativePath: String
 }
 
 input DocumentMutation {
   blog: BlogMutation
+  faq: FaqMutation
 }
 
 input BlogMutation {
@@ -232,6 +306,22 @@ input BlogMutation {
   dateFixed: Boolean
   keywords: String
   body: JSON
+}
+
+input FaqFaqsMutation {
+  id: String
+  question: String
+  answer: JSON
+  tags: [String]
+  priority: Float
+}
+
+input FaqMutation {
+  title: String
+  description: String
+  category: String
+  projectId: String
+  faqs: [FaqFaqsMutation]
 }
 
 schema {

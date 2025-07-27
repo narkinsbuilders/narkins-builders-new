@@ -84,6 +84,8 @@ export type Query = {
   document: DocumentNode;
   blog: Blog;
   blogConnection: BlogConnection;
+  faq: Faq;
+  faqConnection: FaqConnection;
 };
 
 
@@ -122,8 +124,24 @@ export type QueryBlogConnectionArgs = {
   filter?: InputMaybe<BlogFilter>;
 };
 
+
+export type QueryFaqArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryFaqConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FaqFilter>;
+};
+
 export type DocumentFilter = {
   blog?: InputMaybe<BlogFilter>;
+  faq?: InputMaybe<FaqFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -163,7 +181,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Blog | Folder;
+export type DocumentNode = Blog | Faq | Folder;
 
 export type Blog = Node & Document & {
   __typename?: 'Blog';
@@ -236,12 +254,33 @@ export type BlogBodyPriceTableFilter = {
   rows?: InputMaybe<BlogBodyPriceTableRowsFilter>;
 };
 
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
 export type BlogBodyFaqItemsFilter = {
+  id?: InputMaybe<StringFilter>;
   question?: InputMaybe<StringFilter>;
   answer?: InputMaybe<RichTextFilter>;
+  tags?: InputMaybe<StringFilter>;
+  priority?: InputMaybe<NumberFilter>;
 };
 
 export type BlogBodyFaqFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  source?: InputMaybe<StringFilter>;
+  collection?: InputMaybe<StringFilter>;
+  category?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  searchable?: InputMaybe<BooleanFilter>;
   items?: InputMaybe<BlogBodyFaqItemsFilter>;
 };
 
@@ -280,6 +319,56 @@ export type BlogConnection = Connection & {
   edges?: Maybe<Array<Maybe<BlogConnectionEdges>>>;
 };
 
+export type FaqFaqs = {
+  __typename?: 'FaqFaqs';
+  id: Scalars['String']['output'];
+  question: Scalars['String']['output'];
+  answer: Scalars['JSON']['output'];
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  priority: Scalars['Float']['output'];
+};
+
+export type Faq = Node & Document & {
+  __typename?: 'Faq';
+  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  category: Scalars['String']['output'];
+  projectId?: Maybe<Scalars['String']['output']>;
+  faqs?: Maybe<Array<Maybe<FaqFaqs>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type FaqFaqsFilter = {
+  id?: InputMaybe<StringFilter>;
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<RichTextFilter>;
+  tags?: InputMaybe<StringFilter>;
+  priority?: InputMaybe<NumberFilter>;
+};
+
+export type FaqFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  category?: InputMaybe<StringFilter>;
+  projectId?: InputMaybe<StringFilter>;
+  faqs?: InputMaybe<FaqFaqsFilter>;
+};
+
+export type FaqConnectionEdges = {
+  __typename?: 'FaqConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Faq>;
+};
+
+export type FaqConnection = Connection & {
+  __typename?: 'FaqConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<FaqConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -289,6 +378,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updateBlog: Blog;
   createBlog: Blog;
+  updateFaq: Faq;
+  createFaq: Faq;
 };
 
 
@@ -336,13 +427,27 @@ export type MutationCreateBlogArgs = {
   params: BlogMutation;
 };
 
+
+export type MutationUpdateFaqArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FaqMutation;
+};
+
+
+export type MutationCreateFaqArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FaqMutation;
+};
+
 export type DocumentUpdateMutation = {
   blog?: InputMaybe<BlogMutation>;
+  faq?: InputMaybe<FaqMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   blog?: InputMaybe<BlogMutation>;
+  faq?: InputMaybe<FaqMutation>;
 };
 
 export type BlogMutation = {
@@ -361,7 +466,25 @@ export type BlogMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type FaqFaqsMutation = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  question?: InputMaybe<Scalars['String']['input']>;
+  answer?: InputMaybe<Scalars['JSON']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  priority?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type FaqMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
+  projectId?: InputMaybe<Scalars['String']['input']>;
+  faqs?: InputMaybe<Array<InputMaybe<FaqFaqsMutation>>>;
+};
+
 export type BlogPartsFragment = { __typename: 'Blog', title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, body?: any | null };
+
+export type FaqPartsFragment = { __typename: 'Faq', title: string, description: string, category: string, projectId?: string | null, faqs?: Array<{ __typename: 'FaqFaqs', id: string, question: string, answer: any, tags?: Array<string | null> | null, priority: number } | null> | null };
 
 export type BlogQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -382,6 +505,25 @@ export type BlogConnectionQueryVariables = Exact<{
 
 export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type FaqQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type FaqQuery = { __typename?: 'Query', faq: { __typename: 'Faq', id: string, title: string, description: string, category: string, projectId?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faqs?: Array<{ __typename: 'FaqFaqs', id: string, question: string, answer: any, tags?: Array<string | null> | null, priority: number } | null> | null } };
+
+export type FaqConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FaqFilter>;
+}>;
+
+
+export type FaqConnectionQuery = { __typename?: 'Query', faqConnection: { __typename?: 'FaqConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FaqConnectionEdges', cursor: string, node?: { __typename: 'Faq', id: string, title: string, description: string, category: string, projectId?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faqs?: Array<{ __typename: 'FaqFaqs', id: string, question: string, answer: any, tags?: Array<string | null> | null, priority: number } | null> | null } | null } | null> | null } };
+
 export const BlogPartsFragmentDoc = gql`
     fragment BlogParts on Blog {
   __typename
@@ -398,6 +540,23 @@ export const BlogPartsFragmentDoc = gql`
   dateFixed
   keywords
   body
+}
+    `;
+export const FaqPartsFragmentDoc = gql`
+    fragment FaqParts on Faq {
+  __typename
+  title
+  description
+  category
+  projectId
+  faqs {
+    __typename
+    id
+    question
+    answer
+    tags
+    priority
+  }
 }
     `;
 export const BlogDocument = gql`
@@ -457,6 +616,63 @@ export const BlogConnectionDocument = gql`
   }
 }
     ${BlogPartsFragmentDoc}`;
+export const FaqDocument = gql`
+    query faq($relativePath: String!) {
+  faq(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FaqParts
+  }
+}
+    ${FaqPartsFragmentDoc}`;
+export const FaqConnectionDocument = gql`
+    query faqConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FaqFilter) {
+  faqConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FaqParts
+      }
+    }
+  }
+}
+    ${FaqPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -465,6 +681,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     blogConnection(variables?: BlogConnectionQueryVariables, options?: C): Promise<{data: BlogConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BlogConnectionQueryVariables, query: string}> {
         return requester<{data: BlogConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BlogConnectionQueryVariables, query: string}, BlogConnectionQueryVariables>(BlogConnectionDocument, variables, options);
+      },
+    faq(variables: FaqQueryVariables, options?: C): Promise<{data: FaqQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqQueryVariables, query: string}> {
+        return requester<{data: FaqQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqQueryVariables, query: string}, FaqQueryVariables>(FaqDocument, variables, options);
+      },
+    faqConnection(variables?: FaqConnectionQueryVariables, options?: C): Promise<{data: FaqConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqConnectionQueryVariables, query: string}> {
+        return requester<{data: FaqConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqConnectionQueryVariables, query: string}, FaqConnectionQueryVariables>(FaqConnectionDocument, variables, options);
       }
     };
   }

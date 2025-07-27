@@ -1,6 +1,7 @@
 // src/components/blog/mdx-components.tsx
 import React from 'react'
 import Image from 'next/image'
+import FAQ from '@/components/features/faq/faq'
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -125,10 +126,57 @@ const customComponents = {
   )
 }
 
+// TinaCMS Template Components
+const FAQTemplate = (props: any) => {
+  const { 
+    title, 
+    description, 
+    source = 'inline', 
+    collection, 
+    category, 
+    tags, 
+    limit, 
+    searchable = false, 
+    items = [] 
+  } = props;
+
+  // Convert TinaCMS FAQ items to component format
+  const tinaFaqs = items?.map((item: any, index: number) => ({
+    id: item.id || `faq-${index}`,
+    question: item.question,
+    answer: item.answer,
+    tags: item.tags || [],
+    priority: item.priority || index + 1
+  }));
+
+  return (
+    <FAQ
+      source={source === 'inline' ? 'static' : source}
+      collection={collection}
+      category={category}
+      tags={tags}
+      limit={limit}
+      title={title}
+      description={description}
+      pageUrl={typeof window !== 'undefined' ? window.location.href : ''}
+      contextType="general"
+      searchable={searchable}
+      tinaFaqs={source === 'inline' ? tinaFaqs : undefined}
+      staticFaqs={source === 'inline' ? tinaFaqs : undefined}
+    />
+  );
+};
+
+// Template components for TinaCMS
+const templateComponents = {
+  FAQ: FAQTemplate,
+};
+
 // Combine all components
 const components = {
   ...htmlComponents,
-  ...customComponents
+  ...customComponents,
+  ...templateComponents
 }
 
 export default components
