@@ -34,6 +34,8 @@ import Testimonials from "@/components/features/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { NarkinsBoutiqueResidencySchema } from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
+import FAQ from '@/components/features/faq/faq';
+import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -331,6 +333,15 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         />
       </Head>
       <NarkinsBoutiqueResidencySchema />
+      <VideoSchema 
+        title="Narkin's Boutique Residency Luxury Tour | Premium Apartments in Heritage Commercial Bahria Town"
+        description="Explore Narkin's Boutique Residency featuring luxury 2-6 bedroom apartments with world-class amenities in Heritage Commercial, Bahria Town Karachi."
+        videoUrl="https://youtube.com/watch?v=FmEHTzdjXEc"
+        thumbnailUrl="https://i.ytimg.com/vi/FmEHTzdjXEc/maxresdefault.jpg"
+        uploadDate="2024-01-20"
+        duration="PT4M15S"
+        pageUrl="https://narkinsbuilders.com/narkins-boutique-residency"
+      />
       <Navigation />
       <Lightbox />
       <div className="bg-white pt-[6rem]">
@@ -558,6 +569,35 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
             </div>
           </div>
         </section>
+        <FAQ 
+          staticFaqs={[
+            {
+              question: "What apartment configurations are available in Narkin's Boutique Residency?",
+              answer: "Narkin's Boutique Residency offers 2, 3, 4, 5, and 6 bedroom luxury apartments ranging from 1547 sq ft to over 3000 sq ft. Options include Gold, Diamond, Platinum plans, corner units, and exclusive Sky Villa duplexes with premium views."
+            },
+            {
+              question: "What premium amenities does Narkin's Boutique Residency offer?",
+              answer: "The residency features a grand reception lobby, state-of-the-art gym, swimming pool, kids play area, snooker room, community hall, steam bath facilities, high-speed elevators, and 5-floor underground parking with advanced security systems."
+            },
+            {
+              question: "What is the current construction status of Narkin's Boutique Residency?",
+              answer: "Narkin's Boutique Residency is actively under construction with significant progress made. Located in Heritage Commercial Bahria Town Karachi, the project is on track for completion with regular construction updates provided to investors."
+            },
+            {
+              question: "Are there flexible payment options for Narkin's Boutique Residency?",
+              answer: "Yes, we provide multiple payment plan options including down payment with installments, extended payment schedules, and customized plans based on apartment size and investor preferences. Our sales team can discuss the best option for your budget."
+            },
+            {
+              question: "Why choose Narkin's Boutique Residency for investment?",
+              answer: "Located in the prestigious Heritage Commercial area of Bahria Town Karachi, this project offers luxury living with excellent investment potential. Narkin's Builders' proven track record, premium location, and world-class amenities make it an ideal choice for both living and investment."
+            }
+          ]}
+          title="Narkin's Boutique Residency - Frequently Asked Questions"
+          description="Get answers to common questions about Narkin's Boutique Residency premium apartments in Heritage Commercial, Bahria Town Karachi."
+          pageUrl="https://narkinsbuilders.com/narkins-boutique-residency"
+          contextType="property"
+          searchable={true}
+        />
         <BlogsSection posts={posts} />
       </div>
       <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />

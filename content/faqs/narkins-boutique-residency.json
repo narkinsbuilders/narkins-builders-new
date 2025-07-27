@@ -1,0 +1,50 @@
+{
+  "title": "Narkin's Boutique Residency FAQs", 
+  "description": "Frequently asked questions about Narkin's Boutique Residency premium apartments in Heritage Commercial, Bahria Town Karachi",
+  "category": "property",
+  "projectId": "narkins-boutique-residency",
+  "faqs": [
+    {
+      "id": "nbr-001",
+      "question": "What apartment configurations are available in Narkin's Boutique Residency?",
+      "answer": "Narkin's Boutique Residency offers 2, 3, 4, 5, and 6 bedroom luxury apartments ranging from 1547 sq ft to over 3000 sq ft. Options include Gold, Diamond, Platinum plans, corner units, and exclusive Sky Villa duplexes with premium views.",
+      "tags": ["apartment-configurations", "2-bedroom", "3-bedroom", "4-bedroom", "5-bedroom", "6-bedroom", "sky-villa"],
+      "priority": 1
+    },
+    {
+      "id": "nbr-002", 
+      "question": "What premium amenities does Narkin's Boutique Residency offer?",
+      "answer": "The residency features a grand reception lobby, state-of-the-art gym, swimming pool, kids play area, snooker room, community hall, steam bath facilities, high-speed elevators, and 5-floor underground parking with advanced security systems.",
+      "tags": ["premium-amenities", "swimming-pool", "gym", "kids-play-area", "underground-parking", "security"],
+      "priority": 2
+    },
+    {
+      "id": "nbr-003",
+      "question": "What is the current construction status of Narkin's Boutique Residency?",
+      "answer": "Narkin's Boutique Residency is actively under construction with significant progress made. Located in Heritage Commercial Bahria Town Karachi, the project is on track for completion with regular construction updates provided to investors.",
+      "tags": ["construction-status", "heritage-commercial", "progress-updates", "timeline"],
+      "priority": 3
+    },
+    {
+      "id": "nbr-004",
+      "question": "Are there flexible payment options for Narkin's Boutique Residency?",
+      "answer": "Yes, we provide multiple payment plan options including down payment with installments, extended payment schedules, and customized plans based on apartment size and investor preferences. Our sales team can discuss the best option for your budget.",
+      "tags": ["flexible-payment", "installment-plans", "customized-plans", "budget-options"],
+      "priority": 4
+    },
+    {
+      "id": "nbr-005",
+      "question": "What views are available from Narkin's Boutique Residency apartments?",
+      "answer": "Apartments offer stunning views including Heritage Commercial views, Theme Park views, Safari views, and Boulevard views depending on the floor plan and orientation. Corner units and higher floors provide the most spectacular panoramic views.",
+      "tags": ["views", "heritage-commercial-view", "theme-park-view", "safari-view", "boulevard-view", "panoramic-views"],
+      "priority": 5
+    },
+    {
+      "id": "nbr-006",
+      "question": "Why choose Narkin's Boutique Residency for investment?",
+      "answer": "Located in the prestigious Heritage Commercial area of Bahria Town Karachi, this project offers luxury living with excellent investment potential. Narkin's Builders' proven track record, premium location, and world-class amenities make it an ideal choice for both living and investment.",
+      "tags": ["investment-choice", "prestigious-location", "luxury-living", "proven-track-record", "world-class-amenities"],
+      "priority": 6
+    }
+  ]
+}

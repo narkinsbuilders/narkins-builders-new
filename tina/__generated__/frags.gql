@@ -14,3 +14,19 @@ fragment BlogParts on Blog {
   keywords
   body
 }
+
+fragment FaqParts on Faq {
+  __typename
+  title
+  description
+  category
+  projectId
+  faqs {
+    __typename
+    id
+    question
+    answer
+    tags
+    priority
+  }
+}

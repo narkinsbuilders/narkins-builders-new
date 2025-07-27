@@ -97,6 +97,9 @@ export default function Document() {
         {/* Additional Meta Tags for SEO */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href="https://narkinsbuilders.com" />
+        
+        {/* RSS Feed */}
+        <link rel="alternate" type="application/rss+xml" title="Narkin's Builders Blog" href="https://narkinsbuilders.com/api/rss.xml" />
       </Head>
       <body>
         <Main />

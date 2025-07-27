@@ -16,6 +16,7 @@ import { motion } from 'framer-motion'; // For animations
 import { OrganizationSchema } from '@/components/common/schema/OrganizationSchema';
 import { LocalBusinessSchema } from '@/components/common/schema/LocalBusinessSchema';
 import { ReviewSchema } from '@/components/common/schema/ReviewSchema';
+import { WebSiteSchema } from '@/components/common/schema/WebSiteSchema';
 
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
@@ -121,6 +122,7 @@ export default function Index({ posts }: { posts: any[] }) {
       <OrganizationSchema />
       <LocalBusinessSchema />
       <ReviewSchema />
+      <WebSiteSchema />
       <Navigation fixed={true} />
       <div>
         <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">
