@@ -307,6 +307,15 @@ var config_default = defineConfig({
                 ]
               }
             ]
+          },
+          {
+            type: "string",
+            name: "rawContent",
+            label: "Content (Raw MDX)",
+            ui: {
+              component: "textarea",
+              description: 'Raw MDX content for advanced users. Use this if you selected "Raw MDX" editing mode above.'
+            }
           }
         ]
       },

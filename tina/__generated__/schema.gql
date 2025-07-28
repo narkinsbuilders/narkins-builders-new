@@ -105,6 +105,7 @@ type Blog implements Node & Document {
   keywords: String!
   editingMode: String
   body: JSON
+  rawContent: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -204,6 +205,7 @@ input BlogFilter {
   keywords: StringFilter
   editingMode: StringFilter
   body: BlogBodyFilter
+  rawContent: StringFilter
 }
 
 type BlogConnectionEdges {
@@ -307,6 +309,7 @@ input BlogMutation {
   keywords: String
   editingMode: String
   body: JSON
+  rawContent: String
 }
 
 input FaqFaqsMutation {
