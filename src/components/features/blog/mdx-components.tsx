@@ -474,52 +474,68 @@ const customComponents = {
 
     if (!isClient) {
       return (
-        <div className="my-8 p-6 border border-gray-200 rounded-lg">
-          <h3 className="text-lg font-semibold mb-4">{title}</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded">Loading table...</div>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading table...</div>
+          </Card>
         </div>
       );
     }
 
     if (!data || data.length === 0) {
       return (
-        <div className="my-8 p-6 border border-gray-200 rounded-lg">
-          <h3 className="text-lg font-semibold mb-4">{title}</h3>
-          <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">No data available</div>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
         </div>
       );
     }
 
-    // Create a simple HTML table fallback for better compatibility
+    const columns = [
+      {
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
+        render: (text: string) => <strong>{text}</strong>,
+      },
+      {
+        title: 'Price (Lac)',
+        dataIndex: 'price',
+        key: 'price',
+        render: (value: number) => `PKR ${value}`,
+      },
+      {
+        title: 'Monthly Rent (K)',
+        dataIndex: 'rent',
+        key: 'rent',
+        render: (value: number) => value > 0 ? `PKR ${value}K` : 'N/A',
+      },
+      {
+        title: 'ROI %',
+        dataIndex: 'roi',
+        key: 'roi',
+        render: (value: number) => (
+          <span style={{ color: '#52c41a', fontWeight: 'bold' }}>{value}%</span>
+        ),
+      },
+    ];
+
+    const tableData = data.map((item, index) => ({
+      key: index,
+      ...item,
+    }));
+
     return (
-      <div className="my-8 p-6 border border-gray-200 rounded-lg">
-        <h3 className="text-lg font-semibold mb-4">{title}</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">Category</th>
-                <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">Price (Lac)</th>
-                <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">Monthly Rent</th>
-                <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">ROI %</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 border-b font-medium text-gray-900">{item.category}</td>
-                  <td className="px-6 py-4 border-b text-gray-900">PKR {item.price}</td>
-                  <td className="px-6 py-4 border-b text-gray-900">
-                    {item.rent > 0 ? `PKR ${item.rent}K` : 'N/A'}
-                  </td>
-                  <td className="px-6 py-4 border-b">
-                    <span className="text-green-600 font-bold">{item.roi}%</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Table 
+            columns={columns} 
+            dataSource={tableData} 
+            pagination={false}
+            size="middle"
+          />
+        </Card>
       </div>
     );
   },
