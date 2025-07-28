@@ -60,6 +60,7 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "react-ssr-prepass": "latest",
+    "recharts": "^3.1.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",

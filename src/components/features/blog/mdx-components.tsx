@@ -2,6 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -123,6 +124,78 @@ const customComponents = {
         {buttonText}
       </a>
     </div>
+  ),
+
+  PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => (
+    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="year" />
+          <YAxis />
+          <Tooltip formatter={(value) => [`PKR ${value} Lac`, 'Price']} />
+          <Line type="monotone" dataKey="price" stroke="#2563eb" strokeWidth={3} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  ),
+
+  MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => (
+    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="area" />
+          <YAxis />
+          <Tooltip formatter={(value) => [`${value}%`, 'Growth']} />
+          <Bar dataKey="growth" fill="#10b981" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  ),
+
+  PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => (
+    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={({ type, percent }) => `${type} ${(percent * 100).toFixed(0)}%`}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Pie>
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  ),
+
+  TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => (
+    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <AreaChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Area type="monotone" dataKey="demand" stackId="1" stroke="#2563eb" fill="#3b82f6" fillOpacity={0.6} />
+          <Area type="monotone" dataKey="supply" stackId="1" stroke="#10b981" fill="#059669" fillOpacity={0.6} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -178,6 +251,10 @@ const templateComponents = {
   CallToAction: customComponents.CallToAction,
   PropertyCard: customComponents.PropertyCard,
   MarketTable: customComponents.MarketTable,
+  PriceChart: customComponents.PriceChart,
+  MarketGrowthChart: customComponents.MarketGrowthChart,
+  PropertyTypeDistribution: customComponents.PropertyTypeDistribution,
+  TrendAnalysis: customComponents.TrendAnalysis,
 };
 
 // Combine all components
