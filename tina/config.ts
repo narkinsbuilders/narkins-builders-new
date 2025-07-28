@@ -128,21 +128,9 @@ export default defineConfig({
             },
           },
           {
-            type: 'string',
-            name: 'editingMode',
-            label: 'Editing Mode',
-            options: [
-              { value: 'visual', label: 'Visual Editor (Recommended for non-tech users)' },
-              { value: 'raw', label: 'Raw MDX (For developers)' },
-            ],
-            ui: {
-              description: 'Choose your preferred editing mode. Visual editor provides easy-to-use components, raw MDX allows full control.',
-            },
-          },
-          {
             type: 'rich-text',
             name: 'body',
-            label: 'Content (Visual Editor)',
+            label: 'Content',
             isBody: true,
             templates: [
               {
@@ -307,15 +295,6 @@ export default defineConfig({
                 ],
               },
             ],
-          },
-          {
-            type: 'string',
-            name: 'rawContent',
-            label: 'Content (Raw MDX)',
-            ui: {
-              component: 'textarea',
-              description: 'Raw MDX content for advanced users. Use this if you selected "Raw MDX" editing mode above.',
-            },
           },
         ],
       },

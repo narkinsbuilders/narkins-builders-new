@@ -103,9 +103,7 @@ type Blog implements Node & Document {
   marketTiming: String!
   dateFixed: Boolean
   keywords: String!
-  editingMode: String
   body: JSON
-  rawContent: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -203,9 +201,7 @@ input BlogFilter {
   marketTiming: StringFilter
   dateFixed: BooleanFilter
   keywords: StringFilter
-  editingMode: StringFilter
   body: BlogBodyFilter
-  rawContent: StringFilter
 }
 
 type BlogConnectionEdges {
@@ -307,9 +303,7 @@ input BlogMutation {
   marketTiming: String
   dateFixed: Boolean
   keywords: String
-  editingMode: String
   body: JSON
-  rawContent: String
 }
 
 input FaqFaqsMutation {
