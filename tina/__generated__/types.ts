@@ -199,6 +199,7 @@ export type Blog = Node & Document & {
   keywords: Scalars['String']['output'];
   editingMode?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
+  rawContent?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -298,6 +299,7 @@ export type BlogFilter = {
   keywords?: InputMaybe<StringFilter>;
   editingMode?: InputMaybe<StringFilter>;
   body?: InputMaybe<BlogBodyFilter>;
+  rawContent?: InputMaybe<StringFilter>;
 };
 
 export type BlogConnectionEdges = {
@@ -465,6 +467,7 @@ export type BlogMutation = {
   keywords?: InputMaybe<Scalars['String']['input']>;
   editingMode?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+  rawContent?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type FaqFaqsMutation = {
@@ -483,7 +486,7 @@ export type FaqMutation = {
   faqs?: InputMaybe<Array<InputMaybe<FaqFaqsMutation>>>;
 };
 
-export type BlogPartsFragment = { __typename: 'Blog', title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null };
+export type BlogPartsFragment = { __typename: 'Blog', title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, rawContent?: string | null };
 
 export type FaqPartsFragment = { __typename: 'Faq', title: string, description: string, category: string, projectId?: string | null, faqs?: Array<{ __typename: 'FaqFaqs', id: string, question: string, answer: any, tags?: Array<string | null> | null, priority: number } | null> | null };
 
@@ -492,7 +495,7 @@ export type BlogQueryVariables = Exact<{
 }>;
 
 
-export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, rawContent?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type BlogConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -504,7 +507,7 @@ export type BlogConnectionQueryVariables = Exact<{
 }>;
 
 
-export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, rawContent?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type FaqQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -542,6 +545,7 @@ export const BlogPartsFragmentDoc = gql`
   keywords
   editingMode
   body
+  rawContent
 }
     `;
 export const FaqPartsFragmentDoc = gql`
