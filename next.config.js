@@ -7,6 +7,30 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  transpilePackages: ['antd', '@ant-design/plots', '@ant-design/icons', 'rc-util', 'rc-pagination', 'rc-picker', 'rc-table', 'rc-tree', 'rc-tooltip'],
+  experimental: {
+    esmExternals: 'loose',
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    
+    // Handle Ant Design ESM modules
+    config.module.rules.push({
+      test: /\.m?js$/,
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+    
+    return config;
+  },
   // Enhanced Security headers for SEO and performance
   async headers() {
     return [
