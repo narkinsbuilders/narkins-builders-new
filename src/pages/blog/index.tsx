@@ -52,6 +52,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           alt={post.title}
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-300"
+                          priority={posts.indexOf(post) < 6}
                         />
                       </div>
                       <div className="p-6">

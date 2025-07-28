@@ -71,6 +71,7 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                     alt={post.title}
                     fill
                     className="object-cover"
+                    priority={index < 3}
                   />
                 </div>
               )}
