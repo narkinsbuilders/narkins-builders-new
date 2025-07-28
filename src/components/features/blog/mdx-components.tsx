@@ -42,26 +42,41 @@ class ChartErrorBoundary extends React.Component<
 }
 
 // Dynamic imports for Ant Design plots to avoid SSR issues
-const Line = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Line })), { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-})
-const Bar = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Bar })), { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-})
-const Pie = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Pie })), { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-})
-const Area = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Area })), { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-})
-const Column = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Column })), { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-})
+const Line = dynamic(
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Line })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  { 
+    ssr: false,
+    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+  }
+)
+const Bar = dynamic(
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Bar })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  { 
+    ssr: false,
+    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+  }
+)
+const Pie = dynamic(
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Pie })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  { 
+    ssr: false,
+    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+  }
+)
+const Area = dynamic(
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Area })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  { 
+    ssr: false,
+    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+  }
+)
+const Column = dynamic(
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Column })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  { 
+    ssr: false,
+    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+  }
+)
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -186,90 +201,88 @@ const customComponents = {
   ),
 
   PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => {
-    if (!data || data.length === 0) {
+    try {
+      if (!data || data.length === 0) {
+        return (
+          <div className="my-8">
+            <Card title={title} bordered={false}>
+              <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+            </Card>
+          </div>
+        );
+      }
+
+      const config = {
+        data,
+        xField: 'year',
+        yField: 'price',
+        point: {
+          size: 5,
+          shape: 'diamond',
+        },
+        color: '#1890ff',
+        smooth: true,
+      };
+
+      return (
+        <ChartErrorBoundary>
+          <div className="my-8">
+            <Card title={title} bordered={false}>
+              <Line {...config} height={300} />
+            </Card>
+          </div>
+        </ChartErrorBoundary>
+      );
+    } catch (error) {
+      console.error('PriceChart error:', error);
       return (
         <div className="my-8">
           <Card title={title} bordered={false}>
-            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+            <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
           </Card>
         </div>
       );
     }
-
-    const config = {
-      data,
-      xField: 'year',
-      yField: 'price',
-      point: {
-        size: 5,
-        shape: 'diamond',
-      },
-      label: {
-        style: {
-          fill: '#aaa',
-        },
-      },
-      color: '#1890ff',
-      smooth: true,
-      tooltip: {
-        formatter: (datum: any) => ({
-          name: 'Price',
-          value: `PKR ${datum.price} Lac`,
-        }),
-      },
-    };
-
-    return (
-      <ChartErrorBoundary>
-        <div className="my-8">
-          <Card title={title} bordered={false}>
-            <Line {...config} height={300} />
-          </Card>
-        </div>
-      </ChartErrorBoundary>
-    );
   },
 
   MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => {
-    if (!data || data.length === 0) {
+    try {
+      if (!data || data.length === 0) {
+        return (
+          <div className="my-8">
+            <Card title={title} bordered={false}>
+              <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+            </Card>
+          </div>
+        );
+      }
+
+      const config = {
+        data,
+        xField: 'area',
+        yField: 'growth',
+        color: '#52c41a',
+      };
+
+      return (
+        <ChartErrorBoundary>
+          <div className="my-8">
+            <Card title={title} bordered={false}>
+              <Column {...config} height={300} />
+            </Card>
+          </div>
+        </ChartErrorBoundary>
+      );
+    } catch (error) {
+      console.error('MarketGrowthChart error:', error);
       return (
         <div className="my-8">
           <Card title={title} bordered={false}>
-            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+            <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
           </Card>
         </div>
       );
     }
-
-    const config = {
-      data,
-      xField: 'area',
-      yField: 'growth',
-      color: '#52c41a',
-      columnStyle: {
-        radius: [4, 4, 0, 0],
-      },
-      tooltip: {
-        formatter: (datum: any) => ({
-          name: 'Growth',
-          value: `${datum.growth}%`,
-        }),
-      },
-      label: {
-        position: 'top' as const,
-        formatter: (datum: any) => `${datum.growth}%`,
-      },
-    };
-
-    return (
-      <ChartErrorBoundary>
-        <div className="my-8">
-          <Card title={title} bordered={false}>
-            <Column {...config} height={300} />
-          </Card>
-        </div>
-      </ChartErrorBoundary>
-    );
   },
 
   PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => {
