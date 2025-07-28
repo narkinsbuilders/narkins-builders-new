@@ -103,6 +103,7 @@ type Blog implements Node & Document {
   marketTiming: String!
   dateFixed: Boolean
   keywords: String!
+  editingMode: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -136,28 +137,19 @@ input BooleanFilter {
   exists: Boolean
 }
 
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-}
-
-input BlogBodyInfoBoxFilter {
+input BlogBodyFAQFilter {
+  staticFaqs: StringFilter
+  pageUrl: StringFilter
+  contextType: StringFilter
   title: StringFilter
-  content: RichTextFilter
+  description: StringFilter
 }
 
-input BlogBodyPriceTableRowsFilter {
-  category: StringFilter
-  price: StringFilter
-  size: StringFilter
-  rent: StringFilter
-  buyer: StringFilter
-}
-
-input BlogBodyPriceTableFilter {
+input BlogBodyCallToActionFilter {
   title: StringFilter
-  rows: BlogBodyPriceTableRowsFilter
+  description: StringFilter
+  buttonText: StringFilter
+  buttonLink: StringFilter
 }
 
 input NumberFilter {
@@ -170,30 +162,31 @@ input NumberFilter {
   in: [Float]
 }
 
-input BlogBodyFAQItemsFilter {
-  id: StringFilter
-  question: StringFilter
-  answer: RichTextFilter
-  tags: StringFilter
-  priority: NumberFilter
+input BlogBodyPropertyCardFilter {
+  title: StringFilter
+  price: StringFilter
+  location: StringFilter
+  bedrooms: NumberFilter
+  bathrooms: NumberFilter
+  area: StringFilter
+  image: ImageFilter
 }
 
-input BlogBodyFAQFilter {
-  title: StringFilter
-  description: StringFilter
-  source: StringFilter
-  collection: StringFilter
-  category: StringFilter
-  tags: StringFilter
-  limit: NumberFilter
-  searchable: BooleanFilter
-  items: BlogBodyFAQItemsFilter
+input BlogBodyMarketTableDataFilter {
+  area: StringFilter
+  avgPrice: StringFilter
+  growth: StringFilter
+}
+
+input BlogBodyMarketTableFilter {
+  data: BlogBodyMarketTableDataFilter
 }
 
 input BlogBodyFilter {
-  InfoBox: BlogBodyInfoBoxFilter
-  PriceTable: BlogBodyPriceTableFilter
   FAQ: BlogBodyFAQFilter
+  CallToAction: BlogBodyCallToActionFilter
+  PropertyCard: BlogBodyPropertyCardFilter
+  MarketTable: BlogBodyMarketTableFilter
 }
 
 input BlogFilter {
@@ -209,6 +202,7 @@ input BlogFilter {
   marketTiming: StringFilter
   dateFixed: BooleanFilter
   keywords: StringFilter
+  editingMode: StringFilter
   body: BlogBodyFilter
 }
 
@@ -240,6 +234,12 @@ type Faq implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
 }
 
 input FaqFaqsFilter {
@@ -305,6 +305,7 @@ input BlogMutation {
   marketTiming: String
   dateFixed: Boolean
   keywords: String
+  editingMode: String
   body: JSON
 }
 

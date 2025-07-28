@@ -129,40 +129,45 @@ const customComponents = {
 // TinaCMS Template Components
 const FAQTemplate = (props: any) => {
   const { 
-    title, 
-    description, 
-    source = 'inline', 
-    collection, 
-    category, 
-    tags, 
-    limit, 
-    searchable = false, 
-    items = [] 
+    staticFaqs,
+    pageUrl,
+    contextType = 'general',
+    title = 'Frequently Asked Questions',
+    description
   } = props;
 
-  // Convert TinaCMS FAQ items to component format
-  const tinaFaqs = items?.map((item: any, index: number) => ({
-    id: item.id || `faq-${index}`,
-    question: item.question,
-    answer: item.answer,
-    tags: item.tags || [],
-    priority: item.priority || index + 1
-  }));
+  // Import FAQ data directly - this ensures it works in both contexts
+  const {
+    firstTimeBuyerFAQs,
+    investmentGuideFAQs,
+    twoBedroomFAQs,
+    luxuryApartmentsFAQs,
+    generalRealEstateFAQs,
+    hillCrestFAQs,
+    boutiqueResidencyFAQs,
+    apartmentSaleFAQs
+  } = require('@/data/faq-data');
+
+  const faqDataMap: any = {
+    firstTimeBuyerFAQs,
+    investmentGuideFAQs,
+    twoBedroomFAQs,
+    luxuryApartmentsFAQs,
+    generalRealEstateFAQs,
+    hillCrestFAQs,
+    boutiqueResidencyFAQs,
+    apartmentSaleFAQs,
+  };
+
+  const faqData = staticFaqs ? faqDataMap[staticFaqs] || [] : [];
 
   return (
     <FAQ
-      source={source === 'inline' ? 'static' : source}
-      collection={collection}
-      category={category}
-      tags={tags}
-      limit={limit}
+      staticFaqs={faqData}
+      pageUrl={pageUrl || (typeof window !== 'undefined' ? window.location.href : '')}
+      contextType={contextType}
       title={title}
       description={description}
-      pageUrl={typeof window !== 'undefined' ? window.location.href : ''}
-      contextType="general"
-      searchable={searchable}
-      tinaFaqs={source === 'inline' ? tinaFaqs : undefined}
-      staticFaqs={source === 'inline' ? tinaFaqs : undefined}
     />
   );
 };
@@ -170,6 +175,9 @@ const FAQTemplate = (props: any) => {
 // Template components for TinaCMS
 const templateComponents = {
   FAQ: FAQTemplate,
+  CallToAction: customComponents.CallToAction,
+  PropertyCard: customComponents.PropertyCard,
+  MarketTable: customComponents.MarketTable,
 };
 
 // Combine all components

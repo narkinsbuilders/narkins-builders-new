@@ -69,6 +69,8 @@
     "tailwindcss-animate": "^1.0.7",
     "tinacms": "^2.8.1",
     "typescript": "5.4.5",
+    "workbox-sw": "^7.3.0",
+    "workbox-window": "^7.3.0",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
