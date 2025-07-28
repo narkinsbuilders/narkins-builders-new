@@ -136,22 +136,40 @@ export default function BlogPost({ post, mdxSource }: BlogPostProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const topSlugs = [
-    'buying-apartment-bahria-town-first-time-buyer-guide',
-    'bahria-town-karachi-property-investment-guide', 
-    '2-bedroom-apartments-bahria-town-karachi-guide',
-    'luxury-apartments-bahria-town-investment-guide',
-    'apartments-for-sale-bahria-town-karachi-2025',
-    'karachi-real-estate-market-recovery-july-2025',
-    'bahria-town-karachi-pricing-analysis-2025',
-    'gated-communities-karachi-investment-strategy-2025',
-    'infrastructure-impact-karachi-property-values-2025',
-    'vertical-development-karachi-apartments-vs-houses-2025'
-  ]
+  // Import here to avoid build issues
+  const { getAllPostsServer } = require('../../lib/blog-server')
+  
+  try {
+    // Get all posts dynamically
+    const posts = getAllPostsServer()
+    const paths = posts.map((post: any) => ({
+      params: { slug: post.slug }
+    }))
 
-  return {
-    paths: topSlugs.map(slug => ({ params: { slug } })),
-    fallback: true,
+    return {
+      paths,
+      fallback: false, // Pre-build all pages to avoid image loading issues
+    }
+  } catch (error) {
+    console.error('Error getting blog paths:', error)
+    // Fallback to manual list if dynamic loading fails
+    const topSlugs = [
+      'buying-apartment-bahria-town-first-time-buyer-guide',
+      'bahria-town-karachi-property-investment-guide', 
+      '2-bedroom-apartments-bahria-town-karachi-guide',
+      'luxury-apartments-bahria-town-investment-guide',
+      'apartments-for-sale-bahria-town-karachi-2025',
+      'karachi-real-estate-market-recovery-july-2025',
+      'bahria-town-karachi-pricing-analysis-2025',
+      'gated-communities-karachi-investment-strategy-2025',
+      'infrastructure-impact-karachi-property-values-2025',
+      'vertical-development-karachi-apartments-vs-houses-2025'
+    ]
+
+    return {
+      paths: topSlugs.map(slug => ({ params: { slug } })),
+      fallback: true,
+    }
   }
 }
 

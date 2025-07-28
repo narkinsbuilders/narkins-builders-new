@@ -27,7 +27,7 @@ export function getAllPostsServer(): BlogPost[] {
         title: matterResult.data.title || 'Untitled',
         excerpt: matterResult.data.excerpt || '',
         date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
-        image: matterResult.data.image || '/images/default-blog.jpg',
+        image: matterResult.data.image || '/images/narkins-builders-logo.webp',
         content: content,
         readTime: matterResult.data.readTime || '5 min read',
       }
@@ -55,7 +55,7 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
     title: matterResult.data.title || 'Untitled',
     excerpt: matterResult.data.excerpt || '',
     date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
-    image: matterResult.data.image || '/images/default-blog.jpg',
+    image: matterResult.data.image || '/images/narkins-builders-logo.webp',
     content: content,
     readTime: matterResult.data.readTime || '5 min read',
   }

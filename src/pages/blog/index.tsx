@@ -53,6 +53,14 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-300"
                           priority={posts.indexOf(post) < 6}
+                          onError={(e) => {
+                            console.error('Failed to load image:', post.image);
+                            // Fallback to default image
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/images/narkins-builders-logo.webp';
+                          }}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          unoptimized={false}
                         />
                       </div>
                       <div className="p-6">
