@@ -142,6 +142,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     '2-bedroom-apartments-bahria-town-karachi-guide',
     'luxury-apartments-bahria-town-investment-guide',
     'apartments-for-sale-bahria-town-karachi-2025',
+    'karachi-real-estate-market-recovery-july-2025',
+    'bahria-town-karachi-pricing-analysis-2025',
+    'gated-communities-karachi-investment-strategy-2025',
+    'infrastructure-impact-karachi-property-values-2025',
+    'vertical-development-karachi-apartments-vs-houses-2025'
   ]
 
   return {
