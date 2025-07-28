@@ -65,7 +65,6 @@ const nextConfig = {
       },
     ];
   },
-  // Remove webpack config - not needed with proper code organization
   images: {
     remotePatterns: [
       {
