@@ -6,12 +6,62 @@ import dynamic from 'next/dynamic'
 import { Table, Card, Progress, Statistic, Row, Col, Divider } from 'antd'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
 
+// Error boundary for chart components
+class ChartErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback?: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error('Chart component error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div className="my-8">
+          <Card title="Chart Error" bordered={false}>
+            <div className="h-64 flex items-center justify-center text-red-500">
+              Unable to load chart. Please try refreshing the page.
+            </div>
+          </Card>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 // Dynamic imports for Ant Design plots to avoid SSR issues
-const Line = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Line })), { ssr: false })
-const Bar = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Bar })), { ssr: false })
-const Pie = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Pie })), { ssr: false })
-const Area = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Area })), { ssr: false })
-const Column = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Column })), { ssr: false })
+const Line = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Line })), { 
+  ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+})
+const Bar = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Bar })), { 
+  ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+})
+const Pie = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Pie })), { 
+  ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+})
+const Area = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Area })), { 
+  ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+})
+const Column = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Column })), { 
+  ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+})
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -136,6 +186,16 @@ const customComponents = {
   ),
 
   PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     const config = {
       data,
       xField: 'year',
@@ -160,15 +220,27 @@ const customComponents = {
     };
 
     return (
-      <div className="my-8">
-        <Card title={title} bordered={false}>
-          <Line {...config} height={300} />
-        </Card>
-      </div>
+      <ChartErrorBoundary>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <Line {...config} height={300} />
+          </Card>
+        </div>
+      </ChartErrorBoundary>
     );
   },
 
   MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     const config = {
       data,
       xField: 'area',
@@ -190,15 +262,27 @@ const customComponents = {
     };
 
     return (
-      <div className="my-8">
-        <Card title={title} bordered={false}>
-          <Column {...config} height={300} />
-        </Card>
-      </div>
+      <ChartErrorBoundary>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <Column {...config} height={300} />
+          </Card>
+        </div>
+      </ChartErrorBoundary>
     );
   },
 
   PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     const config = {
       appendPadding: 10,
       data,
@@ -221,15 +305,27 @@ const customComponents = {
     };
 
     return (
-      <div className="my-8">
-        <Card title={title} bordered={false}>
-          <Pie {...config} height={300} />
-        </Card>
-      </div>
+      <ChartErrorBoundary>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <Pie {...config} height={300} />
+          </Card>
+        </div>
+      </ChartErrorBoundary>
     );
   },
 
   TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     // Transform data for stacked area chart
     const transformedData = data.map(item => ({
       month: item.month,
@@ -286,15 +382,27 @@ const customComponents = {
     };
 
     return (
-      <div className="my-8">
-        <Card title={title} bordered={false}>
-          <Line {...multiLineConfig} height={300} />
-        </Card>
-      </div>
+      <ChartErrorBoundary>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <Line {...multiLineConfig} height={300} />
+          </Card>
+        </div>
+      </ChartErrorBoundary>
     );
   },
 
   PricingTable: ({ data, title }: { data: Array<{category: string, price: number, rent: number, roi: number}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     const columns = [
       {
         title: 'Category',
@@ -344,6 +452,16 @@ const customComponents = {
   },
 
   ComparisonChart: ({ data, title }: { data: Array<{name: string, value1: number, value2: number, label1: string, label2: string}>, title: string }) => {
+    if (!data || data.length === 0) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
+          </Card>
+        </div>
+      );
+    }
+
     const chartData = data.map(item => ({
       category: item.name,
       [item.label1]: item.value1,
@@ -384,11 +502,13 @@ const customComponents = {
     };
 
     return (
-      <div className="my-8">
-        <Card title={title} bordered={false}>
-          <Column {...columnConfig} height={300} />
-        </Card>
-      </div>
+      <ChartErrorBoundary>
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <Column {...columnConfig} height={300} />
+          </Card>
+        </div>
+      </ChartErrorBoundary>
     );
   },
 
