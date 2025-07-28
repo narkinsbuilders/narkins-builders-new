@@ -20,10 +20,15 @@ export function getAllPostsServer(): BlogPost[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const matterResult = matter(fileContents)
 
-      // Handle both editing modes - prioritize rawContent if editingMode is 'raw'
-      const content = matterResult.data.editingMode === 'raw' && matterResult.data.rawContent 
-        ? matterResult.data.rawContent 
-        : matterResult.content;
+      // Handle both editing modes
+      let content: string;
+      if (matterResult.data.editingMode === 'raw') {
+        // For raw mode, prefer rawContent from frontmatter, otherwise use body content
+        content = matterResult.data.rawContent || matterResult.content;
+      } else {
+        // For visual mode, use the main content (which should be empty for visual-only posts)
+        content = matterResult.content;
+      }
 
       return {
         slug,
@@ -51,10 +56,15 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)
 
-  // Handle both editing modes - prioritize rawContent if editingMode is 'raw'
-  const content = matterResult.data.editingMode === 'raw' && matterResult.data.rawContent 
-    ? matterResult.data.rawContent 
-    : matterResult.content;
+  // Handle both editing modes
+  let content: string;
+  if (matterResult.data.editingMode === 'raw') {
+    // For raw mode, prefer rawContent from frontmatter, otherwise use body content
+    content = matterResult.data.rawContent || matterResult.content;
+  } else {
+    // For visual mode, use the main content (which should be empty for visual-only posts)
+    content = matterResult.content;
+  }
 
   return {
     slug,
