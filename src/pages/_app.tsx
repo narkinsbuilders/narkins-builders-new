@@ -6,6 +6,7 @@ import { GlobalLeadFormProvider } from "@/contexts/global";
 import { useGlobalLeadFormState } from "@/zustand";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import "@/styles/globals.css";
+import "antd/dist/reset.css";
 
 // Lazy-load components
 const Dialog = dynamic(() => import("@/components/features/dialog/dialog"), {

@@ -2,7 +2,9 @@
 import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
+import { Table, Card, Progress, Statistic, Row, Col, Divider } from 'antd'
+import { Line, Bar, Pie, Area, Column } from '@ant-design/plots'
+import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -126,77 +128,300 @@ const customComponents = {
     </div>
   ),
 
-  PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => (
-    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
-          <YAxis />
-          <Tooltip formatter={(value) => [`PKR ${value} Lac`, 'Price']} />
-          <Line type="monotone" dataKey="price" stroke="#2563eb" strokeWidth={3} />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  ),
+  PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => {
+    const config = {
+      data,
+      xField: 'year',
+      yField: 'price',
+      point: {
+        size: 5,
+        shape: 'diamond',
+      },
+      label: {
+        style: {
+          fill: '#aaa',
+        },
+      },
+      color: '#1890ff',
+      smooth: true,
+      tooltip: {
+        formatter: (datum: any) => ({
+          name: 'Price',
+          value: `PKR ${datum.price} Lac`,
+        }),
+      },
+    };
 
-  MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => (
-    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="area" />
-          <YAxis />
-          <Tooltip formatter={(value) => [`${value}%`, 'Growth']} />
-          <Bar dataKey="growth" fill="#10b981" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  ),
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Line {...config} height={300} />
+        </Card>
+      </div>
+    );
+  },
 
-  PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => (
-    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <PieChart>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={({ type, percent }) => `${type} ${(percent * 100).toFixed(0)}%`}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
-  ),
+  MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => {
+    const config = {
+      data,
+      xField: 'area',
+      yField: 'growth',
+      color: '#52c41a',
+      columnStyle: {
+        radius: [4, 4, 0, 0],
+      },
+      tooltip: {
+        formatter: (datum: any) => ({
+          name: 'Growth',
+          value: `${datum.growth}%`,
+        }),
+      },
+      label: {
+        position: 'top' as const,
+        formatter: (datum: any) => `${datum.growth}%`,
+      },
+    };
 
-  TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => (
-    <div className="my-8 bg-white p-6 rounded-lg border border-gray-200">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Area type="monotone" dataKey="demand" stackId="1" stroke="#2563eb" fill="#3b82f6" fillOpacity={0.6} />
-          <Area type="monotone" dataKey="supply" stackId="1" stroke="#10b981" fill="#059669" fillOpacity={0.6} />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  )
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Column {...config} height={300} />
+        </Card>
+      </div>
+    );
+  },
+
+  PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => {
+    const config = {
+      appendPadding: 10,
+      data,
+      angleField: 'value',
+      colorField: 'type',
+      radius: 0.8,
+      label: {
+        type: 'outer',
+        content: '{name} {percentage}',
+      },
+      interactions: [
+        {
+          type: 'pie-legend-active',
+        },
+        {
+          type: 'element-active',
+        },
+      ],
+      color: data.map(item => item.color),
+    };
+
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Pie {...config} height={300} />
+        </Card>
+      </div>
+    );
+  },
+
+  TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
+    // Transform data for stacked area chart
+    const transformedData = data.map(item => ({
+      month: item.month,
+      demand: item.demand,
+      supply: item.supply,
+    }));
+
+    const config = {
+      data: transformedData,
+      xField: 'month',
+      yField: 'demand',
+      seriesField: 'type',
+      color: ['#1890ff', '#52c41a'],
+      smooth: true,
+      areaStyle: {
+        fillOpacity: 0.6,
+      },
+    };
+
+    // Create separate line chart for demand and supply
+    const lineConfig = {
+      data: transformedData,
+      xField: 'month',
+      yField: 'value',
+      seriesField: 'type',
+      color: ['#1890ff', '#52c41a'],
+      smooth: true,
+      point: {
+        size: 4,
+        shape: 'circle',
+      },
+    };
+
+    // Transform for multi-line chart
+    const multiLineData = data.flatMap(item => [
+      { month: item.month, type: 'Demand', value: item.demand },
+      { month: item.month, type: 'Supply', value: item.supply },
+    ]);
+
+    const multiLineConfig = {
+      data: multiLineData,
+      xField: 'month',
+      yField: 'value',
+      seriesField: 'type',
+      color: ['#1890ff', '#52c41a'],
+      smooth: true,
+      point: {
+        size: 4,
+        shape: 'circle',
+      },
+      legend: {
+        position: 'top-left' as const,
+      },
+    };
+
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Line {...multiLineConfig} height={300} />
+        </Card>
+      </div>
+    );
+  },
+
+  PricingTable: ({ data, title }: { data: Array<{category: string, price: number, rent: number, roi: number}>, title: string }) => {
+    const columns = [
+      {
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
+        render: (text: string) => <strong>{text}</strong>,
+      },
+      {
+        title: 'Price (Lac)',
+        dataIndex: 'price',
+        key: 'price',
+        render: (value: number) => `PKR ${value}`,
+      },
+      {
+        title: 'Monthly Rent (K)',
+        dataIndex: 'rent',
+        key: 'rent',
+        render: (value: number) => value > 0 ? `PKR ${value}K` : 'N/A',
+      },
+      {
+        title: 'ROI %',
+        dataIndex: 'roi',
+        key: 'roi',
+        render: (value: number) => (
+          <span style={{ color: '#52c41a', fontWeight: 'bold' }}>{value}%</span>
+        ),
+      },
+    ];
+
+    const tableData = data.map((item, index) => ({
+      key: index,
+      ...item,
+    }));
+
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Table 
+            columns={columns} 
+            dataSource={tableData} 
+            pagination={false}
+            size="middle"
+          />
+        </Card>
+      </div>
+    );
+  },
+
+  ComparisonChart: ({ data, title }: { data: Array<{name: string, value1: number, value2: number, label1: string, label2: string}>, title: string }) => {
+    const chartData = data.map(item => ({
+      category: item.name,
+      [item.label1]: item.value1,
+      [item.label2]: item.value2,
+    }));
+
+    const config = {
+      data: chartData,
+      xField: 'category',
+      yField: ['value1', 'value2'],
+      seriesField: 'type',
+      isGroup: true,
+      legend: {
+        position: 'top-left' as const,
+      },
+      color: ['#1890ff', '#52c41a'],
+      columnStyle: {
+        radius: [4, 4, 0, 0],
+      },
+    };
+
+    // Transform data for grouped column chart
+    const transformedData = data.flatMap(item => [
+      { category: item.name, type: item.label1, value: item.value1 },
+      { category: item.name, type: item.label2, value: item.value2 },
+    ]);
+
+    const columnConfig = {
+      data: transformedData,
+      xField: 'category',
+      yField: 'value',
+      seriesField: 'type',
+      isGroup: true,
+      color: ['#1890ff', '#52c41a'],
+      columnStyle: {
+        radius: [4, 4, 0, 0],
+      },
+    };
+
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Column {...columnConfig} height={300} />
+        </Card>
+      </div>
+    );
+  },
+
+  PerformanceGauge: ({ value, title, max = 100 }: { value: number, title: string, max?: number }) => {
+    const getStatusColor = (val: number) => {
+      if (val >= 80) return '#52c41a'; // Green
+      if (val >= 60) return '#faad14'; // Yellow
+      return '#ff4d4f'; // Red
+    };
+
+    return (
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <Row gutter={[24, 24]} justify="center">
+            <Col xs={24} sm={12} md={8}>
+              <Statistic
+                title="Performance Score"
+                value={value}
+                suffix="/ 100"
+                valueStyle={{ 
+                  color: getStatusColor(value),
+                  fontSize: '2rem',
+                  fontWeight: 'bold'
+                }}
+                prefix={<TrophyOutlined />}
+              />
+              <Progress
+                percent={value}
+                strokeColor={getStatusColor(value)}
+                trailColor="#f0f0f0"
+                strokeWidth={8}
+                showInfo={false}
+                style={{ marginTop: '16px' }}
+              />
+            </Col>
+          </Row>
+        </Card>
+      </div>
+    );
+  }
 }
 
 // TinaCMS Template Components
@@ -255,6 +480,9 @@ const templateComponents = {
   MarketGrowthChart: customComponents.MarketGrowthChart,
   PropertyTypeDistribution: customComponents.PropertyTypeDistribution,
   TrendAnalysis: customComponents.TrendAnalysis,
+  PricingTable: customComponents.PricingTable,
+  ComparisonChart: customComponents.ComparisonChart,
+  PerformanceGauge: customComponents.PerformanceGauge,
 };
 
 // Combine all components
