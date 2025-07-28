@@ -201,6 +201,22 @@ const customComponents = {
   ),
 
   PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+          </Card>
+        </div>
+      );
+    }
+
     try {
       if (!data || data.length === 0) {
         return (
@@ -216,10 +232,6 @@ const customComponents = {
         data,
         xField: 'year',
         yField: 'price',
-        point: {
-          size: 5,
-          shape: 'diamond',
-        },
         color: '#1890ff',
         smooth: true,
       };
@@ -246,6 +258,22 @@ const customComponents = {
   },
 
   MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+          </Card>
+        </div>
+      );
+    }
+
     try {
       if (!data || data.length === 0) {
         return (
@@ -286,6 +314,22 @@ const customComponents = {
   },
 
   PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+          </Card>
+        </div>
+      );
+    }
+
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
@@ -329,6 +373,22 @@ const customComponents = {
   },
 
   TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+          </Card>
+        </div>
+      );
+    }
+
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
@@ -406,6 +466,22 @@ const customComponents = {
   },
 
   PricingTable: ({ data, title }: { data: Array<{category: string, price: number, rent: number, roi: number}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading table...</div>
+          </Card>
+        </div>
+      );
+    }
+
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
@@ -465,6 +541,22 @@ const customComponents = {
   },
 
   ComparisonChart: ({ data, title }: { data: Array<{name: string, value1: number, value2: number, label1: string, label2: string}>, title: string }) => {
+    const [isClient, setIsClient] = React.useState(false);
+    
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+      return (
+        <div className="my-8">
+          <Card title={title} bordered={false}>
+            <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
+          </Card>
+        </div>
+      );
+    }
+
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
