@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
 import dynamic from 'next/dynamic'
-import { Table, Card, Progress, Statistic, Row, Col, Divider } from 'antd'
+import { Table, Card, Progress, Statistic, Row, Col, Divider, List } from 'antd'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
 
 // Error boundary for chart components
@@ -41,37 +41,76 @@ class ChartErrorBoundary extends React.Component<
   }
 }
 
-// Dynamic imports for Ant Design plots to avoid SSR issues
+// Fallback chart components using Ant Design components only
+const FallbackChart = ({ title, data, type }: { title: string, data: any[], type: string }) => (
+  <div className="my-8">
+    <Card title={title} bordered={false}>
+      <div className="space-y-4">
+        {data.map((item, index) => {
+          const value = item.value || item.price || item.growth || item.demand || 0;
+          const label = item.name || item.type || item.area || item.year || item.month || `Item ${index + 1}`;
+          const color = item.color || '#1890ff';
+          
+          return (
+            <div key={index} className="flex items-center justify-between">
+              <span className="font-medium">{label}</span>
+              <div className="flex items-center space-x-2" style={{ width: '60%' }}>
+                <Progress 
+                  percent={Math.min(value, 100)} 
+                  strokeColor={color}
+                  showInfo={false}
+                />
+                <span className="text-sm font-bold">{value}{type === 'percentage' ? '%' : ''}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Card>
+  </div>
+);
+
+// Safe dynamic imports with comprehensive fallbacks
 const Line = dynamic(
-  () => import('@ant-design/plots').then(mod => ({ default: mod.Line })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Line })).catch(() => ({ 
+    default: (props: any) => <FallbackChart {...props} type="line" />
+  })), 
   { 
     ssr: false,
     loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
   }
 )
 const Bar = dynamic(
-  () => import('@ant-design/plots').then(mod => ({ default: mod.Bar })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Bar })).catch(() => ({ 
+    default: (props: any) => <FallbackChart {...props} type="bar" />
+  })), 
   { 
     ssr: false,
     loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
   }
 )
 const Pie = dynamic(
-  () => import('@ant-design/plots').then(mod => ({ default: mod.Pie })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Pie })).catch(() => ({ 
+    default: (props: any) => <FallbackChart {...props} type="percentage" />
+  })), 
   { 
     ssr: false,
     loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
   }
 )
 const Area = dynamic(
-  () => import('@ant-design/plots').then(mod => ({ default: mod.Area })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Area })).catch(() => ({ 
+    default: (props: any) => <FallbackChart {...props} type="area" />
+  })), 
   { 
     ssr: false,
     loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
   }
 )
 const Column = dynamic(
-  () => import('@ant-design/plots').then(mod => ({ default: mod.Column })).catch(() => ({ default: () => <div>Chart unavailable</div> })), 
+  () => import('@ant-design/plots').then(mod => ({ default: mod.Column })).catch(() => ({ 
+    default: (props: any) => <FallbackChart {...props} type="column" />
+  })), 
   { 
     ssr: false,
     loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
@@ -340,35 +379,28 @@ const customComponents = {
       );
     }
 
-    const config = {
-      appendPadding: 10,
-      data,
-      angleField: 'value',
-      colorField: 'type',
-      radius: 0.8,
-      label: {
-        type: 'outer',
-        content: '{name} {percentage}',
-      },
-      interactions: [
-        {
-          type: 'pie-legend-active',
-        },
-        {
-          type: 'element-active',
-        },
-      ],
-      color: data.map(item => item.color),
-    };
-
+    // Use Progress bars as the primary display method to avoid dynamic import issues
     return (
-      <ChartErrorBoundary>
-        <div className="my-8">
-          <Card title={title} bordered={false}>
-            <Pie {...config} height={300} />
-          </Card>
-        </div>
-      </ChartErrorBoundary>
+      <div className="my-8">
+        <Card title={title} bordered={false}>
+          <div className="space-y-4">
+            {data.map((item, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <span className="font-medium text-gray-900">{item.type}</span>
+                <div className="flex items-center space-x-3" style={{ width: '60%' }}>
+                  <Progress 
+                    percent={item.value} 
+                    strokeColor={item.color}
+                    showInfo={false}
+                    strokeWidth={8}
+                  />
+                  <span className="text-sm font-bold text-gray-700 min-w-[40px]">{item.value}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
     );
   },
 
@@ -723,5 +755,7 @@ const components = {
   ...customComponents,
   ...templateComponents
 }
+
+// All components are properly exported
 
 export default components

@@ -72,6 +72,14 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                     fill
                     className="object-cover"
                     priority={index < 3}
+                    onError={(e) => {
+                      console.error('Failed to load blog section image:', post.image);
+                      // Fallback to default image
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/images/narkins-builders-logo.webp';
+                    }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized={false}
                   />
                 </div>
               )}
