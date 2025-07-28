@@ -10,6 +10,16 @@ import components from '@/components/features/blog/mdx-components'
 import remarkGfm from 'remark-gfm'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { 
+  firstTimeBuyerFAQs,
+  investmentGuideFAQs,
+  twoBedroomFAQs,
+  luxuryApartmentsFAQs,
+  generalRealEstateFAQs,
+  hillCrestFAQs,
+  boutiqueResidencyFAQs,
+  apartmentSaleFAQs
+} from '@/data/faq-data'
 
 interface BlogPostProps {
   post: BlogPost
@@ -155,6 +165,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         rehypePlugins: [],
         development: process.env.NODE_ENV === 'development',
       },
+      scope: {
+        firstTimeBuyerFAQs,
+        investmentGuideFAQs,
+        twoBedroomFAQs,
+        luxuryApartmentsFAQs,
+        generalRealEstateFAQs,
+        hillCrestFAQs,
+        boutiqueResidencyFAQs,
+        apartmentSaleFAQs
+      }
     })
 
     return {
