@@ -1,6 +1,6 @@
 # Blog Editing Guide
 
-This project supports dual editing modes for blog posts to accommodate both technical and non-technical team members.
+This project supports dual editing modes for blog posts to accommodate both technical and non-technical team members. The system automatically detects the editing mode based on the `editingMode` field in each post's frontmatter.
 
 ## For Non-Technical Team (TinaCMS Visual Editor)
 
@@ -81,3 +81,13 @@ The FAQ component supports these predefined datasets:
 - **FAQ not showing**: Ensure the FAQ variable name matches exactly
 - **Build errors**: Check MDX syntax in raw mode
 - **Visual editor issues**: Switch to raw mode temporarily for complex content
+- **Rich text parsing error**: Ensure the post has `editingMode: "raw"` in frontmatter for existing posts
+- **GraphQL mismatch**: Run TinaCMS build to regenerate schema after config changes
+
+## Migration Notes
+
+**Existing Posts**: All current blog posts are set to `editingMode: "raw"` to maintain compatibility with existing MDX content.
+
+**New Posts**: Can choose either mode when creating:
+- Visual Editor: Easy drag-and-drop components
+- Raw MDX: Full control over content and formatting
