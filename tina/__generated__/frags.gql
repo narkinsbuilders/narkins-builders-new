@@ -12,6 +12,7 @@ fragment BlogParts on Blog {
   marketTiming
   dateFixed
   keywords
+  editingMode
   body
 }
 

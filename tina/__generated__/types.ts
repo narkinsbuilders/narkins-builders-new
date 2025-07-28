@@ -197,6 +197,7 @@ export type Blog = Node & Document & {
   marketTiming: Scalars['String']['output'];
   dateFixed?: Maybe<Scalars['Boolean']['output']>;
   keywords: Scalars['String']['output'];
+  editingMode?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -230,28 +231,19 @@ export type BooleanFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type BlogBodyInfoBoxFilter = {
+export type BlogBodyFaqFilter = {
+  staticFaqs?: InputMaybe<StringFilter>;
+  pageUrl?: InputMaybe<StringFilter>;
+  contextType?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
-  content?: InputMaybe<RichTextFilter>;
+  description?: InputMaybe<StringFilter>;
 };
 
-export type BlogBodyPriceTableRowsFilter = {
-  category?: InputMaybe<StringFilter>;
-  price?: InputMaybe<StringFilter>;
-  size?: InputMaybe<StringFilter>;
-  rent?: InputMaybe<StringFilter>;
-  buyer?: InputMaybe<StringFilter>;
-};
-
-export type BlogBodyPriceTableFilter = {
+export type BlogBodyCallToActionFilter = {
   title?: InputMaybe<StringFilter>;
-  rows?: InputMaybe<BlogBodyPriceTableRowsFilter>;
+  description?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+  buttonLink?: InputMaybe<StringFilter>;
 };
 
 export type NumberFilter = {
@@ -264,30 +256,31 @@ export type NumberFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
-export type BlogBodyFaqItemsFilter = {
-  id?: InputMaybe<StringFilter>;
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<RichTextFilter>;
-  tags?: InputMaybe<StringFilter>;
-  priority?: InputMaybe<NumberFilter>;
+export type BlogBodyPropertyCardFilter = {
+  title?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  bedrooms?: InputMaybe<NumberFilter>;
+  bathrooms?: InputMaybe<NumberFilter>;
+  area?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
 };
 
-export type BlogBodyFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  source?: InputMaybe<StringFilter>;
-  collection?: InputMaybe<StringFilter>;
-  category?: InputMaybe<StringFilter>;
-  tags?: InputMaybe<StringFilter>;
-  limit?: InputMaybe<NumberFilter>;
-  searchable?: InputMaybe<BooleanFilter>;
-  items?: InputMaybe<BlogBodyFaqItemsFilter>;
+export type BlogBodyMarketTableDataFilter = {
+  area?: InputMaybe<StringFilter>;
+  avgPrice?: InputMaybe<StringFilter>;
+  growth?: InputMaybe<StringFilter>;
+};
+
+export type BlogBodyMarketTableFilter = {
+  data?: InputMaybe<BlogBodyMarketTableDataFilter>;
 };
 
 export type BlogBodyFilter = {
-  InfoBox?: InputMaybe<BlogBodyInfoBoxFilter>;
-  PriceTable?: InputMaybe<BlogBodyPriceTableFilter>;
   FAQ?: InputMaybe<BlogBodyFaqFilter>;
+  CallToAction?: InputMaybe<BlogBodyCallToActionFilter>;
+  PropertyCard?: InputMaybe<BlogBodyPropertyCardFilter>;
+  MarketTable?: InputMaybe<BlogBodyMarketTableFilter>;
 };
 
 export type BlogFilter = {
@@ -303,6 +296,7 @@ export type BlogFilter = {
   marketTiming?: InputMaybe<StringFilter>;
   dateFixed?: InputMaybe<BooleanFilter>;
   keywords?: InputMaybe<StringFilter>;
+  editingMode?: InputMaybe<StringFilter>;
   body?: InputMaybe<BlogBodyFilter>;
 };
 
@@ -338,6 +332,12 @@ export type Faq = Node & Document & {
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type FaqFaqsFilter = {
@@ -463,6 +463,7 @@ export type BlogMutation = {
   marketTiming?: InputMaybe<Scalars['String']['input']>;
   dateFixed?: InputMaybe<Scalars['Boolean']['input']>;
   keywords?: InputMaybe<Scalars['String']['input']>;
+  editingMode?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -482,7 +483,7 @@ export type FaqMutation = {
   faqs?: InputMaybe<Array<InputMaybe<FaqFaqsMutation>>>;
 };
 
-export type BlogPartsFragment = { __typename: 'Blog', title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, body?: any | null };
+export type BlogPartsFragment = { __typename: 'Blog', title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null };
 
 export type FaqPartsFragment = { __typename: 'Faq', title: string, description: string, category: string, projectId?: string | null, faqs?: Array<{ __typename: 'FaqFaqs', id: string, question: string, answer: any, tags?: Array<string | null> | null, priority: number } | null> | null };
 
@@ -491,7 +492,7 @@ export type BlogQueryVariables = Exact<{
 }>;
 
 
-export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type BlogConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -503,7 +504,7 @@ export type BlogConnectionQueryVariables = Exact<{
 }>;
 
 
-export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, excerpt: string, date: string, image: string, readTime: string, lastModified: string, season: string, priority: string, automatedUpdate?: boolean | null, marketTiming: string, dateFixed?: boolean | null, keywords: string, editingMode?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type FaqQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -539,6 +540,7 @@ export const BlogPartsFragmentDoc = gql`
   marketTiming
   dateFixed
   keywords
+  editingMode
   body
 }
     `;

@@ -128,178 +128,179 @@ var config_default = defineConfig({
             }
           },
           {
+            type: "string",
+            name: "editingMode",
+            label: "Editing Mode",
+            options: [
+              { value: "visual", label: "Visual Editor (Recommended for non-tech users)" },
+              { value: "raw", label: "Raw MDX (For developers)" }
+            ],
+            ui: {
+              description: "Choose your preferred editing mode. Visual editor provides easy-to-use components, raw MDX allows full control."
+            }
+          },
+          {
             type: "rich-text",
             name: "body",
-            label: "Content",
+            label: "Content (Visual Editor)",
             isBody: true,
             templates: [
-              {
-                name: "InfoBox",
-                label: "Info Box",
-                fields: [
-                  {
-                    name: "title",
-                    label: "Title",
-                    type: "string"
-                  },
-                  {
-                    name: "content",
-                    label: "Content",
-                    type: "rich-text"
-                  }
-                ]
-              },
-              {
-                name: "PriceTable",
-                label: "Price Table",
-                fields: [
-                  {
-                    name: "title",
-                    label: "Table Title",
-                    type: "string"
-                  },
-                  {
-                    name: "rows",
-                    label: "Table Rows",
-                    type: "object",
-                    list: true,
-                    fields: [
-                      {
-                        name: "category",
-                        label: "Category",
-                        type: "string"
-                      },
-                      {
-                        name: "price",
-                        label: "Price",
-                        type: "string"
-                      },
-                      {
-                        name: "size",
-                        label: "Size",
-                        type: "string"
-                      },
-                      {
-                        name: "rent",
-                        label: "Monthly Rent",
-                        type: "string"
-                      },
-                      {
-                        name: "buyer",
-                        label: "Target Buyer",
-                        type: "string"
-                      }
-                    ]
-                  }
-                ]
-              },
               {
                 name: "FAQ",
                 label: "FAQ Section",
                 fields: [
                   {
-                    name: "title",
-                    label: "Section Title",
+                    name: "staticFaqs",
+                    label: "FAQ Data",
                     type: "string",
-                    description: 'Override default "Frequently Asked Questions" title'
+                    options: [
+                      { value: "firstTimeBuyerFAQs", label: "First Time Buyer FAQs" },
+                      { value: "investmentGuideFAQs", label: "Investment Guide FAQs" },
+                      { value: "twoBedroomFAQs", label: "Two Bedroom FAQs" },
+                      { value: "luxuryApartmentsFAQs", label: "Luxury Apartments FAQs" },
+                      { value: "generalRealEstateFAQs", label: "General Real Estate FAQs" },
+                      { value: "hillCrestFAQs", label: "Hill Crest Residency FAQs" },
+                      { value: "boutiqueResidencyFAQs", label: "Boutique Residency FAQs" },
+                      { value: "apartmentSaleFAQs", label: "Apartment Sale FAQs" }
+                    ]
+                  },
+                  {
+                    name: "pageUrl",
+                    label: "Page URL",
+                    type: "string",
+                    description: "URL of the current page for FAQ context"
+                  },
+                  {
+                    name: "contextType",
+                    label: "Context Type",
+                    type: "string",
+                    options: [
+                      { value: "property", label: "Property" },
+                      { value: "investment", label: "Investment" },
+                      { value: "general", label: "General" }
+                    ]
+                  },
+                  {
+                    name: "title",
+                    label: "Title",
+                    type: "string",
+                    description: 'Optional custom title (default: "Frequently Asked Questions")'
                   },
                   {
                     name: "description",
-                    label: "Section Description",
+                    label: "Description",
                     type: "string",
                     ui: { component: "textarea" },
-                    description: "Brief description shown below the title"
-                  },
+                    description: "Optional description text below the title"
+                  }
+                ]
+              },
+              {
+                name: "CallToAction",
+                label: "Call to Action",
+                fields: [
                   {
-                    name: "source",
-                    label: "FAQ Source",
+                    name: "title",
+                    label: "Title",
                     type: "string",
-                    options: [
-                      { value: "inline", label: "Custom FAQs (below)" },
-                      { value: "collection", label: "FAQ Collection" },
-                      { value: "category", label: "FAQ Category" },
-                      { value: "mixed", label: "Collection + Custom" }
-                    ]
+                    required: true
                   },
                   {
-                    name: "collection",
-                    label: "FAQ Collection",
+                    name: "description",
+                    label: "Description",
                     type: "string",
-                    description: "For source: collection or mixed",
-                    options: [
-                      { value: "general", label: "General Real Estate" },
-                      { value: "hill-crest-residency", label: "Hill Crest Residency" },
-                      { value: "narkins-boutique-residency", label: "Narkins Boutique Residency" }
-                    ]
+                    ui: { component: "textarea" },
+                    required: true
                   },
                   {
-                    name: "category",
-                    label: "FAQ Category",
+                    name: "buttonText",
+                    label: "Button Text",
                     type: "string",
-                    description: "For source: category",
-                    options: [
-                      { value: "general", label: "General Real Estate" },
-                      { value: "property", label: "Property Specific" },
-                      { value: "investment", label: "Investment" },
-                      { value: "first-time-buyer", label: "First Time Buyer" }
-                    ]
+                    required: true
                   },
                   {
-                    name: "tags",
-                    label: "Filter by Tags",
+                    name: "buttonLink",
+                    label: "Button Link",
                     type: "string",
-                    list: true,
-                    description: "Show only FAQs with these tags"
+                    required: true
+                  }
+                ]
+              },
+              {
+                name: "PropertyCard",
+                label: "Property Card",
+                fields: [
+                  {
+                    name: "title",
+                    label: "Title",
+                    type: "string",
+                    required: true
                   },
                   {
-                    name: "limit",
-                    label: "Maximum FAQs",
+                    name: "price",
+                    label: "Price",
+                    type: "string",
+                    required: true
+                  },
+                  {
+                    name: "location",
+                    label: "Location",
+                    type: "string",
+                    required: true
+                  },
+                  {
+                    name: "bedrooms",
+                    label: "Bedrooms",
                     type: "number",
-                    description: "Limit number of FAQs shown (0 = no limit)"
+                    required: true
                   },
                   {
-                    name: "searchable",
-                    label: "Enable Search",
-                    type: "boolean",
-                    description: "Add search bar for filtering FAQs"
+                    name: "bathrooms",
+                    label: "Bathrooms",
+                    type: "number",
+                    required: true
                   },
                   {
-                    name: "items",
-                    label: "Custom FAQ Items",
+                    name: "area",
+                    label: "Area",
+                    type: "string",
+                    required: true
+                  },
+                  {
+                    name: "image",
+                    label: "Image",
+                    type: "image",
+                    required: true
+                  }
+                ]
+              },
+              {
+                name: "MarketTable",
+                label: "Market Data Table",
+                fields: [
+                  {
+                    name: "data",
+                    label: "Table Data",
                     type: "object",
                     list: true,
-                    description: "For source: inline or mixed",
                     fields: [
                       {
-                        name: "id",
-                        label: "FAQ ID",
-                        type: "string",
-                        description: "Unique identifier"
-                      },
-                      {
-                        name: "question",
-                        label: "Question",
+                        name: "area",
+                        label: "Area",
                         type: "string",
                         required: true
                       },
                       {
-                        name: "answer",
-                        label: "Answer",
-                        type: "rich-text",
+                        name: "avgPrice",
+                        label: "Average Price",
+                        type: "string",
                         required: true
                       },
                       {
-                        name: "tags",
-                        label: "Tags",
+                        name: "growth",
+                        label: "Growth",
                         type: "string",
-                        list: true,
-                        description: "Tags for filtering and organization"
-                      },
-                      {
-                        name: "priority",
-                        label: "Priority",
-                        type: "number",
-                        description: "Display order (1 = highest)"
+                        required: true
                       }
                     ]
                   }

@@ -71,14 +71,28 @@
       "purpose": "any"
     }
   ],
-  "categories": ["business", "lifestyle"],
+  "categories": ["business", "lifestyle", "productivity"],
   "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "handle_links": "preferred",
   "shortcuts": [
     {
       "name": "View Projects",
       "short_name": "Projects",
       "description": "Browse our luxury apartment projects",
       "url": "/narkins-boutique-residency",
+      "icons": [{ "src": "/icons/icon-192x192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hill Crest Residency",
+      "short_name": "Hill Crest",
+      "description": "View Hill Crest Residency project details",
+      "url": "/hill-crest-residency",
       "icons": [{ "src": "/icons/icon-192x192.svg", "sizes": "192x192" }]
     },
     {
@@ -97,7 +111,7 @@
     }
   ],
   "share_target": {
-    "action": "/share",
+    "action": "/api/share",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
@@ -105,5 +119,24 @@
       "text": "text",
       "url": "url"
     }
-  }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "mailto",
+      "url": "/#contact?email=%s"
+    },
+    {
+      "protocol": "tel",
+      "url": "/#contact?phone=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif"],
+        "application/pdf": [".pdf"]
+      }
+    }
+  ]
 }
