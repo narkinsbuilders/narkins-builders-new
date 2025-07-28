@@ -2,9 +2,16 @@
 import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
+import dynamic from 'next/dynamic'
 import { Table, Card, Progress, Statistic, Row, Col, Divider } from 'antd'
-import { Line, Bar, Pie, Area, Column } from '@ant-design/plots'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
+
+// Dynamic imports for Ant Design plots to avoid SSR issues
+const Line = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Line })), { ssr: false })
+const Bar = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Bar })), { ssr: false })
+const Pie = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Pie })), { ssr: false })
+const Area = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Area })), { ssr: false })
+const Column = dynamic(() => import('@ant-design/plots').then(mod => ({ default: mod.Column })), { ssr: false })
 
 // Professional blog styling to match the design
 const htmlComponents = {
