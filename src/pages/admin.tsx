@@ -9,11 +9,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const host = req.headers.host
   const isLocalhost = host?.includes('localhost')
   
+  // Check if we're in development mode (TinaCMS dev server running)
+  const isDev = process.env.NODE_ENV === 'development'
+  
   let destination
-  if (isLocalhost) {
+  if (isLocalhost && isDev) {
     destination = 'http://localhost:4001/admin/index.html'
   } else {
-    destination = `${protocol}://${host}/admin/index.html`
+    destination = '/admin/index.html'
   }
 
   return {
