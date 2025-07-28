@@ -20,6 +20,9 @@ keywords: >-
   investment guide, Bahria Town investment returns
 ---
 
+import FAQ from 'nara/src/components/features/faq/faq';
+import { investmentGuideFAQs } from 'nara/src/data/faq-data';
+
 ## Why Property Investment in Bahria Town Karachi Dominates the Market
 
 Smart investors are flocking to Bahria Town Karachi for powerful financial reasons. This premium development delivers exceptional returns through proven appreciation rates, strong rental yields, and Pakistan's most comprehensive infrastructure investment.
@@ -179,79 +182,13 @@ Current market conditions favor immediate investment with moderate financing cos
 ► Expert consultation throughout entire investment and ownership process\
 ► Complete legal documentation and regulatory compliance assistance
 
-## Frequently Asked Questions
-
-<div className="space-y-4">
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">What's the minimum investment required for Bahria Town properties?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Entry-level investments start from PKR 50 lakh for land plots, while apartment investments begin at PKR 1.5 Crore. Developer financing allows 10-20% down payments for qualified investors.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">How do I calculate expected ROI for different property types?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">ROI combines capital appreciation (15-30% annually) plus rental yields (6-12% annually). Our investment calculator factors in financing costs, taxes, and maintenance to provide accurate net return projections.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">What financing options provide the best leverage for investors?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Developer financing often provides optimal terms with lower down payments and promotional rates. Bank mortgages offer longer tenure for cash flow management. All-cash investments provide maximum negotiation power and immediate equity building.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">How do I optimize my investment for tax efficiency?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Hold properties for 3+ years to achieve tax-free capital gains. Maximize rental expense deductions for maintenance, management, and financing costs. Consider corporate ownership structures for larger portfolios.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">What ongoing management services do you provide for investors?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Comprehensive property management including rental management, tenant screening, maintenance coordination, market analysis updates, portfolio optimization advice, and exit strategy planning for maximum returns.</p>
-    </div>
-  </details>
-</div>
+<FAQ 
+  staticFaqs={investmentGuideFAQs} 
+  pageUrl="/blogs/bahria-town-karachi-property-investment-guide" 
+  contextType="investment" 
+  title="Frequently Asked Questions" 
+  description="Expert answers to key questions about property investment in Bahria Town Karachi, covering ROI calculations, financing strategies, and tax optimization."
+/>
 
 <br />
 

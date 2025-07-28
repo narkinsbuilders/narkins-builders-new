@@ -20,6 +20,9 @@ keywords: >-
   luxury apartments Karachi, property investment Bahria Town
 ---
 
+import FAQ from 'nara/src/components/features/faq/faq';
+import { twoBedroomFAQs } from 'nara/src/data/faq-data';
+
 ## Why 2 Bedroom Apartments are Dominating Karachi's Market
 
 Smart buyers are choosing 2 bedroom apartments for compelling reasons. These units offer the perfect entry point into Bahria Town's luxury market while providing exceptional rental income potential.
@@ -178,90 +181,10 @@ Compare all options to save 2-3% by selecting the structure that best fits your 
 * **Timely Delivery**: Strong track record of on-time project completion
 * **Investment Guidance**: Help maximize your property's potential
 
-## Frequently Asked Questions
-
-<div className="space-y-4">
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">What's the minimum down payment required?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">10-20% for developer financing, 20-30% for bank loans. We offer flexible payment structures tailored to your financial capacity.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">Are payment plans negotiable?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Yes, we customize 36-60 month installment plans based on your financial capacity and preferences. Each plan is designed to fit your specific needs.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">Which project offers better investment potential?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Hill Crest for immediate rental income and possession, Narkin's Boutique Residency for pre-launch appreciation potential. Both offer excellent long-term returns with different timeline advantages.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">Can overseas Pakistanis purchase these apartments?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Absolutely. We provide complete documentation assistance and can manage the entire purchase process remotely for overseas Pakistani buyers.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">Do you offer property management services?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Yes, we provide comprehensive rental management, maintenance coordination, tenant screening, and property oversight services.</p>
-    </div>
-  </details>
-
-  <details className="group border border-gray-200 rounded-lg overflow-hidden">
-    <summary className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-      <span className="font-semibold text-gray-800">What's included in the maintenance charges?</span>
-
-      <svg className="w-5 h-5 text-gray-600 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </summary>
-
-    <div className="p-4 bg-white border-t border-gray-100">
-      <p className="text-gray-700">Security services, common area maintenance, elevator operation, generator backup, swimming pool upkeep, gym facilities, and landscaping maintenance.</p>
-    </div>
-  </details>
-</div>
+<FAQ 
+  staticFaqs={twoBedroomFAQs} 
+  pageUrl="/blogs/2-bedroom-apartments-bahria-town-karachi-guide" 
+  contextType="property" 
+  title="Frequently Asked Questions" 
+  description="Get answers to common questions about purchasing 2 bedroom apartments in Bahria Town Karachi, from financing options to project comparisons."
+/>
