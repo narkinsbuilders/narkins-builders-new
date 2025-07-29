@@ -110,23 +110,23 @@ const nextConfig = {
           },
         ],
       },
-      // Static assets caching - excluding blog images for better updates
-      {
-        source: '/images/(?!blog-images/)(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // Blog images - shorter cache for regular updates
+      // Blog images - shorter cache for regular updates (must come first)
       {
         source: '/images/blog-images/(.*)',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      // Other static assets - long-term caching
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
