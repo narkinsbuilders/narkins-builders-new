@@ -3,16 +3,28 @@ import { getAllPostsServer } from '../../lib/blog-server'
 import { BlogPost } from '../../lib/blog'
 import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'
+import BlogFilter, { BlogFilters } from '@/components/features/blog-filter/blog-filter'
+import { filterAndSortPosts } from '../../lib/blog-filter'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface BlogIndexProps {
   posts: BlogPost[]
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
+  // Filter state
+  const [filters, setFilters] = useState<BlogFilters>({
+    contentType: 'all',
+    sortOrder: 'newest',
+    readTime: 'all',
+  });
+
+  // Filter and sort posts
+  const filteredPosts = filterAndSortPosts(posts, filters);
+
   // Define the newest blogs that have image loading issues
   const newestBlogImages = [
     '/images/blog-images/gated-community-karachi.webp',
@@ -66,11 +78,22 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
           </div>
         </div>
 
+        {/* Blog Filter */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-8 pb-6">
+          <BlogFilter 
+            filters={filters} 
+            onFiltersChange={setFilters}
+            totalPosts={posts.length}
+            filteredCount={filteredPosts.length}
+            posts={posts}
+          />
+        </div>
+
         {/* Blog Posts Grid */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
-          {posts.length > 0 ? (
-            <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-              {posts.map((post) => (
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16">
+          {filteredPosts.length > 0 ? (
+              <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                {filteredPosts.map((post) => (
                 <article key={post.slug} 
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   <Link href={`/blog/${post.slug}`}>
@@ -128,14 +151,14 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     </div>
                   </Link>
                 </article>
-              ))}
-            </div>
+                ))}
+              </div>
           ) : (
             <div className="text-center py-12">
               <div className="max-w-md mx-auto">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No blog posts yet</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No articles match your filters</h3>
                 <p className="text-gray-500 text-sm">
-                  Create MDX files in content/blogs/ to get started with your blog.
+                  Try adjusting your filter criteria to see more results.
                 </p>
               </div>
             </div>

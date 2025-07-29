@@ -30,6 +30,7 @@ export function getAllPostsServer(): BlogPost[] {
         image: matterResult.data.image || '/images/narkins-builders-logo.webp',
         content: content,
         readTime: matterResult.data.readTime || '5 min read',
+        keywords: matterResult.data.keywords || '',
       }
     })
 
@@ -58,5 +59,6 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
     image: matterResult.data.image || '/images/narkins-builders-logo.webp',
     content: content,
     readTime: matterResult.data.readTime || '5 min read',
+    keywords: matterResult.data.keywords || '',
   }
 }

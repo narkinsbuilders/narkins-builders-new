@@ -8,6 +8,14 @@ var config_default = defineConfig({
     outputFolder: "admin",
     publicFolder: "public"
   },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+      stopwordLanguages: ["eng"]
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100
+  },
   media: {
     tina: {
       mediaRoot: "images",
@@ -35,13 +43,15 @@ var config_default = defineConfig({
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true
+            required: true,
+            searchable: true
           },
           {
             type: "string",
             name: "excerpt",
             label: "Excerpt",
             required: true,
+            searchable: true,
             ui: {
               component: "textarea",
               description: "Brief description of the blog post for SEO and previews"
@@ -122,6 +132,7 @@ var config_default = defineConfig({
             name: "keywords",
             label: "SEO Keywords",
             required: true,
+            searchable: true,
             ui: {
               component: "textarea",
               description: "Comma-separated keywords for SEO"
@@ -132,6 +143,7 @@ var config_default = defineConfig({
             name: "body",
             label: "Content",
             isBody: true,
+            searchable: true,
             templates: [
               {
                 name: "FAQ",
@@ -317,13 +329,15 @@ var config_default = defineConfig({
             name: "title",
             label: "Collection Title",
             isTitle: true,
-            required: true
+            required: true,
+            searchable: true
           },
           {
             type: "string",
             name: "description",
             label: "Description",
             required: true,
+            searchable: true,
             ui: {
               component: "textarea",
               description: "Brief description of this FAQ collection"
@@ -367,6 +381,7 @@ var config_default = defineConfig({
                 name: "question",
                 label: "Question",
                 required: true,
+                searchable: true,
                 ui: {
                   component: "textarea"
                 }
@@ -375,13 +390,15 @@ var config_default = defineConfig({
                 type: "rich-text",
                 name: "answer",
                 label: "Answer",
-                required: true
+                required: true,
+                searchable: true
               },
               {
                 type: "string",
                 name: "tags",
                 label: "Tags",
                 list: true,
+                searchable: true,
                 description: "Tags for filtering and organization"
               },
               {
