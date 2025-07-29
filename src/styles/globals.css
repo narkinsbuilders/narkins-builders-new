@@ -134,57 +134,26 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Typography defaults */
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+  
+  h5, h6 {
+    @apply font-sans font-semibold;
+  }
+  
+  p, span, div, a, li, td, th {
+    @apply font-sans;
   }
 }
 
 /* * {
   outline: solid 1px red;
 } */
-/* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-#__next {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-/* Ensure images don't cause overflow */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Fix iframe overflow */
-iframe {
-  max-width: 100%;
-}
-
-/* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-#__next {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-/* Ensure images don't cause overflow */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Fix iframe overflow */
-iframe {
-  max-width: 100%;
-}
-
 /* MOBILE OVERFLOW FIX - Added to prevent horizontal scroll */
 html, body {
   overflow-x: hidden;

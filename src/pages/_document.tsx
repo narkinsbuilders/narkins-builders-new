@@ -26,6 +26,14 @@ export default function Document() {
           }}
         />
 
+        {/* Google Fonts - Optimized for Core Web Vitals */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="6r3wQXNZVGZ59xXsuU_8z_Z4oGpeIaiEPvmNuf78Mzk" />
         
