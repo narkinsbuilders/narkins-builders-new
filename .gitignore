@@ -27,7 +27,6 @@ yarn-error.log*
 
 # TypeScript Auto-generated
 *.tsbuildinfo
-.tsbuildinfo
 next-env.d.ts
 
 # IDE/Editor files
@@ -77,8 +76,9 @@ coverage/
 # Optional npm cache directory
 .npm
 
-# Optional eslint cache
+# Build caches
 .eslintcache
+.tsbuildinfo
 
 # Microbundle cache
 .rpt2_cache/
