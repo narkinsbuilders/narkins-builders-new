@@ -37,6 +37,15 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   // Check if this is a problematic new blog image
   const isNewBlogImage = (imagePath: string) => newestBlogImages.includes(imagePath);
 
+  // Add cache busting for blog images (updates daily)
+  const addCacheBuster = (imagePath: string) => {
+    if (imagePath.includes('/images/blog-images/')) {
+      const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      return `${imagePath}?v=${today}`;
+    }
+    return imagePath;
+  };
+
   // Preload new blog images to warm up the cache
   useEffect(() => {
     newestBlogImages.forEach(imagePath => {
@@ -100,7 +109,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     <div className="cursor-pointer">
                       <div className="aspect-[16/9] relative">
                         <Image
-                          src={post.image}
+                          src={addCacheBuster(post.image)}
                           alt={post.title}
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-300"

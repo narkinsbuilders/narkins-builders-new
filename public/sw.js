@@ -1,9 +1,9 @@
 // Import Workbox SW
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
 
-const CACHE_NAME = 'narkins-builders-v2';
-const STATIC_CACHE = 'narkins-static-v2';
-const RUNTIME_CACHE = 'narkins-runtime-v2';
+const CACHE_NAME = 'narkins-builders-v3';
+const STATIC_CACHE = 'narkins-static-v3';
+const RUNTIME_CACHE = 'narkins-runtime-v3';
 
 // Core pages and assets to precache
 const urlsToCache = [
@@ -31,7 +31,7 @@ if (workbox) {
 
   // Precache core assets
   workbox.precaching.precacheAndRoute(
-    urlsToCache.map(url => ({ url, revision: '2' }))
+    urlsToCache.map(url => ({ url, revision: '3' }))
   );
 
   // Cache strategies for different content types
@@ -120,9 +120,28 @@ if (workbox) {
     })
   );
 
-  // 3. Images - Cache First (long-term caching)
+  // 3a. Blog Images - Stale While Revalidate (better updates)
   workbox.routing.registerRoute(
-    ({ request }) => request.destination === 'image',
+    ({ request, url }) => 
+      request.destination === 'image' && url.pathname.includes('/images/blog-images/'),
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: 'blog-images-cache',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 100,
+          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // 3b. Other Images - Cache First (long-term caching)
+  workbox.routing.registerRoute(
+    ({ request, url }) => 
+      request.destination === 'image' && !url.pathname.includes('/images/blog-images/'),
     new workbox.strategies.CacheFirst({
       cacheName: 'images-cache',
       plugins: [
