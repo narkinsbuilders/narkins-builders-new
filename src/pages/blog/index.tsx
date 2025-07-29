@@ -41,6 +41,10 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   // Add cache busting for blog images (updates daily)
   const addCacheBuster = (imagePath: string) => {
     if (imagePath.includes('/images/blog-images/')) {
+      // Special one-time cache buster for recently updated image
+      if (imagePath.includes('bahria-town-karachi-investment-opportunity.webp')) {
+        return `${imagePath}?v=2025-07-29-update`;
+      }
       const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
       return `${imagePath}?v=${today}`;
     }
