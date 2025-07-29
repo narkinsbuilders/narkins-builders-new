@@ -31,7 +31,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
     '/images/blog-images/karachi-brt-development.webp', 
     '/images/blog-images/karachi-skyline-2025.webp',
     '/images/blog-images/luxury-apartments-bahria-town-night-view.webp',
-    '/images/blog-images/karachi-high-rise-skyline.webp'
+    '/images/blog-images/karachi-high-rise-skyline.webp',
+    '/images/blog-images/bahria-town-karachi-investment-opportunity.webp'
   ];
 
   // Check if this is a problematic new blog image
