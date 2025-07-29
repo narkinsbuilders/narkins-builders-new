@@ -11,7 +11,8 @@ echo "🚀 Starting parallel TypeScript and ESLint checks..."
 bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo &
 TSC_PID=$!
 
-bun run lint &
+# Use next lint directly to avoid npm script overhead
+bunx next lint &
 LINT_PID=$!
 
 # Wait for both processes to complete
@@ -35,7 +36,7 @@ fi
 echo "✅ All checks passed! Proceeding with build..."
 
 # Proceed with TinaCMS and Next.js build
-tinacms build --local
+tinacms build
 next build
 
 echo "🎉 Build completed successfully!"
