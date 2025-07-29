@@ -6,18 +6,47 @@ import Footer from '@/components/layout/footer/footer'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
+import { useEffect } from 'react'
 
 interface BlogIndexProps {
   posts: BlogPost[]
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
+  // Define the newest blogs that have image loading issues
+  const newestBlogImages = [
+    '/images/blog-images/gated-community-karachi.webp',
+    '/images/blog-images/karachi-brt-development.webp', 
+    '/images/blog-images/karachi-skyline-2025.webp',
+    '/images/blog-images/luxury-apartments-bahria-town-night-view.webp',
+    '/images/blog-images/karachi-high-rise-skyline.webp'
+  ];
+
+  // Check if this is a problematic new blog image
+  const isNewBlogImage = (imagePath: string) => newestBlogImages.includes(imagePath);
+
+  // Preload new blog images to warm up the cache
+  useEffect(() => {
+    newestBlogImages.forEach(imagePath => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imagePath;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   return (
     <>
       <Head>
         <title>Real Estate Blog | Narkin's Builders</title>
         <meta name="description" content="Latest insights on real estate investment in Bahria Town Karachi" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Preload new blog images to fix loading issues */}
+        {newestBlogImages.map((imagePath, index) => (
+          <link key={index} rel="preload" as="image" href={imagePath} />
+        ))}
       </Head>
 
       <Navigation />
@@ -60,7 +89,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                             target.src = '/images/narkins-builders-logo.webp';
                           }}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          unoptimized={false}
+                          unoptimized={isNewBlogImage(post.image)}
                         />
                       </div>
                       <div className="p-6">

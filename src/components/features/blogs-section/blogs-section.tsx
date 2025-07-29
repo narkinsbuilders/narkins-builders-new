@@ -27,6 +27,18 @@ interface BlogsSectionProps {
 }
 
 const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
+  // Define the newest blogs that have image loading issues
+  const newestBlogImages = [
+    '/images/blog-images/gated-community-karachi.webp',
+    '/images/blog-images/karachi-brt-development.webp', 
+    '/images/blog-images/karachi-skyline-2025.webp',
+    '/images/blog-images/luxury-apartments-bahria-town-night-view.webp',
+    '/images/blog-images/karachi-high-rise-skyline.webp'
+  ];
+
+  // Check if this is a problematic new blog image
+  const isNewBlogImage = (imagePath: string) => newestBlogImages.includes(imagePath);
+
   // Handle empty posts
   if (!posts || posts.length === 0) {
     return (
@@ -79,7 +91,7 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                       target.src = '/images/narkins-builders-logo.webp';
                     }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    unoptimized={false}
+                    unoptimized={isNewBlogImage(post.image)}
                   />
                 </div>
               )}
