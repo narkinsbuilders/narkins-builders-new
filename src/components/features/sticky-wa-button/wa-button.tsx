@@ -5,15 +5,12 @@ export default function WAButton() {
         // Prevent navigation temporarily to see tracking
         e.preventDefault();
         
-        console.log('WhatsApp button clicked!');
-        
         // Direct gtag call
         if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'whatsapp_click', {
                 event_category: 'Contact',
                 event_label: 'sticky_button_test'
             });
-            console.log('gtag event sent!');
         }
         
         // Open WhatsApp after delay

@@ -282,11 +282,9 @@ export async function initializeDatabase(): Promise<void> {
     
     // Test connection
     await connection.ping();
-    console.log('✅ Database connected successfully');
     
     // Verify tables exist
     const tables = await executeQuery('SHOW TABLES');
-    console.log('✅ Database tables:', tables);
     
     connection.release();
   } catch (error) {

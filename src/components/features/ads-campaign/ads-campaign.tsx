@@ -160,7 +160,6 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
       if (response.ok && result.success) {
         successCount++;
         setBackupStatus(prev => ({ ...prev, primaryForm: true }));
-        console.log('✅ Data submitted to Google Sheets successfully');
       } else {
         throw new Error(result.message || 'Failed to submit to Google Sheets');
       }
@@ -190,7 +189,6 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
           sheetsSuccess: successCount > 0,
           submissionCount: successCount
         });
-        console.log('✅ Data stored in IndexedDB for recovery');
       };
     } catch (error) {
       console.error('❌ IndexedDB storage failed:', error);

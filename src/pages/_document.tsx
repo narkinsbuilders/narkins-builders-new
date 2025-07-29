@@ -21,7 +21,6 @@ export default function Document() {
               gtag('config', '${GA_TRACKING_ID}', {
                 page_path: window.location.pathname
               });
-              console.log('🟢 Google Analytics initialized:', '${GA_TRACKING_ID}');
             `,
           }}
         />

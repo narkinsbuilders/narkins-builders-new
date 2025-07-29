@@ -33,22 +33,14 @@ export default function PWAInstallPrompt() {
     const safari = detectSafari()
     setIsSafari(safari)
 
-    console.log('PWA Install Debug:', {
-      isSafari: safari,
-      isStandalone: isStandalone(),
-      userAgent: navigator.userAgent
-    })
-
     // Don't show prompt if already in standalone mode (already installed)
     if (isStandalone()) {
-      console.log('PWA already installed (standalone mode)')
       return
     }
 
     // For Safari, show custom prompt after some interaction
     if (safari) {
       const timer = setTimeout(() => {
-        console.log('Showing Safari install prompt')
         setShowSafariPrompt(true)
       }, 3000) // Show after 3 seconds
 
@@ -57,7 +49,6 @@ export default function PWAInstallPrompt() {
 
     // For other browsers, use beforeinstallprompt
     const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
-      console.log('beforeinstallprompt event fired', e)
       e.preventDefault()
       setDeferredPrompt(e)
       setShowInstallPrompt(true)
@@ -66,7 +57,6 @@ export default function PWAInstallPrompt() {
     // For Chrome/Edge - add fallback prompt if no beforeinstallprompt after 5 seconds
     const fallbackTimer = setTimeout(() => {
       if (!safari && !deferredPrompt) {
-        console.log('No beforeinstallprompt received, showing fallback prompt')
         setShowInstallPrompt(true)
       }
     }, 5000)
@@ -82,7 +72,6 @@ export default function PWAInstallPrompt() {
   const handleInstallClick = async () => {
     if (!deferredPrompt) {
       // Fallback: show manual install instructions for Chrome
-      console.log('No deferred prompt available, showing manual instructions')
       alert('To install:\n1. Click the menu (⋮) in Chrome\n2. Select "Install app" or look for the install icon in the address bar\n3. Or check if the app is already installed')
       setShowInstallPrompt(false)
       return
@@ -90,12 +79,6 @@ export default function PWAInstallPrompt() {
 
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
-    
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt')
-    } else {
-      console.log('User dismissed the install prompt')
-    }
     
     setDeferredPrompt(null)
     setShowInstallPrompt(false)
