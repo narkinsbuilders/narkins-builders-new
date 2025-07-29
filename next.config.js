@@ -66,6 +66,7 @@ const nextConfig = {
   },
   // Enhanced Security headers for SEO and performance
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
     return [
       {
         source: '/(.*)',
@@ -98,6 +99,11 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
+          // Disable caching in development for fresh updates
+          ...(isDev ? [{
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          }] : []),
         ],
       },
       // RSS and Sitemap caching

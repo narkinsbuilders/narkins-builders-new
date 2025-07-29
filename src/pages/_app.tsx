@@ -33,8 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
     
     // Register service worker for PWA
     if ('serviceWorker' in navigator) {
+      const swPath = process.env.NODE_ENV === 'development' ? '/sw-dev.js' : '/sw.js';
       navigator.serviceWorker
-        .register('/sw.js')
+        .register(swPath)
         .then((registration) => {
           console.log('✅ Service Worker registered successfully with scope:', registration.scope);
         })
