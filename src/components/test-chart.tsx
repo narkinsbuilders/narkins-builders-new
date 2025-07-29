@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 
 const TestLine = dynamic(
   () => import('@ant-design/plots').then(mod => {
-    console.log('Chart module loaded:', mod)
     return { default: mod.Line }
   }).catch(error => {
     console.error('Chart module failed to load:', error)

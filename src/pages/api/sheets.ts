@@ -65,7 +65,6 @@ export default async function handler(
       },
     });
 
-    console.log('✅ Data successfully submitted to Google Sheets');
     
     return res.status(200).json({
       success: true,

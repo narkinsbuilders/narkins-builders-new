@@ -37,7 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
       navigator.serviceWorker
         .register(swPath)
         .then((registration) => {
-          console.log('✅ Service Worker registered successfully with scope:', registration.scope);
         })
         .catch((error) => {
           console.error('❌ Service Worker registration failed:', error);

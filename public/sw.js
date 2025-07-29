@@ -23,7 +23,6 @@ const urlsToCache = [
 
 // Initialize Workbox
 if (workbox) {
-  console.log('🚀 Workbox is loaded');
   
   // Skip waiting and claim clients
   workbox.core.skipWaiting();
@@ -204,14 +203,12 @@ if (workbox) {
   );
 
 } else {
-  console.log('❌ Workbox failed to load');
   
   // Fallback to basic service worker functionality
   self.addEventListener('install', event => {
     event.waitUntil(
       caches.open(CACHE_NAME)
         .then(cache => {
-          console.log('Opened fallback cache');
           return cache.addAll(urlsToCache);
         })
     );
@@ -266,14 +263,11 @@ async function syncLeadForms() {
           // Remove from IndexedDB after successful sync
           const deleteTx = db.transaction(['leadForms'], 'readwrite');
           await deleteTx.objectStore('leadForms').delete(form.id);
-          console.log('✅ Lead form synced successfully:', form.id);
         }
       } catch (error) {
-        console.log('❌ Failed to sync lead form:', form.id, error);
       }
     }
   } catch (error) {
-    console.log('❌ Background sync failed:', error);
   }
 }
 
@@ -298,14 +292,11 @@ async function syncContactForms() {
         if (response.ok) {
           const deleteTx = db.transaction(['contactForms'], 'readwrite');
           await deleteTx.objectStore('contactForms').delete(form.id);
-          console.log('✅ Contact form synced successfully:', form.id);
         }
       } catch (error) {
-        console.log('❌ Failed to sync contact form:', form.id, error);
       }
     }
   } catch (error) {
-    console.log('❌ Contact sync failed:', error);
   }
 }
 
@@ -342,7 +333,6 @@ self.addEventListener('activate', event => {
             if (cacheName.includes('narkins') && 
                 !cacheName.includes('v2') && 
                 cacheName !== CACHE_NAME) {
-              console.log('🗑️ Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             }
           })
