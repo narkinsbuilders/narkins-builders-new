@@ -10,7 +10,7 @@
     "build": "tinacms build && next build",
     "build:fast": "next build",
     "build:full": "bunx tsc --noEmit && next lint && tinacms build && next build",
-    "build:vercel": "tinacms build && next build",
+    "build:vercel": "tinacms build --local && next build",
     "build:tina": "tinacms build && next build",
     "start": "next start",
     "export": "next export",
