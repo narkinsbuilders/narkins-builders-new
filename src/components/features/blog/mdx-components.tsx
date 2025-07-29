@@ -5,6 +5,16 @@ import FAQ from '@/components/features/faq/faq'
 import dynamic from 'next/dynamic'
 import { Table, Card, Progress, Statistic, Row, Col, Divider, List } from 'antd'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
+import {
+  firstTimeBuyerFAQs,
+  investmentGuideFAQs,
+  twoBedroomFAQs,
+  luxuryApartmentsFAQs,
+  generalRealEstateFAQs,
+  hillCrestFAQs,
+  boutiqueResidencyFAQs,
+  apartmentSaleFAQs
+} from '@/data/faq-data'
 
 // Error boundary for chart components
 class ChartErrorBoundary extends React.Component<
@@ -698,18 +708,7 @@ const FAQTemplate = (props: any) => {
     description
   } = props;
 
-  // Import FAQ data directly - this ensures it works in both contexts
-  const {
-    firstTimeBuyerFAQs,
-    investmentGuideFAQs,
-    twoBedroomFAQs,
-    luxuryApartmentsFAQs,
-    generalRealEstateFAQs,
-    hillCrestFAQs,
-    boutiqueResidencyFAQs,
-    apartmentSaleFAQs
-  } = require('@/data/faq-data');
-
+  // FAQ data map using ES6 imports (TinaCMS-compatible)
   const faqDataMap: any = {
     firstTimeBuyerFAQs,
     investmentGuideFAQs,
