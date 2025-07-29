@@ -11,6 +11,9 @@
       "NEXT_TELEMETRY_DISABLED": "1"
     }
   },
+  "github": {
+    "autoJobCancelation": false
+  },
   "functions": {
     "src/pages/api/sitemap.xml.ts": {
       "maxDuration": 30
