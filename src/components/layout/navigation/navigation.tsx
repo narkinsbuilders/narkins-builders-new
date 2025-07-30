@@ -14,13 +14,13 @@ const navigation = {
         {
           name: "Hill Crest Residency",
           href: "/hill-crest-residency",
-          imageSrc: "/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
+          imageSrc: "/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
           imageAlt: "Hill Crest Residency luxury apartments in Bahria Town Karachi with modern amenities",
         },
         {
           name: "Narkin's Boutique Residency",
           href: "/narkins-boutique-residency", 
-          imageSrc: "/images/narkins-boutique-residency-navigation-thumbnail.webp",
+          imageSrc: "/media/nbr/exterior/narkins-boutique-residency-navigation-thumbnail.webp",
           imageAlt: "Narkin's Boutique Residency luxury apartments in Heritage Commercial Bahria Town Karachi",
         },
       ],
@@ -42,25 +42,25 @@ const navigation = {
         {
           name: "Al Arz Homes",
           href: "/completed-projects?p=al-arz-homes",
-          imageSrc: "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp",
+          imageSrc: "/media/completed-projects/al-arz-homes-completed-project-narkins-builders-karachi.webp",
           imageAlt: "Al Arz Homes completed residential project by Narkin's Builders in Karachi",
         },
         {
           name: "Palm Residency", 
           href: "/completed-projects?p=palm-residency",
-          imageSrc: "/images/palm-residency-completed-project-frere-town-karachi.webp",
+          imageSrc: "/media/completed-projects/palm-residency-completed-project-frere-town-karachi.webp",
           imageAlt: "Palm Residency completed residential project in Frere Town Karachi by Narkin's Builders",
         },
         {
           name: "Al Arz Residency",
           href: "/completed-projects?p=al-arz-residency",
-          imageSrc: "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
+          imageSrc: "/media/completed-projects/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
           imageAlt: "Al Arz Terrace completed residential project by Narkin's Builders in Karachi",
         },
         {
           name: "Classic Heights",
           href: "/completed-projects?p=classic-heights",
-          imageSrc: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
+          imageSrc: "/media/completed-projects/classic-heights-completed-project-sharfabad-karachi.webp",
           imageAlt: "Classic Heights completed residential project in Sharfabad Karachi by Narkin's Builders",
         },
       ],
@@ -255,7 +255,7 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                   <span className="sr-only">Narkins Builders</span>
                   <Image 
                     className="h-8 w-auto" 
-                    src="/images/narkins-builders-logo-30-years-experience.webp" 
+                    src="/media/common/logos/narkins-builders-logo-30-years-experience.webp" 
                     alt="Narkin's Builders - 30 years of construction excellence in Karachi" 
                     width={120}
                     height={32}

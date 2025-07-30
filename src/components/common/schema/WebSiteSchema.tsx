@@ -13,7 +13,7 @@ export const WebSiteSchema = () => {
       "@type": "Organization",
       "name": "Narkin's Builders and Developers",
       "url": "https://narkinsbuilders.com",
-      "logo": "https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp"
+      "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
     },
     "potentialAction": {
       "@type": "SearchAction",

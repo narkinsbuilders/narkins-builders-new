@@ -27,17 +27,17 @@ const STORAGE_LIMITS = {
 // Media file categorization
 const MEDIA_CATEGORIES = {
   CRITICAL_VIDEOS: [
-    '/hero-bg.mp4',
-    '/hill_crest_compressed.mp4',
-    '/C_Narkins_Exterior.mp4'
+    '/media/videos/hero/hero-bg.mp4',
+    '/media/hcr/videos/hill_crest_compressed.mp4',
+    '/media/videos/hero/C_Narkins_Exterior.mp4'
   ],
   LARGE_VIDEOS: [
-    '/hillcrest.mp4',
-    '/nbr.mp4',
-    '/images/Hill Crest 03-07-2023.mp4'
+    '/media/hcr/videos/hillcrest.mp4',
+    '/media/nbr/videos/nbr.mp4',
+    '/media/hcr/videos/Hill Crest 03-07-2023.mp4'
   ],
   CRITICAL_IMAGES: [
-    '/images/narkins-builders-logo.webp',
+    '/media/common/logos/narkins-builders-logo.webp',
     '/videoframe_0.webp',
     '/nbr_video_poster.webp',
     '/default-avatar.webp',
@@ -57,7 +57,7 @@ const urlsToCache = [
   '/completed-projects',
   '/manifest.json',
   '/offline.html',
-  '/images/narkins-builders-logo.webp',
+  '/media/common/logos/narkins-builders-logo.webp',
   '/favicon.ico',
   '/icons/icon-192x192.svg',
   '/icons/icon-512x512.svg'
@@ -188,10 +188,10 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ request, url }) => 
       request.destination === 'image' && 
-      (url.pathname.includes('/images/amenities/') ||
-       url.pathname.includes('/images/hill-crest') ||
-       url.pathname.includes('/images/narkins-boutique') ||
-       url.pathname.includes('/images/nbr_3d/') ||
+      (url.pathname.includes('/media/hcr/') ||
+       url.pathname.includes('/media/nbr/') ||
+       url.pathname.includes('/media/completed-projects/') ||
+       url.pathname.includes('/media/about/') ||
        url.pathname.includes('/nbr-scaled/') ||
        url.pathname.includes('/hcr-scaled/') ||
        url.pathname.includes('/hcr/')) &&
@@ -213,7 +213,7 @@ if (workbox) {
   // 3c. Blog Images - Stale While Revalidate (faster updates)
   workbox.routing.registerRoute(
     ({ request, url }) => 
-      request.destination === 'image' && url.pathname.includes('/images/blog-images/'),
+      request.destination === 'image' && url.pathname.includes('/media/common/blog/'),
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: CACHE_BUCKETS.BLOG_IMAGES,
       plugins: [
@@ -232,11 +232,11 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ request, url }) => 
       request.destination === 'image' && 
-      !url.pathname.includes('/images/blog-images/') &&
-      !url.pathname.includes('/images/amenities/') &&
-      !url.pathname.includes('/images/hill-crest') &&
-      !url.pathname.includes('/images/narkins-boutique') &&
-      !url.pathname.includes('/images/nbr_3d/') &&
+      !url.pathname.includes('/media/common/blog/') &&
+      !url.pathname.includes('/media/hcr/') &&
+      !url.pathname.includes('/media/nbr/') &&
+      !url.pathname.includes('/media/completed-projects/') &&
+      !url.pathname.includes('/media/about/') &&
       !url.pathname.includes('/nbr-scaled/') &&
       !url.pathname.includes('/hcr-scaled/') &&
       !url.pathname.includes('/hcr/') &&
@@ -379,19 +379,19 @@ if (workbox) {
             
             // Video fallbacks - try compressed version
             if (event.request.destination === 'video') {
-              if (url.pathname === '/hillcrest.mp4') {
-                return caches.match('/hill_crest_compressed.mp4');
+              if (url.pathname === '/media/hcr/videos/hillcrest.mp4') {
+                return caches.match('/media/hcr/videos/hill_crest_compressed.mp4');
               }
-              if (url.pathname === '/nbr.mp4') {
-                return caches.match('/hero-bg.mp4'); // Smaller fallback
+              if (url.pathname === '/media/nbr/videos/nbr.mp4') {
+                return caches.match('/media/videos/hero/hero-bg.mp4'); // Smaller fallback
               }
             }
             
             // Image fallbacks - try default avatar or logo
             if (event.request.destination === 'image') {
-              if (url.pathname.includes('/images/')) {
+              if (url.pathname.includes('/media/')) {
                 return caches.match('/default-avatar.webp') || 
-                       caches.match('/images/narkins-builders-logo.webp');
+                       caches.match('/media/common/logos/narkins-builders-logo.webp');
               }
             }
             
