@@ -1,9 +1,51 @@
 // Import Workbox SW
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
 
-const CACHE_NAME = 'narkins-builders-v3';
-const STATIC_CACHE = 'narkins-static-v3';
-const RUNTIME_CACHE = 'narkins-runtime-v3';
+const CACHE_NAME = 'narkins-builders-v4';
+const STATIC_CACHE = 'narkins-static-v4';
+const RUNTIME_CACHE = 'narkins-runtime-v4';
+
+// Media cache buckets
+const CACHE_BUCKETS = {
+  CRITICAL_VIDEOS: 'narkins-critical-videos-v4',
+  DEMAND_VIDEOS: 'narkins-demand-videos-v4', 
+  CRITICAL_IMAGES: 'narkins-critical-images-v4',
+  PROJECT_IMAGES: 'narkins-project-images-v4',
+  BLOG_IMAGES: 'narkins-blog-images-v4'
+};
+
+// Storage limits (in bytes)
+const STORAGE_LIMITS = {
+  CRITICAL_VIDEOS: 10 * 1024 * 1024,    // 10MB
+  DEMAND_VIDEOS: 40 * 1024 * 1024,      // 40MB
+  CRITICAL_IMAGES: 20 * 1024 * 1024,    // 20MB
+  PROJECT_IMAGES: 50 * 1024 * 1024,     // 50MB
+  BLOG_IMAGES: 30 * 1024 * 1024,        // 30MB
+  TOTAL_LIMIT: 150 * 1024 * 1024        // 150MB max
+};
+
+// Media file categorization
+const MEDIA_CATEGORIES = {
+  CRITICAL_VIDEOS: [
+    '/hero-bg.mp4',
+    '/hill_crest_compressed.mp4',
+    '/C_Narkins_Exterior.mp4'
+  ],
+  LARGE_VIDEOS: [
+    '/hillcrest.mp4',
+    '/nbr.mp4',
+    '/images/Hill Crest 03-07-2023.mp4'
+  ],
+  CRITICAL_IMAGES: [
+    '/images/narkins-builders-logo.webp',
+    '/videoframe_0.webp',
+    '/nbr_video_poster.webp',
+    '/default-avatar.webp',
+    '/favicon.ico',
+    '/icons/icon-192x192.svg',
+    '/icons/icon-512x512.svg'
+  ]
+};
 
 // Core pages and assets to precache
 const urlsToCache = [
@@ -28,10 +70,14 @@ if (workbox) {
   workbox.core.skipWaiting();
   workbox.core.clientsClaim();
 
-  // Precache core assets
-  workbox.precaching.precacheAndRoute(
-    urlsToCache.map(url => ({ url, revision: '3' }))
-  );
+  // Precache core assets including critical media
+  const precacheAssets = [
+    ...urlsToCache.map(url => ({ url, revision: '4' })),
+    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '4' })),
+    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '4' }))
+  ];
+  
+  workbox.precaching.precacheAndRoute(precacheAssets);
 
   // Cache strategies for different content types
   
@@ -119,16 +165,61 @@ if (workbox) {
     })
   );
 
-  // 3a. Blog Images - Stale While Revalidate (better updates)
+  // 3a. Critical Images - Cache First (precached, long-term)
+  workbox.routing.registerRoute(
+    ({ request, url }) => 
+      request.destination === 'image' && 
+      MEDIA_CATEGORIES.CRITICAL_IMAGES.some(img => url.pathname.endsWith(img)),
+    new workbox.strategies.CacheFirst({
+      cacheName: CACHE_BUCKETS.CRITICAL_IMAGES,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 20,
+          maxAgeSeconds: 90 * 24 * 60 * 60, // 90 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // 3b. Project Images - Stale While Revalidate (amenities, floor plans, galleries)
+  workbox.routing.registerRoute(
+    ({ request, url }) => 
+      request.destination === 'image' && 
+      (url.pathname.includes('/images/amenities/') ||
+       url.pathname.includes('/images/hill-crest') ||
+       url.pathname.includes('/images/narkins-boutique') ||
+       url.pathname.includes('/images/nbr_3d/') ||
+       url.pathname.includes('/nbr-scaled/') ||
+       url.pathname.includes('/hcr-scaled/') ||
+       url.pathname.includes('/hcr/')) &&
+      !MEDIA_CATEGORIES.CRITICAL_IMAGES.some(img => url.pathname.endsWith(img)),
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: CACHE_BUCKETS.PROJECT_IMAGES,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 150,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // 3c. Blog Images - Stale While Revalidate (faster updates)
   workbox.routing.registerRoute(
     ({ request, url }) => 
       request.destination === 'image' && url.pathname.includes('/images/blog-images/'),
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'blog-images-cache',
+      cacheName: CACHE_BUCKETS.BLOG_IMAGES,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 100,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          maxAgeSeconds: 14 * 24 * 60 * 60, // 14 days
         }),
         new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
@@ -137,15 +228,24 @@ if (workbox) {
     })
   );
 
-  // 3b. Other Images - Cache First (long-term caching)
+  // 3d. Other Images - Cache First (fallback for any other images)
   workbox.routing.registerRoute(
     ({ request, url }) => 
-      request.destination === 'image' && !url.pathname.includes('/images/blog-images/'),
+      request.destination === 'image' && 
+      !url.pathname.includes('/images/blog-images/') &&
+      !url.pathname.includes('/images/amenities/') &&
+      !url.pathname.includes('/images/hill-crest') &&
+      !url.pathname.includes('/images/narkins-boutique') &&
+      !url.pathname.includes('/images/nbr_3d/') &&
+      !url.pathname.includes('/nbr-scaled/') &&
+      !url.pathname.includes('/hcr-scaled/') &&
+      !url.pathname.includes('/hcr/') &&
+      !MEDIA_CATEGORIES.CRITICAL_IMAGES.some(img => url.pathname.endsWith(img)),
     new workbox.strategies.CacheFirst({
-      cacheName: 'images-cache',
+      cacheName: 'images-other-cache',
       plugins: [
         new workbox.expiration.ExpirationPlugin({
-          maxEntries: 200,
+          maxEntries: 50,
           maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
         }),
         new workbox.cacheableResponse.CacheableResponsePlugin({
@@ -155,18 +255,59 @@ if (workbox) {
     })
   );
 
-  // 4. Videos - Cache First with larger storage
+  // 4a. Critical Videos - Cache First (precached)
   workbox.routing.registerRoute(
-    ({ request }) => request.destination === 'video',
+    ({ url }) => MEDIA_CATEGORIES.CRITICAL_VIDEOS.some(video => url.pathname.endsWith(video)),
     new workbox.strategies.CacheFirst({
-      cacheName: 'videos-cache',
+      cacheName: CACHE_BUCKETS.CRITICAL_VIDEOS,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
-          maxEntries: 10,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          maxEntries: 5,
+          maxAgeSeconds: 60 * 24 * 60 * 60, // 60 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
         }),
       ],
     })
+  );
+
+  // 4b. Large Videos - Smart caching based on engagement
+  workbox.routing.registerRoute(
+    ({ request, url }) => {
+      return request.destination === 'video' && 
+             !MEDIA_CATEGORIES.CRITICAL_VIDEOS.some(video => url.pathname.endsWith(video));
+    },
+    async ({ request, url }) => {
+      const videoUrl = url.pathname;
+      
+      // Track video view
+      USER_ENGAGEMENT.trackVideoView(videoUrl);
+      
+      // Try cache first
+      const cache = await caches.open(CACHE_BUCKETS.DEMAND_VIDEOS);
+      const cachedResponse = await cache.match(request);
+      
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      
+      // Fetch from network
+      const networkResponse = await fetch(request);
+      
+      // Decide if we should cache based on engagement and storage
+      const contentLength = networkResponse.headers.get('content-length');
+      const fileSize = contentLength ? parseInt(contentLength) : 0;
+      
+      if (await shouldCache('DEMAND_VIDEOS') && 
+          USER_ENGAGEMENT.shouldCacheVideo(videoUrl, fileSize)) {
+        
+        const responseClone = networkResponse.clone();
+        cache.put(request, responseClone);
+      }
+      
+      return networkResponse;
+    }
   );
 
   // 5. Static Assets (CSS, JS, Fonts) - Cache First
@@ -207,14 +348,19 @@ if (workbox) {
   // Fallback to basic service worker functionality
   self.addEventListener('install', event => {
     event.waitUntil(
-      caches.open(CACHE_NAME)
-        .then(cache => {
-          return cache.addAll(urlsToCache);
-        })
+      Promise.all([
+        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)),
+        caches.open(CACHE_BUCKETS.CRITICAL_VIDEOS).then(cache => 
+          cache.addAll(MEDIA_CATEGORIES.CRITICAL_VIDEOS)
+        ),
+        caches.open(CACHE_BUCKETS.CRITICAL_IMAGES).then(cache => 
+          cache.addAll(MEDIA_CATEGORIES.CRITICAL_IMAGES)
+        )
+      ])
     );
   });
 
-  // Basic fetch handler
+  // Enhanced fetch handler with offline fallbacks
   self.addEventListener('fetch', event => {
     event.respondWith(
       caches.match(event.request)
@@ -222,10 +368,37 @@ if (workbox) {
           if (response) {
             return response;
           }
-          return fetch(event.request).catch(() => {
+          
+          return fetch(event.request).catch(async () => {
+            const url = new URL(event.request.url);
+            
+            // Offline fallbacks for different content types
             if (event.request.destination === 'document') {
               return caches.match('/offline.html');
             }
+            
+            // Video fallbacks - try compressed version
+            if (event.request.destination === 'video') {
+              if (url.pathname === '/hillcrest.mp4') {
+                return caches.match('/hill_crest_compressed.mp4');
+              }
+              if (url.pathname === '/nbr.mp4') {
+                return caches.match('/hero-bg.mp4'); // Smaller fallback
+              }
+            }
+            
+            // Image fallbacks - try default avatar or logo
+            if (event.request.destination === 'image') {
+              if (url.pathname.includes('/images/')) {
+                return caches.match('/default-avatar.webp') || 
+                       caches.match('/images/narkins-builders-logo.webp');
+              }
+            }
+            
+            return new Response('Content unavailable offline', {
+              status: 503,
+              statusText: 'Service Unavailable'
+            });
           });
         })
     );
@@ -300,10 +473,104 @@ async function syncContactForms() {
   }
 }
 
+// Storage quota monitoring functions
+async function getStorageUsage() {
+  if ('storage' in navigator && 'estimate' in navigator.storage) {
+    try {
+      const estimate = await navigator.storage.estimate();
+      return {
+        used: estimate.usage || 0,
+        available: estimate.quota || 0,
+        percentage: estimate.quota ? (estimate.usage / estimate.quota) * 100 : 0
+      };
+    } catch (error) {
+      return { used: 0, available: 0, percentage: 0 };
+    }
+  }
+  return { used: 0, available: 0, percentage: 0 };
+}
+
+async function getCacheSize(cacheName) {
+  try {
+    const cache = await caches.open(cacheName);
+    const keys = await cache.keys();
+    let totalSize = 0;
+    
+    for (const request of keys) {
+      const response = await cache.match(request);
+      if (response && response.headers.get('content-length')) {
+        totalSize += parseInt(response.headers.get('content-length'));
+      }
+    }
+    return totalSize;
+  } catch (error) {
+    return 0;
+  }
+}
+
+async function shouldCache(cacheType) {
+  const usage = await getStorageUsage();
+  const limit = STORAGE_LIMITS[cacheType] || STORAGE_LIMITS.TOTAL_LIMIT;
+  
+  // Don't cache if we're over 90% of total limit
+  if (usage.percentage > 90) {
+    return false;
+  }
+  
+  // Check individual cache limits
+  const cacheSize = await getCacheSize(CACHE_BUCKETS[cacheType]);
+  return cacheSize < limit;
+}
+
+async function cleanupOldCaches() {
+  try {
+    const cacheNames = await caches.keys();
+    const oldCaches = cacheNames.filter(name => 
+      name.includes('narkins') && !name.includes('v4')
+    );
+    
+    await Promise.all(
+      oldCaches.map(cacheName => caches.delete(cacheName))
+    );
+  } catch (error) {
+    console.warn('Cache cleanup failed:', error);
+  }
+}
+
+// User engagement tracking for intelligent caching
+const USER_ENGAGEMENT = {
+  videoViews: new Map(),
+  videoInteractions: new Map(),
+  
+  trackVideoView(videoUrl) {
+    const views = this.videoViews.get(videoUrl) || 0;
+    this.videoViews.set(videoUrl, views + 1);
+  },
+  
+  trackVideoInteraction(videoUrl) {
+    this.videoInteractions.set(videoUrl, Date.now());
+  },
+  
+  shouldCacheVideo(videoUrl, fileSize) {
+    const views = this.videoViews.get(videoUrl) || 0;
+    const hasInteracted = this.videoInteractions.has(videoUrl);
+    
+    // Always cache critical small videos
+    if (MEDIA_CATEGORIES.CRITICAL_VIDEOS.includes(videoUrl)) return true;
+    
+    // Cache based on file size and engagement
+    if (fileSize < 5 * 1024 * 1024) return true; // < 5MB
+    if (fileSize < 15 * 1024 * 1024 && views > 0) return true; // < 15MB and viewed
+    if (fileSize >= 15 * 1024 * 1024 && hasInteracted) return true; // >= 15MB and interacted
+    
+    return false;
+  }
+};
+
 // IndexedDB helper for offline form storage
 function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('NarkinsOfflineDB', 1);
+    const request = indexedDB.open('NarkinsOfflineDB', 2);
     
     request.onerror = () => reject(request.error);
     request.onsuccess = () => resolve(request.result);
@@ -318,30 +585,97 @@ function openDB() {
       if (!db.objectStoreNames.contains('contactForms')) {
         db.createObjectStore('contactForms', { keyPath: 'id' });
       }
+      
+      // Store for user engagement tracking
+      if (!db.objectStoreNames.contains('userEngagement')) {
+        db.createObjectStore('userEngagement', { keyPath: 'url' });
+      }
     };
   });
 }
 
-// Clean up old caches on activation
+// Cache warming and cleanup processes
+async function warmCriticalCaches() {
+  try {
+    // Pre-warm critical video cache
+    const criticalVideoCache = await caches.open(CACHE_BUCKETS.CRITICAL_VIDEOS);
+    for (const videoUrl of MEDIA_CATEGORIES.CRITICAL_VIDEOS) {
+      try {
+        const response = await fetch(videoUrl, { method: 'HEAD' });
+        if (response.ok) {
+          await criticalVideoCache.add(videoUrl);
+        }
+      } catch (error) {
+        console.warn(`Failed to warm cache for ${videoUrl}:`, error);
+      }
+    }
+
+    // Pre-warm critical image cache  
+    const criticalImageCache = await caches.open(CACHE_BUCKETS.CRITICAL_IMAGES);
+    for (const imageUrl of MEDIA_CATEGORIES.CRITICAL_IMAGES) {
+      try {
+        const response = await fetch(imageUrl, { method: 'HEAD' });
+        if (response.ok) {
+          await criticalImageCache.add(imageUrl);
+        }
+      } catch (error) {
+        console.warn(`Failed to warm cache for ${imageUrl}:`, error);
+      }
+    }
+  } catch (error) {
+    console.warn('Cache warming failed:', error);
+  }
+}
+
+async function cleanupCachesBySize() {
+  try {
+    // Check each cache bucket and clean up if over limits
+    for (const [cacheType, cacheName] of Object.entries(CACHE_BUCKETS)) {
+      const cache = await caches.open(cacheName);
+      const cacheSize = await getCacheSize(cacheName);
+      const limit = STORAGE_LIMITS[cacheType];
+      
+      if (cacheSize > limit) {
+        const keys = await cache.keys();
+        const entriesToDelete = Math.ceil(keys.length * 0.3); // Remove 30% of entries
+        
+        // Delete oldest entries (assumes keys are in chronological order)
+        for (let i = 0; i < entriesToDelete && i < keys.length; i++) {
+          await cache.delete(keys[i]);
+        }
+      }
+    }
+  } catch (error) {
+    console.warn('Cache size cleanup failed:', error);
+  }
+}
+
+// Clean up old caches and initialize on activation
 self.addEventListener('activate', event => {
   event.waitUntil(
     Promise.all([
       // Clean up old caches
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            if (cacheName.includes('narkins') && 
-                !cacheName.includes('v2') && 
-                cacheName !== CACHE_NAME) {
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      }),
+      cleanupOldCaches(),
+      // Warm critical caches
+      warmCriticalCaches(),
+      // Initial cache size cleanup
+      cleanupCachesBySize(),
       // Claim all clients
       self.clients.claim()
     ])
   );
+});
+
+// Periodic cache maintenance
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'CACHE_MAINTENANCE') {
+    event.waitUntil(
+      Promise.all([
+        cleanupCachesBySize(),
+        cleanupOldCaches()
+      ])
+    );
+  }
 });
 
 // Enhanced push notifications with project updates
