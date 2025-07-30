@@ -203,7 +203,7 @@ const AboutPage = () => {
               
               <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20">
                 <JourneyStage
-                  image="/images/hill-crest-residency-launch.webp"
+                  image="/media/hcr/exterior/hill-crest-residency-launch.webp"
                   stage="LAUNCH"
                   title="Project Launch 2021"
                   description="Grand opening ceremony with community engagement and project unveiling"
@@ -217,7 +217,7 @@ const AboutPage = () => {
                 </div>
                 
                 <JourneyStage
-                  image="/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"
+                  image="/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp"
                   stage="DELIVERED"
                   title="Successfully Delivered 2024"
                   description="Modern smart apartments with premium amenities and panoramic views"
@@ -274,7 +274,7 @@ const AboutPage = () => {
               
               <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20">
                 <JourneyStage
-                  image="/images/narkins-boutique-residency-construction-september-2023.webp"
+                  image="/media/nbr/exterior/narkins-boutique-residency-construction-september-2023.webp"
                   stage="FOUNDATION"
                   title="September 2023"
                   description="Foundation and structural work begins"
@@ -289,7 +289,7 @@ const AboutPage = () => {
                 </div>
                 
                 <JourneyStage
-                  image="/images/narkins-boutique-residency-construction-march-2024.webp"
+                  image="/media/nbr/exterior/narkins-boutique-residency-construction-march-2024.webp"
                   stage="PROGRESS"
                   title="March 2024"
                   description="Superstructure and facade development"
@@ -325,9 +325,9 @@ const AboutPage = () => {
               {projects.slice(2).map((project, index) => {
                 // Map project images
                 const projectImages = {
-                  "Classic Heights": "/images/classic-heights-completed-project-sharfabad-karachi.webp",
-                  "Palm Residency": "/images/palm-residency-completed-project-frere-town-karachi.webp",
-                  "Al Arz Homes": "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp"
+                  "Classic Heights": "/media/completed-projects/classic-heights-completed-project-sharfabad-karachi.webp",
+                  "Palm Residency": "/media/completed-projects/palm-residency-completed-project-frere-town-karachi.webp",
+                  "Al Arz Homes": "/media/completed-projects/al-arz-homes-completed-project-narkins-builders-karachi.webp"
                 };
                 
                 return (
@@ -508,10 +508,10 @@ const DiversifiedBusiness = () => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="group relative overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => openLightbox({ src: "/images/smart-apartments-reliability-narkins-builders.webp" })}
+                onClick={() => openLightbox({ src: "/media/common/logos/smart-apartments-reliability-narkins-builders.webp" })}
               >
                 <SEOImage
-                  src="/images/smart-apartments-reliability-narkins-builders.webp"
+                  src="/media/common/logos/smart-apartments-reliability-narkins-builders.webp"
                   width={180}
                   height={110}
                   className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
@@ -524,10 +524,10 @@ const DiversifiedBusiness = () => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="group relative overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => openLightbox({ src: "/images/smart-door-locks-narkins-apartments.webp" })}
+                onClick={() => openLightbox({ src: "/media/common/logos/smart-door-locks-narkins-apartments.webp" })}
               >
                 <SEOImage
-                  src="/images/smart-door-locks-narkins-apartments.webp"
+                  src="/media/common/logos/smart-door-locks-narkins-apartments.webp"
                   width={180}
                   height={110}
                   className="w-full h-[110px] lg:h-[140px] object-cover rounded-lg"
@@ -544,10 +544,10 @@ const DiversifiedBusiness = () => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="group relative overflow-hidden rounded-lg cursor-pointer w-2/3 lg:w-3/4"
-                onClick={() => openLightbox({ src: "/images/smart-wifi-switches-narkins-residency.webp" })}
+                onClick={() => openLightbox({ src: "/media/common/logos/smart-wifi-switches-narkins-residency.webp" })}
               >
                 <SEOImage
-                  src="/images/smart-wifi-switches-narkins-residency.webp"
+                  src="/media/common/logos/smart-wifi-switches-narkins-residency.webp"
                   width={240}
                   height={120}
                   className="w-full h-[120px] lg:h-[150px] object-cover rounded-lg"
@@ -573,10 +573,10 @@ const DiversifiedBusiness = () => (
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="group relative overflow-hidden rounded-lg cursor-pointer"
-              onClick={() => openLightbox({ src: "/images/narkins-textile-industries-manufacturing-facility.webp" })}
+              onClick={() => openLightbox({ src: "/media/common/logos/narkins-textile-industries-manufacturing-facility.webp" })}
             >
               <SEOImage
-                src="/images/narkins-textile-industries-manufacturing-facility.webp"
+                src="/media/common/logos/narkins-textile-industries-manufacturing-facility.webp"
                 width={180}
                 height={110}
                 className="w-full h-[110px] lg:h-[180px] object-cover rounded-lg"

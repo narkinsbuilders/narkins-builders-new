@@ -21,16 +21,16 @@ const maps = [
 const cards = [
     [
         // Palm Residency image
-        "/images/palm-residency-completed-project-frere-town-karachi.webp"
+        "/media/completed-projects/palm-residency-completed-project-frere-town-karachi.webp"
     ], [
         // AL Arz Terrace image
-        "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp"
+        "/media/completed-projects/al-arz-terrace-completed-project-narkins-builders-karachi.webp"
     ], [
         // AL Arz Homes image
-        "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp"
+        "/media/completed-projects/al-arz-homes-completed-project-narkins-builders-karachi.webp"
     ], [
         // Classic Heigths image
-        "/images/classic-heights-completed-project-sharfabad-karachi.webp"
+        "/media/completed-projects/classic-heights-completed-project-sharfabad-karachi.webp"
     ]
 ];
 
@@ -63,7 +63,7 @@ export default function NarkinsBoutiqueResidency() {
     content="Explore Narkin's Builders completed projects in Karachi. View our portfolio of residential developments and construction achievements." 
   />
   <meta property="og:url" content="https://narkinsbuilders.com/completed-projects" />
-  <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
+  <meta property="og:image" content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
   <meta property="og:site_name" content="Narkin's Builders" />
   
   {/* Instagram/Social Media Optimization */}

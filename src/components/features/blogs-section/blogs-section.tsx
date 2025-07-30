@@ -29,11 +29,11 @@ interface BlogsSectionProps {
 const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
   // Define the newest blogs that have image loading issues
   const newestBlogImages = [
-    '/images/blog-images/gated-community-karachi.webp',
-    '/images/blog-images/karachi-brt-development.webp', 
-    '/images/blog-images/karachi-skyline-2025.webp',
-    '/images/blog-images/luxury-apartments-bahria-town-night-view.webp',
-    '/images/blog-images/karachi-high-rise-skyline.webp'
+    '/media/common/blog/gated-community-karachi.webp',
+    '/media/common/blog/karachi-brt-development.webp', 
+    '/media/common/blog/karachi-skyline-2025.webp',
+    '/media/common/blog/luxury-apartments-bahria-town-night-view.webp',
+    '/media/common/blog/karachi-high-rise-skyline.webp'
   ];
 
   // Check if this is a problematic new blog image
@@ -88,7 +88,7 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                       console.error('Failed to load blog section image:', post.image);
                       // Fallback to default image
                       const target = e.target as HTMLImageElement;
-                      target.src = '/images/narkins-builders-logo.webp';
+                      target.src = '/media/common/logos/narkins-builders-logo.webp';
                     }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     unoptimized={isNewBlogImage(post.image)}
