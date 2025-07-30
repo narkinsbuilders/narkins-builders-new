@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Worker Media Caching Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .media-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        video { max-width: 300px; height: auto; }
+        img { max-width: 200px; height: auto; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Service Worker Media Caching Test</h1>
+    
+    <div class="test-section">
+        <h2>Service Worker Status</h2>
+        <div id="sw-status" class="status info">Checking service worker...</div>
+        <button onclick="registerServiceWorker()">Register Service Worker</button>
+        <button onclick="checkCacheStatus()">Check Cache Status</button>
+        <button onclick="triggerCacheMaintenance()">Trigger Cache Maintenance</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Critical Videos (Should be precached)</h2>
+        <div class="media-item">
+            <h4>Hero Background Video</h4>
+            <video controls>
+                <source src="/hero-bg.mp4" type="video/mp4">
+            </video>
+            <button onclick="testVideoLoad('/hero-bg.mp4')">Test Load</button>
+        </div>
+        
+        <div class="media-item">
+            <h4>Hill Crest Compressed</h4>
+            <video controls>
+                <source src="/hill_crest_compressed.mp4" type="video/mp4">
+            </video>
+            <button onclick="testVideoLoad('/hill_crest_compressed.mp4')">Test Load</button>
+        </div>
+        
+        <div class="media-item">
+            <h4>C Narkins Exterior</h4>
+            <video controls>
+                <source src="/C_Narkins_Exterior.mp4" type="video/mp4">
+            </video>
+            <button onclick="testVideoLoad('/C_Narkins_Exterior.mp4')">Test Load</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Large Videos (Smart caching based on engagement)</h2>
+        <div class="media-item">
+            <h4>NBR Video (23MB)</h4>
+            <video controls>
+                <source src="/nbr.mp4" type="video/mp4">
+            </video>
+            <button onclick="testVideoLoad('/nbr.mp4')">Test Load</button>
+            <button onclick="simulateVideoInteraction('/nbr.mp4')">Simulate Interaction</button>
+        </div>
+        
+        <div class="media-item">
+            <h4>Hillcrest Video (12MB)</h4>
+            <video controls>
+                <source src="/hillcrest.mp4" type="video/mp4">
+            </video>
+            <button onclick="testVideoLoad('/hillcrest.mp4')">Test Load</button>
+            <button onclick="simulateVideoInteraction('/hillcrest.mp4')">Simulate Interaction</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Critical Images (Should be precached)</h2>
+        <div class="media-item">
+            <h4>Narkins Logo</h4>
+            <img src="/images/narkins-builders-logo.webp" alt="Narkins Logo">
+            <button onclick="testImageLoad('/images/narkins-builders-logo.webp')">Test Load</button>
+        </div>
+        
+        <div class="media-item">
+            <h4>Video Poster</h4>
+            <img src="/nbr_video_poster.webp" alt="NBR Video Poster">
+            <button onclick="testImageLoad('/nbr_video_poster.webp')">Test Load</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Storage Information</h2>
+        <div id="storage-info" class="status info">Click to check storage usage</div>
+        <button onclick="checkStorageUsage()">Check Storage Usage</button>
+        <button onclick="clearAllCaches()">Clear All Caches</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="test-results"></div>
+    </div>
+
+    <script>
+        let testResults = [];
+
+        async function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    addTestResult('✅ Service Worker registered successfully', 'success');
+                    updateSWStatus('Service Worker registered and active');
+                    
+                    // Listen for updates
+                    registration.addEventListener('updatefound', () => {
+                        addTestResult('🔄 Service Worker update found', 'info');
+                    });
+                } catch (error) {
+                    addTestResult(`❌ Service Worker registration failed: ${error.message}`, 'error');
+                    updateSWStatus('Service Worker registration failed');
+                }
+            } else {
+                addTestResult('❌ Service Worker not supported', 'error');
+                updateSWStatus('Service Worker not supported');
+            }
+        }
+
+        async function checkCacheStatus() {
+            if ('caches' in window) {
+                try {
+                    const cacheNames = await caches.keys();
+                    addTestResult(`📦 Found ${cacheNames.length} caches: ${cacheNames.join(', ')}`, 'info');
+                    
+                    // Check specific cache buckets
+                    const criticalVideos = await caches.open('narkins-critical-videos-v4');
+                    const criticalImages = await caches.open('narkins-critical-images-v4');
+                    const demandVideos = await caches.open('narkins-demand-videos-v4');
+                    
+                    const videoKeys = await criticalVideos.keys();
+                    const imageKeys = await criticalImages.keys();
+                    const demandKeys = await demandVideos.keys();
+                    
+                    addTestResult(`🎥 Critical videos cached: ${videoKeys.length}`, 'info');
+                    addTestResult(`🖼️ Critical images cached: ${imageKeys.length}`, 'info');
+                    addTestResult(`📺 Demand videos cached: ${demandKeys.length}`, 'info');
+                } catch (error) {
+                    addTestResult(`❌ Cache check failed: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function testVideoLoad(videoUrl) {
+            const startTime = performance.now();
+            try {
+                const response = await fetch(videoUrl, { method: 'HEAD' });
+                const loadTime = performance.now() - startTime;
+                const cached = response.headers.get('cf-cache-status') || 'Unknown';
+                addTestResult(`🎥 ${videoUrl} loaded in ${loadTime.toFixed(2)}ms`, 'success');
+            } catch (error) {
+                addTestResult(`❌ Failed to load ${videoUrl}: ${error.message}`, 'error');
+            }
+        }
+
+        async function testImageLoad(imageUrl) {
+            const startTime = performance.now();
+            try {
+                const response = await fetch(imageUrl, { method: 'HEAD' });
+                const loadTime = performance.now() - startTime;
+                addTestResult(`🖼️ ${imageUrl} loaded in ${loadTime.toFixed(2)}ms`, 'success');
+            } catch (error) {
+                addTestResult(`❌ Failed to load ${imageUrl}: ${error.message}`, 'error');
+            }
+        }
+
+        async function simulateVideoInteraction(videoUrl) {
+            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'VIDEO_INTERACTION',
+                    videoUrl: videoUrl
+                });
+                addTestResult(`🎯 Simulated interaction with ${videoUrl}`, 'info');
+            }
+        }
+
+        async function triggerCacheMaintenance() {
+            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'CACHE_MAINTENANCE'
+                });
+                addTestResult('🔧 Triggered cache maintenance', 'info');
+            }
+        }
+
+        async function checkStorageUsage() {
+            if ('storage' in navigator && 'estimate' in navigator.storage) {
+                try {
+                    const estimate = await navigator.storage.estimate();
+                    const used = (estimate.usage / 1024 / 1024).toFixed(2);
+                    const total = (estimate.quota / 1024 / 1024).toFixed(2);
+                    const percentage = ((estimate.usage / estimate.quota) * 100).toFixed(1);
+                    
+                    document.getElementById('storage-info').innerHTML = 
+                        `📊 Storage: ${used}MB / ${total}MB (${percentage}%)`;
+                    addTestResult(`💾 Storage usage: ${used}MB of ${total}MB (${percentage}%)`, 'info');
+                } catch (error) {
+                    addTestResult(`❌ Storage check failed: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function clearAllCaches() {
+            if ('caches' in window) {
+                try {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    addTestResult(`🗑️ Cleared ${cacheNames.length} caches`, 'success');
+                } catch (error) {
+                    addTestResult(`❌ Cache clearing failed: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        function addTestResult(message, type) {
+            testResults.push({ message, type, timestamp: new Date().toLocaleTimeString() });
+            updateTestResults();
+        }
+
+        function updateTestResults() {
+            const container = document.getElementById('test-results');
+            container.innerHTML = testResults.map(result => 
+                `<div class="status ${result.type}">[${result.timestamp}] ${result.message}</div>`
+            ).join('');
+        }
+
+        function updateSWStatus(message) {
+            document.getElementById('sw-status').innerHTML = message;
+        }
+
+        // Auto-register service worker on page load
+        window.addEventListener('load', () => {
+            registerServiceWorker();
+            setTimeout(checkStorageUsage, 1000);
+        });
+
+        // Listen for service worker messages
+        navigator.serviceWorker.addEventListener('message', event => {
+            if (event.data.type === 'CACHE_UPDATE') {
+                addTestResult(`📦 Cache updated: ${event.data.url}`, 'info');
+            }
+        });
+    </script>
+</body>
+</html>
