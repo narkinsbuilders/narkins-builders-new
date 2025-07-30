@@ -7,7 +7,7 @@ export const OrganizationSchema = () => {
     "@type": "Organization",
     "name": "Narkin's Builders and Developers",
     "url": "https://narkinsbuilders.com",
-    "logo": "https://narkinsbuilders.com/images/narkins-builders-logo.webp",
+    "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
     "description": "Leading real estate developer in Karachi specializing in luxury apartments and residential projects in Bahria Town since 1994.",
     "foundingDate": "1994",
     "address": {
