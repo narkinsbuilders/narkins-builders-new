@@ -45,7 +45,7 @@ export default function Document() {
               "@type": "Organization",
               "name": "Narkin's Builders",
               "url": "https://narkinsbuilders.com",
-              "logo": "https://narkinsbuilders.com/images/narkins_logo.webp",
+              "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
               "description": "Leading real estate developers in Bahria Town Karachi with over 30 years of experience in luxury residential projects.",
               "foundingDate": "1994",
               "sameAs": [

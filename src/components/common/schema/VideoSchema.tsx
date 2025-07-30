@@ -35,7 +35,7 @@ export const VideoSchema = ({
       "url": "https://narkinsbuilders.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp",
+        "url": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
         "width": 400,
         "height": 400
       }

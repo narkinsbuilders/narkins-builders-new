@@ -7,7 +7,7 @@ export const AboutPageSchema = () => {
     "@type": "Organization",
     "name": "Narkin's Builders and Developers",
     "url": "https://narkinsbuilders.com",
-    "logo": "https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp",
+    "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
     "description": "Leading real estate developer in Karachi specializing in luxury apartments and residential projects in Bahria Town since 1994. Over 30 years of construction excellence.",
     "foundingDate": "1994",
     "address": {

@@ -8,10 +8,10 @@ export const LocalBusinessSchema = () => {
     "name": "Narkin's Builders and Developers",
     "alternateName": "Narkins Builders",
     "url": "https://narkinsbuilders.com",
-    "image": "https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp",
+    "image": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp",
+      "url": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
       "width": 400,
       "height": 400
     },

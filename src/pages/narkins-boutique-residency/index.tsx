@@ -45,7 +45,7 @@ const cards = [
       size: "1547 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
       image:
-        "/images/narkins-boutique-residency-2-bedroom-gold-1547-sqft-heritage-view.webp",
+        "/media/nbr/floor-plans/narkins-boutique-residency-2-bedroom-gold-1547-sqft-heritage-view.webp",
     },
   ],
   [
@@ -54,14 +54,14 @@ const cards = [
       size: "2184 Square Feet",
       location: "Heritage Club & Theme Park View",
       image:
-        "/images/narkins-boutique-residency-3-bedroom-diamond-corner-2184-sqft.webp",
+        "/media/nbr/floor-plans/narkins-boutique-residency-3-bedroom-diamond-corner-2184-sqft.webp",
     },
     {
       title: "3 Bed Diamond-A",
       size: "2121 Square Feet",
       location: "Jinnah & Theme Park View",
       image:
-        "/images/narkins-boutique-residency-3-bedroom-diamond-a-2121-sqft.webp",
+        "/media/nbr/floor-plans/narkins-boutique-residency-3-bedroom-diamond-a-2121-sqft.webp",
     },
   ],
   [
@@ -69,19 +69,19 @@ const cards = [
       title: "4 Bed Platinum A-1 Corner",
       size: "2670 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-corner-2670-sqft.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-4-bedroom-platinum-a1-corner-2670-sqft.webp",
     },
     {
       title: "4 Bed Platinum A-1 Boulevard",
       size: "2486 Square Feet",
       location: "Jinnah & Boulevard View",
-      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a1-boulevard-2486-sqft.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-4-bedroom-platinum-a1-boulevard-2486-sqft.webp",
     },
     {
       title: "4 Bed Platinum-A",
       size: "2597 Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/narkins-boutique-residency-4-bedroom-platinum-a-2597-sqft.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-4-bedroom-platinum-a-2597-sqft.webp",
     },    
     // {
 //   title: "4 Bed Platinum A-1",
@@ -96,105 +96,105 @@ const cards = [
       title: "Platinium A-1 Corner 6 Bed",
       size: "5340 Square Feet",
       location: "Jinnah & Danzoo Safari View",
-      image: "/images/narkins-boutique-residency-6-bedroom-platinum-a1-corner-updated-design.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-6-bedroom-platinum-a1-corner-updated-design.webp",
     },
     {
       title: "Platinum A-1 Boulevard 6 Bed",
       size: "4972 Square Feet",
       location: "Jinnah & Boulevard View",
-      image: "/images/nbr_3d/platinum-A1-boulevard-new(sky).webp",
+      image: "/media/nbr/3d-renders/platinum-A1-boulevard-new(sky).webp",
     },
     {
       title: "Platinium A 6 Bed",
       size: "5194 Square Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/narkins-boutique-residency-6-bedroom-platinum-a-updated-design.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-6-bedroom-platinum-a-updated-design.webp",
     },
     {
       title: "Diamond A 5 Bed",
       size: "4242 Square Feet",
       location: "Jinnah & Theme Park View",
-      image: "/images/narkins-boutique-residency-5-bedroom-diamond-a-sky-villa-design.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-5-bedroom-diamond-a-sky-villa-design.webp",
     },
     {
       title: "Diamond Corner 6 bed",
       size: "4968 Square Feet",
       location: "Heritage Club & Theme Park View",
-      image: "/images/nbr_3d/diamond-corner-new(sky).webp",
+      image: "/media/nbr/3d-renders/diamond-corner-new(sky).webp",
     },
     {
       title: "Gold 4 Bed",
       size: "3094 Square Feet",
       location: "Heritage Club & Danzoo Safari View",
-      image: "/images/narkins-boutique-residency-2-bedroom-gold-updated-design.webp",
+      image: "/media/nbr/floor-plans/narkins-boutique-residency-2-bedroom-gold-updated-design.webp",
     },    
   ],
 ];
 
 const amenities = [
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-gym-fitness-center.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-gym-fitness-center.webp", 
     name: "Gym",
     alt: "Narkin's Boutique Residency state-of-the-art gym and fitness center with modern equipment"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-kids-play-area.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-kids-play-area.webp", 
     name: "Kids Area",
     alt: "Narkin's Boutique Residency dedicated kids play area and children's facilities"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-steam-bath-wellness.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-steam-bath-wellness.webp", 
     name: "Steam Bath",
     alt: "Narkin's Boutique Residency steam bath and wellness center for relaxation"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-grand-reception-lobby.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-grand-reception-lobby.webp", 
     name: "Grand Reception",
     alt: "Narkin's Boutique Residency grand reception and lobby area with luxury finishes"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-snooker-recreation-room.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-snooker-recreation-room.webp", 
     name: "Snooker",
     alt: "Narkin's Boutique Residency snooker and recreation room for residents"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-high-speed-elevators.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-high-speed-elevators.webp", 
     name: "Elevators",
     alt: "Narkin's Boutique Residency high-speed elevators and lift facilities"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-swimming-pool-indoor.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-swimming-pool-indoor.webp", 
     name: "Pool",
     alt: "Narkin's Boutique Residency indoor swimming pool facility for residents"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-community-hall-seating.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-community-hall-seating.webp", 
     name: "Community Hall",
     alt: "Narkin's Boutique Residency community hall with premium seating arrangements"
   },
   { 
-    image: "/images/amenities/narkins-boutique-residency/narkins-boutique-residency-underground-parking-5-floors.webp", 
+    image: "/media/nbr/amenities/narkins-boutique-residency-underground-parking-5-floors.webp", 
     name: "5 Floors Parking",
     alt: "Narkin's Boutique Residency 5-floor underground car parking facility"
   },
 ];
 
 const galleryImages = [
-  "/images/narkins-boutique-residency-apartment-living-room-luxury.webp",
-  "/images/narkins-boutique-residency-apartment-master-bedroom.webp",
-  "/images/narkins-boutique-residency-apartment-kitchen-premium.webp",
-  "/images/narkins-boutique-residency-apartment-bathroom-marble.webp",
-  "/images/narkins-boutique-residency-apartment-balcony-heritage-view.webp",
-  "/images/narkins-boutique-residency-apartment-dining-area.webp",
-  "/images/narkins-boutique-residency-apartment-guest-room.webp",
-  "/images/narkins-boutique-residency-apartment-powder-room.webp",
-  "/images/narkins-boutique-residency-apartment-family-lounge.webp",
-  "/images/narkins-boutique-residency-apartment-entrance-foyer.webp",
-  "/images/narkins-boutique-residency-apartment-utility-area.webp",
-  "/images/narkins-boutique-residency-apartment-walk-in-closet.webp",
-  "/images/narkins-boutique-residency-apartment-study-room.webp",
-  "/images/narkins-boutique-residency-apartment-storage-space.webp",
-  "/images/narkins-boutique-residency-apartment-laundry-room.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-living-room-luxury.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-master-bedroom.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-kitchen-premium.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-bathroom-marble.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-balcony-heritage-view.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-dining-area.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-guest-room.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-powder-room.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-family-lounge.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-entrance-foyer.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-utility-area.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-walk-in-closet.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-study-room.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-storage-space.webp",
+  "/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-laundry-room.webp",
 ];
 
 const youtubeVideos = [
@@ -211,21 +211,21 @@ const testimonials = [
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
-    avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
     stars: [true, true, true, true, true] as const,
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
-    avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
-    avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
   },
 ] as const;
 
@@ -320,7 +320,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         <meta property="og:url" content="https://narkinsbuilders.com/narkins-boutique-residency" />
         <meta
           property="og:image"
-          content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp"
+          content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
         />
         <meta property="og:site_name" content="Hill Crest Residency" />
 
@@ -346,7 +346,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       <Lightbox />
       <div className="bg-white pt-[6rem]">
         <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
-          <VideoPlayer src="/nbr.mp4" poster={'/nbr_video_poster.webp'} />
+          <VideoPlayer src="/media/nbr/videos/nbr.mp4" poster={'/nbr_video_poster.webp'} />
         </div>
         <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -625,7 +625,7 @@ export const getStaticProps: GetStaticProps = async () => {
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",
-        imageUrl: "/images/narkins-builders-logo-30-years-experience.webp"
+        imageUrl: "/media/common/logos/narkins-builders-logo-30-years-experience.webp"
       }
     }));
 

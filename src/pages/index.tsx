@@ -46,21 +46,21 @@ const testimonials = [
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
-    avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
     stars: [true, true, true, true, true] as const,
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
-    avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
-    avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
   },
 ] as const;
 
@@ -103,7 +103,7 @@ export default function Index({ posts }: { posts: any[] }) {
     content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Narkin's Boutique Residency available." 
   />
   <meta property="og:url" content="https://narkinsbuilders.com/" />
-  <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
+  <meta property="og:image" content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
   <meta property="og:site_name" content="Narkin's Builders" />
   <meta property="og:locale" content="en_US" />
   
@@ -161,7 +161,7 @@ export default function Index({ posts }: { posts: any[] }) {
             controls={false}
             disablePictureInPicture
           >
-            <source src="/C_Narkins_Exterior.mp4" type="video/mp4" />
+            <source src="/media/videos/hero/C_Narkins_Exterior.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </header>
@@ -184,10 +184,10 @@ export default function Index({ posts }: { posts: any[] }) {
               displayMode="default"
               interval={10000}
               dataSource={[
-                '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
-                '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
-                '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
-                '/images/narkins-boutique-residency-grand-lobby-reception-area.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-grand-lobby-reception-area.webp',
               ].map((i) => ({ image: i }))}
             />
           </div>
@@ -231,10 +231,10 @@ export default function Index({ posts }: { posts: any[] }) {
               displayMode="default"
               interval={10000}
               dataSource={[
-                '/images/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
-                '/images/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
-                '/images/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
-                '/images/narkins-boutique-residency-grand-lobby-reception-area.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-amenities-pool-gym-facilities.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-sky-villa-duplex-penthouse.webp',
+                '/media/nbr/exterior/narkins-boutique-residency-grand-lobby-reception-area.webp',
               ].map((i) => ({ image: i }))}
             />
           </div>
@@ -246,7 +246,7 @@ export default function Index({ posts }: { posts: any[] }) {
         {/* Background Image with Overlay - FIXED */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp')" }}
+          style={{ backgroundImage: "url('/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp')" }}
         >
           <div className="absolute inset-0 bg-black/80"></div>
         </div>
@@ -278,7 +278,7 @@ export default function Index({ posts }: { posts: any[] }) {
             {/* Image for Desktop */}
             <div className="hidden-lg:block">
               <Image
-                src="/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp"
+                src="/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp"
                 alt="Hill Crest Residency"
                 width={800}
                 height={600}
@@ -290,10 +290,10 @@ export default function Index({ posts }: { posts: any[] }) {
               {/* Masonry Grid Gallery */}
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {[
-                  "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
-                  "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
-                  "/images/hill-crest-residency-apartment-kitchen-modern-design.webp",
-                  "/images/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",].map((src, index) => (
+                  "/media/hcr/apartment-interiors/hill-crest-residency-apartment-interior-living-room-luxury.webp",
+                  "/media/hcr/apartment-interiors/hill-crest-residency-apartment-bedroom-master-suite.webp",
+                  "/media/hcr/apartment-interiors/hill-crest-residency-apartment-kitchen-modern-design.webp",
+                  "/media/hcr/apartment-interiors/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",].map((src, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.03 }}
@@ -388,7 +388,7 @@ export const getStaticProps: GetStaticProps = async () => {
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",
-        imageUrl: "/images/narkins-builders-logo-30-years-experience.webp"
+        imageUrl: "/media/common/logos/narkins-builders-logo-30-years-experience.webp"
       }
     }));
 
@@ -405,22 +405,22 @@ export const getStaticProps: GetStaticProps = async () => {
 export function CompletedProjects() {
   const projects = [
     {
-      image: "/images/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
+      image: "/media/completed-projects/al-arz-terrace-completed-project-narkins-builders-karachi.webp",
       title: "Al Arz Terrace",
       description: "Luxury living with panoramic views.",
     },
     {
-      image: "/images/al-arz-homes-completed-project-narkins-builders-karachi.webp",
+      image: "/media/completed-projects/al-arz-homes-completed-project-narkins-builders-karachi.webp",
       title: "Al Arz Home",
       description: "Elegant designs for modern families.",
     },
     {
-      image: "/images/palm-residency-completed-project-frere-town-karachi.webp",
+      image: "/media/completed-projects/palm-residency-completed-project-frere-town-karachi.webp",
       title: "Palm Residency",
       description: "Tranquil surroundings with premium amenities.",
     },
     {
-      image: "/images/classic-heights-completed-project-sharfabad-karachi.webp",
+      image: "/media/completed-projects/classic-heights-completed-project-sharfabad-karachi.webp",
       title: "Sharfabad Residency",
       description: "A blend of tradition and modernity.",
     },
@@ -484,37 +484,37 @@ export function TrustedPartners() {
   // SEO-optimized partner data with descriptive alt texts
   const partners = [
     {
-      src: "/images/trusted-partners/agha-steel-industries-construction-manufacturing-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/agha-steel-industries-construction-manufacturing-partner-pakistan.webp",
       alt: "Agha Steel Industries - Leading steel manufacturing partner for construction projects in Pakistan",
       company: "Agha Steel Industries"
     },
     {
-      src: "/images/trusted-partners/city-tiles-ceramics-flooring-construction-partner-karachi-pakistan.webp", 
+      src: "/media/common/trusted-partners/city-tiles-ceramics-flooring-construction-partner-karachi-pakistan.webp", 
       alt: "City Tiles - Premium ceramic tiles and flooring solutions partner for luxury apartments in Karachi",
       company: "City Tiles"
     },
     {
-      src: "/images/trusted-partners/ghani-glass-industries-float-glass-manufacturing-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/ghani-glass-industries-float-glass-manufacturing-partner-pakistan.webp",
       alt: "Ghani Glass Industries - Float glass and container glass manufacturing partner for construction projects",
       company: "Ghani Glass Industries"
     },
     {
-      src: "/images/trusted-partners/gobis-paints-construction-coating-solutions-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/gobis-paints-construction-coating-solutions-partner-pakistan.webp",
       alt: "Gobis Paints - Premium paint and coating solutions partner for luxury residential projects",
       company: "Gobis Paints"
     },
     {
-      src: "/images/trusted-partners/lacasa-architects-engineering-consultants-design-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/lacasa-architects-engineering-consultants-design-partner-pakistan.webp",
       alt: "LACASA Architects & Engineering Consultants - Architectural design and engineering partner for Bahria Town projects",
       company: "LACASA Architects"
     },
     {
-      src: "/images/trusted-partners/lucky-cement-construction-materials-manufacturing-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/lucky-cement-construction-materials-manufacturing-partner-pakistan.webp",
       alt: "Lucky Cement - Premium cement and construction materials manufacturing partner for residential projects",
       company: "Lucky Cement"
     },
     {
-      src: "/images/trusted-partners/patex-engineering-construction-technology-partner-pakistan.webp",
+      src: "/media/common/trusted-partners/patex-engineering-construction-technology-partner-pakistan.webp",
       alt: "Patex Engineering - Construction technology and engineering solutions partner for modern apartments",
       company: "Patex Engineering"
     }

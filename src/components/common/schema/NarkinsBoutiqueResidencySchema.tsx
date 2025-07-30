@@ -9,8 +9,8 @@ export const NarkinsBoutiqueResidencySchema = () => {
     "description": "Premium 2 and 3-bedroom apartments in Bahria Town Karachi with luxury amenities and modern design by Narkin's Builders.",
     "url": "https://narkinsbuilders.com/narkins-boutique-residency",
     "image": [
-      "https://narkinsbuilders.com/images/narkins-boutique-residency-luxury-apartments-bahria-town.webp",
-      "https://narkinsbuilders.com/images/narkins-boutique-residency-apartment-interior-modern-design.webp"
+      "https://narkinsbuilders.com/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp",
+      "https://narkinsbuilders.com/media/nbr/apartment-interiors/narkins-boutique-residency-apartment-living-room-luxury.webp"
     ],
     "address": {
       "@type": "PostalAddress",

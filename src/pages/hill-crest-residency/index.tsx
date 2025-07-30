@@ -40,53 +40,53 @@ import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
-    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-2-bedroom-diamond-plan-1009-sqft.webp" },
-    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: "/images/hill-crest-residency-2-bedroom-gold-plan-933-sqft.webp" },
-    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: "/images/hill-crest-residency-2-bedroom-sapphire-plan-697-sqft.webp" },
+    { title: '2 Bed Diamond', size: '1276 Square Feet', location: 'Jinnah View', image: "/media/hcr/floor-plans/hill-crest-residency-2-bedroom-diamond-plan-1009-sqft.webp" },
+    { title: '2 Bed Gold', size: '1180 Square Feet', location: 'Gold Safari View', image: "/media/hcr/floor-plans/hill-crest-residency-2-bedroom-gold-plan-933-sqft.webp" },
+    { title: '2 Bed Sapphire', size: '881 Square Feet', location: 'Sapphire Safari View', image: "/media/hcr/floor-plans/hill-crest-residency-2-bedroom-sapphire-plan-697-sqft.webp" },
 ], [
-    { title: '3 Bed Platinum', size: '1884 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-3-bedroom-platinum-plan-1490-sqft.webp" },
+    { title: '3 Bed Platinum', size: '1884 Square Feet', location: 'Jinnah View', image: "/media/hcr/floor-plans/hill-crest-residency-3-bedroom-platinum-plan-1490-sqft.webp" },
 ], [
-    { title: '4 Bed Rhodium', size: '2594 Square Feet', location: 'Jinnah View', image: "/images/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
-    { title: '4 Bed Sapphire-A', size: '1756 Square Feet', location: 'Safari View', image: "/images/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
+    { title: '4 Bed Rhodium', size: '2594 Square Feet', location: 'Jinnah View', image: "/media/hcr/floor-plans/hill-crest-residency-4-bedroom-rhodium-plan-1996-sqft.webp" },
+    { title: '4 Bed Sapphire-A', size: '1756 Square Feet', location: 'Safari View', image: "/media/hcr/floor-plans/hill-crest-residency-4-bedroom-sapphire-a-plan-1388-sqft.webp" },
 ]];
 
 const amenities = [
     { 
-        image: "/images/amenities/hill-crest-residency/hill-crest-residency-gym-fitness-center.webp", 
+        image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center.webp", 
         name: "Gym",
         alt: "Hill Crest Residency modern gym and fitness center with premium equipment"
     },
     { 
-        image: "/images/amenities/hill-crest-residency/hill-crest-residency-prayer-area-mosque.webp", 
+        image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque.webp", 
         name: "Prayer Area",
         alt: "Hill Crest Residency in-house prayer area and mosque facility for residents"
     },
     { 
-        image: "/images/amenities/hill-crest-residency/hill-crest-residency-steam-bath-wellness.webp", 
+        image: "/media/hcr/amenities/hill-crest-residency-steam-bath-wellness.webp", 
         name: "Steam Bath",
         alt: "Hill Crest Residency steam bath and spa wellness center for residents"
     },
     { 
-        image: "/images/amenities/hill-crest-residency/hill-crest-residency-grand-lobby-reception.webp", 
+        image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-reception.webp", 
         name: "Grand Lobby",
         alt: "Hill Crest Residency grand lobby and reception area with luxury finishes"
     },
 ];
 
 const galleryImages = [
-    "/images/hill-crest-residency-apartment-interior-living-room-luxury.webp",
-    "/images/hill-crest-residency-apartment-bedroom-master-suite.webp",
-    "/images/hill-crest-residency-apartment-kitchen-modern-design.webp",
-    "/images/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",
-    "/images/hill-crest-residency-apartment-balcony-panoramic-view.webp",
-    "/images/hill-crest-residency-apartment-dining-area-modern.webp",
-    "/images/hill-crest-residency-apartment-guest-bedroom.webp",
-    "/images/hill-crest-residency-apartment-guest-bathroom.webp",
-    "/images/hill-crest-residency-apartment-storage-area.webp",
-    "/images/hill-crest-residency-apartment-entrance-lobby.webp",
-    "/images/hill-crest-residency-apartment-utility-room.webp",
-    "/images/hill-crest-residency-apartment-family-lounge.webp",
-    "/images/hill-crest-residency-apartment-powder-room.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-interior-living-room-luxury.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-bedroom-master-suite.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-kitchen-modern-design.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-bathroom-luxury-fixtures.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-balcony-panoramic-view.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-dining-area-modern.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-guest-bedroom.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-guest-bathroom.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-storage-area.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-entrance-lobby.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-utility-room.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-family-lounge.webp",
+    "/media/hcr/apartment-interiors/hill-crest-residency-apartment-powder-room.webp",
 ];
 
 const youtubeVideos = [
@@ -104,21 +104,21 @@ const testimonials = [
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "Highly committed to delivering in timelines, I wholeheartedly recommend considering investment in projects by Narkin's Builders.",
-    avatar: "/images/testimonials/saad-arshad-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/saad-arshad-testimonial-narkins-builders.webp",
   },
   {
     name: "Arsalan",
     stars: [true, true, true, true, true] as const,
     testimonial:
       "Smooth booking experience, very transparent throughout the process.",
-    avatar: "/images/testimonials/arsalan-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/arsalan-testimonial-narkins-builders.webp",
   },
   {
     name: "Umair Iqrar",
     stars: [true, true, true, true, "half"] as const,
     testimonial:
       "I decided to invest during the initial launch phase, and after just two years, I've seen substantial returns. It's been a fantastic investment opportunity!",
-    avatar: "/images/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
+    avatar: "/media/common/testimonials/umair-iqrar-testimonial-narkins-builders.webp",
   },
 ];
 
@@ -213,7 +213,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                 <meta property="og:url" content="https://narkinsbuilders.com/hill-crest-residency" />
                 <meta
                     property="og:image"
-                    content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp"
+                    content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
                 />
                 <meta property="og:site_name" content="Hill Crest Residency" />
 
@@ -239,7 +239,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
             <Lightbox />
             <div className="bg-white pt-[6rem]">
                 <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
-                    <VideoPlayer src="/hillcrest.mp4" poster={'/images/hill-crest-residency-exterior-view-bahria-town-karachi.webp'} />
+                    <VideoPlayer src="/media/hcr/videos/hillcrest.mp4" poster={'/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp'} />
                 </div>
                 <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -500,7 +500,7 @@ export const getStaticProps: GetStaticProps = async () => {
       author: {
         name: "Narkin's Builders",
         role: "Real Estate Expert",
-        imageUrl: "/images/narkins-builders-logo-30-years-experience.webp"
+        imageUrl: "/media/common/logos/narkins-builders-logo-30-years-experience.webp"
       }
     }));
 

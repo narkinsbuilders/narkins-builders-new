@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <pubDate>${new Date().toUTCString()}</pubDate>
     <ttl>60</ttl>
     <image>
-      <url>${SITE_URL}/images/narkins-builders-logo-30-years-experience.webp</url>
+      <url>${SITE_URL}/media/common/logos/narkins-builders-logo-30-years-experience.webp</url>
       <title>Narkin's Builders</title>
       <link>${SITE_URL}</link>
       <description>Premium real estate developer in Bahria Town Karachi</description>
