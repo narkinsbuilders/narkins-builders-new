@@ -3,7 +3,8 @@ import Footer from '@/components/layout/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
 import { BlogPost } from '@/lib/blog'
-import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema';
+import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
+import { CommentsSection } from '@/components/features/comments';
 
 interface BlogLayoutProps {
   post: BlogPost
@@ -102,6 +103,11 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
           >
             {children}
           </div>
+        </div>
+
+        {/* Comments Section */}
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
+          <CommentsSection blogSlug={post.slug} />
         </div>
 
         {/* Call to Action */}
