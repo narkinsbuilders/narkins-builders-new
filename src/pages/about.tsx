@@ -589,10 +589,10 @@ const DiversifiedBusiness = () => (
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="group relative overflow-hidden rounded-lg cursor-pointer"
-              onClick={() => openLightbox({ src: "/images/narkins-builders-eastern-wear-retail-outlet.webp" })}
+              onClick={() => openLightbox({ src: "/media/common/logos/narkins-builders-eastern-wear-retail-outlet.webp" })}
             >
               <SEOImage
-                src="/images/narkins-builders-eastern-wear-retail-outlet.webp"
+                src="/media/common/logos/narkins-builders-eastern-wear-retail-outlet.webp"
                 width={180}
                 height={110}
                 className="w-full h-[110px] lg:h-[180px] object-cover rounded-lg"
