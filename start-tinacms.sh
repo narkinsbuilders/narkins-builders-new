@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🦙 Starting TinaCMS Local Development"
+echo " Starting TinaCMS Local Development"
 echo "=================================="
 
 # Check if environment variables are set
@@ -16,8 +16,8 @@ if [[ -z "$TINA_TOKEN" ]]; then
     exit 1
 fi
 
-echo "✅ Environment variables found"
-echo "🚀 Starting TinaCMS development server..."
+echo " Environment variables found"
+echo " Starting TinaCMS development server..."
 
 # Start TinaCMS development server
 bun run dev
