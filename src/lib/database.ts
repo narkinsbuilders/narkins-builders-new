@@ -214,6 +214,26 @@ export class CommentQueries {
     `;
     return executeQuery<Comment>(query);
   }
+
+  // Get all comments with pagination
+  static async getAllComments(limit: number = 50, offset: number = 0): Promise<Comment[]> {
+    const query = `
+      SELECT * FROM blog_comments 
+      ORDER BY created_at DESC 
+      LIMIT ? OFFSET ?
+    `;
+    return executeQuery<Comment>(query, [limit, offset]);
+  }
+
+  // Get approved comments
+  static async getApprovedComments(): Promise<Comment[]> {
+    const query = `
+      SELECT * FROM blog_comments 
+      WHERE approved = TRUE 
+      ORDER BY created_at DESC
+    `;
+    return executeQuery<Comment>(query);
+  }
 }
 
 export class LikeQueries {

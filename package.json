@@ -19,6 +19,7 @@
     "typecheck": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo",
     "check": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo && next lint",
     "blog:verify-setup": "bun scripts/verify-setup.ts",
+    "setup-database": "bun scripts/setup-database.ts",
     "tina:dev": "tinacms dev -c \"next dev\"",
     "tina:build": "tinacms build",
     "tina:init": "tinacms init"
@@ -75,6 +76,7 @@
     "typescript": "5.4.5",
     "workbox-sw": "^7.3.0",
     "workbox-window": "^7.3.0",
+    "zod": "^4.0.14",
     "zustand": "^5.0.7"
   },
   "devDependencies": {
