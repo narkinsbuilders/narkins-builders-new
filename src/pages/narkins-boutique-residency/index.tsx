@@ -34,7 +34,6 @@ import Testimonials from "@/components/features/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { NarkinsBoutiqueResidencySchema } from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
-import FAQ from '@/components/features/faq/faq';
 import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
@@ -518,86 +517,59 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
               </p>
             </div>
 
-            {/* Masonry Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 auto-rows-[minmax(200px, auto)]">
-              {youtubeVideos.map((video) => (
+            {/* Modern Video Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
+              {youtubeVideos.map((video, index) => (
                 <motion.div
                   key={video.id}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative overflow-hidden min-h-[300px] shadow-lg hover:shadow-xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="group relative"
                 >
-                  {/* YouTube Thumbnail */}
-                  <a
-                    href={`https://youtube.com/watch?v=${video.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full"
-                  >
-                    <Image
-                      src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
-                      alt={video.title}
-                      width={500}
-                      height={300}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute bottom-[4rem] left-4 flex items-center justify-center">
-                      <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} />
+                  <div className="relative overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]">
+                    <div className="relative w-full h-[200px] lg:h-[280px]">
+                      <a
+                        href={`https://youtube.com/watch?v=${video.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full"
+                      >
+                        <Image
+                          src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
+                          alt={video.title}
+                          width={500}
+                          height={300}
+                          className="w-full h-full object-cover rounded-2xl"
+                          loading="lazy"
+                          quality={90}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute bottom-4 left-4 flex items-center justify-center">
+                          <Image alt={'youtube-logo'} src="/youtube.svg" width={40} height={75 / 2} style={{ height: 'auto' }} />
+                        </div>
+                      </a>
+
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-6">
+                          <PlayIcon className="w-12 h-12 text-white" />
+                        </div>
+                      </div>
                     </div>
-                  </a>
-
-                  {/* Overlay with Title and Watch Now Button */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 bg-linear-to-b from-transparent to-black group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <a
-                      href={`https://youtube.com/watch?v=${video.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300"
-                    >
-                      <PlayIcon className="w-20 h-20" />
-                    </a>
                   </div>
-
-                  {/* Video Title */}
-                  <div className="absolute flex items-middle bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
-                    <p className="text-white text-lg font-semibold">{video.title}</p>
-                    <div className="ml-auto mt-1"><ArrowTopRightOnSquareIcon className="h-4 w-4 text-white" /></div>
+                  
+                  {/* Video details */}
+                  <div className="p-6 lg:p-8">
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-200">
+                      {video.title}
+                    </h3>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
-        <FAQ 
-          staticFaqs={[
-            {
-              question: "What apartment configurations are available in Narkin's Boutique Residency?",
-              answer: "Narkin's Boutique Residency offers 2, 3, 4, 5, and 6 bedroom luxury apartments ranging from 1547 sq ft to over 3000 sq ft. Options include Gold, Diamond, Platinum plans, corner units, and exclusive Sky Villa duplexes with premium views."
-            },
-            {
-              question: "What premium amenities does Narkin's Boutique Residency offer?",
-              answer: "The residency features a grand reception lobby, state-of-the-art gym, swimming pool, kids play area, snooker room, community hall, steam bath facilities, high-speed elevators, and 5-floor underground parking with advanced security systems."
-            },
-            {
-              question: "What is the current construction status of Narkin's Boutique Residency?",
-              answer: "Narkin's Boutique Residency is actively under construction with significant progress made. Located in Heritage Commercial Bahria Town Karachi, the project is on track for completion with regular construction updates provided to investors."
-            },
-            {
-              question: "Are there flexible payment options for Narkin's Boutique Residency?",
-              answer: "Yes, we provide multiple payment plan options including down payment with installments, extended payment schedules, and customized plans based on apartment size and investor preferences. Our sales team can discuss the best option for your budget."
-            },
-            {
-              question: "Why choose Narkin's Boutique Residency for investment?",
-              answer: "Located in the prestigious Heritage Commercial area of Bahria Town Karachi, this project offers luxury living with excellent investment potential. Narkin's Builders' proven track record, premium location, and world-class amenities make it an ideal choice for both living and investment."
-            }
-          ]}
-          title="Narkin's Boutique Residency - Frequently Asked Questions"
-          description="Get answers to common questions about Narkin's Boutique Residency premium apartments in Heritage Commercial, Bahria Town Karachi."
-          pageUrl="https://narkinsbuilders.com/narkins-boutique-residency"
-          contextType="property"
-          searchable={true}
-        />
         <BlogsSection posts={posts} />
       </div>
       <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />

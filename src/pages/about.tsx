@@ -50,7 +50,7 @@ const AboutPage = () => {
                 HCR Delivered 2024
               </div>
               <div className="bg-gray-100 text-gray-800 px-4 py-2.5 rounded-xl text-sm font-medium">
-                NBR Completing 2025
+                NBR Completing Soon
               </div>
             </div>
             <h1 className="text-gray-900 mb-8">
