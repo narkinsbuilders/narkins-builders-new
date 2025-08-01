@@ -129,7 +129,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={cn('p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]', className)}
+      className={cn('p-6 rounded-2xl shadow-xl ring-1 ring-gray-900/10 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01]', className)}
       style={className?.includes('bg-transparent') ? {} : {backgroundColor: '#FAFAFA'}}
     >
 
@@ -140,7 +140,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             className={cn(
-              'mb-4 p-4 rounded-lg text-sm font-medium',
+              'mb-3 p-3 rounded-lg text-sm font-medium',
               {
                 'bg-red-50 text-red-700 border border-red-200': message.type === 'error',
                 'bg-green-50 text-green-700 border border-green-200': message.type === 'success'
@@ -152,8 +152,8 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
         )}
       </AnimatePresence>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="relative">
             <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
@@ -165,7 +165,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
               onChange={handleInputChange}
               placeholder="Your name"
               disabled={isSubmitting}
-              className="pl-10 h-12 border-gray-200 focus:border-primary transition-colors"
+              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
               style={{backgroundColor: '#FAFAFA'}}
             />
           </div>
@@ -181,7 +181,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
               onChange={handleInputChange}
               placeholder="your@email.com"
               disabled={isSubmitting}
-              className="pl-10 h-12 border-gray-200 focus:border-primary transition-colors"
+              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
               style={{backgroundColor: '#FAFAFA'}}
             />
           </div>
@@ -192,26 +192,26 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
             id="content"
             name="content"
             required
-            rows={4}
+            rows={3}
             value={formData.content}
             onChange={handleInputChange}
             placeholder="What are your thoughts?"
             disabled={isSubmitting}
             className={cn(
-              'w-full rounded-lg border border-gray-200 px-4 py-3 text-sm',
+              'w-full rounded-lg border border-gray-200 px-3 py-2 text-sm',
               'placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/10',
               'disabled:cursor-not-allowed disabled:opacity-50 resize-none transition-all',
-              'min-h-[100px]'
+              'min-h-[80px]'
             )}
             style={{backgroundColor: '#FAFAFA'}}
             maxLength={2000}
           />
-          <div className="absolute bottom-3 right-3 text-xs text-gray-400">
+          <div className="absolute bottom-2 right-3 text-xs text-gray-400">
             {formData.content.length}/2000
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center justify-between pt-1">
           <div className="text-xs text-gray-500">
             Comments are moderated and will appear after review.
           </div>
@@ -219,7 +219,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
           <Button 
             type="submit" 
             disabled={isSubmitting || !formData.authorName || !formData.authorEmail || !formData.content}
-            className="bg-primary hover:bg-primary/90 text-white px-6 py-2 h-10 rounded-lg font-medium transition-colors"
+            className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
           >
             {isSubmitting ? (
               <>
@@ -235,6 +235,18 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
           </Button>
         </div>
       </form>
+
+      <div className="mt-4 text-xs text-gray-500">
+        This site is protected by reCAPTCHA and the Google{' '}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700 transition-colors">
+          Privacy Policy
+        </a>{' '}
+        and{' '}
+        <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700 transition-colors">
+          Terms of Service
+        </a>{' '}
+        apply.
+      </div>
     </motion.div>
   );
 }

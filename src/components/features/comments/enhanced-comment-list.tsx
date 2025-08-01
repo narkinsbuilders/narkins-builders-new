@@ -159,12 +159,12 @@ export function EnhancedCommentList({
     <div className={cn('rounded-3xl shadow-2xl ring-1 ring-gray-900/10 overflow-hidden', className)} style={className?.includes('bg-transparent') ? {} : {backgroundColor: '#FAFAFA'}}>
       {/* Stats and Refresh Button */}
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="text-sm text-gray-600">
             {stats.totalComments} comment{stats.totalComments !== 1 ? 's' : ''}
           </div>
           {stats.totalLikes > 0 && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-1.5 text-xs text-gray-600">
               <TrendingUp className="h-4 w-4" />
               <span>{stats.totalLikes} likes</span>
             </div>
@@ -189,18 +189,18 @@ export function EnhancedCommentList({
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-16"
+              className="text-center py-12"
             >
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-gray-400" />
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Users className="h-6 w-6 text-gray-400" />
               </div>
-              <h4 className="text-lg font-medium text-gray-900 mb-2">No comments yet</h4>
+              <h4 className="text-base font-medium text-gray-900 mb-2">No comments yet</h4>
               <p className="text-gray-500 max-w-sm mx-auto">
                 Be the first to share your thoughts on this article!
               </p>
             </motion.div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {comments.map((comment, index) => (
                 <EnhancedCommentItem
                   key={comment.id}
