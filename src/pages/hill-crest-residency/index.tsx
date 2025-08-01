@@ -35,7 +35,6 @@ import Testimonials from "@/components/features/testimonials/testimonials";
 import { getAllPostsServer } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestResidencySchema';
-import FAQ from '@/components/features/faq/faq';
 import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
@@ -391,88 +390,59 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                             </p>
                         </div>
 
-                        {/* Masonry Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 auto-rows-[minmax(200px, auto)]">
+                        {/* Modern Video Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
                             {youtubeVideos.map((video, index) => (
                                 <motion.div
                                     key={video.id}
-                                    whileHover={{ scale: 1.03 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="group relative overflow-hidden min-h-[300px] shadow-lg hover:shadow-xl"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                                    className="group relative"
                                 >
-                                    {/* YouTube Thumbnail */}
-                                    <a
-                                        href={`https://youtube.com/watch?v=${video.id}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-full h-full"
-                                    >
-                                        <Image
-                                            src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
-                                            alt={video.title}
-                                            width={500}
-                                            height={300}
-                                            className="w-full h-full object-cover"
-                                            loading="lazy"
-                                            quality={80}
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-                                        <div className="absolute bottom-[4rem] left-4 flex items-center justify-center">
-                                            <Image alt={'youtube-logo'} src="/youtube.svg" width={50} height={150 / 2} style={{ height: 'auto' }} quality={90} sizes="50px" />
+                                    <div className="relative overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]">
+                                        <div className="relative w-full h-[200px] lg:h-[280px]">
+                                            <a
+                                                href={`https://youtube.com/watch?v=${video.id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block w-full h-full"
+                                            >
+                                                <Image
+                                                    src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
+                                                    alt={video.title}
+                                                    width={500}
+                                                    height={300}
+                                                    className="w-full h-full object-cover rounded-2xl"
+                                                    loading="lazy"
+                                                    quality={90}
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                />
+                                                <div className="absolute bottom-4 left-4 flex items-center justify-center">
+                                                    <Image alt={'youtube-logo'} src="/youtube.svg" width={40} height={75 / 2} style={{ height: 'auto' }} quality={90} sizes="40px" />
+                                                </div>
+                                            </a>
+
+                                            {/* Hover overlay */}
+                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <div className="bg-white/20 backdrop-blur-sm rounded-full p-6">
+                                                    <PlayIcon className="w-12 h-12 text-white" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </a>
-
-                                    {/* Overlay with Title and Watch Now Button */}
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 bg-linear-to-b from-transparent to-black group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                        <a
-                                            href={`https://youtube.com/watch?v=${video.id}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300"
-                                        >
-                                            <PlayIcon className="w-20 h-20" />
-                                        </a>
                                     </div>
-
-                                    {/* Video Title */}
-                                    <div className="absolute flex items-middle bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
-                                        <p className="text-white text-lg font-semibold">{video.title}</p>
-                                        <div className="ml-auto mt-1"><ArrowTopRightOnSquareIcon className="h-4 w-4 text-white" /></div>
+                                    
+                                    {/* Video details */}
+                                    <div className="p-6 lg:p-8">
+                                        <h3 className="text-lg lg:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-200">
+                                            {video.title}
+                                        </h3>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 </section>
-                <FAQ 
-                  staticFaqs={[
-                    {
-                      question: "What apartment sizes are available in Hill Crest Residency?",
-                      answer: "Hill Crest Residency offers 2, 3, and 4 bedroom luxury apartments ranging from 697 sq ft to 1996 sq ft. We have multiple floor plans including Sapphire (697 sq ft), Gold (933 sq ft), Diamond (1009 sq ft), Platinum (1490 sq ft), and Rhodium (1996 sq ft) plans."
-                    },
-                    {
-                      question: "What amenities are included in Hill Crest Residency?",
-                      answer: "Hill Crest Residency features world-class amenities including a grand lobby reception, fully equipped gym and fitness center, prayer area/mosque, steam bath and wellness facilities, high-speed elevators, and 24/7 security services."
-                    },
-                    {
-                      question: "When will Hill Crest Residency be completed?",
-                      answer: "Hill Crest Residency is currently under construction with expected completion in 2025. The project was launched in 2021 and construction is progressing on schedule. Regular updates are provided to our investors."
-                    },
-                    {
-                      question: "What is the payment plan for Hill Crest Residency apartments?",
-                      answer: "We offer flexible payment plans starting with a down payment followed by quarterly installments. Specific payment terms vary by apartment size and can be customized based on your financial preferences. Contact our sales team for detailed payment options."
-                    },
-                    {
-                      question: "Is Hill Crest Residency a good investment opportunity?",
-                      answer: "Yes, Hill Crest Residency is located in the prime Bahria Town Karachi area, which has shown consistent property value appreciation. With Narkin's Builders' 30+ years of experience and track record of delivering quality projects, it represents a solid investment opportunity."
-                    }
-                  ]}
-                  title="Hill Crest Residency - Frequently Asked Questions"
-                  description="Get answers to common questions about Hill Crest Residency luxury apartments in Bahria Town Karachi."
-                  pageUrl="https://narkinsbuilders.com/hill-crest-residency"
-                  contextType="property"
-                  searchable={true}
-                />
                 <BlogsSection posts={posts} />
             </div>
             <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
