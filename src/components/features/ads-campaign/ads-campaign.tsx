@@ -255,17 +255,17 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
             />
           </div>
           <div className="text-center">
-            <h2 className="text-2xl tracking-tight mb-2 text-black sm:text-1xl">
+            <h2 className="subheading tracking-tight mb-2 text-black">
               {headline}
             </h2>
-            <h2 className="text-2xl font-bold tracking-tight text-black sm:text-4xl">
+            <h2 className="subsection-title tracking-tight text-black">
               Available on easy installment plans
             </h2>
             <div className="p-2 bg-neutral-100 border my-4 rounded-xl hover:bg-neutral-200">
               <MapPin className="inline w-4 h-4 mr-2" />
               Bahria Town Karachi
             </div>
-            <ul className="list-disc text-sm text-left pl-5 space-y-2">
+            <ul className="list-disc body-text text-left pl-5 space-y-2">
               {features.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}

@@ -153,40 +153,6 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
       </AnimatePresence>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="authorName"
-              name="authorName"
-              type="text"
-              required
-              value={formData.authorName}
-              onChange={handleInputChange}
-              placeholder="Your name"
-              disabled={isSubmitting}
-              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
-              style={{backgroundColor: '#FAFAFA'}}
-            />
-          </div>
-          
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="authorEmail"
-              name="authorEmail"
-              type="email"
-              required
-              value={formData.authorEmail}
-              onChange={handleInputChange}
-              placeholder="your@email.com"
-              disabled={isSubmitting}
-              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
-              style={{backgroundColor: '#FAFAFA'}}
-            />
-          </div>
-        </div>
-
         <div className="relative">
           <textarea
             id="content"
@@ -211,6 +177,39 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
           </div>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="relative">
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              id="authorName"
+              name="authorName"
+              type="text"
+              required
+              value={formData.authorName}
+              onChange={handleInputChange}
+              placeholder="Your name"
+              disabled={isSubmitting}
+              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+              style={{backgroundColor: '#FAFAFA'}}
+            />
+          </div>
+          
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              id="authorEmail"
+              name="authorEmail"
+              type="email"
+              value={formData.authorEmail}
+              onChange={handleInputChange}
+              placeholder="your@email.com (optional)"
+              disabled={isSubmitting}
+              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+              style={{backgroundColor: '#FAFAFA'}}
+            />
+          </div>
+        </div>
+
         <div className="flex items-center justify-between pt-1">
           <div className="text-xs text-gray-500">
             Comments are moderated and will appear after review.
@@ -218,7 +217,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
           
           <Button 
             type="submit" 
-            disabled={isSubmitting || !formData.authorName || !formData.authorEmail || !formData.content}
+            disabled={isSubmitting || !formData.authorName || !formData.content}
             className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
           >
             {isSubmitting ? (

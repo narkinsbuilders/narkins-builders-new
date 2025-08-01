@@ -165,8 +165,8 @@ const AboutPage = () => {
               <div className={`${size === "sm" ? "w-3 h-3 lg:w-2 lg:h-2" : "w-3 h-3"} rounded-full ${status === "current" ? "bg-gray-700 animate-pulse" : "bg-primary"}`}></div>
               <span className="text-sm font-semibold text-gray-900">{stage}</span>
             </div>
-            <h4 className={`${size === "sm" ? "text-xl lg:text-lg" : "text-xl"} font-bold text-gray-900 mb-2`}>{title}</h4>
-            <p className="text-gray-600 text-sm">{description}</p>
+            <h4 className="minor-heading text-gray-900 mb-2">{title}</h4>
+            <p className="text-gray-600 body-text">{description}</p>
           </div>
         </div>
       </motion.div>
@@ -364,8 +364,8 @@ const AboutPage = () => {
                           {project.status}
                         </span>
                       </div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.title}</h4>
-                      <p className="text-gray-600 text-sm">{project.description}</p>
+                      <h4 className="minor-heading text-gray-900 mb-2">{project.title}</h4>
+                      <p className="text-gray-600 body-text">{project.description}</p>
                     </div>
                   </motion.div>
                 );
