@@ -7,6 +7,32 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  // Turbopack configuration (stable)
+  turbopack: {
+    rules: {
+      // CSS modules for Turbopack
+      '*.module.css': {
+        loaders: ['css-loader'],
+        as: '*.module.css',
+      },
+      // SCSS modules for Turbopack  
+      '*.module.scss': {
+        loaders: ['sass-loader', 'css-loader'],
+        as: '*.module.css',
+      },
+      // Handle SVG files
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+    resolveAlias: {
+      '@': './src',
+      '@/components': './src/components',
+      '@/lib': './src/lib',
+      '@/styles': './src/styles',
+    },
+  },
   transpilePackages: [
     'antd', 
     '@ant-design/plots', 
