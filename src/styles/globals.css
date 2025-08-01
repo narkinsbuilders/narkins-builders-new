@@ -282,3 +282,10 @@ iframe {
 .cursor-zoom-out {
   cursor: zoom-out;
 }
+
+/* ReCAPTCHA badge positioning - move to bottom-left to avoid WhatsApp button conflict */
+.grecaptcha-badge {
+  left: 4px !important;
+  right: auto !important;
+  bottom: 4px !important;
+}
