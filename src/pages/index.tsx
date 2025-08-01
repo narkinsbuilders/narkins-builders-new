@@ -134,10 +134,10 @@ export default function Index({ posts }: { posts: any[] }) {
               className="mx-auto px-4"
             >
               <p className="text-lg font-semibold text-neutral-300">Welcome to</p>
-              <h1 className="text-4xl lg:text-6xl font-bold mt-4 text-white">
+              <h1 className="hero-title mt-4 text-white">
                 Narkin&apos;s Builders
               </h1>
-              <p className="text-lg lg:text-xl mt-4 text-white">
+              <p className="large-text mt-4 text-white">
                 Creating Iconic Living Experiences.
               </p>
               <div className="mt-8 flex justify-center gap-4">
@@ -201,10 +201,10 @@ export default function Index({ posts }: { posts: any[] }) {
           >
             {/* Heading */}
             <div className="text-left mb-10">
-              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <h2 className="subsection-title tracking-tight text-white">
                 Narkin&apos;s Boutique Residency
               </h2>
-              <p className="mt-4 text-lg text-neutral-300">
+              <p className="mt-4 large-text text-neutral-300">
                 Narkin&apos;s Boutique Residency in Bahria Town Karachi offers luxury and bespoke design in a Heritage
                 Commercial area. With 20 floors, it features 2, 3, and 4-bedroom luxury apartments with panoramic views.
                 Residents enjoy access to over 10 premium amenities, including fitness facilities, indoor swimming pools,
@@ -260,10 +260,10 @@ export default function Index({ posts }: { posts: any[] }) {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="space-y-6"
             >
-              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <h2 className="subsection-title tracking-tight text-white">
                 Hill Crest Residency
               </h2>
-              <p className="mt-4 text-lg text-neutral-300">
+              <p className="mt-4 large-text text-neutral-300">
               Conveniently located just a minute drive from the main entrance of Bahria Town Karachi, Hill Crest Residency offers an exceptional living experience with a selection of spacious and thoughtfully designed 2, 3, and 4-bedroom luxury apartments. Nestled in a prime and rapidly developing area, 
               the complex combines comfort, elegance, and modern amenities to create a lifestyle that's both refined and relaxing. 
                Schedule your free tour today and discover what elevated living truly feels like.
@@ -435,10 +435,10 @@ export function CompletedProjects() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-12"
       >
-        <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+        <h2 className="subsection-title tracking-tight text-black">
           Completed Projects
         </h2>
-        <p className="mt-4 text-lg text-neutral-700">
+        <p className="mt-4 large-text text-neutral-700">
           At Narkins Builders & Developers, we deliver what we commit.
         </p>
       </motion.div>
@@ -470,8 +470,8 @@ export function CompletedProjects() {
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-xl font-bold text-white">{project.title}</h3>
-              <p className="mt-2 text-sm text-white">{project.description}</p>
+              <h3 className="subheading text-white">{project.title}</h3>
+              <p className="mt-2 body-text text-white">{project.description}</p>
             </div>
           </motion.div>
         ))}
@@ -530,10 +530,10 @@ export function TrustedPartners() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h2 className="subsection-title tracking-tight text-white">
             Our Trusted Partners
           </h2>
-          <p className="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
+          <p className="mt-4 large-text text-neutral-300 max-w-2xl mx-auto">
             We collaborate with Pakistan's leading construction, manufacturing, and design companies to deliver exceptional quality in every project
           </p>
         </motion.div>
