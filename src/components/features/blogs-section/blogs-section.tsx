@@ -70,10 +70,10 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
         </div>
 
         {/* ✅ FIXED: Improved responsive grid layout */}
-        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 lg:max-w-none">
+        <div className="mx-auto grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 lg:max-w-none">
           {posts.map((post, index) => (
             <article key={post.id || post.slug || index} 
-              className="bg-neutral-50 border border-gray-200 rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+              className="bg-white border border-gray-100 rounded-xl flex flex-col justify-between hover:shadow-lg hover:border-gray-200 transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
               
               {/* Blog Image */}
               {post.image && (
@@ -96,8 +96,8 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
                 </div>
               )}
               
-              <div className="p-6">
-                <div className="flex items-center gap-x-4 text-xs mb-4">
+              <div className="p-8">
+                <div className="flex items-center gap-x-4 text-xs mb-4 min-h-[24px]">
                 <time dateTime={post.datetime || post.date} className="text-gray-500">
                   {(() => {
                     try {
@@ -118,14 +118,14 @@ const BlogsSection: React.FC<BlogsSectionProps> = ({ posts }) => {
               </div>
               
               <div className="group relative flex-grow">
-                <h3 className="text-lg font-semibold leading-6 text-gray-900 group-hover:text-blue-600 transition-colors mb-3">
+                <h3 className="text-xl font-semibold leading-6 text-gray-900 group-hover:text-blue-600 transition-colors duration-200 mb-3">
                   <Link href={post.link || `/blog/${post.slug}`}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </Link>
                 </h3>
                 {/* ✅ FIXED: Proper HTML regex to remove tags */}
-                <p className="line-clamp-3 text-sm leading-6 text-gray-600 mb-4">
+                <p className="line-clamp-3 text-base leading-relaxed text-gray-600 mb-6">
                   {(post.description || post.excerpt || '').replace(/<[^>]*>/g, "")}
                 </p>
               </div>

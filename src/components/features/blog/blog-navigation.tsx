@@ -23,8 +23,8 @@ export function BlogNavigation({ previousPost, nextPost, className = '' }: BlogN
   }
 
   return (
-    <div className={`p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] ${className}`} style={{backgroundColor: '#FAFAFA'}}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className={`p-8 lg:p-10 rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition-all duration-500 ${className}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Previous Post */}
         {previousPost ? (
           <motion.div
@@ -33,15 +33,15 @@ export function BlogNavigation({ previousPost, nextPost, className = '' }: BlogN
             transition={{ duration: 0.5 }}
           >
             <Link href={`/blog/${previousPost.slug}`} className="group block">
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white bg-opacity-50 hover:bg-opacity-80 transition-all duration-300">
+              <div className="flex items-start gap-4 p-6 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 hover:border-gray-200 transition-all duration-300 min-h-[44px]">
                 <div className="flex-shrink-0 mt-1">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <ChevronLeft className="w-4 h-4 text-white" />
+                  <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <ChevronLeft className="w-5 h-5 text-white" />
                   </div>
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-gray-500 mb-1">Previous Article</p>
-                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                     {previousPost.title}
                   </h3>
                   {previousPost.excerpt && (
@@ -66,15 +66,15 @@ export function BlogNavigation({ previousPost, nextPost, className = '' }: BlogN
             className="md:text-right"
           >
             <Link href={`/blog/${nextPost.slug}`} className="group block">
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white bg-opacity-50 hover:bg-opacity-80 transition-all duration-300 md:flex-row-reverse md:text-right">
+              <div className="flex items-start gap-4 p-6 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 hover:border-gray-200 transition-all duration-300 md:flex-row-reverse md:text-right min-h-[44px]">
                 <div className="flex-shrink-0 mt-1">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <ChevronRight className="w-4 h-4 text-white" />
+                  <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <ChevronRight className="w-5 h-5 text-white" />
                   </div>
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-gray-500 mb-1">Next Article</p>
-                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                     {nextPost.title}
                   </h3>
                   {nextPost.excerpt && (

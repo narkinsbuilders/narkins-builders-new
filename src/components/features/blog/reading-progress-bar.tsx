@@ -31,18 +31,25 @@ export function ReadingProgressBar({ className = '' }: ReadingProgressBarProps) 
   }, []);
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-[60] h-2 bg-gray-200 border-b border-gray-300 ${className}`}>
+    <div className={`fixed top-0 left-0 right-0 z-[60] h-1 bg-gray-100 backdrop-blur-sm ${className}`}>
       <motion.div
-        className="h-full bg-gradient-to-r from-black to-gray-800"
+        className="h-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-sm"
         style={{ width: `${progress}%` }}
         initial={{ width: 0 }}
         animate={{ width: `${progress}%` }}
-        transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       />
-      {/* Debug indicator */}
-      <div className="absolute top-full left-0 text-xs bg-black text-white px-2 py-1 rounded-b">
-        Progress: {Math.round(progress)}%
-      </div>
+      {/* Enhanced floating progress indicator */}
+      {progress > 5 && (
+        <motion.div 
+          className="absolute top-2 right-4 bg-white/90 backdrop-blur-md text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-gray-200"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          {Math.round(progress)}% read
+        </motion.div>
+      )}
     </div>
   );
 }

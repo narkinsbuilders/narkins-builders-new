@@ -207,60 +207,113 @@ iframe {
   overflow: hidden;
 }
 
-/* Custom prose styles for blog content */
+/* Modern fluid typography for blog content */
 .prose-blog {
-  /* Custom spacing for blog content */
+  /* Fluid typography using clamp() for responsive scaling */
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem); /* 18px to 22px */
   line-height: 1.75;
+  letter-spacing: 0.025em; /* Subtle letter spacing for readability */
+}
+
+.prose-blog h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem); /* 32px to 56px */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  color: #111827;
+  letter-spacing: -0.025em;
 }
 
 .prose-blog h2 {
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.875rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem); /* 28px to 40px */
   font-weight: 700;
+  line-height: 1.3;
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
   color: #111827;
+  letter-spacing: -0.015em;
 }
 
 .prose-blog h3 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem); /* 24px to 32px */
   font-weight: 600;
+  line-height: 1.4;
+  margin-top: clamp(2rem, 3vw, 3rem);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.prose-blog h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* 20px to 24px */
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   color: #111827;
 }
 
 .prose-blog p {
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
   color: #374151;
+  line-height: 1.75;
 }
 
 .prose-blog ul, .prose-blog ol {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+  padding-left: clamp(1.5rem, 3vw, 2rem);
 }
 
 .prose-blog li {
-  margin-bottom: 0.5rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   color: #374151;
+  line-height: 1.7;
 }
 
-/* Blog card hover effects */
+.prose-blog blockquote {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  margin: clamp(2rem, 4vw, 3rem) 0;
+  padding-left: clamp(1.5rem, 3vw, 2rem);
+  border-left: 4px solid #e5e7eb;
+  color: #6b7280;
+}
+
+/* Modern blog card hover effects */
 .blog-card {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 }
 
 .blog-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Image hover effects */
+/* Enhanced image hover effects with subtle scaling */
 .blog-image {
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .blog-card:hover .blog-image {
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+
+/* Touch-friendly button styles for mobile */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .blog-card {
+    transition: all 0.2s ease;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* CTA button styles */
