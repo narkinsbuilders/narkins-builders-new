@@ -99,15 +99,15 @@ export function EnhancedCommentItem({ comment, onLike, className, index = 0 }: E
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={cn(
-        'p-6 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]',
+        'p-4 rounded-2xl shadow-xl ring-1 ring-gray-900/10 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01]',
         className
       )}
       style={{backgroundColor: '#FAFAFA'}}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         {/* Enhanced Avatar */}
         <div className={cn(
-          'flex items-center justify-center w-12 h-12 rounded-full text-white text-sm font-semibold shadow-sm',
+          'flex items-center justify-center w-10 h-10 rounded-full text-white text-xs font-semibold shadow-sm',
           'bg-gradient-to-br',
           getAvatarColor(comment.author_name)
         )}>
@@ -116,57 +116,57 @@ export function EnhancedCommentItem({ comment, onLike, className, index = 0 }: E
 
         <div className="flex-1 min-w-0">
           {/* Header */}
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <h4 className="font-semibold text-gray-900 text-base">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <h4 className="font-semibold text-gray-900 text-sm">
                 {comment.author_name}
               </h4>
               {comment.auto_approved && (
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-700 font-medium">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs bg-green-100 text-green-700 font-medium">
                   ✓ Verified
                 </span>
               )}
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-1.5 text-xs text-gray-500">
               <Clock className="h-3.5 w-3.5" />
               <span>{formatDate(comment.created_at)}</span>
             </div>
           </div>
 
           {/* Content */}
-          <div className="text-gray-700 mb-4 leading-relaxed whitespace-pre-wrap text-sm">
+          <div className="text-gray-700 mb-3 leading-relaxed whitespace-pre-wrap text-sm">
             {comment.content}
           </div>
 
           {/* Actions */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleLike}
                 disabled={isLiking}
                 className={cn(
-                  'h-8 px-3 rounded-full transition-all duration-200',
+                  'h-7 px-2.5 rounded-full transition-all duration-200',
                   'hover:bg-red-50 hover:text-red-600',
                   liked 
                     ? 'bg-red-50 text-red-600' 
                     : 'text-gray-500 hover:text-red-600'
                 )}
               >
-                <Heart className={cn('h-4 w-4 mr-1.5', liked && 'fill-current')} />
-                <span className="text-sm font-medium">{likeCount}</span>
+                <Heart className={cn('h-3.5 w-3.5 mr-1', liked && 'fill-current')} />
+                <span className="text-xs font-medium">{likeCount}</span>
               </Button>
 
               {/* Reply button - placeholder for future functionality */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 px-3 rounded-full text-gray-500 hover:text-blue-600 hover:bg-blue-50"
+                className="h-7 px-2.5 rounded-full text-gray-500 hover:text-blue-600 hover:bg-blue-50"
                 disabled
               >
-                <span className="text-sm">Reply</span>
+                <span className="text-xs">Reply</span>
               </Button>
             </div>
 

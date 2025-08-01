@@ -283,9 +283,87 @@ iframe {
   cursor: zoom-out;
 }
 
-/* ReCAPTCHA badge positioning - move to bottom-left to avoid WhatsApp button conflict */
+/* ReCAPTCHA badge - Modern minimal design based on industry best practices */
 .grecaptcha-badge {
-  left: 4px !important;
+  /* Positioning - bottom left to avoid conflicts */
+  left: 16px !important;
   right: auto !important;
-  bottom: 4px !important;
+  bottom: 16px !important;
+  z-index: 997 !important; /* Below WhatsApp button */
+  
+  /* Advanced minimal styling - nearly invisible approach */
+  opacity: 0.4 !important; /* Much more subtle */
+  transform: scale(0.7) !important; /* Smaller footprint */
+  transform-origin: bottom left !important;
+  
+  /* Smooth interactions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* Modern design elements */
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(8px) !important; /* Modern glass effect */
+  
+  /* Subtle shadow - barely visible */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  
+  /* Auto-hide after 3 seconds on desktop */
+  animation: autoFade 8s forwards !important;
 }
+
+/* Hover state - only slightly more visible */
+.grecaptcha-badge:hover {
+  opacity: 0.8 !important;
+  transform: scale(0.75) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  animation: none !important; /* Stop auto-hide on hover */
+}
+
+/* Auto-fade animation - popular technique on modern sites */
+@keyframes autoFade {
+  0% { opacity: 0.4; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { opacity: 0.15; } /* Nearly invisible after 8 seconds */
+}
+
+/* Focus state for accessibility */
+.grecaptcha-badge:focus-within {
+  opacity: 1 !important;
+  transform: scale(0.8) !important;
+  animation: none !important;
+}
+
+/* Mobile - even more minimal approach */
+@media (max-width: 768px) {
+  .grecaptcha-badge {
+    opacity: 0.25 !important; /* More transparent on mobile */
+    transform: scale(0.6) !important; /* Smaller on mobile */
+    left: 12px !important;
+    bottom: 12px !important;
+    
+    /* Mobile auto-hide is faster */
+    animation: mobileAutoFade 6s forwards !important;
+  }
+  
+  .grecaptcha-badge:hover {
+    opacity: 0.6 !important;
+    transform: scale(0.65) !important;
+  }
+}
+
+@keyframes mobileAutoFade {
+  0% { opacity: 0.25; }
+  10% { opacity: 0.25; }
+  80% { opacity: 0.25; }
+  100% { opacity: 0.1; } /* Almost invisible on mobile */
+}
+
+/* Alternative approach: Complete hiding with compliance notice */
+/* Uncomment this section if you want to completely hide the badge */
+/* 
+.grecaptcha-badge {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+*/

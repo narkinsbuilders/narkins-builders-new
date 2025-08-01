@@ -1,5 +1,5 @@
 {
-  "name": "nara",
+  "name": "narkins-builders",
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
@@ -56,7 +56,6 @@
     "lucide-react": "^0.483.0",
     "mailtoui": "1.0.3",
     "mysql2": "^3.14.3",
-    "nara": ".",
     "next": "^15.4.5",
     "next-mdx-remote": "^5.0.0",
     "next-purgecss": "^4.0.0",

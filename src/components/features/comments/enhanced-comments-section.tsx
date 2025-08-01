@@ -31,22 +31,22 @@ export function EnhancedCommentsSection({
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className={cn('p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]', className)}
+      className={cn('p-5 lg:p-6 rounded-2xl shadow-xl ring-1 ring-gray-900/10 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01]', className)}
       style={{backgroundColor: '#FAFAFA'}}
     >
       {/* Unified Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-          <MessageSquare className="h-6 w-6 text-white" />
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+          <MessageSquare className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">Comments & Discussion</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Comments & Discussion</h3>
           <p className="text-sm text-gray-600">Share your thoughts and join the conversation</p>
         </div>
       </div>
 
       {/* Comment Form */}
-      <div className="mb-8">
+      <div className="mb-6">
         <EnhancedCommentForm 
           blogSlug={blogSlug} 
           onCommentSubmitted={handleCommentSubmitted}
