@@ -3,7 +3,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { getPostBySlugServer } from '../../lib/blog-server'
+import { getPostBySlugServer, getAdjacentPosts } from '../../lib/blog-server'
 import type { BlogPost } from '../../lib/blog'
 import BlogLayout from '@/components/features/blog/blog-layout'
 import components from '@/components/features/blog/mdx-components'
@@ -24,6 +24,8 @@ import {
 interface BlogPostProps {
   post: BlogPost
   mdxSource: MDXRemoteSerializeResult
+  previousPost?: { slug: string; title: string; excerpt?: string } | null
+  nextPost?: { slug: string; title: string; excerpt?: string } | null
 }
 
 const createBlogSchema = (post: BlogPost, canonicalUrl: string, imageUrl: string) => ({
@@ -73,7 +75,7 @@ const NotFoundState = () => (
   </div>
 )
 
-export default function BlogPost({ post, mdxSource }: BlogPostProps) {
+export default function BlogPost({ post, mdxSource, previousPost, nextPost }: BlogPostProps) {
   const router = useRouter()
 
   if (router.isFallback) return <LoadingState />
@@ -126,7 +128,7 @@ export default function BlogPost({ post, mdxSource }: BlogPostProps) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       </Head>
       
-      <BlogLayout post={post}>
+      <BlogLayout post={post} previousPost={previousPost} nextPost={nextPost}>
         <div className="prose prose-lg max-w-none mx-auto">
           <MDXRemote {...mdxSource} components={components} />
         </div>
@@ -200,8 +202,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     })
 
+    const { previousPost, nextPost } = getAdjacentPosts(slug);
+
     return {
-      props: { post, mdxSource },
+      props: { post, mdxSource, previousPost, nextPost },
       revalidate: 86400,
     }
   } catch (error) {

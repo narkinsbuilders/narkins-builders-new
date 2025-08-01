@@ -5,6 +5,7 @@ import FAQ from '@/components/features/faq/faq'
 import dynamic from 'next/dynamic'
 import { Table, Card, Progress, Statistic, Row, Col, Divider, List } from 'antd'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
+import { ZoomableImage } from '@/components/features/blog/zoomable-image'
 import {
   firstTimeBuyerFAQs,
   investmentGuideFAQs,
@@ -129,19 +130,19 @@ const Column = dynamic(
 
 // Professional blog styling to match the design
 const htmlComponents = {
-  // Headers - Large, bold, professional spacing
-  h1: (props: any) => <h1 className="text-4xl font-bold text-gray-900 mb-8 mt-12" {...props} />,
-  h2: (props: any) => <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-10" {...props} />,
-  h3: (props: any) => <h3 className="text-2xl font-bold text-gray-900 mb-4 mt-8" {...props} />,
-  h4: (props: any) => <h4 className="text-xl font-semibold text-gray-800 mb-3 mt-6" {...props} />,
+  // Headers - Large, bold, professional spacing with mobile optimization
+  h1: (props: any) => <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 mt-8 sm:mt-12 leading-tight" {...props} />,
+  h2: (props: any) => <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 mt-8 sm:mt-10 leading-tight" {...props} />,
+  h3: (props: any) => <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 mt-6 sm:mt-8 leading-tight" {...props} />,
+  h4: (props: any) => <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 mt-4 sm:mt-6 leading-tight" {...props} />,
   
-  // Paragraphs - Clean spacing
-  p: (props: any) => <p className="text-gray-700 leading-relaxed mb-4" {...props} />,
+  // Paragraphs - Clean spacing with mobile optimization
+  p: (props: any) => <p className="text-base sm:text-lg text-gray-700 leading-7 sm:leading-8 mb-4 sm:mb-6" {...props} />,
   
-  // Lists - Professional bullet points and spacing
-  ul: (props: any) => <ul className="list-disc list-inside mb-6 space-y-2" {...props} />,
-  ol: (props: any) => <ol className="list-decimal list-inside mb-6 space-y-2" {...props} />,
-  li: (props: any) => <li className="text-gray-700 leading-relaxed" {...props} />,
+  // Lists - Professional bullet points and spacing with mobile optimization
+  ul: (props: any) => <ul className="list-disc list-outside ml-4 sm:ml-6 mb-6 sm:mb-8 space-y-2 sm:space-y-3" {...props} />,
+  ol: (props: any) => <ol className="list-decimal list-outside ml-4 sm:ml-6 mb-6 sm:mb-8 space-y-2 sm:space-y-3" {...props} />,
+  li: (props: any) => <li className="text-base sm:text-lg text-gray-700 leading-7 sm:leading-8 pl-1 sm:pl-2" {...props} />,
   
   // Professional table design - with strong outer borders
   table: (props: any) => (
@@ -158,6 +159,18 @@ const htmlComponents = {
     <td className="px-6 py-4 text-sm text-gray-900 border-b border-r border-gray-200 last:border-r-0" {...props} />
   ),
   tr: (props: any) => <tr className="hover:bg-gray-50" {...props} />,
+  
+  // Images - Enhanced with zoom functionality
+  img: (props: any) => (
+    <ZoomableImage
+      src={props.src}
+      alt={props.alt || ''}
+      width={800}
+      height={600}
+      className="my-8"
+      caption={props.title}
+    />
+  ),
   
   // Links and emphasis
   a: (props: any) => <a className="text-blue-600 hover:text-blue-800 font-medium" {...props} />,
