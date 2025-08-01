@@ -79,7 +79,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
 
       <div className="bg-white min-h-screen">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-neutral-50 to-white py-16 sm:py-24">
+        <div className="bg-gradient-to-r from-neutral-50 to-white py-20 sm:py-28 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
@@ -93,7 +93,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
         </div>
 
         {/* Blog Filter */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-8 pb-6">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-12 pb-8">
           <BlogFilter 
             filters={filters} 
             onFiltersChange={setFilters}
@@ -104,12 +104,12 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-20">
           {filteredPosts.length > 0 ? (
-              <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                 {filteredPosts.map((post) => (
                 <article key={post.slug} 
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300 hover:-translate-y-2 group">
                   <Link href={`/blog/${post.slug}`}>
                     <div className="cursor-pointer">
                       <div className="aspect-[16/9] relative">
@@ -117,7 +117,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           src={addCacheBuster(post.image)}
                           alt={post.title}
                           fill
-                          className="object-cover hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                           priority={posts.indexOf(post) < 6}
                           onError={(e) => {
                             console.error('Failed to load image:', post.image);
@@ -129,7 +129,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           unoptimized={isNewBlogImage(post.image)}
                         />
                       </div>
-                      <div className="p-6">
+                      <div className="p-8">
                         <div className="flex items-center gap-2 mb-3">
                           <span className="bg-black text-white px-2 py-1 rounded text-xs font-medium">
                             Real Estate
@@ -137,15 +137,15 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           <span className="text-gray-500 text-sm">{post.readTime}</span>
                         </div>
                         
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200"
                           {post.title}
                         </h2>
                         
-                        <p className="text-gray-600 mb-4 line-clamp-3 text-sm leading-relaxed">
+                        <p className="text-gray-600 mb-6 line-clamp-3 text-base leading-relaxed">
                           {post.excerpt}
                         </p>
                         
-                        <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center justify-between text-sm text-gray-500 min-h-[44px]">
                           <time dateTime={post.date}>
                             {(() => {
                               try {
