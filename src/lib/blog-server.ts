@@ -62,3 +62,28 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
     keywords: matterResult.data.keywords || '',
   }
 }
+
+export function getAdjacentPosts(currentSlug: string) {
+  const posts = getAllPostsServer();
+  const currentIndex = posts.findIndex(post => post.slug === currentSlug);
+  
+  if (currentIndex === -1) {
+    return { previousPost: null, nextPost: null };
+  }
+  
+  const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
+  const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  
+  return {
+    previousPost: previousPost ? {
+      slug: previousPost.slug,
+      title: previousPost.title,
+      excerpt: previousPost.excerpt
+    } : null,
+    nextPost: nextPost ? {
+      slug: nextPost.slug,
+      title: nextPost.title,
+      excerpt: nextPost.excerpt
+    } : null
+  };
+}

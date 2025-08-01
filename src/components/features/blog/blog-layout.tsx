@@ -4,14 +4,18 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { BlogPost } from '@/lib/blog'
 import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
-import { CommentsSection } from '@/components/features/comments';
+import { EnhancedCommentsSection } from '@/components/features/comments/enhanced-comments-section'
+import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
+import { BlogNavigation } from '@/components/features/blog/blog-navigation';
 
 interface BlogLayoutProps {
   post: BlogPost
   children: React.ReactNode
+  previousPost?: { slug: string; title: string; excerpt?: string } | null
+  nextPost?: { slug: string; title: string; excerpt?: string } | null
 }
 
-export default function BlogLayout({ post, children }: BlogLayoutProps) {
+export default function BlogLayout({ post, children, previousPost, nextPost }: BlogLayoutProps) {
   return (
     <>
       <Head>
@@ -33,6 +37,7 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
         url={`https://narkinsbuilders.com/blog/${post.slug}`}
       />
 
+      <ReadingProgressBar />
       <Navigation />
       
       <article className="bg-white min-h-screen">
@@ -64,13 +69,13 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl mb-6 leading-tight">
                 {post.title}
               </h1>
 
               {/* Excerpt */}
               {post.excerpt && (
-                <p className="text-xl leading-8 text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto">
                   {post.excerpt}
                 </p>
               )}
@@ -93,26 +98,34 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
 
         {/* Content */}
         <div className="mx-auto max-w-4xl px-6 lg:px-8 pb-12">
-          <div className="prose prose-lg max-w-none
-            prose-headings:text-gray-900 prose-headings:font-bold
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-            prose-p:text-gray-700 prose-p:leading-relaxed
+          <div className="prose prose-base sm:prose-lg max-w-none
+            prose-headings:text-gray-900 prose-headings:font-bold prose-headings:leading-tight
+            prose-h1:text-2xl sm:prose-h1:text-3xl lg:prose-h1:text-4xl prose-h1:mt-8 sm:prose-h1:mt-12 prose-h1:mb-6 sm:prose-h1:mb-8
+            prose-h2:text-xl sm:prose-h2:text-2xl lg:prose-h2:text-3xl prose-h2:mt-8 sm:prose-h2:mt-10 prose-h2:mb-4 sm:prose-h2:mb-6
+            prose-h3:text-lg sm:prose-h3:text-xl lg:prose-h3:text-2xl prose-h3:mt-6 sm:prose-h3:mt-8 prose-h3:mb-3 sm:prose-h3:mb-4
+            prose-p:text-base sm:prose-p:text-lg prose-p:text-gray-700 prose-p:leading-7 sm:prose-p:leading-8 prose-p:mb-4 sm:prose-p:mb-6
+            prose-ul:space-y-2 sm:prose-ul:space-y-3 prose-ul:mb-6 sm:prose-ul:mb-8 prose-li:leading-7 sm:prose-li:leading-8
+            prose-ol:space-y-2 sm:prose-ol:space-y-3 prose-ol:mb-6 sm:prose-ol:mb-8
             prose-a:text-blue-600 prose-a:hover:text-blue-800
-            prose-img:rounded-lg prose-img:my-8"
+            prose-img:rounded-lg prose-img:my-6 sm:prose-img:my-8 prose-img:cursor-zoom-in"
           >
             {children}
           </div>
         </div>
 
+        {/* Navigation Section */}
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
+          <BlogNavigation previousPost={previousPost} nextPost={nextPost} />
+        </div>
+
         {/* Comments Section */}
         <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
-          <CommentsSection blogSlug={post.slug} />
+          <EnhancedCommentsSection blogSlug={post.slug} />
         </div>
 
         {/* Call to Action */}
 <div className="mx-auto max-w-4xl px-6 lg:px-8 mb-12">
-  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+  <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
     <h3 className="text-xl font-semibold text-gray-900 mb-2">
       Ready to Invest in Bahria Town?
     </h3>

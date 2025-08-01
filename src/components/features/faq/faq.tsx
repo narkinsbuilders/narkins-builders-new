@@ -160,97 +160,100 @@ export default function FAQ({
         />
       </Head>
       
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              {title}
-            </h2>
-            {description ? (
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                {description}
-              </p>
-            ) : (
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Get answers to common questions about our luxury apartment projects and services.
-              </p>
-            )}
-          </div>
-
-          {/* Search Bar */}
-          {searchable && (
-            <div className="mb-8">
-              <div className="relative max-w-md mx-auto">
-                <input
-                  type="text"
-                  placeholder="Search FAQs..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
-              {searchQuery && (
-                <p className="text-center mt-2 text-sm text-gray-600">
-                  {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''} found
+          <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                {title}
+              </h2>
+              {description ? (
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  {description}
+                </p>
+              ) : (
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Get answers to common questions about our luxury apartment projects and services.
                 </p>
               )}
             </div>
-          )}
-          
-          <div className="space-y-4">
-            {filteredFaqs.map((faq, index) => (
-              <div
-                key={faq.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
-              >
-                <button
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
-                  onClick={() => toggleFAQ(index)}
-                  aria-expanded={openIndex === index}
-                  aria-controls={`faq-answer-${faq.id}`}
-                >
-                  <span className="text-lg font-medium text-gray-900 pr-4">
-                    {faq.question}
-                  </span>
-                  {openIndex === index ? (
-                    <ChevronUpIcon className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                  ) : (
-                    <ChevronDownIcon className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                  )}
-                </button>
-                
-                {openIndex === index && (
-                  <div
-                    id={`faq-answer-${faq.id}`}
-                    className="px-6 pb-4 text-gray-700 leading-relaxed animate-in slide-in-from-top-2 duration-200"
-                  >
-                    {typeof faq.answer === 'string' ? (
-                      <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
-                    ) : (
-                      <div>{faq.answer}</div>
-                    )}
+
+            {/* Search Bar */}
+            {searchable && (
+              <div className="mb-8">
+                <div className="relative max-w-md mx-auto">
+                  <input
+                    type="text"
+                    placeholder="Search FAQs..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                   </div>
+                </div>
+                {searchQuery && (
+                  <p className="text-center mt-2 text-sm text-gray-600">
+                    {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''} found
+                  </p>
                 )}
               </div>
-            ))}
-          </div>
-
-          {filteredFaqs.length === 0 && searchQuery && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">No FAQs found matching "{searchQuery}"</p>
-              <button
-                onClick={() => setSearchQuery('')}
-                className="text-primary hover:text-primary/80 font-medium"
-              >
-                Clear search
-              </button>
+            )}
+            
+            <div className="space-y-4">
+              {filteredFaqs.map((faq, index) => (
+                <div
+                  key={faq.id}
+                  className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]"
+                  style={{backgroundColor: '#FAFAFA'}}
+                >
+                  <button
+                    className="w-full text-left flex justify-between items-center hover:bg-transparent focus:outline-none transition-colors"
+                    onClick={() => toggleFAQ(index)}
+                    aria-expanded={openIndex === index}
+                    aria-controls={`faq-answer-${faq.id}`}
+                  >
+                    <span className="text-lg font-medium text-gray-900 pr-4">
+                      {faq.question}
+                    </span>
+                    {openIndex === index ? (
+                      <ChevronUpIcon className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    ) : (
+                      <ChevronDownIcon className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    )}
+                  </button>
+                  
+                  {openIndex === index && (
+                    <div
+                      id={`faq-answer-${faq.id}`}
+                      className="pt-4 text-gray-700 leading-relaxed animate-in slide-in-from-top-2 duration-200"
+                    >
+                      {typeof faq.answer === 'string' ? (
+                        <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                      ) : (
+                        <div>{faq.answer}</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-          )}
+
+            {filteredFaqs.length === 0 && searchQuery && (
+              <div className="text-center py-12">
+                <p className="text-gray-500 mb-4">No FAQs found matching "{searchQuery}"</p>
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-primary hover:text-primary/80 font-medium"
+                >
+                  Clear search
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </>
