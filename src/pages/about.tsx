@@ -30,32 +30,33 @@ const AboutPage = () => {
 
   // Hero Section Component
   const HeroSection = () => (
-    <section className="relative isolate overflow-hidden pt-[10rem] pb-16" style={{backgroundColor: '#FAFAFA'}}>
+    <section className="relative isolate overflow-hidden pt-[10rem] pb-20 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-4xl lg:mx-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="about-hero"
           >
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6">
-              <div className="bg-primary text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
+              <div className="bg-gray-900 text-white px-4 py-2.5 rounded-xl text-sm font-semibold min-h-[44px] flex items-center">
                 30+ Years
               </div>
-              <div className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium" style={{backgroundColor: '#FAFAFA'}}>
+              <div className="bg-white border border-gray-200 text-gray-800 px-4 py-2.5 rounded-xl text-sm font-medium">
                 5 Projects Delivered
               </div>
-              <div className="bg-primary/10 text-primary px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium">
+              <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2.5 rounded-xl text-sm font-medium">
                 HCR Delivered 2024
               </div>
-              <div className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium">
+              <div className="bg-gray-100 text-gray-800 px-4 py-2.5 rounded-xl text-sm font-medium">
                 NBR Completing 2025
               </div>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-7xl">
+            <h1 className="text-gray-900 mb-8">
               About Narkin's Builders
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="text-gray-600">
               Excellence meets innovation in construction and development. With a rich legacy spanning over 30 years, 
               we have established ourselves as Bahria Town Karachi's most trusted real estate partner.
             </p>
@@ -67,9 +68,9 @@ const AboutPage = () => {
 
   // Achievement Stats Section
   const AchievementStats = () => (
-    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
+    <section className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
@@ -78,8 +79,8 @@ const AboutPage = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl font-bold text-primary mb-2">{achievement.number}</div>
-              <div className="text-gray-600 font-medium">{achievement.label}</div>
+              <div className="about-section-title text-gray-900 mb-3">{achievement.number}</div>
+              <div className="about-body-text text-gray-600 font-medium">{achievement.label}</div>
             </motion.div>
           ))}
         </div>
@@ -89,14 +90,14 @@ const AboutPage = () => {
 
   // Core Values Section  
   const CoreValues = () => (
-    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Narkin's Builders</h2>
-          <p className="text-lg text-gray-600">Built on three decades of excellence and trust</p>
+        <div className="text-center mb-16">
+          <h2 className="about-section-title text-gray-900 mb-4">Why Choose Narkin's Builders</h2>
+          <p className="about-large-text text-gray-600">Built on three decades of excellence and trust</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {values.map((value, index) => (
             <motion.div
               key={index}
@@ -105,14 +106,14 @@ const AboutPage = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center group"
             >
-              <div className="p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
-                <div className="w-12 h-12 bg-primary rounded-lg mx-auto mb-6 flex items-center justify-center">
-                  {value.title === 'Reliability' && <MdSecurity className="w-6 h-6 text-white" />}
-                  {value.title === 'Innovation' && <IoRocketSharp className="w-6 h-6 text-white" />}
-                  {value.title === 'Quality' && <FaAward className="w-6 h-6 text-white" />}
+              <div className="about-card p-8 lg:p-10 min-h-[44px]">
+                <div className="w-14 h-14 bg-gray-900 rounded-xl mx-auto mb-6 flex items-center justify-center">
+                  {value.title === 'Reliability' && <MdSecurity className="w-7 h-7 text-white" />}
+                  {value.title === 'Innovation' && <IoRocketSharp className="w-7 h-7 text-white" />}
+                  {value.title === 'Quality' && <FaAward className="w-7 h-7 text-white" />}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                <h3 className="about-subsection-title text-gray-900 mb-4">{value.title}</h3>
+                <p className="about-body-text text-gray-600 leading-relaxed">{value.description}</p>
               </div>
             </motion.div>
           ))}
@@ -130,7 +131,7 @@ const AboutPage = () => {
         transition={{ duration: 0.6 }}
         className={`flex-1 ${size === "sm" ? "max-w-md lg:max-w-xs" : "max-w-md"} relative z-30`}
       >
-        <div className={`rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden ${status === "current" ? "ring-gray-700" : "ring-gray-900/10"}`} style={{backgroundColor: '#FAFAFA'}}>
+        <div className={`about-card overflow-hidden ${status === "current" ? "border-gray-900" : ""}`}>
           {image ? (
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -150,19 +151,19 @@ const AboutPage = () => {
               </div>
             </motion.div>
           ) : (
-            <div className={`w-full ${size === "sm" ? "h-48 lg:h-40" : "h-48"} flex items-center justify-center`} style={{backgroundColor: '#FAFAFA'}}>
+            <div className={`w-full ${size === "sm" ? "h-48 lg:h-40" : "h-48"} flex items-center justify-center bg-gray-50`}>
               <div className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-3">
                   <FaHammer className="w-8 h-8 text-white" />
                 </div>
-                <span className="text-primary font-semibold text-sm">COMPLETING SOON</span>
+                <span className="text-gray-900 font-semibold text-sm">COMPLETING SOON</span>
               </div>
             </div>
           )}
           <div className={`${size === "sm" ? "p-6 lg:p-4" : "p-6"}`}>
             <div className="flex items-center gap-2 mb-3">
               <div className={`${size === "sm" ? "w-3 h-3 lg:w-2 lg:h-2" : "w-3 h-3"} rounded-full ${status === "current" ? "bg-gray-700 animate-pulse" : "bg-primary"}`}></div>
-              <span className="text-sm font-semibold text-primary">{stage}</span>
+              <span className="text-sm font-semibold text-gray-900">{stage}</span>
             </div>
             <h4 className={`${size === "sm" ? "text-xl lg:text-lg" : "text-xl"} font-bold text-gray-900 mb-2`}>{title}</h4>
             <p className="text-gray-600 text-sm">{description}</p>
@@ -172,13 +173,13 @@ const AboutPage = () => {
     );
 
     return (
-      <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
+      <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Hill Crest Residency */}
           <div className="mb-16">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Hill Crest Residency</h3>
-              <p className="text-gray-600">Successfully delivered flagship smart apartment project</p>
+            <div className="text-center mb-12">
+              <h3 className="about-section-title text-gray-900 mb-3">Hill Crest Residency</h3>
+              <p className="about-large-text text-gray-600">Successfully delivered flagship smart apartment project</p>
             </div>
             
             <div className="relative">
@@ -228,9 +229,9 @@ const AboutPage = () => {
 
           {/* NBR Progress */}
           <div className="mb-16">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Narkin's Boutique Residency</h3>
-              <p className="text-gray-600">Current development nearing completion</p>
+            <div className="text-center mb-12">
+              <h3 className="about-section-title text-gray-900 mb-3">Narkin's Boutique Residency</h3>
+              <p className="about-large-text text-gray-600">Current development nearing completion</p>
             </div>
             
             <div className="relative">
@@ -317,9 +318,9 @@ const AboutPage = () => {
 
           {/* Other Projects */}
           <div className="pt-8 border-t border-gray-200">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Other Successful Projects</h3>
-              <p className="text-gray-600">Our track record of completed developments</p>
+            <div className="text-center mb-12">
+              <h3 className="about-subsection-title text-gray-900 mb-3">Other Successful Projects</h3>
+              <p className="about-large-text text-gray-600">Our track record of completed developments</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {projects.slice(2).map((project, index) => {
@@ -336,7 +337,7 @@ const AboutPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden" style={{backgroundColor: '#FAFAFA'}}
+                    className="about-card overflow-hidden"
                   >
                     {/* Project Image */}
                     <motion.div
@@ -378,12 +379,12 @@ const AboutPage = () => {
 
   // Innovation Section
   const InnovationSection = () => (
-    <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Innovation in Construction</h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <h2 className="about-section-title text-gray-900 mb-6">Innovation in Construction</h2>
+            <p className="about-large-text text-gray-600 mb-8">
               Hill Crest Residency successfully pioneered smart apartments in Bahria Town Karachi, setting new standards 
               with cutting-edge technology and sustainable building practices. Our current project, Narkin's Boutique Residency, 
               continues this legacy of innovation with luxury living spaces in Heritage Commercial area.
@@ -391,17 +392,20 @@ const AboutPage = () => {
             <div className="space-y-4">
               {innovationFeatures.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-gray-700">{feature}</span>
+                  <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+                  <span className="about-body-text text-gray-700">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="p-8 rounded-lg" style={{backgroundColor: '#FAFAFA'}}>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Choose Narkin's Builders?</h3>
-            <ul className="space-y-3 text-gray-600">
+          <div className="about-card p-8 lg:p-10">
+            <h3 className="about-subsection-title text-gray-900 mb-6">Why Choose Narkin's Builders?</h3>
+            <ul className="space-y-4 text-gray-600">
               {whyChooseUs.map((reason, index) => (
-                <li key={index}>• {reason}</li>
+                <li key={index} className="about-body-text flex items-start gap-3">
+                  <span className="text-gray-900 font-semibold mt-1">•</span>
+                  <span>{reason}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -413,9 +417,9 @@ const AboutPage = () => {
   
   // Leadership Quote Section with Facebook Video
 const LeadershipQuote = () => (
-  <section className="py-20" style={{backgroundColor: '#FAFAFA'}}>
+  <section className="py-24 bg-white">
     <div className="mx-auto max-w-6xl px-6 lg:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Quote Section */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -423,21 +427,21 @@ const LeadershipQuote = () => (
           transition={{ duration: 0.8 }}
           className="order-2 lg:order-1"
         >
-          <svg className="w-8 h-8 mb-4 text-gray-400" fill="currentColor" viewBox="0 0 32 32">
+          <svg className="w-10 h-10 mb-6 text-gray-300" fill="currentColor" viewBox="0 0 32 32">
             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
           </svg>
-          <blockquote className="text-lg italic font-medium text-gray-900 mb-6">
+          <blockquote className="about-large-text italic font-medium text-gray-900 mb-8 leading-relaxed">
             "At Narkin's Builders, we prioritize commitment, transparency, and innovation. For over 30 years, 
             these values have fueled our success, driving us to deliver cutting-edge construction projects and 
             luxury living spaces that exceed expectations."
           </blockquote>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">N</span>
+            <div className="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-xl">N</span>
             </div>
             <div>
-              <div className="font-semibold text-gray-900">Mr. Ashraf Nara</div>
-              <div className="text-gray-600">CEO at Narkin's</div>
+              <div className="about-subsection-title text-gray-900">Mr. Ashraf Nara</div>
+              <div className="about-body-text text-gray-600">CEO at Narkin's</div>
               <div className="text-sm text-gray-500">Narkin's Builders</div>
             </div>
           </div>
@@ -451,7 +455,7 @@ const LeadershipQuote = () => (
           className="order-1 lg:order-2"
         >
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden shadow-2xl bg-black">
+            <div className="rounded-xl overflow-hidden shadow-lg bg-black border border-gray-200">
               <div 
                 className="relative w-full"
                 style={{ paddingBottom: '56.25%' }} // 16:9 aspect ratio
@@ -474,8 +478,8 @@ const LeadershipQuote = () => (
                 />
               </div>
             </div>
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-600">Watch our CEO discuss our commitment to excellence</p>
+            <div className="mt-6 text-center">
+              <p className="about-body-text text-gray-600">Watch our CEO discuss our commitment to excellence</p>
             </div>
           </div>
         </motion.div>
@@ -486,20 +490,20 @@ const LeadershipQuote = () => (
 
   // Diversified Business Section
 const DiversifiedBusiness = () => (
-  <section className="py-16" style={{backgroundColor: '#FAFAFA'}}>
+  <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Beyond Real Estate</h2>
-        <p className="text-lg text-gray-600">Our commitment to excellence extends across multiple industries</p>
+      <div className="text-center mb-16">
+        <h2 className="about-section-title text-gray-900 mb-4">Beyond Real Estate</h2>
+        <p className="about-large-text text-gray-600">Our commitment to excellence extends across multiple industries</p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">Real Estate Development</h3>
-          <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="about-card p-8 lg:p-10">
+          <h3 className="about-subsection-title text-gray-900 mb-4">Real Estate Development</h3>
+          <p className="about-body-text text-gray-600 mb-6 leading-relaxed">
             Creating exceptional residential projects in Karachi's prime locations with specialized Bahria Town expertise.
           </p>
-          <div className="text-sm text-gray-500 mb-6">
+          <div className="about-body-text text-gray-500 mb-8">
             • Premium complexes • Smart technology • Luxury amenities
           </div>
           <div className="space-y-2 lg:space-y-1">
@@ -561,12 +565,12 @@ const DiversifiedBusiness = () => (
           </div>
         </div>
         
-        <div className="p-6 lg:p-8 rounded-3xl shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]" style={{backgroundColor: '#FAFAFA'}}>
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">Textile Manufacturing</h3>
-          <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+        <div className="about-card p-8 lg:p-10">
+          <h3 className="about-subsection-title text-gray-900 mb-4">Textile Manufacturing</h3>
+          <p className="about-body-text text-gray-600 mb-6 leading-relaxed">
             Leading textile manufacturer operating from our state-of-the-art S.I.T.E facility in Karachi.
           </p>
-          <div className="text-sm text-gray-500 mb-6">
+          <div className="about-body-text text-gray-500 mb-8">
             • Manufacturing • Retail outlets • Quality products
           </div>
           <div className="grid grid-cols-2 gap-2 lg:gap-3">
