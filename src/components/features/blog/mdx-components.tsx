@@ -39,7 +39,7 @@ class ChartErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return this.props.fallback || (
         <div className="my-8">
-          <Card title="Chart Error" bordered={false}>
+          <Card title="Chart Error" variant="borderless">
             <div className="h-64 flex items-center justify-center text-red-500">
               Unable to load chart. Please try refreshing the page.
             </div>
@@ -55,7 +55,7 @@ class ChartErrorBoundary extends React.Component<
 // Fallback chart components using Ant Design components only
 const FallbackChart = ({ title, data, type }: { title: string, data: any[], type: string }) => (
   <div className="my-8">
-    <Card title={title} bordered={false}>
+    <Card title={title} variant="borderless">
       <div className="space-y-4">
         {data.map((item, index) => {
           const value = item.value || item.price || item.growth || item.demand || 0;
@@ -272,7 +272,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
           </Card>
         </div>
@@ -283,7 +283,7 @@ const customComponents = {
       if (!data || data.length === 0) {
         return (
           <div className="my-8">
-            <Card title={title} bordered={false}>
+            <Card title={title} variant="borderless">
               <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
             </Card>
           </div>
@@ -301,7 +301,7 @@ const customComponents = {
       return (
         <ChartErrorBoundary>
           <div className="my-8">
-            <Card title={title} bordered={false}>
+            <Card title={title} variant="borderless">
               <Line {...config} height={300} />
             </Card>
           </div>
@@ -311,7 +311,7 @@ const customComponents = {
       console.error('PriceChart error:', error);
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
           </Card>
         </div>
@@ -329,7 +329,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
           </Card>
         </div>
@@ -340,7 +340,7 @@ const customComponents = {
       if (!data || data.length === 0) {
         return (
           <div className="my-8">
-            <Card title={title} bordered={false}>
+            <Card title={title} variant="borderless">
               <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
             </Card>
           </div>
@@ -357,7 +357,7 @@ const customComponents = {
       return (
         <ChartErrorBoundary>
           <div className="my-8">
-            <Card title={title} bordered={false}>
+            <Card title={title} variant="borderless">
               <Column {...config} height={300} />
             </Card>
           </div>
@@ -367,7 +367,7 @@ const customComponents = {
       console.error('MarketGrowthChart error:', error);
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
           </Card>
         </div>
@@ -385,7 +385,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
           </Card>
         </div>
@@ -395,7 +395,7 @@ const customComponents = {
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
           </Card>
         </div>
@@ -405,7 +405,7 @@ const customComponents = {
     // Use Progress bars as the primary display method to avoid dynamic import issues
     return (
       <div className="my-8">
-        <Card title={title} bordered={false}>
+        <Card title={title} variant="borderless">
           <div className="space-y-4">
             {data.map((item, index) => (
               <div key={index} className="flex items-center justify-between">
@@ -437,7 +437,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
           </Card>
         </div>
@@ -447,7 +447,7 @@ const customComponents = {
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
           </Card>
         </div>
@@ -512,7 +512,7 @@ const customComponents = {
     return (
       <ChartErrorBoundary>
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <Line {...multiLineConfig} height={300} />
           </Card>
         </div>
@@ -530,7 +530,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading table...</div>
           </Card>
         </div>
@@ -540,7 +540,7 @@ const customComponents = {
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
           </Card>
         </div>
@@ -583,7 +583,7 @@ const customComponents = {
 
     return (
       <div className="my-8">
-        <Card title={title} bordered={false}>
+        <Card title={title} variant="borderless">
           <Table 
             columns={columns} 
             dataSource={tableData} 
@@ -605,7 +605,7 @@ const customComponents = {
     if (!isClient) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
           </Card>
         </div>
@@ -615,7 +615,7 @@ const customComponents = {
     if (!data || data.length === 0) {
       return (
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
           </Card>
         </div>
@@ -664,7 +664,7 @@ const customComponents = {
     return (
       <ChartErrorBoundary>
         <div className="my-8">
-          <Card title={title} bordered={false}>
+          <Card title={title} variant="borderless">
             <Column {...columnConfig} height={300} />
           </Card>
         </div>
@@ -681,7 +681,7 @@ const customComponents = {
 
     return (
       <div className="my-8">
-        <Card title={title} bordered={false}>
+        <Card title={title} variant="borderless">
           <Row gutter={[24, 24]} justify="center">
             <Col xs={24} sm={12} md={8}>
               <Statistic

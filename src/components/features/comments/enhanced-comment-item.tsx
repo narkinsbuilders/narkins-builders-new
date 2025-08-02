@@ -121,11 +121,6 @@ export function EnhancedCommentItem({ comment, onLike, className, index = 0 }: E
               <h4 className="font-semibold text-gray-900 text-sm">
                 {comment.author_name}
               </h4>
-              {comment.auto_approved && (
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs bg-green-100 text-green-700 font-medium">
-                  ✓ Verified
-                </span>
-              )}
             </div>
             
             <div className="flex items-center gap-1.5 text-xs text-gray-500">

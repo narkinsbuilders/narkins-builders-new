@@ -91,7 +91,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
   return (
     <>
       <Head>
-        <title>{post.title} | Narkin's Builders Real Estate Blog</title>
+        <title>{String(post.title || 'Blog Post')} | Narkin's Builders Real Estate Blog</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

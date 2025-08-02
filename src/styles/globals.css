@@ -504,10 +504,9 @@ iframe {
 }
 
 /* Alternative approach: Complete hiding with compliance notice */
-/* Uncomment this section if you want to completely hide the badge */
-/* 
+/* Complete hiding of reCAPTCHA badge */
 .grecaptcha-badge {
   opacity: 0 !important;
   pointer-events: none !important;
+  display: none !important;
 }
-*/

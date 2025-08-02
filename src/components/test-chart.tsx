@@ -32,7 +32,7 @@ export default function TestChart() {
   return (
     <div className="p-4">
       <h2>Test Chart Component</h2>
-      <Card title="Test Chart" bordered={false}>
+      <Card title="Test Chart" variant="borderless">
         <TestLine {...config} height={300} />
       </Card>
     </div>
