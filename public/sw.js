@@ -1,17 +1,17 @@
 // Import Workbox SW
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
 
-const CACHE_NAME = 'narkins-builders-v4';
-const STATIC_CACHE = 'narkins-static-v4';
-const RUNTIME_CACHE = 'narkins-runtime-v4';
+const CACHE_NAME = 'narkins-builders-v5';
+const STATIC_CACHE = 'narkins-static-v5';
+const RUNTIME_CACHE = 'narkins-runtime-v5';
 
 // Media cache buckets
 const CACHE_BUCKETS = {
-  CRITICAL_VIDEOS: 'narkins-critical-videos-v4',
-  DEMAND_VIDEOS: 'narkins-demand-videos-v4', 
-  CRITICAL_IMAGES: 'narkins-critical-images-v4',
-  PROJECT_IMAGES: 'narkins-project-images-v4',
-  BLOG_IMAGES: 'narkins-blog-images-v4'
+  CRITICAL_VIDEOS: 'narkins-critical-videos-v5',
+  DEMAND_VIDEOS: 'narkins-demand-videos-v5', 
+  CRITICAL_IMAGES: 'narkins-critical-images-v5',
+  PROJECT_IMAGES: 'narkins-project-images-v5',
+  BLOG_IMAGES: 'narkins-blog-images-v5'
 };
 
 // Storage limits (in bytes)
@@ -72,9 +72,9 @@ if (workbox) {
 
   // Precache core assets including critical media
   const precacheAssets = [
-    ...urlsToCache.map(url => ({ url, revision: '4' })),
-    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '4' })),
-    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '4' }))
+    ...urlsToCache.map(url => ({ url, revision: '5' })),
+    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '5' })),
+    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '5' }))
   ];
   
   workbox.precaching.precacheAndRoute(precacheAssets);
@@ -526,7 +526,7 @@ async function cleanupOldCaches() {
   try {
     const cacheNames = await caches.keys();
     const oldCaches = cacheNames.filter(name => 
-      name.includes('narkins') && !name.includes('v4')
+      name.includes('narkins') && !name.includes('v5')
     );
     
     await Promise.all(

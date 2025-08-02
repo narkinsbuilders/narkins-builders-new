@@ -152,6 +152,24 @@ const nextConfig = {
           },
         ],
       },
+      // Force cache refresh for critical updates (remove after users update)
+      {
+        source: '/_next/static/chunks/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
       // Other static assets - long-term caching
       {
         source: '/images/(.*)',
