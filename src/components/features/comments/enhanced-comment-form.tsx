@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/common/ui/button';
 import { Input } from '@/components/common/ui/input';
 import { cn } from '@/lib/utils';
-import { Loader2, Send, User, Mail, MessageSquare } from 'lucide-react';
+import { Loader2, Send, User, Mail, MessageSquare, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface EnhancedCommentFormProps {
@@ -27,6 +27,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
+  const [showDetailsForm, setShowDetailsForm] = useState(false);
 
   // Load ReCAPTCHA on component mount
   React.useEffect(() => {
@@ -52,6 +53,16 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
     }));
   };
 
+  const handleCommentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.content.trim()) return;
+    setShowDetailsForm(true);
+  };
+
+  const handleBackToComment = () => {
+    setShowDetailsForm(false);
+  };
+
   const executeRecaptcha = async (): Promise<string> => {
     return new Promise((resolve, reject) => {
       if (!window.grecaptcha) {
@@ -68,7 +79,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
@@ -102,6 +113,7 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
           authorEmail: '',
           content: ''
         });
+        setShowDetailsForm(false);
 
         // Notify parent component
         if (onCommentSubmitted && data.comment) {
@@ -152,88 +164,124 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
         )}
       </AnimatePresence>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="relative">
-          <textarea
-            id="content"
-            name="content"
-            required
-            rows={3}
-            value={formData.content}
-            onChange={handleInputChange}
-            placeholder="What are your thoughts?"
-            disabled={isSubmitting}
-            className={cn(
-              'w-full rounded-lg border border-gray-200 px-3 py-2 text-sm',
-              'placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/10',
-              'disabled:cursor-not-allowed disabled:opacity-50 resize-none transition-all',
-              'min-h-[80px]'
-            )}
-            style={{backgroundColor: '#FAFAFA'}}
-            maxLength={2000}
-          />
-          <div className="absolute bottom-2 right-3 text-xs text-gray-400">
-            {formData.content.length}/2000
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      {!showDetailsForm ? (
+        <form onSubmit={handleCommentSubmit} className="space-y-4">
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="authorName"
-              name="authorName"
-              type="text"
+            <textarea
+              id="content"
+              name="content"
               required
-              value={formData.authorName}
+              rows={3}
+              value={formData.content}
               onChange={handleInputChange}
-              placeholder="Your name"
+              placeholder="What are your thoughts?"
               disabled={isSubmitting}
-              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+              className={cn(
+                'w-full rounded-lg border border-gray-200 px-3 py-2 text-sm',
+                'placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/10',
+                'disabled:cursor-not-allowed disabled:opacity-50 resize-none transition-all',
+                'min-h-[80px]'
+              )}
               style={{backgroundColor: '#FAFAFA'}}
+              maxLength={2000}
             />
+            <div className="absolute bottom-2 right-3 text-xs text-gray-400">
+              {formData.content.length}/2000
+            </div>
           </div>
-          
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="authorEmail"
-              name="authorEmail"
-              type="email"
-              value={formData.authorEmail}
-              onChange={handleInputChange}
-              placeholder="your@email.com (optional)"
-              disabled={isSubmitting}
-              className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
-              style={{backgroundColor: '#FAFAFA'}}
-            />
-          </div>
-        </div>
 
-        <div className="flex items-center justify-between pt-1">
-          <div className="text-xs text-gray-500">
-            Comments are moderated and will appear after review.
+          <div className="flex items-center justify-between pt-1">
+            <div className="text-xs text-gray-500">
+            </div>
+            
+            <Button 
+              type="submit" 
+              disabled={!formData.content.trim()}
+              className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
+            >
+              <Send className="h-4 w-4 mr-2" />
+              Post
+            </Button>
           </div>
-          
-          <Button 
-            type="submit" 
-            disabled={isSubmitting || !formData.authorName || !formData.content}
-            className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                Posting...
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4 mr-2" />
-                Post Comment
-              </>
-            )}
-          </Button>
-        </div>
-      </form>
+        </form>
+      ) : (
+        <form onSubmit={handleFinalSubmit} className="space-y-4">
+          <div className="relative">
+            <div className="text-sm text-gray-600 mb-3 p-3 bg-gray-50 rounded-lg border">
+              <strong>Your comment:</strong> "{formData.content.substring(0, 100)}{formData.content.length > 100 ? '...' : ''}"
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                id="authorName"
+                name="authorName"
+                type="text"
+                required
+                value={formData.authorName}
+                onChange={handleInputChange}
+                placeholder="Your name"
+                disabled={isSubmitting}
+                className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+                style={{backgroundColor: '#FAFAFA'}}
+              />
+            </div>
+            
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                id="authorEmail"
+                name="authorEmail"
+                type="email"
+                value={formData.authorEmail}
+                onChange={handleInputChange}
+                placeholder="your@email.com (optional)"
+                disabled={isSubmitting}
+                className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+                style={{backgroundColor: '#FAFAFA'}}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between pt-1">
+            <div className="flex items-center gap-3">
+              <Button 
+                type="button"
+                onClick={handleBackToComment}
+                variant="outline"
+                disabled={isSubmitting}
+                className="px-3 py-2 h-9 rounded-lg font-medium transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back
+              </Button>
+              <div className="text-xs text-gray-500">
+                Comments are moderated and will appear after review.
+              </div>
+            </div>
+            
+            <Button 
+              type="submit" 
+              disabled={isSubmitting || !formData.authorName.trim()}
+              className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  Posting...
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4 mr-2" />
+                  Post Comment
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
+      )}
 
     </motion.div>
   );

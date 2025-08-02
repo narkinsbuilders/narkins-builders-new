@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const createCommentSchema = z.object({
   blogSlug: z.string().min(1).max(255),
   authorName: z.string().min(1).max(100).trim(),
-  authorEmail: z.string().email().max(255),
+  authorEmail: z.string().email().max(255).optional().or(z.literal('')),
   content: z.string().min(1).max(2000).trim(),
   recaptchaToken: z.string().min(1)
 });

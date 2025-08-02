@@ -133,7 +133,7 @@ async function handleCreateComment(
     const commentData = {
       blog_slug: slug,
       author_name: authorName,
-      author_email: authorEmail,
+      author_email: authorEmail && authorEmail.trim() ? authorEmail : '',
       content: content,
       approved: autoApprove,
       auto_approved: autoApprove,
