@@ -1,5 +1,14 @@
-// Import Workbox SW
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
+// Import Workbox SW from local installation
+try {
+  importScripts('/workbox-sw/workbox-sw.js');
+} catch (e) {
+  // Fallback to CDN if local import fails
+  try {
+    importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
+  } catch (cdnError) {
+    console.warn('Failed to load Workbox from both local and CDN sources');
+  }
+}
 
 const CACHE_NAME = 'narkins-builders-v5';
 const STATIC_CACHE = 'narkins-static-v5';
@@ -38,8 +47,6 @@ const MEDIA_CATEGORIES = {
   ],
   CRITICAL_IMAGES: [
     '/media/common/logos/narkins-builders-logo.webp',
-    '/videoframe_0.webp',
-    '/nbr_video_poster.webp',
     '/default-avatar.webp',
     '/favicon.ico',
     '/icons/icon-192x192.svg',
@@ -64,7 +71,7 @@ const urlsToCache = [
 ];
 
 // Initialize Workbox
-if (workbox) {
+if (typeof workbox !== 'undefined' && workbox) {
   
   // Skip waiting and claim clients
   workbox.core.skipWaiting();
@@ -346,17 +353,47 @@ if (workbox) {
 } else {
   
   // Fallback to basic service worker functionality
+  console.log('Using fallback service worker - Workbox not available');
+  
   self.addEventListener('install', event => {
     event.waitUntil(
       Promise.all([
-        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)),
-        caches.open(CACHE_BUCKETS.CRITICAL_VIDEOS).then(cache => 
-          cache.addAll(MEDIA_CATEGORIES.CRITICAL_VIDEOS)
-        ),
-        caches.open(CACHE_BUCKETS.CRITICAL_IMAGES).then(cache => 
-          cache.addAll(MEDIA_CATEGORIES.CRITICAL_IMAGES)
-        )
-      ])
+        // Cache core pages and assets with error handling
+        caches.open(CACHE_NAME).then(cache => {
+          return cache.addAll(urlsToCache.filter(url => url !== '/videoframe_0.webp')).catch(err => {
+            console.warn('Failed to cache some core assets:', err);
+          });
+        }),
+        // Cache critical videos with error handling
+        caches.open(CACHE_BUCKETS.CRITICAL_VIDEOS).then(cache => {
+          return Promise.allSettled(
+            MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => cache.add(url))
+          ).then(results => {
+            results.forEach((result, index) => {
+              if (result.status === 'rejected') {
+                console.warn(`Failed to cache video ${MEDIA_CATEGORIES.CRITICAL_VIDEOS[index]}:`, result.reason);
+              }
+            });
+          });
+        }),
+        // Cache critical images with error handling
+        caches.open(CACHE_BUCKETS.CRITICAL_IMAGES).then(cache => {
+          return Promise.allSettled(
+            MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => cache.add(url))
+          ).then(results => {
+            results.forEach((result, index) => {
+              if (result.status === 'rejected') {
+                console.warn(`Failed to cache image ${MEDIA_CATEGORIES.CRITICAL_IMAGES[index]}:`, result.reason);
+              }
+            });
+          });
+        })
+      ]).then(() => {
+        console.log('Service worker installation completed');
+        self.skipWaiting();
+      }).catch(err => {
+        console.error('Service worker installation failed:', err);
+      })
     );
   });
 
