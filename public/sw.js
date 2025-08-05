@@ -1,12 +1,20 @@
-// Import Workbox SW from local installation
+// Import Workbox SW with improved error handling
+let workboxLoaded = false;
+
 try {
   importScripts('/workbox-sw/workbox-sw.js');
+  workboxLoaded = true;
+  console.log('Workbox loaded from local source');
 } catch (e) {
+  console.warn('Local Workbox import failed:', e.message);
   // Fallback to CDN if local import fails
   try {
     importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.3.0/workbox-sw.js');
+    workboxLoaded = true;
+    console.log('Workbox loaded from CDN');
   } catch (cdnError) {
-    console.warn('Failed to load Workbox from both local and CDN sources');
+    console.error('Failed to load Workbox from both local and CDN sources:', cdnError.message);
+    workboxLoaded = false;
   }
 }
 
@@ -71,7 +79,8 @@ const urlsToCache = [
 ];
 
 // Initialize Workbox
-if (typeof workbox !== 'undefined' && workbox) {
+if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
+  console.log('Initializing Workbox service worker');
   
   // Skip waiting and claim clients
   workbox.core.skipWaiting();
@@ -399,19 +408,48 @@ if (typeof workbox !== 'undefined' && workbox) {
 
   // Enhanced fetch handler with offline fallbacks
   self.addEventListener('fetch', event => {
+    // Only handle requests from our origin to avoid CORS issues
+    if (!event.request.url.startsWith(self.location.origin)) {
+      return;
+    }
+
     event.respondWith(
       caches.match(event.request)
         .then(response => {
           if (response) {
+            console.log('Serving from cache:', event.request.url);
             return response;
           }
           
-          return fetch(event.request).catch(async () => {
+          // Try network first, then fallback
+          return fetch(event.request).then(networkResponse => {
+            // Clone the response before using it
+            const responseClone = networkResponse.clone();
+            
+            // Cache successful responses
+            if (networkResponse.status === 200) {
+              caches.open(RUNTIME_CACHE).then(cache => {
+                cache.put(event.request, responseClone);
+              });
+            }
+            
+            return networkResponse;
+          }).catch(async (error) => {
+            console.warn('Network request failed:', event.request.url, error.message);
             const url = new URL(event.request.url);
             
             // Offline fallbacks for different content types
             if (event.request.destination === 'document') {
-              return caches.match('/offline.html');
+              // Try to serve homepage from cache, then offline page
+              const cachedHome = await caches.match('/');
+              if (cachedHome) {
+                return cachedHome;
+              }
+              return caches.match('/offline.html') || new Response('Page unavailable offline', {
+                status: 503,
+                statusText: 'Service Unavailable',
+                headers: { 'Content-Type': 'text/html' }
+              });
             }
             
             // Video fallbacks - try compressed version
@@ -420,18 +458,20 @@ if (typeof workbox !== 'undefined' && workbox) {
                 return caches.match('/media/hcr/videos/hill_crest_compressed.mp4');
               }
               if (url.pathname === '/media/nbr/videos/nbr.mp4') {
-                return caches.match('/media/videos/hero/hero-bg.mp4'); // Smaller fallback
+                return caches.match('/media/videos/hero/hero-bg.mp4');
               }
             }
             
             // Image fallbacks - try default avatar or logo
             if (event.request.destination === 'image') {
               if (url.pathname.includes('/media/')) {
-                return caches.match('/default-avatar.webp') || 
-                       caches.match('/media/common/logos/narkins-builders-logo.webp');
+                const fallback = await caches.match('/default-avatar.webp') || 
+                                await caches.match('/media/common/logos/narkins-builders-logo.webp');
+                if (fallback) return fallback;
               }
             }
             
+            // For other resources, just fail gracefully
             return new Response('Content unavailable offline', {
               status: 503,
               statusText: 'Service Unavailable'
