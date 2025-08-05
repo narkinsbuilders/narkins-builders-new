@@ -237,9 +237,9 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
                 type="email"
                 value={formData.authorEmail}
                 onChange={handleInputChange}
-                placeholder="your@email.com (optional)"
+                placeholder="Receive updates on new project launches, important announcements, or responses to your comment by providing your email."
                 disabled={isSubmitting}
-                className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors"
+                className="pl-10 h-10 border-gray-200 focus:border-primary transition-colors placeholder:text-gray-400"
                 style={{backgroundColor: '#FAFAFA'}}
               />
             </div>
