@@ -18,17 +18,17 @@ try {
   }
 }
 
-const CACHE_NAME = 'narkins-builders-v5';
-const STATIC_CACHE = 'narkins-static-v5';
-const RUNTIME_CACHE = 'narkins-runtime-v5';
+const CACHE_NAME = 'narkins-builders-v6';
+const STATIC_CACHE = 'narkins-static-v6';
+const RUNTIME_CACHE = 'narkins-runtime-v6';
 
 // Media cache buckets
 const CACHE_BUCKETS = {
-  CRITICAL_VIDEOS: 'narkins-critical-videos-v5',
-  DEMAND_VIDEOS: 'narkins-demand-videos-v5', 
-  CRITICAL_IMAGES: 'narkins-critical-images-v5',
-  PROJECT_IMAGES: 'narkins-project-images-v5',
-  BLOG_IMAGES: 'narkins-blog-images-v5'
+  CRITICAL_VIDEOS: 'narkins-critical-videos-v6',
+  DEMAND_VIDEOS: 'narkins-demand-videos-v6', 
+  CRITICAL_IMAGES: 'narkins-critical-images-v6',
+  PROJECT_IMAGES: 'narkins-project-images-v6',
+  BLOG_IMAGES: 'narkins-blog-images-v6'
 };
 
 // Storage limits (in bytes)
@@ -88,9 +88,9 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
 
   // Precache core assets including critical media
   const precacheAssets = [
-    ...urlsToCache.map(url => ({ url, revision: '5' })),
-    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '5' })),
-    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '5' }))
+    ...urlsToCache.map(url => ({ url, revision: '6' })),
+    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '6' })),
+    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '6' }))
   ];
   
   workbox.precaching.precacheAndRoute(precacheAssets);
@@ -98,8 +98,27 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
   // Cache strategies for different content types
   
   // 1. HTML Pages - Stale While Revalidate (fast loading, fresh content)
+  // This route is for pages that are not precached. Precaching is handled by precacheAndRoute.
   workbox.routing.registerRoute(
-    ({ request }) => request.destination === 'document',
+    ({ request, url }) => {
+      // This runtime caching route should only apply to documents (HTML pages).
+      if (request.destination !== 'document') {
+        return false;
+      }
+      // We must not intercept requests for precached pages, so we check against the list.
+      // The precache route has its own logic (cache-first).
+      // This prevents the "Failed to fetch" error for precached pages when offline.
+      const precachedPageUrls = [
+        '/',
+        '/hill-crest-residency',
+        '/narkins-boutique-residency',
+        '/about',
+        '/blog',
+        '/completed-projects',
+        '/offline.html'
+      ];
+      return !precachedPageUrls.includes(url.pathname);
+    },
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'pages-cache',
       plugins: [
@@ -359,7 +378,7 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
     })
   );
 
-} else {
+} else { 
   
   // Fallback to basic service worker functionality
   console.log('Using fallback service worker - Workbox not available');
@@ -603,7 +622,7 @@ async function cleanupOldCaches() {
   try {
     const cacheNames = await caches.keys();
     const oldCaches = cacheNames.filter(name => 
-      name.includes('narkins') && !name.includes('v5')
+      name.includes('narkins') && !name.includes('v6')
     );
     
     await Promise.all(
