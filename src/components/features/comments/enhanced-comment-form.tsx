@@ -245,40 +245,47 @@ export function EnhancedCommentForm({ blogSlug, onCommentSubmitted, className }:
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-1">
-            <div className="flex items-center gap-3">
-              <Button 
-                type="button"
-                onClick={handleBackToComment}
-                variant="outline"
-                disabled={isSubmitting}
-                className="px-3 py-2 h-9 rounded-lg font-medium transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
-              </Button>
-              <div className="text-xs text-gray-500">
-                Comments are moderated and will appear after review.
+          <div className="pt-1">
+            {/* Mobile-first responsive layout */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              {/* Left side - Back button and moderation text */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                <Button 
+                  type="button"
+                  onClick={handleBackToComment}
+                  variant="outline"
+                  disabled={isSubmitting}
+                  className="px-3 py-2 h-9 rounded-lg font-medium transition-colors w-fit"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back
+                </Button>
+                <div className="text-xs text-gray-500 leading-relaxed">
+                  Comments are moderated and will appear after review.
+                </div>
+              </div>
+              
+              {/* Right side - Post button */}
+              <div className="flex justify-end sm:justify-start">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting || !formData.authorName.trim()}
+                  className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors w-fit"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      Posting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2" />
+                      Post Comment
+                    </>
+                  )}
+                </Button>
               </div>
             </div>
-            
-            <Button 
-              type="submit" 
-              disabled={isSubmitting || !formData.authorName.trim()}
-              className="bg-primary hover:bg-primary/90 text-white px-5 py-2 h-9 rounded-lg font-medium transition-colors"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  Posting...
-                </>
-              ) : (
-                <>
-                  <Send className="h-4 w-4 mr-2" />
-                  Post Comment
-                </>
-              )}
-            </Button>
           </div>
         </form>
       )}
