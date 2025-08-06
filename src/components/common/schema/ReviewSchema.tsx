@@ -29,7 +29,7 @@ export const ReviewSchema = () => (
               "bestRating": "5",
               "worstRating": "1"
             },
-            "datePublished": "2024-12-15"
+            "datePublished": "2024-05-15"
           },
           {
             "@type": "Review",
@@ -44,7 +44,7 @@ export const ReviewSchema = () => (
               "bestRating": "5",
               "worstRating": "1"
             },
-            "datePublished": "2024-11-20"
+            "datePublished": "2024-04-20"
           },
           {
             "@type": "Review",
@@ -59,7 +59,7 @@ export const ReviewSchema = () => (
               "bestRating": "5",
               "worstRating": "1"
             },
-            "datePublished": "2024-10-25"
+            "datePublished": "2024-03-25"
           },
           {
             "@type": "Review",
@@ -74,7 +74,7 @@ export const ReviewSchema = () => (
               "bestRating": "5",
               "worstRating": "1"
             },
-            "datePublished": "2024-09-10"
+            "datePublished": "2024-02-10"
           }
         ]
       })

@@ -47,7 +47,7 @@ export const WebSiteSchema = () => {
       }
     ],
     "keywords": "Narkin's Builders, Bahria Town Karachi, luxury apartments, real estate developer, Hill Crest Residency, Narkin's Boutique Residency",
-    "copyrightYear": "2024",
+    "copyrightYear": new Date().getFullYear(),
     "copyrightHolder": {
       "@type": "Organization",
       "name": "Narkin's Builders and Developers"

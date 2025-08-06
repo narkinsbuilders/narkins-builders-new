@@ -1,6 +1,7 @@
-// pages/api/sitemap.xml.ts - FIXED VERSION
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getAllPostsServer } from '../../lib/blog-server';
+import fs from 'fs';
+import path from 'path';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
 
@@ -11,42 +12,54 @@ interface SitemapUrl {
   priority?: number;
 }
 
+// Helper function to get the last modified date of a file
+const getLastModifiedDate = (filePath: string): string => {
+  try {
+    const fullPath = path.join(process.cwd(), 'src', 'pages', filePath);
+    const stats = fs.statSync(fullPath);
+    return stats.mtime.toISOString();
+  } catch (error) {
+    // Fallback to current date if file not found or other error
+    return new Date().toISOString();
+  }
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Static pages with SEO priority
   const staticPages: SitemapUrl[] = [
     {
       loc: `${SITE_URL}/`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('index.tsx'),
       changefreq: 'weekly',
       priority: 1.0
     },
     {
       loc: `${SITE_URL}/hill-crest-residency`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('hill-crest-residency/index.tsx'),
       changefreq: 'weekly', 
       priority: 0.9
     },
     {
       loc: `${SITE_URL}/narkins-boutique-residency`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('narkins-boutique-residency/index.tsx'),
       changefreq: 'weekly',
       priority: 0.9
     },
     {
       loc: `${SITE_URL}/about`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('about.tsx'),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: `${SITE_URL}/completed-projects`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('completed-projects/index.tsx'),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: `${SITE_URL}/blog`,
-      lastmod: new Date().toISOString(),
+      lastmod: getLastModifiedDate('blog/index.tsx'),
       changefreq: 'daily',
       priority: 0.7
     },

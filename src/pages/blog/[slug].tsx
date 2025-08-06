@@ -61,6 +61,8 @@ const createBreadcrumbSchema = (post: BlogPost, canonicalUrl: string) => ({
   ]
 })
 
+import SocialShare from '@/components/features/social-share/social-share';
+
 const LoadingState = () => (
   <div className="flex flex-col items-center justify-center h-screen">
     <div className="w-10 h-10 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
@@ -131,6 +133,9 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
       <BlogLayout post={post} previousPost={previousPost} nextPost={nextPost}>
         <div className="prose prose-lg max-w-none mx-auto">
           <MDXRemote {...mdxSource} components={components} />
+        </div>
+        <div className="mt-8">
+          <SocialShare url={canonicalUrl} title={post.title} />
         </div>
       </BlogLayout>
     </>
