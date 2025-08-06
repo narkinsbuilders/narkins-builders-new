@@ -1,3 +1,7 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -182,6 +186,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog/bahria-town-uncertainty-smart-investors-choose-established-developers-2025',
+        destination: '/blog/bahria-town-shutdown-scare-investment-security',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
@@ -218,4 +231,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)
