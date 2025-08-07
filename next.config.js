@@ -11,6 +11,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  // Build optimizations  
+  experimental: {
+    optimizePackageImports: ['antd', '@ant-design/plots', '@ant-design/icons'],
+  },
   // Turbopack configuration (stable)
   turbopack: {
     rules: {
@@ -74,7 +78,7 @@ const nextConfig = {
     '@rc-component/portal',
     '@rc-component/motion'
   ],
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, dev }) => {
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -91,6 +95,37 @@ const nextConfig = {
         fullySpecified: false,
       },
     });
+
+    // Production build optimizations
+    if (!dev) {
+      // Enable parallel processing
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+      
+      // Better chunk splitting for blog components
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        chunks: 'all',
+        cacheGroups: {
+          ...config.optimization.splitChunks?.cacheGroups,
+          antd: {
+            name: 'antd',
+            test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+            priority: 20,
+          },
+          charts: {
+            name: 'charts', 
+            test: /[\\/]node_modules[\\/]@ant-design[\\/]plots[\\/]/,
+            priority: 30,
+          },
+          mdx: {
+            name: 'mdx',
+            test: /[\\/]node_modules[\\/](next-mdx-remote|remark|rehype)[\\/]/,
+            priority: 25,
+          }
+        },
+      };
+    }
     
     return config;
   },

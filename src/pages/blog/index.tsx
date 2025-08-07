@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { getAllPostsServer } from '../../lib/blog-server'
+import { getAllPostsServer } from '../../lib/blog-server-parallel'
 import { BlogPost } from '../../lib/blog'
 import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'

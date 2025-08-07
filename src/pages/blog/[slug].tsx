@@ -3,7 +3,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { getPostBySlugServer, getAdjacentPosts } from '../../lib/blog-server'
+import { getPostBySlugServer, getAdjacentPosts, isPostCached } from '../../lib/blog-server-parallel'
 import type { BlogPost } from '../../lib/blog'
 import BlogLayout from '@/components/features/blog/blog-layout'
 import components from '@/components/features/blog/mdx-components'
@@ -189,6 +189,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!post) return { notFound: true }
 
   try {
+    // Process MDX with cached content (faster file access)
+    if (isPostCached(slug)) {
+      console.log(`[BLOG] Processing MDX for ${slug} using cached content`)
+    } else {
+      console.log(`[BLOG] Processing MDX for ${slug} from file system`)
+    }
+    
     const mdxSource = await serialize(post.content, {
       mdxOptions: {
         remarkPlugins: [remarkGfm],
@@ -214,7 +221,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       revalidate: 86400,
     }
   } catch (error) {
-    console.error('Error serializing MDX:', error)
+    console.error('Error processing MDX:', error)
     return { notFound: true }
   }
 }

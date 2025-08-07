@@ -41,6 +41,7 @@ CLAUDE.md
 .claude/
 claude.md
 BLOG_WRITING_GUIDE.md
+BLOG_BUILD_OPTIMIZATION_ANALYSIS.md
 
 # OS generated files
 .DS_Store
@@ -80,6 +81,7 @@ coverage/
 # Build caches
 .eslintcache
 .tsbuildinfo
+.blog-cache/
 
 # Microbundle cache
 .rpt2_cache/
