@@ -2,41 +2,25 @@
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads'
 import fs from 'fs'
 import path from 'path'
+import os from 'os'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkGfm from 'remark-gfm'
-// Import FAQ data with fallbacks for Vercel compatibility
-let faqData: any = {}
-try {
-  const faqModule = require('../src/data/faq-data')
-  faqData = {
-    firstTimeBuyerFAQs: faqModule.firstTimeBuyerFAQs || [],
-    investmentGuideFAQs: faqModule.investmentGuideFAQs || [],
-    twoBedroomFAQs: faqModule.twoBedroomFAQs || [],
-    luxuryApartmentsFAQs: faqModule.luxuryApartmentsFAQs || [],
-    generalRealEstateFAQs: faqModule.generalRealEstateFAQs || [],
-    hillCrestFAQs: faqModule.hillCrestFAQs || [],
-    boutiqueResidencyFAQs: faqModule.boutiqueResidencyFAQs || [],
-    apartmentSaleFAQs: faqModule.apartmentSaleFAQs || []
-  }
-  console.log('[MDX] INFO: Successfully loaded FAQ data')
-} catch (error) {
-  console.log('[MDX] WARNING: Could not load FAQ data, using empty fallbacks:', error)
-  faqData = {
-    firstTimeBuyerFAQs: [],
-    investmentGuideFAQs: [],
-    twoBedroomFAQs: [],
-    luxuryApartmentsFAQs: [],
-    generalRealEstateFAQs: [],
-    hillCrestFAQs: [],
-    boutiqueResidencyFAQs: [],
-    apartmentSaleFAQs: []
-  }
+// FAQ data - using empty arrays to ensure serialization works without external dependencies
+const faqData = {
+  firstTimeBuyerFAQs: [],
+  investmentGuideFAQs: [],
+  twoBedroomFAQs: [],
+  luxuryApartmentsFAQs: [],
+  generalRealEstateFAQs: [],
+  hillCrestFAQs: [],
+  boutiqueResidencyFAQs: [],
+  apartmentSaleFAQs: []
 }
 
 const blogsDir = path.join(process.cwd(), 'content/blogs')
 const cacheDir = path.join(process.cwd(), '.mdx-cache')
-const cpuCount = require('os').cpus().length
+const cpuCount = os.cpus().length
 const maxWorkers = Math.min(6, Math.max(2, cpuCount)) // Adaptive scaling
 const memoryThresholdMB = 500 // Memory threshold per worker
 
