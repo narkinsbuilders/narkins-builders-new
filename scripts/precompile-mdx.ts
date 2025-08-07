@@ -5,16 +5,34 @@ import path from 'path'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkGfm from 'remark-gfm'
-import { 
-  firstTimeBuyerFAQs,
-  investmentGuideFAQs,
-  twoBedroomFAQs,
-  luxuryApartmentsFAQs,
-  generalRealEstateFAQs,
-  hillCrestFAQs,
-  boutiqueResidencyFAQs,
-  apartmentSaleFAQs
-} from '../src/data/faq-data'
+// Import FAQ data with fallbacks for Vercel compatibility
+let faqData: any = {}
+try {
+  const faqModule = require('../src/data/faq-data')
+  faqData = {
+    firstTimeBuyerFAQs: faqModule.firstTimeBuyerFAQs || [],
+    investmentGuideFAQs: faqModule.investmentGuideFAQs || [],
+    twoBedroomFAQs: faqModule.twoBedroomFAQs || [],
+    luxuryApartmentsFAQs: faqModule.luxuryApartmentsFAQs || [],
+    generalRealEstateFAQs: faqModule.generalRealEstateFAQs || [],
+    hillCrestFAQs: faqModule.hillCrestFAQs || [],
+    boutiqueResidencyFAQs: faqModule.boutiqueResidencyFAQs || [],
+    apartmentSaleFAQs: faqModule.apartmentSaleFAQs || []
+  }
+  console.log('[MDX] INFO: Successfully loaded FAQ data')
+} catch (error) {
+  console.log('[MDX] WARNING: Could not load FAQ data, using empty fallbacks:', error)
+  faqData = {
+    firstTimeBuyerFAQs: [],
+    investmentGuideFAQs: [],
+    twoBedroomFAQs: [],
+    luxuryApartmentsFAQs: [],
+    generalRealEstateFAQs: [],
+    hillCrestFAQs: [],
+    boutiqueResidencyFAQs: [],
+    apartmentSaleFAQs: []
+  }
+}
 
 const blogsDir = path.join(process.cwd(), 'content/blogs')
 const cacheDir = path.join(process.cwd(), '.mdx-cache')
@@ -94,16 +112,7 @@ if (!isMainThread) {
         development: false, // Force production mode
       },
       parseFrontmatter: false, // We already parsed frontmatter
-      scope: {
-        firstTimeBuyerFAQs,
-        investmentGuideFAQs,
-        twoBedroomFAQs,
-        luxuryApartmentsFAQs,
-        generalRealEstateFAQs,
-        hillCrestFAQs,
-        boutiqueResidencyFAQs,
-        apartmentSaleFAQs
-      }
+      scope: faqData
     })
     
     // Add timeout for serialization

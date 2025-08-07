@@ -140,7 +140,7 @@ export function getAllPostsServer(): BlogPost[] {
 
   // Fallback to direct file system reading
   cacheStats.fallbacks++
-  console.log('[MDX] 📁 Loading posts from file system (no cache available)')
+  console.log('[MDX] INFO: Loading posts from file system (no cache available)')
   return getAllPostsFromFS()
 }
 
@@ -272,7 +272,7 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
 
   // Fallback to file system
   cacheStats.fallbacks++
-  console.log(`[MDX] 📁 Cache miss for ${slug}, using file system`)
+  console.log(`[MDX] INFO: Cache miss for ${slug}, using file system`)
   return getPostFromFS(slug)
 }
 
