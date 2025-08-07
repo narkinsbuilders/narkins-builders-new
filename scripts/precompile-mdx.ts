@@ -3,9 +3,14 @@ import { Worker, isMainThread, parentPort, workerData } from 'worker_threads'
 import fs from 'fs'
 import path from 'path'
 import os from 'os'
+import { fileURLToPath } from 'url'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkGfm from 'remark-gfm'
+
+// ES module compatibility
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 // FAQ data - using empty arrays to ensure serialization works without external dependencies
 const faqData = {
   firstTimeBuyerFAQs: [],
