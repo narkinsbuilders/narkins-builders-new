@@ -5,23 +5,32 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "bun scripts/parallel-blog-processor.ts && next build",
+    "dev:mdx": "bun precompile-mdx && next dev --turbopack",
+    "build": "bun run build:optimized",
+    "build:optimized": "bun run precompile-mdx && bun run typecheck && next build",
     "build:fast": "next build", 
-    "build:vercel": "bun scripts/parallel-blog-processor.ts && next build",
+    "build:vercel": "bun run precompile-mdx && next build",
+    "build:analyze": "ANALYZE=true bun run build:optimized",
+    "precompile-mdx": "bun scripts/precompile-mdx.ts",
     "preprocess-blogs": "bun scripts/parallel-blog-processor.ts",
     "dev:cms": "tinacms dev -c \"next dev --turbopack\"",
-    "build:cms": "tinacms build && next build",
+    "build:cms": "tinacms build && bun run build:optimized",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
     "typecheck": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo",
-    "check": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo && next lint",
+    "check": "bun run typecheck && next lint",
+    "check:parallel": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo & next lint & wait",
     "blog:verify-setup": "bun scripts/verify-setup.ts",
+    "blog:stats": "bun scripts/blog-stats.ts",
+    "blog:clear-cache": "rm -rf .mdx-cache && echo 'MDX cache cleared'",
+    "blog:validate-cache": "bun scripts/validate-cache.ts",
     "setup-database": "bun scripts/setup-database.ts",
     "tina:dev": "tinacms dev -c \"next dev\"",
     "tina:build": "tinacms build",
     "tina:init": "tinacms init",
-    "analyze": "ANALYZE=true bun run build:fast"
+    "analyze": "ANALYZE=true bun run build:fast",
+    "performance:test": "bun scripts/performance-test.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
@@ -83,5 +92,10 @@
     "@types/node": "^24.1.0",
     "gray-matter": "^4.0.3",
     "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   }
+}
 }

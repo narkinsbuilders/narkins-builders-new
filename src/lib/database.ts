@@ -308,7 +308,7 @@ export async function initializeDatabase(): Promise<void> {
     
     connection.release();
   } catch (error) {
-    console.error('❌ Database initialization failed:', error);
+    console.error('ERROR: Database initialization failed:', error);
     throw error;
   }
 }

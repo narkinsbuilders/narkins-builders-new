@@ -17,12 +17,12 @@ function loadEnvFile() {
       }
     });
   } catch (error) {
-    console.log('⚠️  Could not load .env.local file');
+    console.log('WARNING: Could not load .env.local file');
   }
 }
 
 async function verifySetup() {
-  console.log('🔍 Verifying automation setup...');
+  console.log('INFO: Verifying automation setup...');
   
   // Load environment variables first
   loadEnvFile();
@@ -39,14 +39,14 @@ async function verifySetup() {
   for (const check of checks) {
     try {
       await fs.access(path.join(process.cwd(), check.path));
-      console.log(`✅ ${check.name}`);
+      console.log(`SUCCESS: ${check.name}`);
     } catch {
-      console.log(`❌ ${check.name} - Missing: ${check.path}`);
+      console.log(`ERROR: ${check.name} - Missing: ${check.path}`);
     }
   }
   
   // Check environment variables
-  console.log('\n📋 Environment Variables Check:');
+  console.log('\nENV: Environment Variables Check:');
   const requiredEnvs = [
     'CONTACT_NUMBER',
     'COMPANY_NAME', 
@@ -57,14 +57,14 @@ async function verifySetup() {
   
   for (const env of requiredEnvs) {
     if (process.env[env]) {
-      console.log(`✅ ${env}: ${process.env[env]}`);
+      console.log(`SUCCESS: ${env}: ${process.env[env]}`);
     } else {
-      console.log(`❌ Environment variable missing: ${env}`);
+      console.log(`ERROR: Environment variable missing: ${env}`);
     }
   }
   
   // Check for blog automation readiness
-  console.log('\n🚀 Blog Automation Readiness:');
+  console.log('\nINFO: Blog Automation Readiness:');
   
   const blogAutomationChecks = [
     { 
@@ -87,18 +87,18 @@ async function verifySetup() {
   
   blogAutomationChecks.forEach(check => {
     if (check.check()) {
-      console.log(`✅ ${check.name}`);
+      console.log(`SUCCESS: ${check.name}`);
     } else {
-      console.log(`⚠️  ${check.name} - needs attention`);
+      console.log(`WARNING: ${check.name} - needs attention`);
     }
   });
   
-  console.log('\n🎉 Setup verification completed!');
-  console.log('\n📊 Summary:');
-  console.log('✅ All required files and directories are in place');
-  console.log('✅ Environment variables are configured');
-  console.log('✅ Blog automation is ready to run');
-  console.log('\n🚀 Next steps:');
+  console.log('\nSUCCESS: Setup verification completed!');
+  console.log('\nSUMMARY:');
+  console.log('SUCCESS: All required files and directories are in place');
+  console.log('SUCCESS: Environment variables are configured');
+  console.log('SUCCESS: Blog automation is ready to run');
+  console.log('\nINFO: Next steps:');
   console.log('1. Test automation: npm run blog:automation');
   console.log('2. Generate reports: npm run blog:generate-reports');
   console.log('3. Push to GitHub to activate monthly automation');

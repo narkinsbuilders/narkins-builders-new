@@ -82,6 +82,7 @@ coverage/
 .eslintcache
 .tsbuildinfo
 .blog-cache/
+.mdx-cache/
 
 # Microbundle cache
 .rpt2_cache/

@@ -30,12 +30,12 @@ export const event = ({ action, category, label, value }: GtagEvent) => {
   }
   
   if (!GA_TRACKING_ID) {
-    console.error('❌ No Google Analytics ID found');
+    console.error('ERROR: No Google Analytics ID found');
     return;
   }
   
   if (!window.gtag) {
-    console.error('❌ gtag function not available');
+    console.error('ERROR: gtag function not available');
     checkGAStatus();
     return;
   }
