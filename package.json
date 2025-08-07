@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:mdx": "bun precompile-mdx && next dev --turbopack",
-    "build": "bun run build:optimized",
+    "build": "npm run build:vercel",
     "build:optimized": "bun run precompile-mdx && bun run typecheck && next build",
     "build:fast": "next build", 
-    "build:vercel": "bun run precompile-mdx && next build",
+    "build:vercel": "(npm run precompile-mdx-node || echo 'Precompilation failed, building without cache') && next build",
     "build:analyze": "ANALYZE=true bun run build:optimized",
     "precompile-mdx": "bun scripts/precompile-mdx.ts",
+    "precompile-mdx-node": "npx ts-node scripts/precompile-mdx.ts",
     "preprocess-blogs": "bun scripts/parallel-blog-processor.ts",
     "dev:cms": "tinacms dev -c \"next dev --turbopack\"",
     "build:cms": "tinacms build && bun run build:optimized",
@@ -97,5 +98,4 @@
     "node": ">=18.0.0",
     "bun": ">=1.0.0"
   }
-}
 }

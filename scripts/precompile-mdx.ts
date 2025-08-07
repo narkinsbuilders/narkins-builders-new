@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads'
 import fs from 'fs'
 import path from 'path'
@@ -387,5 +387,8 @@ async function precompileMDX() {
 }
 
 if (isMainThread) {
-  precompileMDX().catch(console.error)
+  precompileMDX().catch(error => {
+    console.error('[MDX] ERROR: Precompilation failed:', error)
+    process.exit(1)
+  })
 }
