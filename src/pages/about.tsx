@@ -58,7 +58,7 @@ const AboutPage = () => {
             </h1>
             <p className="text-gray-600">
               Excellence meets innovation in construction and development. With a rich legacy spanning over 30 years, 
-              we have established ourselves as Bahria Town Karachi's most trusted real estate partner.
+              we have established ourselves as Bahria Town Karachi's most trusted real estate partner, specializing in high-quality apartments for sale.
             </p>
           </motion.div>
         </div>
@@ -385,7 +385,7 @@ const AboutPage = () => {
           <div>
             <h2 className="about-section-title text-gray-900 mb-6">Innovation in Construction</h2>
             <p className="about-large-text text-gray-600 mb-8">
-              Hill Crest Residency successfully pioneered smart apartments in Bahria Town Karachi, setting new standards 
+              Narkin's Builders successfully pioneered smart apartments in Bahria Town Karachi, setting new standards 
               with cutting-edge technology and sustainable building practices. Our current project, Narkin's Boutique Residency, 
               continues this legacy of innovation with luxury living spaces in Heritage Commercial area.
             </p>

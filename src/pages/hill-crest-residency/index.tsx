@@ -244,10 +244,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl lg:mx-0">
                             <h2 className="text-4xl font-bold tracking-tight text-black sm:text-7xl">Hill Crest Residency</h2>
-                            <p className="mt-6 text-lg leading-8 text-gray-800">
-                                Our Magnificent and eminent master piece is located at 29-30A Jinnah Avenue,  Just 30 seconds away and nearly 1 km drive from the main gate. We ensure a luxurious and modern lifestyle with all your necessities as well as opulence being taken care of, once you book with us a place of your own in Hill Crest.
+                                                            <p className="mt-6 text-lg leading-8 text-gray-800">
+                                Discover Hill Crest Residency, a masterpiece of modern living located just moments from the main gate of Bahria Town Karachi on Jinnah Avenue. We offer a luxurious lifestyle where every detail is crafted for your comfort.
                                 <br /><br />
-                                We are currently providing a variety of 2 bed and 3 bed luxury apartments along with lounge and dining that features panoramic view of the beauty of Bahria town. It will surely let you experience the lifestyle you always dreamed for your family and upcoming generations!
+                                Explore our exquisite <strong>2, 3, and 4-bedroom apartments for sale in Bahria Town Karachi</strong>. Each residence features a spacious lounge, elegant dining area, and stunning panoramic views. Find the perfect home you've always dreamed of for your family's future.
                             </p>
                         </div>
                     </div>
@@ -257,10 +257,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                         {/* Heading and Subheading */}
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                                Explore Our Offerings
+                                Apartment Plans
                             </h2>
                             <p className="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
-                                Discover a range of luxurious apartments designed to meet your lifestyle needs. Each offering combines elegance, comfort, and modern amenities.
+                                Find the perfect 2, 3, or 4-bedroom apartment in Bahria Town Karachi. Explore our floor plans and find a home that fits your lifestyle.
                             </p>
                         </div>
                         <Tabs defaultValue={categories[0]} className="w-full mt-10">
@@ -328,7 +328,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                 <section className="bg-white py-20">
                     <Amenities />
                 </section>
-                <section className="bg-neutral-100 px-5 mx-auto py-20 lg:px-8">
+                <section className="bg-white px-5 mx-auto py-20 lg:px-8">
                     <div className="mx-auto max-w-7xl">
                         {/* Gallery Heading (Optional) */}
                         <div className="text-center mb-12">
@@ -375,7 +375,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                     </div>
                 </section>
 
-                <section className="bg-neutral-100 border-t px-5 lg:px-8 py-20">
+                <section className="bg-white border-t px-5 lg:px-8 py-20">
                     <Testimonials testimonials={testimonials} />
                 </section>
                 <section className="bg-white py-20 border-b border">

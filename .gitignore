@@ -175,3 +175,6 @@ scripts/temp/
 **/database-credentials.*
 **/api-keys.*
 **/secrets.*
+
+# SEO Keyword Research File
+/src/SEO_KEYWORDS.md

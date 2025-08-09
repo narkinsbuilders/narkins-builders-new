@@ -369,7 +369,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
                 <br />
                 <br />
                 With ground + 20 floors, {`Narkin's`} Boutique Residency
-                presents a selection of 2, 3, and 4-bedroom luxury apartments,
+                offers a premier selection of <strong>2, 3, and 4-bedroom luxury apartments for sale in Bahria Town Karachi</strong>,
                 each boasting panoramic views of Bahria Town Karachi. Experience
                 the epitome of sophistication as you unwind in your designer
                 Apartment.Adding to its uniqueness, {`Narkin's`} introduces Sky Villa Duplex penthouses—double-story luxury residences with private terraces, expansive layouts, and unmatched privacy, perfect for those seeking a villa experience in the sky.
@@ -384,10 +384,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
             {/* Heading and Subheading */}
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                Explore Our Offerings
+                Apartment Floor Plans
               </h2>
               <p className="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
-                Discover a range of luxurious apartments designed to meet your lifestyle needs. Each offering combines elegance, comfort, and modern amenities.
+                Explore our 2, 3, and 4-bedroom luxury apartments for sale in Bahria Town Karachi. Find the perfect floor plan for your needs.
               </p>
             </div>
             <Tabs defaultValue={categories[0]} className="w-full mt-10">
@@ -455,7 +455,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         <section className="bg-white py-20">
           <Amenities />
         </section>
-        <section className="bg-neutral-100 px-5 mx-auto py-20 lg:px-8">
+        <section className="bg-white px-5 mx-auto py-20 lg:px-8">
           <div className="mx-auto max-w-7xl">
             {/* Gallery Heading (Optional) */}
             <div className="text-center mb-12">
@@ -502,7 +502,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
           </div>
         </section>
 
-        <section className="bg-neutral-100 border-t px-5 lg:px-8 py-20">
+        <section className="bg-white border-t px-5 lg:px-8 py-20">
           <Testimonials testimonials={testimonials} />
         </section>
         <section className="bg-white py-20 border-b border">

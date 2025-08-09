@@ -81,11 +81,11 @@ export default function Index({ posts }: { posts: any[] }) {
     <>
       <Head>
          {/* Primary Meta Tags */}
-  <title>Narkin's Builders | Premium Apartments in Bahria Town Karachi</title>
+  <title>Luxury Apartments for Sale in Bahria Town Karachi | Narkin's Builders</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta 
     name="description" 
-    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Narkin's Boutique Residency available." 
+    content="Searching for your dream apartment in Bahria Town Karachi? Narkin's Builders offers stunning 2, 3, & 4 bedroom luxury apartments. Discover Hill Crest & Narkin's Boutique Residency and find your perfect home today." 
   />
   <meta 
     name="keywords" 
@@ -100,7 +100,7 @@ export default function Index({ posts }: { posts: any[] }) {
   <meta property="og:title" content="Narkin's Builders | Premium Apartments in Bahria Town Karachi" />
   <meta 
     property="og:description" 
-    content="Discover luxury living with Narkin's Builders. Premium 2, 3 & 4 bedroom apartments in Bahria Town Karachi. Hill Crest Residency & Narkin's Boutique Residency available." 
+    content="Searching for your dream apartment in Bahria Town Karachi? Narkin's Builders offers stunning 2, 3, & 4 bedroom luxury apartments. Discover Hill Crest & Narkin's Boutique Residency and find your perfect home today." 
   />
   <meta property="og:url" content="https://narkinsbuilders.com/" />
   <meta property="og:image" content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
@@ -264,9 +264,9 @@ export default function Index({ posts }: { posts: any[] }) {
                 Hill Crest Residency
               </h2>
               <p className="mt-4 large-text text-neutral-300">
-              Conveniently located just a minute drive from the main entrance of Bahria Town Karachi, Hill Crest Residency offers an exceptional living experience with a selection of spacious and thoughtfully designed 2, 3, and 4-bedroom luxury apartments. Nestled in a prime and rapidly developing area, 
-              the complex combines comfort, elegance, and modern amenities to create a lifestyle that's both refined and relaxing. 
-               Schedule your free tour today and discover what elevated living truly feels like.
+              Located just a minute from the main gate, Hill Crest Residency offers beautiful <strong>ready-to-move-in apartments in Bahria Town Karachi</strong>. 
+              Choose from a variety of 2, 3, and 4-bedroom luxury apartments designed for modern living. 
+              If you're looking for a home that combines comfort, style, and convenience, schedule a tour today to see what makes Hill Crest Residency special.
               </p>
               <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <Link href="/hill-crest-residency">
