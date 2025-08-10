@@ -151,8 +151,8 @@ export default function Index({ posts }: { posts: any[] }) {
             </motion.div>
           </div>
           <video
-            preload="yes"
-            poster="/videoframe_0.webp"
+            ref={videoRef}
+            preload="metadata"
             className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
             loop
             autoPlay
