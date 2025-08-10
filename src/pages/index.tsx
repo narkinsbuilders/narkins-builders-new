@@ -71,9 +71,32 @@ export default function Index({ posts }: { posts: any[] }) {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
+      // Ensure video is properly muted and configured
       video.muted = true;
       video.playsInline = true;
-      video.play().catch((error) => console.error('Video play failed', error));
+      video.defaultMuted = true;
+      video.load(); // Reload video to apply changes
+      
+      // Attempt to play with better error handling
+      const attemptPlay = async () => {
+        try {
+          await video.play();
+          console.log('Video started playing successfully');
+        } catch (error) {
+          console.error('Autoplay failed:', error);
+          // For desktop browsers, try playing on first user interaction
+          const playOnClick = () => {
+            video.play().then(() => {
+              console.log('Video started after user interaction');
+            }).catch(console.error);
+            document.removeEventListener('click', playOnClick);
+          };
+          document.addEventListener('click', playOnClick);
+        }
+      };
+      
+      // Small delay to ensure video is loaded
+      setTimeout(attemptPlay, 100);
     }
   }, []);
   const openLightbox = useLightboxStore(state => state.openLightbox);
@@ -153,6 +176,7 @@ export default function Index({ posts }: { posts: any[] }) {
           <video
             ref={videoRef}
             preload="metadata"
+            poster="/videoframe_0.webp"
             className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
             loop
             autoPlay
