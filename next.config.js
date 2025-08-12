@@ -171,59 +171,53 @@ const nextConfig = {
           }] : []),
         ],
       },
-      // RSS and Sitemap caching
+      // API routes caching
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=300, s-maxage=1800, stale-while-revalidate=3600',
+          },
+        ],
+      },
+      // RSS and Sitemap - longer cache for stable content
       {
         source: '/api/(rss|sitemap).(xml|txt)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=3600, s-maxage=7200, stale-while-revalidate=86400',
           },
         ],
       },
-      // Blog images - shorter cache for regular updates (must come first)
+      // Blog images - moderate cache with faster updates
       {
         source: '/images/blog-images/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=7200, s-maxage=14400, stale-while-revalidate=86400',
           },
         ],
       },
-      // Force cache refresh for blog pages (new blog post update)
+      // Blog pages - moderate caching with revalidation
       {
         source: '/blog/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
-          },
-          {
-            key: 'Pragma',
-            value: 'no-cache',
-          },
-          {
-            key: 'Expires',
-            value: '0',
+            value: 'public, max-age=1800, s-maxage=3600, stale-while-revalidate=86400',
           },
         ],
       },
-      // Force cache refresh for critical updates (remove after users update)
+      // Static chunks - long-term caching for immutable assets
       {
         source: '/_next/static/chunks/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
-          },
-          {
-            key: 'Pragma',
-            value: 'no-cache',
-          },
-          {
-            key: 'Expires',
-            value: '0',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
