@@ -191,6 +191,24 @@ const nextConfig = {
           },
         ],
       },
+      // Force cache refresh for blog pages (new blog post update)
+      {
+        source: '/blog/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
       // Force cache refresh for critical updates (remove after users update)
       {
         source: '/_next/static/chunks/(.*)',

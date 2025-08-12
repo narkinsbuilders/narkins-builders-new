@@ -18,7 +18,7 @@ try {
   }
 }
 
-const CACHE_NAME = 'narkins-builders-v6';
+const CACHE_NAME = 'narkins-builders-v7';
 const STATIC_CACHE = 'narkins-static-v6';
 const RUNTIME_CACHE = 'narkins-runtime-v6';
 
