@@ -1,36 +1,36 @@
 import Head from 'next/head';
 
 interface BlogPostSchemaProps {
-  title: string;
-  excerpt: string;
-  date: string;
-  image: string;
-  url: string;
+ title: string;
+ excerpt: string;
+ date: string;
+ image: string;
+ url: string;
 }
 
 export const BlogPostSchema: React.FC<BlogPostSchemaProps> = ({
-  title, excerpt, date, image, url
+ title, excerpt, date, image, url
 }) => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": title,
-    "description": excerpt,
-    "datePublished": date,
-    "image": image,  // ✅ FIXED: was "https://narkinsbuilders.com"
-    "url": url,      // ✅ FIXED: was "https://narkinsbuilders.com"
-    "author": {
-      "@type": "Organization",
-      "name": "Narkin's Builders and Developers"
-    }
-  };
+ const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": excerpt,
+  "datePublished": date,
+  "image": image, // ✅ FIXED: was "https://narkinsbuilders.com"
+  "url": url,   // ✅ FIXED: was "https://narkinsbuilders.com"
+  "author": {
+   "@type": "Organization",
+   "name": "Narkin's Builders and Developers"
+  }
+ };
 
-  return (
-    <Head>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-    </Head>
-  );
+ return (
+  <Head>
+   <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+   />
+  </Head>
+ );
 };

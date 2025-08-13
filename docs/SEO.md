@@ -8,7 +8,7 @@ Narkins Builders implements comprehensive SEO strategies to maximize visibility 
 
 ### 1. Core Web Vitals Optimization
 
-**Performance Targets:**
+Performance Targets:
 ```
 Largest Contentful Paint (LCP): < 2.5s
 First Input Delay (FID): < 100ms
@@ -17,13 +17,13 @@ First Contentful Paint (FCP): < 1.8s
 Time to Interactive (TTI): < 3.8s
 ```
 
-**Implementation:** Web Vitals are automatically tracked and sent to Google Analytics for performance monitoring.
+Implementation: Web Vitals are automatically tracked and sent to Google Analytics for performance monitoring.
 
 > For complete performance monitoring implementation, see [DEPLOYMENT.md](./DEPLOYMENT.md#monitoring--analytics)
 
 ### 2. Next.js SEO Configuration
 
-**Meta Tags Implementation:**
+Meta Tags Implementation:
 ```tsx
 // src/components/common/seo/seo-head.tsx
 import Head from 'next/head';
@@ -103,7 +103,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
 ### 1. Schema.org Markup System
 
-**Organization Schema:**
+Organization Schema:
 ```tsx
 // src/components/common/schema/organization-schema.tsx
 export const OrganizationSchema = () => {
@@ -163,7 +163,7 @@ export const OrganizationSchema = () => {
 };
 ```
 
-**Local Business Schema:**
+Local Business Schema:
 ```tsx
 // src/components/common/schema/local-business-schema.tsx
 export const LocalBusinessSchema = () => {
@@ -217,7 +217,7 @@ export const LocalBusinessSchema = () => {
 };
 ```
 
-**Real Estate Listing Schema:**
+Real Estate Listing Schema:
 ```tsx
 // src/components/common/schema/real-estate-listing-schema.tsx
 interface RealEstateListingProps {
@@ -285,7 +285,7 @@ export const RealEstateListingSchema: React.FC<RealEstateListingProps> = ({
 
 ### 2. FAQ Schema Implementation
 
-**FAQ Schema for Property Pages:**
+FAQ Schema for Property Pages:
 ```tsx
 // src/components/common/schema/faq-schema.tsx
 interface FAQItem {
@@ -323,7 +323,7 @@ export const FAQSchema: React.FC<FAQSchemaProps> = ({ faqs, pageUrl }) => {
 
 ### 3. Article Schema for Blog Posts
 
-**Blog Post Schema:**
+Blog Post Schema:
 ```tsx
 // src/components/common/schema/blog-post-schema.tsx
 interface BlogPostSchemaProps {
@@ -396,21 +396,21 @@ export const BlogPostSchema: React.FC<BlogPostSchemaProps> = ({
 
 ### 1. Keyword Strategy
 
-**Primary Keywords:**
+Primary Keywords:
 - Real estate Karachi
 - Apartments Bahria Town
 - Luxury apartments Karachi
 - Property investment Pakistan
 - Residential projects Karachi
 
-**Long-tail Keywords:**
+Long-tail Keywords:
 - 2 bedroom apartments Bahria Town Karachi
 - Hill Crest Residency floor plans
 - Narkins Boutique Residency amenities
 - Best real estate developer Karachi
 - Gated community apartments Pakistan
 
-**Local SEO Keywords:**
+Local SEO Keywords:
 - Real estate developer Bahria Town
 - Property for sale Karachi
 - Luxury apartments near Safari Park
@@ -419,7 +419,7 @@ export const BlogPostSchema: React.FC<BlogPostSchemaProps> = ({
 
 ### 2. Content Structure Optimization
 
-**Page Title Optimization:**
+Page Title Optimization:
 ```typescript
 // src/lib/seo-utils.ts
 export const generatePageTitle = (
@@ -446,7 +446,7 @@ export const generatePageTitle = (
 // Blog: "Real Estate Investment Guide 2025 | Narkin's Builders Blog"
 ```
 
-**Meta Description Templates:**
+Meta Description Templates:
 ```typescript
 export const generateMetaDescription = (
   type: 'property' | 'blog' | 'page',
@@ -477,7 +477,7 @@ export const generateMetaDescription = (
 
 ### 1. Sitemap Generation
 
-**Dynamic Sitemap:**
+Dynamic Sitemap:
 ```typescript
 // src/pages/api/sitemap.xml.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -569,7 +569,7 @@ export default async function handler(
 
 ### 2. RSS Feed Implementation
 
-**Blog RSS Feed:**
+Blog RSS Feed:
 ```typescript
 // src/pages/api/rss.xml.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -635,7 +635,7 @@ export default async function handler(
 
 ### 3. Robots.txt Configuration
 
-**Public Robots.txt:**
+Public Robots.txt:
 ```
 # https://narkinsbuilders.com/robots.txt
 User-agent: *
@@ -662,7 +662,7 @@ Crawl-delay: 1
 
 ### 1. Google My Business Integration
 
-**Business Information Schema:**
+Business Information Schema:
 ```typescript
 const businessInfo = {
   name: "Narkin's Builders and Developers",
@@ -690,13 +690,13 @@ const businessInfo = {
 
 ### 2. Location-Based Content
 
-**Location Landing Pages:**
+Location Landing Pages:
 - `/bahria-town-karachi-real-estate`
 - `/luxury-apartments-karachi`
 - `/property-investment-pakistan`
 - `/residential-projects-sindh`
 
-**Local Content Strategy:**
+Local Content Strategy:
 ```typescript
 const localContentTopics = [
   "Best Areas to Buy Property in Karachi 2025",
@@ -711,7 +711,7 @@ const localContentTopics = [
 
 ### 1. Image SEO Optimization
 
-**Image Optimization Strategy:**
+Image Optimization Strategy:
 ```tsx
 // Optimized image component with SEO attributes
 import Image from 'next/image';
@@ -756,7 +756,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
 };
 ```
 
-**Image Alt Text Standards:**
+Image Alt Text Standards:
 ```typescript
 // src/data/image-alt-texts.ts
 export const imageAltTexts = {
@@ -784,7 +784,7 @@ export const imageAltTexts = {
 
 ### 2. Core Web Vitals Optimization
 
-**Performance Monitoring:**
+Performance Monitoring:
 ```typescript
 // src/lib/performance.ts
 export const measurePerformance = () => {
@@ -825,7 +825,7 @@ export const measurePerformance = () => {
 
 ### 1. SEO Analytics Tracking
 
-**Google Analytics 4 Events:**
+Google Analytics 4 Events:
 ```typescript
 // src/lib/gtag.ts
 export const trackSEOEvents = {
@@ -862,7 +862,7 @@ export const trackSEOEvents = {
 
 ### 2. Search Console Integration
 
-**Search Console Data Tracking:**
+Search Console Data Tracking:
 ```typescript
 // Track search performance metrics
 export const searchConsoleMetrics = {
@@ -885,7 +885,7 @@ export const searchConsoleMetrics = {
 
 ### 1. Regular SEO Audits
 
-**Monthly SEO Checklist:**
+Monthly SEO Checklist:
 - [ ] Core Web Vitals performance
 - [ ] Search Console error monitoring
 - [ ] Broken link detection
@@ -897,13 +897,13 @@ export const searchConsoleMetrics = {
 
 ### 2. Content Optimization Process
 
-**Content Update Schedule:**
-- **Weekly:** Blog post publication with SEO optimization
-- **Monthly:** Property page content updates
-- **Quarterly:** Comprehensive keyword research and content audit
-- **Annually:** Complete SEO strategy review and planning
+Content Update Schedule:
+- Weekly: Blog post publication with SEO optimization
+- Monthly: Property page content updates
+- Quarterly: Comprehensive keyword research and content audit
+- Annually: Complete SEO strategy review and planning
 
-**SEO Content Guidelines:**
+SEO Content Guidelines:
 1. Target keyword density: 1-2%
 2. Meta description length: 150-160 characters
 3. Title tag length: 50-60 characters

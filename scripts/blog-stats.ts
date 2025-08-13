@@ -15,30 +15,55 @@ function formatBytes(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
+// Recursive function to find all .mdx files
+function findAllMdxFiles(dir: string): Array<{fileName: string, fullPath: string, size: number}> {
+  const results: Array<{fileName: string, fullPath: string, size: number}> = []
+  
+  function scanDirectory(currentDir: string) {
+    const items = fs.readdirSync(currentDir, { withFileTypes: true })
+    
+    for (const item of items) {
+      const itemPath = path.join(currentDir, item.name)
+      
+      if (item.isDirectory()) {
+        // Recursively scan subdirectories
+        scanDirectory(itemPath)
+      } else if (item.isFile() && item.name.endsWith('.mdx')) {
+        const stats = fs.statSync(itemPath)
+        results.push({
+          fileName: item.name,
+          fullPath: itemPath,
+          size: stats.size
+        })
+      }
+    }
+  }
+  
+  scanDirectory(dir)
+  return results
+}
+
 function getBlogDirectoryStats() {
   if (!fs.existsSync(blogsDir)) {
     return { exists: false, totalFiles: 0, totalSize: 0 }
   }
   
-  const files = fs.readdirSync(blogsDir).filter(f => f.endsWith('.mdx'))
+  const fileInfos = findAllMdxFiles(blogsDir)
   let totalSize = 0
   
-  files.forEach(file => {
-    const filePath = path.join(blogsDir, file)
-    const stats = fs.statSync(filePath)
-    totalSize += stats.size
+  fileInfos.forEach(fileInfo => {
+    totalSize += fileInfo.size
   })
   
   return {
     exists: true,
-    totalFiles: files.length,
+    totalFiles: fileInfos.length,
     totalSize,
-    files: files.map(file => {
-      const filePath = path.join(blogsDir, file)
-      const stats = fs.statSync(filePath)
+    files: fileInfos.map(fileInfo => {
+      const stats = fs.statSync(fileInfo.fullPath)
       return {
-        name: file,
-        size: stats.size,
+        name: fileInfo.fileName,
+        size: fileInfo.size,
         lastModified: stats.mtime.toISOString()
       }
     }).sort((a, b) => b.size - a.size)

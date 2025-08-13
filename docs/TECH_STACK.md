@@ -7,14 +7,14 @@ Narkins Builders utilizes a modern, performance-optimized technology stack desig
 ## Core Technologies
 
 ### Frontend Framework
-**Next.js 15.3.5**
-- **App Router:** Modern routing system with layout support
-- **Server-Side Rendering (SSR):** Optimal SEO and performance
-- **Static Site Generation (SSG):** Pre-built pages for speed
-- **Incremental Static Regeneration (ISR):** Dynamic content with static performance
-- **Turbopack:** Ultra-fast bundler for development builds
+Next.js 15.3.5
+- App Router: Modern routing system with layout support
+- Server-Side Rendering (SSR): Optimal SEO and performance
+- Static Site Generation (SSG): Pre-built pages for speed
+- Incremental Static Regeneration (ISR): Dynamic content with static performance
+- Turbopack: Ultra-fast bundler for development builds
 
-**Key Features:**
+Key Features:
 ```javascript
 // next.config.js highlights
 const nextConfig = {
@@ -27,12 +27,12 @@ const nextConfig = {
 ```
 
 ### UI Framework & Styling
-**React 18.3.1**
-- **Concurrent Features:** Improved rendering performance
-- **Server Components:** Reduced bundle size
-- **Hooks API:** Modern state management patterns
+React 18.3.1
+- Concurrent Features: Improved rendering performance
+- Server Components: Reduced bundle size
+- Hooks API: Modern state management patterns
 
-**Tailwind CSS 3.4.3**
+Tailwind CSS 3.4.3
 ```typescript
 // tailwind.config.ts
 const config: Config = {
@@ -51,15 +51,15 @@ const config: Config = {
 }
 ```
 
-**Component Libraries:**
-- **shadcn/ui:** Modern, accessible component system
-- **Radix UI:** Unstyled, accessible primitives 
-- **Ant Design:** Enterprise-class UI components
-- **Heroicons:** Beautiful hand-crafted SVG icons
-- **Lucide React:** Feature-rich icon library
+Component Libraries:
+- shadcn/ui: Modern, accessible component system
+- Radix UI: Unstyled, accessible primitives 
+- Ant Design: Enterprise-class UI components
+- Heroicons: Beautiful hand-crafted SVG icons
+- Lucide React: Feature-rich icon library
 
 ### State Management
-**Zustand 5.0.6**
+Zustand 5.0.6
 ```typescript
 // Global state management
 import { create } from 'zustand'
@@ -83,10 +83,10 @@ const useAppStore = create<AppState>((set) => ({
 }))
 ```
 
-**Local State Management:**
-- **React Hooks:** useState, useEffect, useContext
-- **Custom Hooks:** Reusable state logic
-- **Context API:** Component tree state sharing
+Local State Management:
+- React Hooks: useState, useEffect, useContext
+- Custom Hooks: Reusable state logic
+- Context API: Component tree state sharing
 
 ## Language & Type Safety
 
@@ -105,20 +105,20 @@ const useAppStore = create<AppState>((set) => ({
 }
 ```
 
-**Type Safety Features:**
-- **Interface Definitions:** Strong typing for data structures
-- **Generic Components:** Reusable typed components
-- **API Response Types:** Type-safe server communication
-- **Props Validation:** Component interface enforcement
+Type Safety Features:
+- Interface Definitions: Strong typing for data structures
+- Generic Components: Reusable typed components
+- API Response Types: Type-safe server communication
+- Props Validation: Component interface enforcement
 
 ## Content Management
 
 ### TinaCMS 2.8.1
-**Headless CMS Features:**
-- **Git-based Workflow:** Version controlled content
-- **Visual Editor:** WYSIWYG editing experience
-- **Schema-driven:** Type-safe content modeling
-- **Real-time Preview:** Live content editing
+Headless CMS Features:
+- Git-based Workflow: Version controlled content
+- Visual Editor: WYSIWYG editing experience
+- Schema-driven: Type-safe content modeling
+- Real-time Preview: Live content editing
 
 ```typescript
 // tina/config.ts
@@ -138,11 +138,11 @@ export default defineConfig({
 ```
 
 ### MDX Processing
-**@next/mdx with Remark/Rehype:**
-- **MDX Compilation:** JSX in Markdown
-- **Syntax Highlighting:** Code block styling
-- **Custom Components:** React components in content
-- **Static Analysis:** Build-time processing
+@next/mdx with Remark/Rehype:
+- MDX Compilation: JSX in Markdown
+- Syntax Highlighting: Code block styling
+- Custom Components: React components in content
+- Static Analysis: Build-time processing
 
 ## Database & Data Storage
 
@@ -169,19 +169,19 @@ const pool = mysql.createPool({
 });
 ```
 
-**Database Schema:**
-- **blog_comments:** User comments with moderation
-- **comment_likes:** User engagement tracking  
-- **blog_stats:** Content performance metrics
-- **admin_users:** Administrative access control
-- **moderation_log:** Content moderation history
+Database Schema:
+- blog_comments: User comments with moderation
+- comment_likes: User engagement tracking  
+- blog_stats: Content performance metrics
+- admin_users: Administrative access control
+- moderation_log: Content moderation history
 
 ### File Storage
-**Git-based Content Storage:**
-- **Content:** Markdown/MDX files in repository
-- **Media:** Public folder with CDN optimization
-- **Configuration:** Environment-based settings
-- **Versioning:** Full Git history for all content
+Git-based Content Storage:
+- Content: Markdown/MDX files in repository
+- Media: Public folder with CDN optimization
+- Configuration: Environment-based settings
+- Versioning: Full Git history for all content
 
 ## Authentication & Security
 
@@ -204,10 +204,10 @@ const generateToken = (payload: any) => {
 };
 ```
 
-**Security Libraries:**
-- **bcryptjs 3.0.2:** Password hashing
-- **jsonwebtoken 9.0.2:** JWT token management
-- **DOMPurify 3.2.6:** XSS protection for user content
+Security Libraries:
+- bcryptjs 3.0.2: Password hashing
+- jsonwebtoken 9.0.2: JWT token management
+- DOMPurify 3.2.6: XSS protection for user content
 
 ### Security Headers
 ```javascript
@@ -230,18 +230,18 @@ const securityHeaders = [
 
 ## Progressive Web App (PWA)
 
-**PWA Stack:** Workbox 7.3.0 with intelligent caching, offline functionality, and native app features.
+PWA Stack: Workbox 7.3.0 with intelligent caching, offline functionality, and native app features.
 
 > For complete PWA implementation, service worker configuration, and installation components, see [WEB_APP_IMPLEMENTATION.md](./WEB_APP_IMPLEMENTATION.md#pwa-implementation)
 
 ## Performance Optimization
 
 ### Image Optimization
-**Next.js Image Component:**
-- **Automatic WebP:** Modern format conversion
-- **Responsive Images:** Multiple sizes generation
-- **Lazy Loading:** Viewport-based loading
-- **Priority Loading:** Critical image preloading
+Next.js Image Component:
+- Automatic WebP: Modern format conversion
+- Responsive Images: Multiple sizes generation
+- Lazy Loading: Viewport-based loading
+- Priority Loading: Critical image preloading
 
 ```tsx
 import Image from 'next/image'
@@ -258,11 +258,11 @@ import Image from 'next/image'
 ```
 
 ### Bundle Optimization
-**Code Splitting Strategies:**
-- **Route-based Splitting:** Automatic by Next.js
-- **Component-level Splitting:** Dynamic imports
-- **Library Splitting:** Vendor chunk optimization
-- **Tree Shaking:** Dead code elimination
+Code Splitting Strategies:
+- Route-based Splitting: Automatic by Next.js
+- Component-level Splitting: Dynamic imports
+- Library Splitting: Vendor chunk optimization
+- Tree Shaking: Dead code elimination
 
 ```typescript
 // Dynamic component loading
@@ -292,23 +292,23 @@ const AnimatedComponent = () => (
 );
 ```
 
-**Animation Features:**
-- **Page Transitions:** Smooth route changes
-- **Scroll Animations:** Viewport-triggered effects
-- **Gesture Handling:** Touch and mouse interactions
-- **Layout Animations:** Automatic layout transitions
+Animation Features:
+- Page Transitions: Smooth route changes
+- Scroll Animations: Viewport-triggered effects
+- Gesture Handling: Touch and mouse interactions
+- Layout Animations: Automatic layout transitions
 
 ### Carousel Implementation
-**Embla Carousel React 8.6.0:**
-- **Touch Support:** Mobile-optimized navigation
-- **Infinite Loop:** Seamless content cycling
-- **Auto-play:** Time-based advancement
-- **Responsive Design:** Breakpoint-aware layouts
+Embla Carousel React 8.6.0:
+- Touch Support: Mobile-optimized navigation
+- Infinite Loop: Seamless content cycling
+- Auto-play: Time-based advancement
+- Responsive Design: Breakpoint-aware layouts
 
 ## Third-Party Integrations
 
 ### Google Services
-**Google APIs 152.0.0**
+Google APIs 152.0.0
 ```typescript
 // Google Sheets integration
 import { google } from 'googleapis';
@@ -329,27 +329,27 @@ await sheets.spreadsheets.values.append({
 });
 ```
 
-**Analytics Integration:**
-- **Google Analytics 4:** User behavior tracking
-- **Core Web Vitals:** Performance monitoring
-- **Conversion Tracking:** Goal measurement
-- **Custom Events:** Business metric tracking
+Analytics Integration:
+- Google Analytics 4: User behavior tracking
+- Core Web Vitals: Performance monitoring
+- Conversion Tracking: Goal measurement
+- Custom Events: Business metric tracking
 
 ### Communication Tools
-**WhatsApp Business Integration:**
-- **Direct Messaging:** Customer communication
-- **Template Messages:** Automated responses
-- **Broadcast Lists:** Marketing campaigns
-- **Business Profile:** Professional presence
+WhatsApp Business Integration:
+- Direct Messaging: Customer communication
+- Template Messages: Automated responses
+- Broadcast Lists: Marketing campaigns
+- Business Profile: Professional presence
 
 ## Development Tools
 
 ### Package Management
-**Bun Runtime:**
-- **Ultra-fast Installation:** Optimized dependency management
-- **Built-in Bundler:** Development and production builds
-- **TypeScript Support:** Native TypeScript execution
-- **Hot Reloading:** Instant development feedback
+Bun Runtime:
+- Ultra-fast Installation: Optimized dependency management
+- Built-in Bundler: Development and production builds
+- TypeScript Support: Native TypeScript execution
+- Hot Reloading: Instant development feedback
 
 ```json
 // package.json scripts
@@ -365,17 +365,17 @@ await sheets.spreadsheets.values.append({
 ```
 
 ### Code Quality Tools
-**ESLint 9.1.0 with Next.js Config:**
-- **Code Standards:** Consistent formatting rules
-- **Error Detection:** Potential bug identification
-- **Best Practices:** Framework-specific optimizations
-- **Auto-fixing:** Automated code corrections
+ESLint 9.1.0 with Next.js Config:
+- Code Standards: Consistent formatting rules
+- Error Detection: Potential bug identification
+- Best Practices: Framework-specific optimizations
+- Auto-fixing: Automated code corrections
 
-**Pre-commit Hooks:**
-- **lint-staged:** Process only staged files
-- **TypeScript Check:** Type validation
-- **Prettier Formatting:** Code beautification
-- **ESLint Auto-fix:** Rule compliance
+Pre-commit Hooks:
+- lint-staged: Process only staged files
+- TypeScript Check: Type validation
+- Prettier Formatting: Code beautification
+- ESLint Auto-fix: Rule compliance
 
 ## Build & Deployment
 
@@ -385,14 +385,14 @@ await sheets.spreadsheets.values.append({
 TypeScript Check → ESLint Validation → TinaCMS Build → Next.js Build → Vercel Deploy
 ```
 
-**Build Optimization:**
-- **Parallel Processing:** Concurrent task execution
-- **Incremental Builds:** Only rebuild changed components
-- **Asset Optimization:** Image, CSS, and JS minification
-- **Bundle Analysis:** Size monitoring and optimization
+Build Optimization:
+- Parallel Processing: Concurrent task execution
+- Incremental Builds: Only rebuild changed components
+- Asset Optimization: Image, CSS, and JS minification
+- Bundle Analysis: Size monitoring and optimization
 
 ### Deployment Platform
-**Vercel Integration:**
+Vercel Integration:
 ```json
 // vercel.json
 {
@@ -406,21 +406,21 @@ TypeScript Check → ESLint Validation → TinaCMS Build → Next.js Build → V
 }
 ```
 
-**Deployment Features:**
-- **Edge Network:** Global CDN distribution
-- **Serverless Functions:** Scalable API endpoints
-- **Preview Deployments:** Branch-based staging
-- **Analytics:** Built-in performance monitoring
+Deployment Features:
+- Edge Network: Global CDN distribution
+- Serverless Functions: Scalable API endpoints
+- Preview Deployments: Branch-based staging
+- Analytics: Built-in performance monitoring
 
 ## Monitoring & Analytics
 
 ### Performance Monitoring
-**Core Web Vitals Tracking:**
-- **Largest Contentful Paint (LCP):** Loading performance
-- **First Input Delay (FID):** Interactivity measurement
-- **Cumulative Layout Shift (CLS):** Visual stability
+Core Web Vitals Tracking:
+- Largest Contentful Paint (LCP): Loading performance
+- First Input Delay (FID): Interactivity measurement
+- Cumulative Layout Shift (CLS): Visual stability
 
-**Custom Metrics:**
+Custom Metrics:
 ```typescript
 // Performance measurement
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
@@ -433,30 +433,30 @@ getTTFB(console.log);
 ```
 
 ### Error Tracking
-**Built-in Error Boundaries:**
-- **Component Error Isolation:** Prevent app crashes
-- **Error Reporting:** Automatic error logging
-- **Fallback UI:** Graceful degradation
-- **Recovery Mechanisms:** Error state handling
+Built-in Error Boundaries:
+- Component Error Isolation: Prevent app crashes
+- Error Reporting: Automatic error logging
+- Fallback UI: Graceful degradation
+- Recovery Mechanisms: Error state handling
 
 ## Environment Configuration
 
-**Environment Management:** The application uses environment variables for configuration across development, staging, and production environments.
+Environment Management: The application uses environment variables for configuration across development, staging, and production environments.
 
 > For complete environment variable configuration and examples, see [DEPLOYMENT.md](./DEPLOYMENT.md#environment-management)
 
 ## Future Technology Considerations
 
 ### Planned Upgrades
-1. **React Server Components:** Enhanced performance
-2. **Edge Runtime:** Faster API responses
-3. **Streaming SSR:** Improved loading experience
-4. **Web Streams API:** Better data handling
-5. **Module Federation:** Micro-frontend architecture
+1. React Server Components: Enhanced performance
+2. Edge Runtime: Faster API responses
+3. Streaming SSR: Improved loading experience
+4. Web Streams API: Better data handling
+5. Module Federation: Micro-frontend architecture
 
 ### Technology Evaluation
-- **Database Migration:** PostgreSQL consideration
-- **CDN Enhancement:** Multi-provider setup
-- **Real-time Features:** WebSocket integration
-- **Mobile App:** React Native development
-- **Internationalization:** Multi-language support
+- Database Migration: PostgreSQL consideration
+- CDN Enhancement: Multi-provider setup
+- Real-time Features: WebSocket integration
+- Mobile App: React Native development
+- Internationalization: Multi-language support

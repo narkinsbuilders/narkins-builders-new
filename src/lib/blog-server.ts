@@ -7,51 +7,22 @@ import { BlogPost } from './blog'
 const postsDirectory = path.join(process.cwd(), 'content/blogs')
 
 export function getAllPostsServer(): BlogPost[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return []
-  }
+ if (!fs.existsSync(postsDirectory)) {
+  return []
+ }
 
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames
-    .filter(name => name.endsWith('.mdx'))
-    .map((fileName): BlogPost => {
-      const slug = fileName.replace(/\.mdx$/, '')
-      const fullPath = path.join(postsDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const matterResult = matter(fileContents)
+ const fileNames = fs.readdirSync(postsDirectory)
+ const allPostsData = fileNames
+  .filter(name => name.endsWith('.mdx'))
+  .map((fileName): BlogPost => {
+   const slug = fileName.replace(/\.mdx$/, '')
+   const fullPath = path.join(postsDirectory, fileName)
+   const fileContents = fs.readFileSync(fullPath, 'utf8')
+   const matterResult = matter(fileContents)
 
-      const content = matterResult.content;
+   const content = matterResult.content;
 
-      return {
-        slug,
-        title: matterResult.data.title || 'Untitled',
-        excerpt: matterResult.data.excerpt || '',
-        date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
-        image: matterResult.data.image || '/images/narkins-builders-logo.webp',
-        content: content,
-        readTime: matterResult.data.readTime || '5 min read',
-        keywords: matterResult.data.keywords || '',
-      }
-    })
-
-  return allPostsData.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
-  })
-}
-
-export function getPostBySlugServer(slug: string): BlogPost | null {
-  const fullPath = path.join(postsDirectory, slug + '.mdx')
-
-  if (!fs.existsSync(fullPath)) {
-    return null
-  }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const matterResult = matter(fileContents)
-
-  const content = matterResult.content;
-
-  return {
+   return {
     slug,
     title: matterResult.data.title || 'Untitled',
     excerpt: matterResult.data.excerpt || '',
@@ -60,30 +31,59 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
     content: content,
     readTime: matterResult.data.readTime || '5 min read',
     keywords: matterResult.data.keywords || '',
-  }
+   }
+  })
+
+ return allPostsData.sort((a, b) => {
+  return new Date(b.date).getTime() - new Date(a.date).getTime()
+ })
+}
+
+export function getPostBySlugServer(slug: string): BlogPost | null {
+ const fullPath = path.join(postsDirectory, slug + '.mdx')
+
+ if (!fs.existsSync(fullPath)) {
+  return null
+ }
+
+ const fileContents = fs.readFileSync(fullPath, 'utf8')
+ const matterResult = matter(fileContents)
+
+ const content = matterResult.content;
+
+ return {
+  slug,
+  title: matterResult.data.title || 'Untitled',
+  excerpt: matterResult.data.excerpt || '',
+  date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
+  image: matterResult.data.image || '/images/narkins-builders-logo.webp',
+  content: content,
+  readTime: matterResult.data.readTime || '5 min read',
+  keywords: matterResult.data.keywords || '',
+ }
 }
 
 export function getAdjacentPosts(currentSlug: string) {
-  const posts = getAllPostsServer();
-  const currentIndex = posts.findIndex(post => post.slug === currentSlug);
-  
-  if (currentIndex === -1) {
-    return { previousPost: null, nextPost: null };
-  }
-  
-  const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
-  const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
-  
-  return {
-    previousPost: previousPost ? {
-      slug: previousPost.slug,
-      title: previousPost.title,
-      excerpt: previousPost.excerpt
-    } : null,
-    nextPost: nextPost ? {
-      slug: nextPost.slug,
-      title: nextPost.title,
-      excerpt: nextPost.excerpt
-    } : null
-  };
+ const posts = getAllPostsServer();
+ const currentIndex = posts.findIndex(post => post.slug === currentSlug);
+ 
+ if (currentIndex === -1) {
+  return { previousPost: null, nextPost: null };
+ }
+ 
+ const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
+ const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+ 
+ return {
+  previousPost: previousPost ? {
+   slug: previousPost.slug,
+   title: previousPost.title,
+   excerpt: previousPost.excerpt
+  } : null,
+  nextPost: nextPost ? {
+   slug: nextPost.slug,
+   title: nextPost.title,
+   excerpt: nextPost.excerpt
+  } : null
+ };
 }

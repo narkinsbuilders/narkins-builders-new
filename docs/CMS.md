@@ -76,7 +76,7 @@ TINA_SEARCH_TOKEN=your_search_token  # Optional for search
 
 ### 1. Blog Collection
 
-**Schema Definition:**
+Schema Definition:
 ```typescript
 {
   name: 'blog',
@@ -160,7 +160,7 @@ TINA_SEARCH_TOKEN=your_search_token  # Optional for search
 
 ### 2. Rich Text Templates
 
-**FAQ Section Template:**
+FAQ Section Template:
 ```typescript
 {
   name: 'faqSection',
@@ -192,7 +192,7 @@ TINA_SEARCH_TOKEN=your_search_token  # Optional for search
 }
 ```
 
-**Call to Action Template:**
+Call to Action Template:
 ```typescript
 {
   name: 'callToAction',
@@ -236,32 +236,32 @@ TINA_SEARCH_TOKEN=your_search_token  # Optional for search
 ## Dual Editing System
 
 ### Visual Editor Mode
-**For Non-Technical Users:**
+For Non-Technical Users:
 
-1. **Access:** Visit `/admin` to access TinaCMS
-2. **Navigation:** Go to "Blog Posts" collection
-3. **Create/Edit:** Choose "Visual Editor" mode
-4. **Components:** Use pre-built components:
+1. Access: Visit `/admin` to access TinaCMS
+2. Navigation: Go to "Blog Posts" collection
+3. Create/Edit: Choose "Visual Editor" mode
+4. Components: Use pre-built components:
    - FAQ sections with predefined collections
    - Call-to-action blocks
    - Property showcase cards
    - Market data tables
 
-**Benefits:**
+Benefits:
 - No coding required
 - WYSIWYG editing experience
 - Predefined components ensure consistency
 - Automatic schema validation
 
 ### Raw MDX Mode
-**For Technical Users:**
+For Technical Users:
 
-1. **Access:** TinaCMS admin or direct file editing
-2. **Mode:** Set "Editing Mode" to "Raw MDX"
-3. **Content:** Write complete MDX with full control
-4. **Components:** Access to all React components
+1. Access: TinaCMS admin or direct file editing
+2. Mode: Set "Editing Mode" to "Raw MDX"
+3. Content: Write complete MDX with full control
+4. Components: Access to all React components
 
-**Example Raw MDX:**
+Example Raw MDX:
 ```mdx
 ---
 title: "Market Analysis Blog Post"
@@ -298,11 +298,11 @@ media: {
 }
 ```
 
-**Upload Process:**
-1. **Admin Interface:** Drag and drop images in TinaCMS
-2. **Automatic Processing:** Images saved to `public/images/`
-3. **Optimization:** Next.js Image component handles optimization
-4. **CDN Delivery:** Vercel CDN serves optimized images
+Upload Process:
+1. Admin Interface: Drag and drop images in TinaCMS
+2. Automatic Processing: Images saved to `public/images/`
+3. Optimization: Next.js Image component handles optimization
+4. CDN Delivery: Vercel CDN serves optimized images
 
 ### File Organization
 ```
@@ -325,10 +325,10 @@ Requirements     TinaCMS Editor    Team Review    Git Commit    Site Build
 ```
 
 ### 2. Version Control Integration
-- **Automatic Commits:** TinaCMS commits changes to Git
-- **Branch Management:** All edits go to main branch
-- **Change History:** Full Git history for content changes
-- **Rollback Capability:** Git-based rollback for content
+- Automatic Commits: TinaCMS commits changes to Git
+- Branch Management: All edits go to main branch
+- Change History: Full Git history for content changes
+- Rollback Capability: Git-based rollback for content
 
 ### 3. Build Integration
 ```bash
@@ -350,7 +350,7 @@ search: {
 }
 ```
 
-**Search Capabilities:**
+Search Capabilities:
 - Full-text search across all content
 - Automatic indexing of new content
 - Search filtering by collection type
@@ -368,7 +368,7 @@ ui: {
 }
 ```
 
-**Validation Features:**
+Validation Features:
 - Required field validation
 - Character limit enforcement
 - URL format validation
@@ -390,36 +390,36 @@ ui: {
 ## Security & Permissions
 
 ### 1. Authentication
-- **Client ID:** Public identifier for TinaCMS app
-- **Token:** Secure token for API access
-- **Branch Protection:** Main branch protection rules
-- **User Permissions:** Role-based access control
+- Client ID: Public identifier for TinaCMS app
+- Token: Secure token for API access
+- Branch Protection: Main branch protection rules
+- User Permissions: Role-based access control
 
 ### 2. Content Security
-- **Schema Validation:** Prevents invalid content structure
-- **Input Sanitization:** Safe HTML/MDX rendering
-- **File Type Restrictions:** Limited to safe file types
-- **Size Limits:** Prevents large file uploads
+- Schema Validation: Prevents invalid content structure
+- Input Sanitization: Safe HTML/MDX rendering
+- File Type Restrictions: Limited to safe file types
+- Size Limits: Prevents large file uploads
 
 ## Performance Optimization
 
 ### 1. Build Performance
-- **Incremental Builds:** Only rebuild changed content
-- **Parallel Processing:** Concurrent schema generation
-- **Caching:** Compiled schema caching
-- **Bundle Optimization:** Tree-shaking unused components
+- Incremental Builds: Only rebuild changed content
+- Parallel Processing: Concurrent schema generation
+- Caching: Compiled schema caching
+- Bundle Optimization: Tree-shaking unused components
 
 ### 2. Runtime Performance
-- **Static Generation:** Pre-built content at build time
-- **CDN Caching:** Global content distribution
-- **Image Optimization:** Automatic WebP conversion
-- **Code Splitting:** Component-level splitting
+- Static Generation: Pre-built content at build time
+- CDN Caching: Global content distribution
+- Image Optimization: Automatic WebP conversion
+- Code Splitting: Component-level splitting
 
 ## Troubleshooting
 
 ### Common Issues
 
-**TinaCMS Build Errors:**
+TinaCMS Build Errors:
 ```bash
 # Clear generated files
 rm -rf .tina/__generated__
@@ -431,7 +431,7 @@ bun run tina:build
 bunx @tinacms/cli status
 ```
 
-**Schema Validation Errors:**
+Schema Validation Errors:
 ```bash
 # Check schema syntax
 bunx @tinacms/cli audit
@@ -440,7 +440,7 @@ bunx @tinacms/cli audit
 bunx @tinacms/cli dev --local
 ```
 
-**Content Not Updating:**
+Content Not Updating:
 ```bash
 # Force rebuild
 bunx @tinacms/cli build --clean
@@ -452,17 +452,17 @@ git log --oneline -5
 
 ### Debugging Tips
 
-1. **Admin Interface Issues:**
+1. Admin Interface Issues:
    - Check browser console for errors
    - Verify environment variables
    - Clear browser cache
 
-2. **Content Rendering Issues:**
+2. Content Rendering Issues:
    - Validate MDX syntax
    - Check component imports
    - Verify data structure
 
-3. **Build Issues:**
+3. Build Issues:
    - Check TinaCMS configuration
    - Verify Git repository state
    - Review build logs
@@ -479,16 +479,16 @@ bunx @tinacms/cli import --source=backup.json
 ```
 
 ### Backup Strategy
-- **Git Repository:** Full version history
-- **Database Backup:** Regular exports
-- **Media Backup:** File system snapshots
-- **Configuration Backup:** Environment variables
+- Git Repository: Full version history
+- Database Backup: Regular exports
+- Media Backup: File system snapshots
+- Configuration Backup: Environment variables
 
 ## Future Enhancements
 
 ### Planned Features
-1. **Multi-language Support:** Urdu content management
-2. **Advanced Workflows:** Approval processes
-3. **Scheduled Publishing:** Time-based content release
-4. **Content Analytics:** Usage metrics integration
-5. **API Extensions:** Custom field types
+1. Multi-language Support: Urdu content management
+2. Advanced Workflows: Approval processes
+3. Scheduled Publishing: Time-based content release
+4. Content Analytics: Usage metrics integration
+5. API Extensions: Custom field types

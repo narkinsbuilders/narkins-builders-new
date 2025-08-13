@@ -240,6 +240,77 @@ const nextConfig = {
         destination: '/blog/bahria-town-shutdown-scare-investment-security',
         permanent: true,
       },
+      // Redirect old blog URLs to new date-based structure
+      {
+        source: '/blog/apartments-for-sale-bahria-town-karachi-2025',
+        destination: '/blog/2025/01/apartments-for-sale-bahria-town-karachi-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/luxury-apartments-bahria-town-investment-guide',
+        destination: '/blog/2025/02/luxury-apartments-bahria-town-investment-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/2-bedroom-apartments-bahria-town-karachi-guide',
+        destination: '/blog/2025/03/2-bedroom-apartments-bahria-town-karachi-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/infrastructure-impact-karachi-property-values-2025',
+        destination: '/blog/2025/04/infrastructure-impact-karachi-property-values-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/buying-apartment-bahria-town-first-time-buyer-guide',
+        destination: '/blog/2025/05/buying-apartment-bahria-town-first-time-buyer-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/bahria-town-karachi-property-investment-guide',
+        destination: '/blog/2025/06/bahria-town-karachi-property-investment-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/gated-communities-karachi-investment-strategy-2025',
+        destination: '/blog/2025/07/gated-communities-karachi-investment-strategy-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/vertical-development-karachi-apartments-vs-houses-2025',
+        destination: '/blog/2025/07/vertical-development-karachi-apartments-vs-houses-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/bahria-town-karachi-pricing-analysis-2025',
+        destination: '/blog/2025/07/bahria-town-karachi-pricing-analysis-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/karachi-real-estate-market-recovery-july-2025',
+        destination: '/blog/2025/07/karachi-real-estate-market-recovery-july-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/emerging-neighborhoods-karachi-investment-hotspots-2025',
+        destination: '/blog/2025/08/emerging-neighborhoods-karachi-investment-hotspots-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/bahria-town-karachi-prices-drop-buying-opportunity-2025',
+        destination: '/blog/2025/08/bahria-town-karachi-prices-drop-buying-opportunity-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/sustainable-smart-living-green-building-trends-bahria-town-2025',
+        destination: '/blog/2025/08/sustainable-smart-living-green-building-trends-bahria-town-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/dha-vs-bahria-town-vs-gulshan-luxury-living-comparison-2025',
+        destination: '/blog/2025/08/dha-vs-bahria-town-vs-gulshan-luxury-living-comparison-2025',
+        permanent: true,
+      },
     ]
   },
   images: {

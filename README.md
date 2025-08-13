@@ -39,34 +39,34 @@ This application follows a modern jamstack architecture with the following layer
 
 ### Design Patterns Used
 
-- **Server-Side Rendering (SSR)**: Next.js App Router for optimal SEO and performance
-- **Static Site Generation (SSG)**: Pre-built pages with ISR for dynamic content
-- **Component Composition**: Modular React components with TypeScript
-- **State Management**: Zustand for global state, React hooks for local state
-- **Content as Code**: TinaCMS with Git-based workflow
-- **Progressive Enhancement**: Core functionality works without JavaScript
+- Server-Side Rendering (SSR): Next.js App Router for optimal SEO and performance
+- Static Site Generation (SSG): Pre-built pages with ISR for dynamic content
+- Component Composition: Modular React components with TypeScript
+- State Management: Zustand for global state, React hooks for local state
+- Content as Code: TinaCMS with Git-based workflow
+- Progressive Enhancement: Core functionality works without JavaScript
 
 ## Tech Stack
 
 ### Frontend
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript 5.4.5
-- **Styling**: Tailwind CSS + shadcn/ui
-- **Animation**: Framer Motion
-- **State**: Zustand + React hooks
+- Framework: Next.js 15 (App Router)
+- Language: TypeScript 5.4.5
+- Styling: Tailwind CSS + shadcn/ui
+- Animation: Framer Motion
+- State: Zustand + React hooks
 
 ### Backend & Services
-- **Runtime**: Bun (recommended) / Node.js
-- **CMS**: TinaCMS with Git workflow
-- **Database**: MySQL2
-- **Authentication**: JWT + bcryptjs
-- **Forms**: Google Sheets API integration
+- Runtime: Bun (recommended) / Node.js
+- CMS: TinaCMS with Git workflow
+- Database: MySQL2
+- Authentication: JWT + bcryptjs
+- Forms: Google Sheets API integration
 
 ### Infrastructure
-- **PWA**: Service Worker + Web App Manifest
-- **Analytics**: Google Analytics 4
-- **SEO**: Schema.org structured data
-- **Build**: Turbopack (dev) / Webpack (prod)
+- PWA: Service Worker + Web App Manifest
+- Analytics: Google Analytics 4
+- SEO: Schema.org structured data
+- Build: Turbopack (dev) / Webpack (prod)
 
 ## Project Structure
 
@@ -106,25 +106,25 @@ This application follows a modern jamstack architecture with the following layer
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository
    ```bash
    git clone https://github.com/your-username/narkins-builders.git
    cd narkins-builders
    ```
 
-2. **Install dependencies**
+2. Install dependencies
    ```bash
    bun install
    # or
    npm install
    ```
 
-3. **Environment setup**
+3. Environment setup
    ```bash
    cp .env.example .env.local
    ```
 
-4. **Configure environment variables**
+4. Configure environment variables
    ```env
    # Site Configuration
    NEXT_PUBLIC_SITE_URL=http://localhost:3000
@@ -142,12 +142,12 @@ This application follows a modern jamstack architecture with the following layer
    GOOGLE_SHEET_ID=your-sheet-id
    ```
 
-5. **Start development server**
+5. Start development server
    ```bash
    bun run dev
    ```
 
-6. **Access the application**
+6. Access the application
    - Website: http://localhost:3000
    - CMS Admin: http://localhost:3000/admin
 
@@ -167,7 +167,7 @@ This application follows a modern jamstack architecture with the following layer
 
 ### Development Workflow
 
-1. **Feature Development**
+1. Feature Development
    ```bash
    # Create feature branch
    git checkout -b feature/your-feature
@@ -182,12 +182,12 @@ This application follows a modern jamstack architecture with the following layer
    git commit -m "feat: add your feature"
    ```
 
-2. **Content Management**
+2. Content Management
    - Access TinaCMS admin at `/admin`
    - Create/edit content through the visual editor
    - Changes are committed to Git automatically
 
-3. **Database Migrations**
+3. Database Migrations
    ```bash
    # Run migrations (if using database)
    bun run db:migrate
@@ -393,16 +393,16 @@ GOOGLE_SHEETS_CREDENTIALS=xxx
 
 ### Core Web Vitals Targets
 
-- **LCP**: < 2.5s
-- **FID**: < 100ms  
-- **CLS**: < 0.1
+- LCP: < 2.5s
+- FID: < 100ms  
+- CLS: < 0.1
 
 ### Optimization Techniques
 
-- **Image Optimization**: Next.js Image component with WebP
-- **Code Splitting**: Dynamic imports for heavy components
-- **Caching**: ISR for static content, SWR for client data
-- **Bundle Analysis**: Analyze bundle size with `@next/bundle-analyzer`
+- Image Optimization: Next.js Image component with WebP
+- Code Splitting: Dynamic imports for heavy components
+- Caching: ISR for static content, SWR for client data
+- Bundle Analysis: Analyze bundle size with `@next/bundle-analyzer`
 
 ### Monitoring
 
@@ -418,11 +418,11 @@ bun run analyze
 
 ### Implemented Measures
 
-- **Content Security Policy**: Configured in `next.config.js`
-- **HTTPS Only**: Enforced in production
-- **Input Validation**: Zod schemas for all forms
-- **Rate Limiting**: API route protection
-- **Authentication**: JWT with secure httpOnly cookies
+- Content Security Policy: Configured in `next.config.js`
+- HTTPS Only: Enforced in production
+- Input Validation: Zod schemas for all forms
+- Rate Limiting: API route protection
+- Authentication: JWT with secure httpOnly cookies
 
 ### Security Headers
 
@@ -445,10 +445,10 @@ const securityHeaders = [
 
 ### Code Standards
 
-- **TypeScript**: Strict mode enabled
-- **ESLint**: Extended from Next.js config
-- **Prettier**: Configured for consistent formatting
-- **Commit Convention**: Conventional commits
+- TypeScript: Strict mode enabled
+- ESLint: Extended from Next.js config
+- Prettier: Configured for consistent formatting
+- Commit Convention: Conventional commits
 
 ### Development Setup
 
@@ -517,9 +517,9 @@ echo $DATABASE_URL
 
 ## Credits
 
-**Developed by**: [The Other Dev](https://otherdev.com)  
-**Contact**: hello@otherdev.com  
-**LinkedIn**: [The Other Dev](https://www.linkedin.com/company/theotherdev)
+Developed by: [The Other Dev](https://otherdev.com)  
+Contact: hello@otherdev.com  
+LinkedIn: [The Other Dev](https://www.linkedin.com/company/theotherdev)
 
 ## License
 

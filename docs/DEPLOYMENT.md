@@ -8,14 +8,14 @@ This document outlines the comprehensive deployment strategy and development wor
 
 ### 1. Prerequisites
 
-**System Requirements:**
+System Requirements:
 - Node.js 18+ or Bun runtime
 - Git version control
 - MySQL database (optional for full features)
 - Google Cloud Console access (for Sheets API)
 - TinaCMS account and credentials
 
-**Development Tools:**
+Development Tools:
 ```bash
 # Essential tools
 bun --version          # Bun runtime
@@ -30,7 +30,7 @@ vercel --version       # Vercel CLI
 
 ### 2. Project Setup
 
-**Initial Setup:**
+Initial Setup:
 ```bash
 # Clone repository
 git clone https://github.com/your-organization/narkins-builders.git
@@ -46,7 +46,7 @@ cp .env.example .env.local
 bun run blog:verify-setup
 ```
 
-**Environment Configuration:**
+Environment Configuration:
 ```bash
 # .env.local - Development environment
 NODE_ENV=development
@@ -78,7 +78,7 @@ JWT_SECRET=your_jwt_secret_for_auth
 
 ### 3. Development Scripts
 
-**Available Commands:**
+Available Commands:
 ```json
 {
   "scripts": {
@@ -99,7 +99,7 @@ JWT_SECRET=your_jwt_secret_for_auth
 }
 ```
 
-**Development Workflow:**
+Development Workflow:
 ```bash
 # Start development server with TinaCMS
 bun run dev
@@ -124,7 +124,7 @@ bun run build
 
 ### 1. Build Pipeline Architecture
 
-**Build Sequence:**
+Build Sequence:
 ```mermaid
 graph LR
     A[Source Code] --> B[TypeScript Check]
@@ -137,7 +137,7 @@ graph LR
 
 ### 2. Parallel Build Script
 
-**Optimized Build Process:**
+Optimized Build Process:
 ```bash
 #!/bin/bash
 # scripts/build-parallel.sh
@@ -189,7 +189,7 @@ echo "🎉 Deployment ready!"
 
 ### 3. Build Optimization
 
-**Build Performance Features:**
+Build Performance Features:
 - SWC minification enabled
 - Webpack optimizations for production
 - Code splitting and bundle optimization
@@ -201,7 +201,7 @@ echo "🎉 Deployment ready!"
 
 ### 1. GitHub Actions Workflow
 
-**Main Workflow:**
+Main Workflow:
 ```yaml
 # .github/workflows/main.yml
 name: CI/CD Pipeline
@@ -283,7 +283,7 @@ jobs:
 
 ### 2. Pre-commit Hooks
 
-**Husky Configuration:**
+Husky Configuration:
 ```json
 {
   "husky": {
@@ -308,7 +308,7 @@ jobs:
 
 ### 3. Code Quality Automation
 
-**ESLint Configuration:**
+ESLint Configuration:
 ```javascript
 // .eslintrc.js
 module.exports = {
@@ -339,7 +339,7 @@ module.exports = {
 
 ### 1. Vercel Deployment (Recommended)
 
-**Vercel Configuration:**
+Vercel Configuration:
 ```json
 {
   "version": 2,
@@ -388,7 +388,7 @@ module.exports = {
 }
 ```
 
-**Deployment Process:**
+Deployment Process:
 ```bash
 # Manual deployment
 vercel --prod
@@ -399,7 +399,7 @@ git push origin main  # Triggers automatic deployment
 
 ### 2. Alternative Deployment Options
 
-**Netlify Deployment:**
+Netlify Deployment:
 ```toml
 # netlify.toml
 [build]
@@ -423,7 +423,7 @@ git push origin main  # Triggers automatic deployment
   status = 200
 ```
 
-**Docker Deployment:**
+Docker Deployment:
 ```dockerfile
 # Dockerfile
 FROM oven/bun:latest AS base
@@ -469,7 +469,7 @@ CMD ["bun", "server.js"]
 
 ### 1. Environment Variables
 
-**Production Environment:**
+Production Environment:
 ```bash
 # Production .env
 NODE_ENV=production
@@ -500,7 +500,7 @@ JWT_SECRET=secure_production_jwt_secret
 ENCRYPTION_KEY=secure_production_encryption_key
 ```
 
-**Staging Environment:**
+Staging Environment:
 ```bash
 # Staging .env
 NODE_ENV=staging
@@ -525,7 +525,7 @@ NEXT_PUBLIC_GA_ID=G-STAGING_ID
 
 ### 2. Secret Management
 
-**Vercel Secrets:**
+Vercel Secrets:
 ```bash
 # Add secrets to Vercel
 vercel env add TINA_TOKEN production
@@ -540,7 +540,7 @@ vercel env ls
 vercel env pull .env.local
 ```
 
-**GitHub Secrets:**
+GitHub Secrets:
 ```bash
 # Required GitHub Actions secrets
 VERCEL_TOKEN=your_vercel_token
@@ -554,7 +554,7 @@ TINA_TOKEN=your_tina_token
 
 ### 1. Application Monitoring
 
-**Performance Monitoring:**
+Performance Monitoring:
 ```typescript
 // src/lib/monitoring.ts
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
@@ -594,7 +594,7 @@ const sendToAnalytics = (name: string, value: number) => {
 };
 ```
 
-**Error Tracking:**
+Error Tracking:
 ```typescript
 // src/lib/error-tracking.ts
 export const trackError = (error: Error, context?: string) => {
@@ -626,7 +626,7 @@ if (typeof window !== 'undefined') {
 
 ### 2. Deployment Monitoring
 
-**Health Checks:**
+Health Checks:
 ```typescript
 // src/pages/api/health.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -674,7 +674,7 @@ export default async function handler(
 }
 ```
 
-**Uptime Monitoring:**
+Uptime Monitoring:
 ```bash
 # Monitoring endpoints
 https://narkinsbuilders.com/api/health
@@ -686,7 +686,7 @@ https://narkinsbuilders.com/api/rss.xml
 
 ### 1. Deployment Rollback
 
-**Vercel Rollback:**
+Vercel Rollback:
 ```bash
 # List deployments
 vercel ls
@@ -698,7 +698,7 @@ vercel rollback [deployment-url]
 vercel promote [deployment-url]
 ```
 
-**Git-based Rollback:**
+Git-based Rollback:
 ```bash
 # Revert last commit
 git revert HEAD
@@ -713,7 +713,7 @@ git push --force-with-lease origin main
 
 ### 2. Database Recovery
 
-**Database Backup:**
+Database Backup:
 ```sql
 -- Create backup
 mysqldump -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql
@@ -724,7 +724,7 @@ mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME < backup_20250130_120000.s
 
 ### 3. Content Recovery
 
-**TinaCMS Content Recovery:**
+TinaCMS Content Recovery:
 ```bash
 # Content is stored in Git, recovery through Git
 git log --oneline content/blogs/
@@ -738,7 +738,7 @@ bun run tina:build
 
 ### 1. Build Performance
 
-**Build Caching:**
+Build Caching:
 ```json
 {
   "scripts": {
@@ -748,7 +748,7 @@ bun run tina:build
 }
 ```
 
-**Bundle Analysis:**
+Bundle Analysis:
 ```bash
 # Analyze bundle size
 ANALYZE=true bun run build
@@ -759,7 +759,7 @@ npx @next/bundle-analyzer
 
 ### 2. Runtime Performance
 
-**CDN Configuration:**
+CDN Configuration:
 ```javascript
 // next.config.js CDN settings
 const nextConfig = {
@@ -774,7 +774,7 @@ const nextConfig = {
 };
 ```
 
-**Cache Configuration:**
+Cache Configuration:
 ```javascript
 // Advanced caching headers
 const cacheHeaders = [
@@ -803,7 +803,7 @@ const cacheHeaders = [
 
 ### 1. Deployment Security
 
-**Environment Security:**
+Environment Security:
 - Store sensitive data in environment variables
 - Use different API keys for different environments
 - Implement proper CORS policies
@@ -812,7 +812,7 @@ const cacheHeaders = [
 
 ### 2. Access Control
 
-**Repository Access:**
+Repository Access:
 ```bash
 # Limit repository access
 # - Main branch protection rules
@@ -822,7 +822,7 @@ const cacheHeaders = [
 # - Restrict pushes to main branch
 ```
 
-**Deployment Access:**
+Deployment Access:
 ```bash
 # Vercel team settings
 # - Role-based access control
@@ -835,7 +835,7 @@ const cacheHeaders = [
 
 ### 1. Common Deployment Issues
 
-**Build Failures:**
+Build Failures:
 ```bash
 # Clear all caches
 rm -rf .next node_modules bun.lockb .tsbuildinfo
@@ -849,7 +849,7 @@ vercel logs [deployment-url]
 bunx tsc --noEmit --listFiles
 ```
 
-**TinaCMS Issues:**
+TinaCMS Issues:
 ```bash
 # Regenerate TinaCMS
 rm -rf .tina/__generated__
@@ -861,7 +861,7 @@ bunx @tinacms/cli audit
 
 ### 2. Performance Issues
 
-**Debug Performance:**
+Debug Performance:
 ```bash
 # Analyze bundle
 ANALYZE=true bun run build
@@ -871,7 +871,7 @@ ANALYZE=true bun run build
 # Use Lighthouse CI
 ```
 
-**Database Performance:**
+Database Performance:
 ```sql
 -- Check slow queries
 SELECT * FROM information_schema.processlist 

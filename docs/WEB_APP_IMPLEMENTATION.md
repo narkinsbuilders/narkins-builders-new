@@ -36,7 +36,7 @@ src/
 
 ### 1. Component Structure Standards
 
-**Base Component Template:**
+Base Component Template:
 ```tsx
 // src/components/features/example/example-component.tsx
 import React from 'react';
@@ -77,7 +77,7 @@ export default ExampleComponent;
 
 ### 2. Styling Conventions
 
-**Tailwind CSS Patterns:**
+Tailwind CSS Patterns:
 ```tsx
 // Component with responsive design
 <div className={cn(
@@ -99,7 +99,7 @@ export default ExampleComponent;
 )}>
 ```
 
-**Custom CSS Variables:**
+Custom CSS Variables:
 ```css
 /* src/styles/globals.css */
 :root {
@@ -113,7 +113,7 @@ export default ExampleComponent;
 
 ### 3. State Management Patterns
 
-**Local State with Hooks:**
+Local State with Hooks:
 ```tsx
 import { useState, useEffect } from 'react';
 
@@ -146,7 +146,7 @@ const ComponentWithState = () => {
 };
 ```
 
-**Global State with Zustand:**
+Global State with Zustand:
 ```tsx
 // src/zustand/store.ts
 import { create } from 'zustand';
@@ -192,7 +192,7 @@ const SomeComponent = () => {
 
 ### 1. Lead Generation Forms
 
-**Contact Form Example:**
+Contact Form Example:
 ```tsx
 // src/components/features/lead-form/contact-form.tsx
 import { useState } from 'react';
@@ -303,7 +303,7 @@ export const ContactForm = () => {
 
 ### 2. Form Validation
 
-**Input Validation Utilities:**
+Input Validation Utilities:
 ```tsx
 // src/lib/validation.ts
 export const validateEmail = (email: string): boolean => {
@@ -355,7 +355,7 @@ export const useFormValidation = (formData: ContactFormData) => {
 
 ### 1. API Routes Structure
 
-**Google Sheets API Integration:**
+Google Sheets API Integration:
 ```tsx
 // src/pages/api/sheets.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -430,11 +430,11 @@ export default async function handler(
 
 ### 2. Database Operations
 
-**Database Layer:** Utilizes the MySQL connection pool and query utilities from the main database layer.
+Database Layer: Utilizes the MySQL connection pool and query utilities from the main database layer.
 
 > For complete database configuration, schema, and connection management, see [TECH_STACK.md](./TECH_STACK.md#database--data-storage)
 
-**Example API Implementation:**
+Example API Implementation:
 ```tsx
 // Example: Using the database layer in API routes
 import { CommentQueries } from '@/lib/database';
@@ -450,7 +450,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 ### 1. SEO Components
 
-**Structured Data Implementation:**
+Structured Data Implementation:
 ```tsx
 // src/components/common/schema/local-business-schema.tsx
 import { LocalBusinessSchema as Schema } from '@/types/schema';
@@ -515,7 +515,7 @@ export const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
 
 ### 2. Media Components
 
-**Custom Video Player:**
+Custom Video Player:
 ```tsx
 // src/components/features/video-player/video-player.tsx
 import { useState, useRef, useEffect } from 'react';
@@ -621,7 +621,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
 ### 1. Service Worker Integration
 
-**PWA Installation Component:**
+PWA Installation Component:
 ```tsx
 // src/components/features/pwa-install/pwa-install.tsx
 import { useState, useEffect } from 'react';
@@ -704,7 +704,7 @@ export const PWAInstallPrompt = () => {
 
 ### 2. Offline Support
 
-**Service Worker Registration:**
+Service Worker Registration:
 ```tsx
 // src/lib/pwa.ts
 export const registerServiceWorker = () => {
@@ -745,7 +745,7 @@ const showUpdateNotification = () => {
 
 ### 1. Image Optimization
 
-**Next.js Image Component Usage:**
+Next.js Image Component Usage:
 ```tsx
 import Image from 'next/image';
 
@@ -766,7 +766,7 @@ const OptimizedImage = ({ src, alt, priority = false }) => (
 
 ### 2. Code Splitting
 
-**Dynamic Imports:**
+Dynamic Imports:
 ```tsx
 import dynamic from 'next/dynamic';
 
@@ -804,7 +804,7 @@ export const Dashboard = () => {
 
 ### 1. Component Testing
 
-**Jest and React Testing Library:**
+Jest and React Testing Library:
 ```tsx
 // src/components/features/contact-form/__tests__/contact-form.test.tsx
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -874,7 +874,7 @@ describe('ContactForm', () => {
 
 ### 2. Integration Testing
 
-**API Route Testing:**
+API Route Testing:
 ```tsx
 // src/pages/api/__tests__/sheets.test.ts
 import handler from '../sheets';
@@ -928,7 +928,7 @@ describe('/api/sheets', () => {
 
 ### 1. Environment Configuration
 
-**Environment-Specific Settings:**
+Environment-Specific Settings:
 ```tsx
 // src/lib/config.ts
 export const config = {
@@ -960,7 +960,7 @@ export const config = {
 
 ### 2. Build Optimization
 
-**Next.js Configuration:**
+Next.js Configuration:
 ```javascript
 // next.config.js production optimizations
 const nextConfig = {

@@ -53,7 +53,7 @@ interface WorkerResult {
   memoryUsed?: number
 }
 
-const CACHE_VERSION = '1.2.0'
+const CACHE_VERSION = '1.3.0'
 
 // Worker code - pre-compiles individual blog posts with enhanced error handling
 if (!isMainThread) {
@@ -159,7 +159,34 @@ async function precompileMDX() {
     fs.mkdirSync(cacheDir, { recursive: true })
   }
   
-  const files = fs.readdirSync(blogsDir).filter(name => name.endsWith('.mdx'))
+  // Recursive function to find all .mdx files
+  function findAllMdxFiles(dir: string): Array<{fileName: string, fullPath: string}> {
+    const results: Array<{fileName: string, fullPath: string}> = []
+    
+    function scanDirectory(currentDir: string) {
+      const items = fs.readdirSync(currentDir, { withFileTypes: true })
+      
+      for (const item of items) {
+        const itemPath = path.join(currentDir, item.name)
+        
+        if (item.isDirectory()) {
+          // Recursively scan subdirectories
+          scanDirectory(itemPath)
+        } else if (item.isFile() && item.name.endsWith('.mdx')) {
+          results.push({
+            fileName: item.name,
+            fullPath: itemPath
+          })
+        }
+      }
+    }
+    
+    scanDirectory(dir)
+    return results
+  }
+
+  const fileInfos = findAllMdxFiles(blogsDir)
+  const files = fileInfos.map(info => info.fileName)
   console.log(`[MDX] Found ${files.length} blog posts to precompile`)
   
   const workers: Worker[] = []
@@ -203,7 +230,8 @@ async function precompileMDX() {
       }
       
       const slug = fileName.replace(/\.mdx$/, '')
-      const filePath = path.join(blogsDir, fileName)
+      const fileInfo = fileInfos.find(f => f.fileName === fileName)
+      const filePath = fileInfo ? fileInfo.fullPath : path.join(blogsDir, fileName)
       const cacheFilePath = path.join(cacheDir, `${slug}.json`)
       
       // Check if cache is valid
