@@ -176,5 +176,6 @@ scripts/temp/
 **/api-keys.*
 **/secrets.*
 
-# SEO Keyword Research File
+# SEO Keyword Research Files
+SEO_KEYWORDS.md
 /src/SEO_KEYWORDS.md
