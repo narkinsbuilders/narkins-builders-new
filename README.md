@@ -25,7 +25,7 @@ A modern real estate platform built with Next.js 15, TinaCMS, and TypeScript. Fe
 
 ## Architecture Overview
 
-This application follows a modern jamstack architecture with the following layers:
+This application follows a modern full-stack architecture with the following layers:
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -41,9 +41,10 @@ This application follows a modern jamstack architecture with the following layer
 
 - Server-Side Rendering (SSR): Next.js App Router for optimal SEO and performance
 - Static Site Generation (SSG): Pre-built pages with ISR for dynamic content
+- Full-Stack API: Next.js API routes with database integration
 - Component Composition: Modular React components with TypeScript
 - State Management: Zustand for global state, React hooks for local state
-- Content as Code: TinaCMS with Git-based workflow
+- Headless CMS: TinaCMS with database-backed content management
 - Progressive Enhancement: Core functionality works without JavaScript
 
 ## Tech Stack

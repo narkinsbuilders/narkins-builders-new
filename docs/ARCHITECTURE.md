@@ -6,7 +6,7 @@ Narkins Builders is a modern real estate platform built with Next.js 15, featuri
 
 ## Architecture Patterns
 
-### 1. Jamstack Architecture
+### 1. Full-Stack Architecture
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Client Layer  │    │  Service Layer  │    │   Data Layer    │
