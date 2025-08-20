@@ -4,11 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { generateBlogUrlFromDateAndSlug } from '@/lib/blog';
 
 interface BlogPost {
  slug: string;
  title: string;
  excerpt?: string;
+ date?: string;
 }
 
 interface BlogNavigationProps {
@@ -32,7 +34,7 @@ export function BlogNavigation({ previousPost, nextPost, className = '' }: BlogN
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
      >
-      <Link href={`/blog/${previousPost.slug}`} className="group block">
+      <Link href={previousPost.date ? generateBlogUrlFromDateAndSlug(previousPost.date, previousPost.slug) : `/blog/${previousPost.slug}`} className="group block">
        <div className="flex items-start gap-4 p-6 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 hover:border-gray-200 transition-all duration-300 min-h-[44px]">
         <div className="flex-shrink-0 mt-1">
          <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -65,7 +67,7 @@ export function BlogNavigation({ previousPost, nextPost, className = '' }: BlogN
       transition={{ duration: 0.5 }}
       className="md:text-right"
      >
-      <Link href={`/blog/${nextPost.slug}`} className="group block">
+      <Link href={nextPost.date ? generateBlogUrlFromDateAndSlug(nextPost.date, nextPost.slug) : `/blog/${nextPost.slug}`} className="group block">
        <div className="flex items-start gap-4 p-6 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 hover:border-gray-200 transition-all duration-300 md:flex-row-reverse md:text-right min-h-[44px]">
         <div className="flex-shrink-0 mt-1">
          <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

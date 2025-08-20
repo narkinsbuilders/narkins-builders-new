@@ -24,3 +24,19 @@ export function sortPostsByDate(posts: BlogPost[]): BlogPost[] {
 export function getPostBySlugFromArray(posts: BlogPost[], slug: string): BlogPost | null {
  return posts.find(post => post.slug === slug) || null
 }
+
+// Generate blog URL in the new format /blog/year/month/slug
+export function generateBlogUrl(post: BlogPost): string {
+ const postDate = new Date(post.date);
+ const year = postDate.getFullYear();
+ const month = String(postDate.getMonth() + 1).padStart(2, '0');
+ return `/blog/${year}/${month}/${post.slug}`;
+}
+
+// Generate blog URL from date string and slug
+export function generateBlogUrlFromDateAndSlug(dateString: string, slug: string): string {
+ const postDate = new Date(dateString);
+ const year = postDate.getFullYear();
+ const month = String(postDate.getMonth() + 1).padStart(2, '0');
+ return `/blog/${year}/${month}/${slug}`;
+}

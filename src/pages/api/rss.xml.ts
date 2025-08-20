@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getAllPostsServer } from '../../lib/blog-server';
+import { generateBlogUrlFromDateAndSlug } from '../../lib/blog';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
 
@@ -12,12 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    .map((post) => {
     const pubDate = new Date(post.date).toUTCString();
     const imageUrl = post.image.startsWith('http') ? post.image : `${SITE_URL}${post.image}`;
+    const blogUrl = generateBlogUrlFromDateAndSlug(post.date, post.slug);
     
     return `
    <item>
     <title><![CDATA[${post.title}]]></title>
-    <link>${SITE_URL}/blog/${post.slug}</link>
-    <guid isPermaLink="true">${SITE_URL}/blog/${post.slug}</guid>
+    <link>${SITE_URL}${blogUrl}</link>
+    <guid isPermaLink="true">${SITE_URL}${blogUrl}</guid>
     <description><![CDATA[${post.excerpt || `Expert real estate insights from Narkin's Builders - ${post.title}`}]]></description>
     <pubDate>${pubDate}</pubDate>
     <author>admin@narkinsbuilders.com (Narkin's Builders)</author>
@@ -26,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <content:encoded><![CDATA[
      <img src="${imageUrl}" alt="${post.title}" style="max-width: 100%; height: auto;" />
      <p>${post.excerpt || `Expert real estate insights from Narkin's Builders about ${post.title}.`}</p>
-     <p><a href="${SITE_URL}/blog/${post.slug}">Read the full article on Narkin's Builders website</a></p>
+     <p><a href="${SITE_URL}${blogUrl}">Read the full article on Narkin's Builders website</a></p>
     ]]></content:encoded>
    </item>`;
    })

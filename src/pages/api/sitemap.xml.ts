@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getAllPostsServer } from '../../lib/blog-server';
+import { generateBlogUrlFromDateAndSlug } from '../../lib/blog';
 import fs from 'fs';
 import path from 'path';
 
@@ -71,7 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const posts = await getAllPostsServer();
   
   blogPosts = posts.map((post) => ({
-   loc: `${SITE_URL}/blog/${post.slug}`,
+   loc: `${SITE_URL}${generateBlogUrlFromDateAndSlug(post.date, post.slug)}`,
    lastmod: post.date,
    changefreq: 'monthly' as const,
    priority: 0.6

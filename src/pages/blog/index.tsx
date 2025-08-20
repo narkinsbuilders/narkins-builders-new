@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import { getAllPostsServer } from '../../lib/blog-server-precompiled'
-import { BlogPost } from '../../lib/blog'
+import { BlogPost, generateBlogUrl } from '../../lib/blog'
 import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'
 import BlogFilter, { BlogFilters } from '@/components/features/blog-filter/blog-filter'
@@ -110,7 +110,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
         {filteredPosts.map((post) => (
         <article key={post.slug} 
          className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300 hover:-translate-y-2 group">
-         <Link href={`/blog/${post.slug}`}>
+         <Link href={generateBlogUrl(post)}>
           <div className="cursor-pointer">
            <div className="aspect-[16/9] relative">
             <Image

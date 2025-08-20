@@ -2,7 +2,7 @@ import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
-import { BlogPost } from '@/lib/blog'
+import { BlogPost, generateBlogUrl } from '@/lib/blog'
 import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
 import { EnhancedCommentsSection } from '@/components/features/comments/enhanced-comments-section'
 import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
@@ -34,7 +34,7 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
     excerpt={post.excerpt}
     date={post.date}
     image={post.image}
-    url={`https://narkinsbuilders.com/blog/${post.slug}`}
+    url={`https://narkinsbuilders.com${generateBlogUrl(post)}`}
    />
 
    <ReadingProgressBar />

@@ -375,12 +375,14 @@ export function getAdjacentPosts(currentSlug: string) {
    previousPost: previousPost ? {
     slug: previousPost.slug,
     title: previousPost.title,
-    excerpt: previousPost.excerpt
+    excerpt: previousPost.excerpt,
+    date: previousPost.date
    } : null,
    nextPost: nextPost ? {
     slug: nextPost.slug,
     title: nextPost.title,
-    excerpt: nextPost.excerpt
+    excerpt: nextPost.excerpt,
+    date: nextPost.date
    } : null
   }
   
