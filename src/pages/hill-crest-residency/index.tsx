@@ -32,7 +32,7 @@ interface PostWithCategory extends BlogPost {
 import { useLightboxStore } from "@/zustand";
 import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import Testimonials from "@/components/features/testimonials/testimonials";
-import { getAllPostsServer } from "@/lib/blog-server";
+import { getAllPostsServer, BlogFilter } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestResidencySchema';
 import { VideoSchema } from '@/components/common/schema/VideoSchema';
@@ -452,8 +452,8 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
 // CHANGED: Transform MDX data to match BlogsSection expected format
 export const getStaticProps: GetStaticProps = async () => {
  try {
-  // Get latest 3 blog posts from MDX
-  const mdxPosts = getAllPostsServer().slice(0, 3);
+  // Get latest 3 Hill Crest Residency related blog posts from MDX
+  const mdxPosts = getAllPostsServer('hcr').slice(0, 3);
 
   // Transform MDX format to match BlogsSection expected format
   const posts = mdxPosts.map((post, index) => {

@@ -7,7 +7,7 @@ import Testimonials from '@/components/features/testimonials/testimonials';
 import BlogsSection from '@/components/features/blogs-section/blogs-section';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
-import { getAllPostsServer } from '../lib/blog-server';
+import { getAllPostsServer, BlogFilter } from '../lib/blog-server';
 import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
 import { GetStaticProps } from 'next'
 import SEOImage from "@/components/common/seo-image/seo-image";
@@ -370,8 +370,8 @@ export default function Index({ posts }: { posts: any[] }) {
 // CHANGED: Transform MDX data to match BlogsSection expected format
 export const getStaticProps: GetStaticProps = async () => {
  try {
-  // Get latest 3 blog posts from MDX
-  const mdxPosts = getAllPostsServer().slice(0, 3);
+  // Get latest 3 general blog posts from MDX (excluding specific project mentions)
+  const mdxPosts = getAllPostsServer('general').slice(0, 3);
 
   // Transform MDX format to match BlogsSection expected format
   const posts = mdxPosts.map((post, index) => {

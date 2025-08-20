@@ -6,37 +6,83 @@ import { BlogPost } from './blog'
 
 const postsDirectory = path.join(process.cwd(), 'content/blogs')
 
-export function getAllPostsServer(): BlogPost[] {
- if (!fs.existsSync(postsDirectory)) {
-  return []
+// Helper function to recursively read MDX files from nested directories
+function readMDXFiles(dir: string): string[] {
+ const files: string[] = [];
+ 
+ if (!fs.existsSync(dir)) {
+  return files;
+ }
+ 
+ const items = fs.readdirSync(dir);
+ 
+ for (const item of items) {
+  const itemPath = path.join(dir, item);
+  const stat = fs.statSync(itemPath);
+  
+  if (stat.isDirectory()) {
+   files.push(...readMDXFiles(itemPath));
+  } else if (item.endsWith('.mdx')) {
+   files.push(itemPath);
+  }
+ }
+ 
+ return files;
+}
+
+export type BlogFilter = 'all' | 'hcr' | 'nbr' | 'general';
+
+export function getAllPostsServer(filter: BlogFilter = 'all'): BlogPost[] {
+ const allMDXFiles = readMDXFiles(postsDirectory);
+ 
+ const allPostsData = allMDXFiles.map((fullPath): BlogPost => {
+  const relativePath = path.relative(postsDirectory, fullPath);
+  const slug = path.basename(fullPath, '.mdx');
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const matterResult = matter(fileContents);
+  const content = matterResult.content;
+
+  return {
+   slug,
+   title: matterResult.data.title || 'Untitled',
+   excerpt: matterResult.data.excerpt || '',
+   date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
+   image: matterResult.data.image || '/images/narkins-builders-logo.webp',
+   content: content,
+   readTime: matterResult.data.readTime || '5 min read',
+   keywords: matterResult.data.keywords || '',
+  }
+ });
+
+ // Sort by date first
+ const sortedPosts = allPostsData.sort((a, b) => {
+  return new Date(b.date).getTime() - new Date(a.date).getTime()
+ });
+
+ // Apply filter
+ if (filter === 'all') {
+  return sortedPosts;
  }
 
- const fileNames = fs.readdirSync(postsDirectory)
- const allPostsData = fileNames
-  .filter(name => name.endsWith('.mdx'))
-  .map((fileName): BlogPost => {
-   const slug = fileName.replace(/\.mdx$/, '')
-   const fullPath = path.join(postsDirectory, fileName)
-   const fileContents = fs.readFileSync(fullPath, 'utf8')
-   const matterResult = matter(fileContents)
-
-   const content = matterResult.content;
-
-   return {
-    slug,
-    title: matterResult.data.title || 'Untitled',
-    excerpt: matterResult.data.excerpt || '',
-    date: matterResult.data.date ? new Date(matterResult.data.date).toISOString() : new Date().toISOString(),
-    image: matterResult.data.image || '/images/narkins-builders-logo.webp',
-    content: content,
-    readTime: matterResult.data.readTime || '5 min read',
-    keywords: matterResult.data.keywords || '',
-   }
-  })
-
- return allPostsData.sort((a, b) => {
-  return new Date(b.date).getTime() - new Date(a.date).getTime()
- })
+ return sortedPosts.filter(post => {
+  const searchText = `${post.title} ${post.excerpt} ${post.keywords} ${post.content}`.toLowerCase();
+  
+  switch (filter) {
+   case 'hcr':
+    return searchText.includes('hill crest') || searchText.includes('hcr');
+   case 'nbr':
+    return searchText.includes('narkins boutique') || searchText.includes('boutique residency') || searchText.includes('nbr');
+   case 'general':
+    // General posts - exclude specific project mentions
+    return !searchText.includes('hill crest') && 
+           !searchText.includes('hcr') && 
+           !searchText.includes('narkins boutique') && 
+           !searchText.includes('boutique residency') && 
+           !searchText.includes('nbr');
+   default:
+    return true;
+  }
+ });
 }
 
 export function getPostBySlugServer(slug: string): BlogPost | null {
