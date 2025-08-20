@@ -583,23 +583,30 @@ export const getStaticProps: GetStaticProps = async () => {
   const mdxPosts = getAllPostsServer().slice(0, 3);
 
   // Transform MDX format to match BlogsSection expected format
-  const posts = mdxPosts.map((post, index) => ({
-   id: index + 1,
-   slug: post.slug,
-   title: post.title,
-   link: `/blog/${post.slug}`,
-   date: post.date,
-   datetime: post.date,
-   description: post.excerpt,
-   excerpt: post.excerpt,
-   category: "Real Estate",
-   image: post.image,
-   author: {
-    name: "Narkin's Builders",
-    role: "Real Estate Expert",
-    imageUrl: "/media/common/logos/narkins-builders-logo-30-years-experience.webp"
-   }
-  }));
+  const posts = mdxPosts.map((post, index) => {
+   // Generate the new URL format /blog/year/month/slug
+   const postDate = new Date(post.date);
+   const year = postDate.getFullYear();
+   const month = String(postDate.getMonth() + 1).padStart(2, '0');
+   
+   return {
+    id: index + 1,
+    slug: post.slug,
+    title: post.title,
+    link: `/blog/${year}/${month}/${post.slug}`,
+    date: post.date,
+    datetime: post.date,
+    description: post.excerpt,
+    excerpt: post.excerpt,
+    category: "Real Estate",
+    image: post.image,
+    author: {
+     name: "Narkin's Builders",
+     role: "Real Estate Expert",
+     imageUrl: "/media/common/logos/narkins-builders-logo-30-years-experience.webp"
+    }
+   };
+  });
 
   return {
    props: { posts },
