@@ -6,11 +6,11 @@ const path = require('path');
 
 const htmlPath = path.join(process.cwd(), 'public/admin/index.html');
 
-console.log('🔧 Fixing TinaCMS branding...');
+console.log('Fixing TinaCMS branding...');
 
 try {
   if (!fs.existsSync(htmlPath)) {
-    console.log('❌ Admin HTML file not found, skipping branding fix');
+    console.log('Admin HTML file not found, skipping branding fix');
     process.exit(0);
   }
 
@@ -39,9 +39,9 @@ try {
   );
 
   fs.writeFileSync(htmlPath, html);
-  console.log('✅ TinaCMS branding fixed successfully');
+  console.log('TinaCMS branding fixed successfully');
   
 } catch (error) {
-  console.error('❌ Error fixing TinaCMS branding:', error.message);
+  console.error('Error fixing TinaCMS branding:', error.message);
   process.exit(1);
 }
