@@ -152,7 +152,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                 return new Date(post.date).toLocaleDateString('en-US', {
                  year: 'numeric',
                  month: 'long',
-                 day: 'numeric'
+                 day: 'numeric',
+                 timeZone: 'UTC'
                 });
                } catch (error) {
                 return 'Date unavailable';
