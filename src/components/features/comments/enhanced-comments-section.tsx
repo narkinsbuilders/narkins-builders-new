@@ -5,7 +5,6 @@ import { EnhancedCommentForm } from './enhanced-comment-form';
 import { EnhancedCommentList } from './enhanced-comment-list';
 import { cn } from '@/lib/utils';
 import { Comment } from '@/lib/database';
-import { motion } from 'framer-motion';
 import { MessageSquare } from 'lucide-react';
 
 interface EnhancedCommentsSectionProps {
@@ -27,10 +26,7 @@ export function EnhancedCommentsSection({
  };
 
  return (
-  <motion.div 
-   initial={{ opacity: 0, y: 40 }}
-   animate={{ opacity: 1, y: 0 }}
-   transition={{ duration: 0.6 }}
+  <div 
    className={cn('p-5 lg:p-6 rounded-2xl shadow-xl ring-1 ring-gray-900/10 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01]', className)}
    style={{backgroundColor: '#FAFAFA'}}
   >
@@ -64,7 +60,7 @@ export function EnhancedCommentsSection({
     refreshTrigger={refreshTrigger}
     className="!p-0 !rounded-none !shadow-none !ring-0 !overflow-visible bg-transparent"
    />
-  </motion.div>
+  </div>
  );
 }
 
