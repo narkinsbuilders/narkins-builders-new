@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Comment } from '@/lib/database';
 import { transformCommentsToGoogleReviews, GoogleReviewData, GoogleReviewsSummary, sortReviewsGoogleStyle } from '@/lib/google-reviews-adapter';
 import { GoogleReviewItem } from './google-review-item';
@@ -65,7 +65,7 @@ export function GoogleReviewsSection({
   }, [comments, sortBy, filterRating]);
 
   // Fetch comments from API
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/comments/by-slug/${blogSlug}`);
@@ -79,7 +79,7 @@ export function GoogleReviewsSection({
     } finally {
       setLoading(false);
     }
-  };
+  }, [blogSlug]);
 
   // Handle new review submission
   const handleReviewSubmitted = (comment: { id: number; pending: boolean }) => {
@@ -140,14 +140,14 @@ export function GoogleReviewsSection({
   // Load comments on mount
   useEffect(() => {
     fetchComments();
-  }, [blogSlug]);
+  }, [blogSlug, fetchComments]);
 
   // Load comments on refresh trigger
   useEffect(() => {
     if (refreshTrigger > 0) {
       fetchComments();
     }
-  }, [refreshTrigger]);
+  }, [refreshTrigger, fetchComments]);
 
   return (
     <div className={cn('max-w-4xl mx-auto', className)}>
