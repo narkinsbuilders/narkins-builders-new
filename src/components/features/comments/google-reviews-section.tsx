@@ -137,12 +137,17 @@ export function GoogleReviewsSection({
     }
   };
 
-  // Load comments on mount and refresh trigger
+  // Load comments on mount
+  useEffect(() => {
+    fetchComments();
+  }, [blogSlug]);
+
+  // Load comments on refresh trigger
   useEffect(() => {
     if (refreshTrigger > 0) {
       fetchComments();
     }
-  }, [refreshTrigger, blogSlug]);
+  }, [refreshTrigger]);
 
   return (
     <div className={cn('max-w-4xl mx-auto', className)}>
