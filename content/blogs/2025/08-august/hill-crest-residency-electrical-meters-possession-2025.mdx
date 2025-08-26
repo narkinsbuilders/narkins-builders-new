@@ -81,42 +81,20 @@ Hill Crest Residency isn't just ready possession. **It's smart living solutions 
 * High-speed elevators with backup power
 * Firefighting system meeting international standards
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-  <div className="relative rounded-xl overflow-hidden shadow-lg">
-    <img 
-      src="/media/common/blog/hill-crest-residency-electrical-meter-installation-unit-2.webp" 
-      alt="Hill Crest Residency electrical meter installation complete - Bahria Town Karachi ready possession"
-      className="w-full h-64 object-cover"
-    />
-    <div 
-      className="absolute bottom-0 left-0 right-0 p-4"
-      style={{
-        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
-        minHeight: '80px'
-      }}
-    >
-      <h4 className="text-white font-semibold text-sm mb-1">Electrical Infrastructure Complete</h4>
-      <p className="text-white text-xs opacity-90">Professional meter installation ready for immediate possession</p>
-    </div>
-  </div>
-  <div className="relative rounded-xl overflow-hidden shadow-lg">
-    <img 
-      src="/media/common/blog/hill-crest-residency-electrical-meter-installation-unit-1.webp" 
-      alt="Hill Crest Residency electrical meters installed - immediate possession Bahria Town apartments"
-      className="w-full h-64 object-cover"
-    />
-    <div 
-      className="absolute bottom-0 left-0 right-0 p-4"
-      style={{
-        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
-        minHeight: '80px'
-      }}
-    >
-      <h4 className="text-white font-semibold text-sm mb-1">Ready for Move-In</h4>
-      <p className="text-white text-xs opacity-90">Utilities connected, possession starting next week</p>
-    </div>
-  </div>
-</div>
+<ImageGrid images={[
+  {
+    src: "/media/common/blog/hill-crest-residency-electrical-meter-installation-unit-2.webp",
+    alt: "Hill Crest Residency electrical meter installation complete - Bahria Town Karachi ready possession",
+    title: "Electrical Infrastructure Complete",
+    description: "Professional meter installation ready for immediate possession"
+  },
+  {
+    src: "/media/common/blog/hill-crest-residency-electrical-meter-installation-unit-1.webp", 
+    alt: "Hill Crest Residency electrical meters installed - immediate possession Bahria Town apartments",
+    title: "Ready for Move-In",
+    description: "Utilities connected, possession starting next week"
+  }
+]} />
 
 **Utilities That Never Fail:**
 * Uninterrupted power supply during outages

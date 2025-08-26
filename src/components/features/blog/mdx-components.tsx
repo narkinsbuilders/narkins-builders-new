@@ -178,7 +178,7 @@ const htmlComponents = {
  
  // Links and emphasis
  a: (props: any) => <a className="text-blue-600 hover:text-blue-800 " {...props} />,
- strong: (props: any) => <span className=" text-gray-900" {...props} />,
+ strong: (props: any) => <span className="font-bold text-gray-900" {...props} />,
  em: (props: any) => <em className="italic text-gray-700" {...props} />,
  
  // Code and quotes
@@ -556,7 +556,7 @@ const customComponents = {
     title: 'Category',
     dataIndex: 'category',
     key: 'category',
-    render: (text: string) => {text},
+    render: (text: string) => text,
    },
    {
     title: 'Price (Lac)',
@@ -714,6 +714,29 @@ const customComponents = {
   );
  },
 
+ ImageGrid: ({ images }: { images: Array<{src: string, alt: string, title: string, description: string}> }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 my-6 sm:my-8">
+    {images.map((img, index) => (
+      <div key={index} className="space-y-2 sm:space-y-3">
+        <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-md sm:shadow-lg">
+          <Image
+            src={img.src}
+            alt={img.alt}
+            width={800}
+            height={600}
+            className="w-full h-48 sm:h-56 md:h-64 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+          />
+        </div>
+        <div className="text-center px-2 sm:px-0">
+          <h4 className="text-gray-900 font-semibold text-xs sm:text-sm mb-1">{img.title}</h4>
+          <p className="text-gray-600 text-xs leading-relaxed">{img.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+ ),
+
  EconomicGauge: (props: any) => <EconomicGauge {...props} />,
  FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
  InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />,
@@ -772,6 +795,7 @@ const templateComponents = {
  FDIFlowChart: customComponents.FDIFlowChart,
  InvestmentFunnel: customComponents.InvestmentFunnel,
  VideoPlayer: customComponents.VideoPlayer,
+ ImageGrid: customComponents.ImageGrid,
 };
 
 // Combine all components
