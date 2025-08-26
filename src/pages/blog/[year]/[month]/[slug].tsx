@@ -108,7 +108,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
  return (
   <>
    <Head>
-    <title>{post.title} | Narkin's Builders Blog</title>
+    <title>{Array.isArray(post.title) ? post.title.join(' ') : String(post.title || '')} | Narkin's Builders Blog</title>
     <meta name="description" content={post.excerpt || ''} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

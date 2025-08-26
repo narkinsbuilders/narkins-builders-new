@@ -6,6 +6,9 @@ import dynamic from 'next/dynamic'
 import { Table, Card, Progress, Statistic, Row, Col, Divider, List } from 'antd'
 import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
 import { ZoomableImage } from '@/components/features/blog/zoomable-image'
+import EconomicGauge from '@/components/features/blog/EconomicGauge'
+import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
+import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
 import {
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -708,7 +711,11 @@ const customComponents = {
     </Card>
    </div>
   );
- }
+ },
+
+ EconomicGauge: (props: any) => <EconomicGauge {...props} />,
+ FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
+ InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />
 }
 
 // TinaCMS Template Components
@@ -759,6 +766,9 @@ const templateComponents = {
  PricingTable: customComponents.PricingTable,
  ComparisonChart: customComponents.ComparisonChart,
  PerformanceGauge: customComponents.PerformanceGauge,
+ EconomicGauge: customComponents.EconomicGauge,
+ FDIFlowChart: customComponents.FDIFlowChart,
+ InvestmentFunnel: customComponents.InvestmentFunnel,
 };
 
 // Combine all components
