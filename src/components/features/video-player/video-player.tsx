@@ -5,8 +5,36 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
   const [videoProgress, setVideoProgress] = useState<number>(0);
   const [videoDuration, setVideoDuration] = useState<number>();
   const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isSafari, setIsSafari] = useState(false);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Start loading video when 50% visible
+          if (entry.intersectionRatio > 0.5) {
+            setShouldLoad(true);
+          }
+        }
+      },
+      { 
+        threshold: [0.1, 0.5],
+        rootMargin: '100px 0px' // Start loading 100px before element comes into view
+      }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -14,8 +42,8 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       setVideoDuration(video.duration);
     }
     function isMobileSafari() {
-  return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) || ('safari' in window)
-}
+      return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) || ('safari' in window)
+    }
     setIsSafari(!!isMobileSafari());
   }, []);
 
@@ -46,25 +74,84 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
   };
 
   return (
-    <div className="relative w-full rounded-xl overflow-hidden">
-      {isSafari ? <video autoPlay className="w-full bg-neutral-300" muted poster={poster} playsInline controls>
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> : (
-        <Fragment>
-          <div className="absolute top-4 right-4 z-10">
-            <VideoPlayerControls
-              progress={videoProgress}
-              isPaused={isPaused}
-              onPlayPause={togglePlayPause}
-            />
+    <div 
+      ref={containerRef}
+      className="relative w-full rounded-xl overflow-hidden my-8"
+      style={{ aspectRatio: '16/9' }} // 1920x1080 aspect ratio
+    >
+      {!shouldLoad ? (
+        // Lazy loading placeholder
+        <div 
+          className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"
+          style={{ aspectRatio: '16/9' }}
+        >
+          <div className="text-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+              <svg className="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p className="text-gray-600 text-sm">Loading video...</p>
+            <p className="text-gray-500 text-xs mt-1">Hill Crest Residency Electrical Installation</p>
           </div>
-          <video className="w-full h-auto bg-neutral-300" poster={poster} ref={videoRef} preload="yes"
-            loop autoPlay playsInline muted controls={false} disablePictureInPicture>
-            <source src={src} type="video/mp4" />
-          </video>
-        </Fragment>
+        </div>
+      ) : (
+        <>
+          {isSafari ? (
+            <video 
+              className="w-full h-full object-cover bg-neutral-300" 
+              muted 
+              poster={poster} 
+              playsInline 
+              controls
+              preload="metadata"
+              style={{ aspectRatio: '16/9' }}
+            >
+              <source src={src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <Fragment>
+              <div className="absolute top-4 right-4 z-10">
+                <VideoPlayerControls
+                  progress={videoProgress}
+                  isPaused={isPaused}
+                  onPlayPause={togglePlayPause}
+                />
+              </div>
+              <video 
+                className="w-full h-full object-cover bg-neutral-300" 
+                poster={poster} 
+                ref={videoRef} 
+                preload="metadata"
+                loop 
+                autoPlay={isVisible} 
+                playsInline 
+                muted 
+                controls={false} 
+                disablePictureInPicture
+                style={{ aspectRatio: '16/9' }}
+              >
+                <source src={src} type="video/mp4" />
+              </video>
+            </Fragment>
+          )}
+        </>
       )}
+      
+      {/* Responsive overlay for mobile */}
+      <div className="absolute inset-0 lg:hidden">
+        <div className="w-full h-full flex items-center justify-center">
+          {!shouldLoad && (
+            <button
+              onClick={() => setShouldLoad(true)}
+              className="bg-black/50 hover:bg-black/70 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+            >
+              Load Video (26MB)
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

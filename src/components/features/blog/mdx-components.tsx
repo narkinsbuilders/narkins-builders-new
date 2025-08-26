@@ -9,6 +9,7 @@ import { ZoomableImage } from '@/components/features/blog/zoomable-image'
 import EconomicGauge from '@/components/features/blog/EconomicGauge'
 import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
 import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
+import VideoPlayer from '@/components/features/video-player/video-player'
 import {
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -715,7 +716,8 @@ const customComponents = {
 
  EconomicGauge: (props: any) => <EconomicGauge {...props} />,
  FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
- InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />
+ InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />,
+ VideoPlayer: (props: any) => <VideoPlayer {...props} />
 }
 
 // TinaCMS Template Components
@@ -769,6 +771,7 @@ const templateComponents = {
  EconomicGauge: customComponents.EconomicGauge,
  FDIFlowChart: customComponents.FDIFlowChart,
  InvestmentFunnel: customComponents.InvestmentFunnel,
+ VideoPlayer: customComponents.VideoPlayer,
 };
 
 // Combine all components

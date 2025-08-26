@@ -307,7 +307,16 @@ export function getPostBySlugServer(slug: string): BlogPost | null {
 
 function getPostFromFS(slug: string): BlogPost | null {
  try {
-  const fullPath = path.join(postsDirectory, slug + '.mdx')
+  // Search recursively for the file by slug
+  const mdxFiles = findAllMdxFiles(postsDirectory)
+  const targetFile = mdxFiles.find(file => file.slug === slug)
+  
+  if (!targetFile) {
+   console.log(`[MDX] Post file not found: ${slug}.mdx`)
+   return null
+  }
+  
+  const fullPath = targetFile.fullPath
 
   if (!fs.existsSync(fullPath)) {
    console.log(`[MDX] Post file not found: ${slug}.mdx`)
