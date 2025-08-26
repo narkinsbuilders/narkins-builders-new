@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { BlogPost, generateBlogUrl } from '@/lib/blog'
 import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
-import { EnhancedCommentsSection } from '@/components/features/comments/enhanced-comments-section'
+import { GoogleReviewsSection } from '@/components/features/comments/google-reviews-section'
 import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
 import { BlogNavigation } from '@/components/features/blog/blog-navigation';
 
@@ -116,9 +116,9 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
      <BlogNavigation previousPost={previousPost} nextPost={nextPost} />
     </div>
 
-    {/* Comments Section */}
+    {/* Reviews Section */}
     <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">
-     <EnhancedCommentsSection blogSlug={post.slug} />
+     <GoogleReviewsSection blogSlug={post.slug} />
     </div>
 
     

@@ -135,6 +135,8 @@ async function handleCreateComment(
    author_name: authorName,
    author_email: authorEmail && authorEmail.trim() ? authorEmail : '',
    content: content,
+   rating: 5, // Default rating for legacy API
+   is_verified: false,
    approved: autoApprove,
    auto_approved: autoApprove,
    moderation_score: moderationScore,

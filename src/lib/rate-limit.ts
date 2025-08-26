@@ -2,10 +2,11 @@
 
 import { executeQuery, executeQuerySingle } from './database';
 
-interface RateLimitResult {
+export interface RateLimitResult {
  allowed: boolean;
  remaining: number;
  resetTime: Date;
+ retryAfter?: number; // seconds until retry
 }
 
 export async function checkRateLimit(
@@ -77,10 +78,13 @@ export async function checkRateLimit(
   
   // Check if limit exceeded
   if (currentLimit.request_count >= maxRequests) {
+   const resetTime = new Date(new Date(currentLimit.window_start).getTime() + windowSize);
+   const retryAfterMs = resetTime.getTime() - now.getTime();
    return {
     allowed: false,
     remaining: 0,
-    resetTime: new Date(new Date(currentLimit.window_start).getTime() + windowSize)
+    resetTime,
+    retryAfter: Math.ceil(retryAfterMs / 1000)
    };
   }
   

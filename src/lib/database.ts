@@ -98,6 +98,9 @@ export interface Comment {
  author_email: string;
  content: string;
  likes: number;
+ rating: number; // 1-5 stars
+ helpful_count: number;
+ is_verified: boolean;
  created_at: Date;
  updated_at: Date;
  approved: boolean;
@@ -109,6 +112,14 @@ export interface Comment {
 }
 
 export interface CommentLike {
+ id: number;
+ comment_id: number;
+ user_ip: string;
+ user_fingerprint?: string;
+ created_at: Date;
+}
+
+export interface CommentHelpfulVote {
  id: number;
  comment_id: number;
  user_ip: string;
@@ -160,17 +171,19 @@ export class CommentQueries {
  }
 
  // Create new comment
- static async createComment(commentData: Omit<Comment, 'id' | 'created_at' | 'updated_at' | 'likes'>): Promise<number> {
+ static async createComment(commentData: Omit<Comment, 'id' | 'created_at' | 'updated_at' | 'likes' | 'helpful_count'>): Promise<number> {
   const query = `
    INSERT INTO blog_comments 
-   (blog_slug, author_name, author_email, content, approved, auto_approved, moderation_score, flagged_reason, user_ip, user_agent)
-   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+   (blog_slug, author_name, author_email, content, rating, is_verified, approved, auto_approved, moderation_score, flagged_reason, user_ip, user_agent)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
   const params = [
    commentData.blog_slug,
    commentData.author_name,
    commentData.author_email,
    commentData.content,
+   commentData.rating || 5,
+   commentData.is_verified || false,
    commentData.approved,
    commentData.auto_approved,
    commentData.moderation_score,
@@ -275,6 +288,51 @@ export class LikeQueries {
  static async hasUserLiked(commentId: number, userIp: string): Promise<boolean> {
   const result = await executeQuerySingle(
    'SELECT id FROM comment_likes WHERE comment_id = ? AND user_ip = ?',
+   [commentId, userIp]
+  );
+  return !!result;
+ }
+}
+
+export class HelpfulVoteQueries {
+ // Toggle helpful vote for comment
+ static async toggleHelpfulVote(commentId: number, userIp: string, userFingerprint?: string): Promise<boolean> {
+  // Check if vote already exists
+  const existingVote = await executeQuerySingle(
+   'SELECT id FROM comment_helpful_votes WHERE comment_id = ? AND user_ip = ?',
+   [commentId, userIp]
+  );
+
+  if (existingVote) {
+   // Remove vote
+   await executeQuery(
+    'DELETE FROM comment_helpful_votes WHERE comment_id = ? AND user_ip = ?',
+    [commentId, userIp]
+   );
+   return false; // Vote removed
+  } else {
+   // Add vote
+   await executeQuery(
+    'INSERT INTO comment_helpful_votes (comment_id, user_ip, user_fingerprint) VALUES (?, ?, ?)',
+    [commentId, userIp, userFingerprint || null]
+   );
+   return true; // Vote added
+  }
+ }
+
+ // Get helpful vote count for comment
+ static async getHelpfulCount(commentId: number): Promise<number> {
+  const result = await executeQuerySingle<{count: number}>(
+   'SELECT COUNT(*) as count FROM comment_helpful_votes WHERE comment_id = ?',
+   [commentId]
+  );
+  return result?.count || 0;
+ }
+
+ // Check if user has voted helpful
+ static async hasUserVotedHelpful(commentId: number, userIp: string): Promise<boolean> {
+  const result = await executeQuerySingle(
+   'SELECT id FROM comment_helpful_votes WHERE comment_id = ? AND user_ip = ?',
    [commentId, userIp]
   );
   return !!result;
