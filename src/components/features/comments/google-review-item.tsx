@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { UserAvatar } from './user-avatar';
-import '@/styles/review-fixes.css';
 
 interface GoogleReviewItemProps {
   review: GoogleReviewData;
@@ -85,7 +84,7 @@ export function GoogleReviewItem({
         delay: Math.min(index * 0.05, 0.2),
         ease: [0.25, 0.46, 0.45, 0.94] 
       }}
-      className="review-card bg-white border border-gray-200 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg lg:hover:shadow-xl transition-all duration-300 will-change-transform hover:-translate-y-1 lg:hover:border-gray-300 lg:hover:scale-[1.02]"
+      className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg lg:hover:shadow-xl transition-all duration-300 will-change-transform hover:-translate-y-1 lg:hover:border-gray-300 lg:hover:scale-[1.02] w-full max-w-full overflow-hidden"
     >
       <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
         {/* Avatar */}
@@ -153,7 +152,14 @@ export function GoogleReviewItem({
 
           {/* Review Content */}
           <div className="mb-3 sm:mb-4 lg:mb-6 w-full max-w-full">
-            <p className="review-content text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg lg:leading-7">
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg lg:leading-7 break-all overflow-hidden"
+               style={{
+                 wordWrap: 'break-word',
+                 overflowWrap: 'break-word',
+                 wordBreak: 'break-word',
+                 hyphens: 'auto',
+                 maxWidth: '100%'
+               }}>
               {displayText}
             </p>
             
