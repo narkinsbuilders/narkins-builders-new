@@ -110,12 +110,12 @@ export function GoogleReviewItem({
           </div>
         </div>
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 overflow-hidden">
           {/* Header */}
           <div className="flex items-start justify-between mb-1.5 sm:mb-2 lg:mb-3">
-            <div>
-              <div className="flex items-center gap-2 mb-1 lg:mb-2">
-                <h4 className="font-medium text-gray-900 text-sm sm:text-base lg:text-lg">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-1 lg:mb-2 min-w-0">
+                <h4 className="font-medium text-gray-900 text-sm sm:text-base lg:text-lg truncate">
                   {review.author.name}
                 </h4>
                 {review.author.isLocalGuide && (
@@ -149,7 +149,7 @@ export function GoogleReviewItem({
 
           {/* Review Content */}
           <div className="mb-3 sm:mb-4 lg:mb-6">
-            <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-sm sm:text-base lg:text-lg lg:leading-7">
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg lg:leading-7 break-words overflow-wrap-anywhere">
               {displayText}
             </p>
             
