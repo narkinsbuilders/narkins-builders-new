@@ -9,7 +9,7 @@ interface UserAvatarProps {
   className?: string;
 }
 
-export function UserAvatar({ name, size = 40, className }: UserAvatarProps) {
+export function UserAvatar({ name, size, className }: UserAvatarProps) {
   // Generate initials
   const initials = name
     .split(' ')
@@ -40,7 +40,7 @@ export function UserAvatar({ name, size = 40, className }: UserAvatarProps) {
         backgroundColor,
         className
       )}
-      style={{ width: size, height: size, fontSize: size * 0.4 }}
+      style={size ? { width: size, height: size, fontSize: size * 0.4 } : {}}
     >
       {initials}
     </div>

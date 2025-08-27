@@ -100,7 +100,10 @@ export function GoogleReviewItem({
                 onError={() => setImageError(true)}
               />
             ) : (
-              <UserAvatar name={review.author.name} size="responsive" />
+              <UserAvatar 
+                name={review.author.name} 
+                className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12"
+              />
             )}
             {review.isVerified && (
               <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full flex items-center justify-center">
