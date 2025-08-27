@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { GoogleReviewData } from '@/lib/google-reviews-adapter';
-import { Star, ThumbsUp, MoreHorizontal, Shield, Verified } from 'lucide-react';
+import { Star, ThumbsUp, MoreHorizontal, Shield, Verified, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -84,12 +84,12 @@ export function GoogleReviewItem({
         delay: Math.min(index * 0.05, 0.2),
         ease: [0.25, 0.46, 0.45, 0.94] 
       }}
-      className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-300 w-full max-w-full overflow-hidden"
+      className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-5 shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-300 w-full max-w-full overflow-hidden"
     >
-      <div className="flex items-start gap-4 sm:gap-6">
+      <div className="flex items-start gap-3 sm:gap-4 lg:gap-5">
         {/* Avatar */}
         <div className="flex-shrink-0">
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14">
             {review.author.profilePhotoUrl && !imageError ? (
               <Image
                 src={review.author.profilePhotoUrl}
@@ -102,7 +102,7 @@ export function GoogleReviewItem({
             ) : (
               <UserAvatar 
                 name={review.author.name} 
-                className="w-10 h-10 sm:w-12 sm:h-12"
+                className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
               />
             )}
             {Boolean(review.isVerified) && (
@@ -115,9 +115,9 @@ export function GoogleReviewItem({
 
         <div className="flex-1 min-w-0 overflow-hidden">
           {/* Header */}
-          <div className="flex items-start justify-between mb-2 sm:mb-3">
+          <div className="flex items-start justify-between mb-2 sm:mb-3 lg:mb-3">
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2 min-w-0">
+              <div className="flex items-center gap-2 mb-2 sm:mb-2 min-w-0">
                 <h4 className="font-medium text-gray-900 text-base sm:text-lg truncate">
                   {review.author.name}
                 </h4>
@@ -131,7 +131,7 @@ export function GoogleReviewItem({
               </div>
               
               {/* Rating and Date */}
-              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 lg:mb-2">
                 <div className="flex items-center gap-1">
                   {renderStars(review.rating)}
                 </div>
@@ -151,8 +151,8 @@ export function GoogleReviewItem({
           </div>
 
           {/* Review Content */}
-          <div className="mb-4 sm:mb-6 w-full max-w-full">
-            <p className="text-gray-700 leading-relaxed text-base sm:text-lg break-words overflow-hidden">
+          <div className="mb-4 sm:mb-5 lg:mb-6 w-full max-w-full">
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-base break-words overflow-hidden">
               {displayText}
             </p>
             
@@ -167,15 +167,15 @@ export function GoogleReviewItem({
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-3 border-t border-gray-100">
-            <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-3 sm:pt-3 lg:pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
               {/* Helpful Button */}
               <button
                 onClick={handleHelpfulClick}
                 disabled={isVotingHelpful}
                 title={hasVotedHelpful ? 'Remove helpful vote' : 'Mark as helpful'}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1',
+                  'flex items-center gap-1.5 px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-full text-xs sm:text-sm lg:text-sm font-medium transition-all duration-200 min-h-[36px] sm:min-h-[44px] lg:min-h-[40px] group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1',
                   hasVotedHelpful
                     ? 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100'
                     : 'text-gray-600 hover:bg-gray-50 border border-gray-300 hover:border-gray-400',
@@ -198,16 +198,14 @@ export function GoogleReviewItem({
                 disabled={isLiking}
                 title={hasLiked ? 'Unlike this review' : 'Like this review'}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1',
+                  'flex items-center gap-1.5 px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-full text-xs sm:text-sm lg:text-sm font-medium transition-all duration-200 min-h-[36px] sm:min-h-[44px] lg:min-h-[40px] group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1',
                   hasLiked
                     ? 'bg-red-50 text-red-700 border border-red-200 hover:bg-red-100'
                     : 'text-gray-600 hover:bg-gray-50 border border-gray-300 hover:border-gray-400',
                   isLiking && 'opacity-50 cursor-not-allowed'
                 )}
               >
-                <svg className={cn('h-3.5 w-3.5', hasLiked && 'fill-current')} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
+                <Heart className={cn('h-3.5 w-3.5', hasLiked && 'fill-current')} />
                 {(review.likeCount || 0) > 0 && (
                   <span>{review.likeCount}</span>
                 )}

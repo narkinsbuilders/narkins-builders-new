@@ -150,16 +150,16 @@ export function GoogleReviewsSection({
   }, [refreshTrigger]);
 
   return (
-    <div className={cn('max-w-4xl mx-auto', className)}>
+    <div className={cn('max-w-4xl mx-auto px-4 sm:px-6 lg:px-0', className)}>
       {/* Header with Summary */}
-      <div className="mb-6 sm:mb-8 lg:mb-12">
-        <div className="flex items-center gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
-          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-full flex items-center justify-center">
-            <Star className="h-6 w-6 text-white fill-white" />
+      <div className="mb-8 sm:mb-10 lg:mb-12">
+        <div className="flex items-center gap-3 sm:gap-4 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <Star className="h-5 w-5 sm:h-6 sm:w-6 text-white fill-white" />
           </div>
           <div>
-            <h2 className="text-2xl lg:text-3xl font-semibold text-gray-900">Reviews</h2>
-            <p className="text-gray-600 lg:text-lg">Share your experience about this article</p>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900">Reviews</h2>
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg">Share your experience about this article</p>
           </div>
         </div>
 
@@ -172,7 +172,7 @@ export function GoogleReviewsSection({
       </div>
 
       {/* Review Form */}
-      <div className="mb-6 sm:mb-8 lg:mb-12">
+      <div className="mb-8 sm:mb-10 lg:mb-12">
         <GoogleReviewForm 
           blogSlug={blogSlug} 
           onReviewSubmitted={handleReviewSubmitted}
@@ -181,7 +181,7 @@ export function GoogleReviewsSection({
 
       {/* Sort and Filter Controls */}
       {reviews.length > 0 && (
-        <div className="mb-6 lg:mb-8">
+        <div className="mb-8 lg:mb-10">
           <GoogleReviewsSort 
             sortBy={sortBy}
             onSortChange={setSortBy}
@@ -193,26 +193,26 @@ export function GoogleReviewsSection({
       )}
 
       {/* Reviews List */}
-      <div className="space-y-4 sm:space-y-6">
+      <div className="space-y-4 sm:space-y-5 lg:space-y-6">
         {loading ? (
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-4 sm:space-y-5 lg:space-y-6">
             {/* Responsive skeleton screens */}
             {[...Array(6)].map((_, i) => (
               <div 
                 key={i} 
-                className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm animate-pulse"
+                className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-5 shadow-sm animate-pulse"
                 style={{
                   animationDelay: `${i * 0.1}s`,
                   animationDuration: '1.5s'
                 }}
               >
-                <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex items-start gap-3 sm:gap-4 lg:gap-5">
                   {/* Avatar skeleton */}
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex-shrink-0"></div>
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gray-200 rounded-full flex-shrink-0"></div>
                   
                   <div className="flex-1 min-w-0">
                     {/* Header skeleton */}
-                    <div className="flex items-start justify-between mb-1.5 sm:mb-2 lg:mb-3">
+                    <div className="flex items-start justify-between mb-3 sm:mb-4">
                       <div className="space-y-1">
                         <div className="h-4 lg:h-5 bg-gray-200 rounded w-24 sm:w-32 lg:w-40"></div>
                         <div className="flex items-center gap-2">
@@ -228,14 +228,14 @@ export function GoogleReviewsSection({
                     </div>
                     
                     {/* Content skeleton */}
-                    <div className="mb-3 sm:mb-4 lg:mb-6 space-y-2 lg:space-y-3">
+                    <div className="mb-5 sm:mb-6 lg:mb-8 space-y-2 lg:space-y-3">
                       <div className="h-4 lg:h-5 bg-gray-200 rounded w-full"></div>
                       <div className="h-4 lg:h-5 bg-gray-200 rounded w-4/5"></div>
                       <div className="h-4 lg:h-5 bg-gray-200 rounded w-3/5"></div>
                     </div>
                     
                     {/* Actions skeleton */}
-                    <div className="flex items-center justify-between pt-2 border-t border-gray-100 sm:border-t-0 sm:pt-0 lg:pt-4 lg:border-t lg:border-gray-100">
+                    <div className="flex items-center justify-between pt-4 sm:pt-3 border-t border-gray-100">
                       <div className="flex gap-2">
                         <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-20 lg:w-24"></div>
                         <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-16 lg:w-20"></div>
@@ -248,8 +248,8 @@ export function GoogleReviewsSection({
             ))}
           </div>
         ) : reviews.length === 0 ? (
-          <div className="text-center py-12">
-            <Star className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+          <div className="text-center py-16 sm:py-12">
+            <Star className="h-16 w-16 sm:h-12 sm:w-12 text-gray-300 mx-auto mb-6 sm:mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               {filterRating ? `No ${filterRating}-star reviews yet` : 'No reviews yet'}
             </h3>

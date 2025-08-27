@@ -114,11 +114,11 @@ export function GoogleReviewForm({
           onMouseEnter={() => setHoverRating(starValue)}
           onMouseLeave={() => setHoverRating(0)}
           onClick={() => setRating(starValue)}
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+          className="p-1 sm:p-2 rounded-full hover:bg-gray-100 transition-colors min-w-[36px] min-h-[36px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
         >
           <Star
             className={cn(
-              'h-6 w-6 sm:h-8 sm:w-8 transition-colors duration-200',
+              'h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 transition-colors duration-200',
               (hoverRating || rating) >= starValue
                 ? 'text-amber-400 fill-amber-400'
                 : 'text-gray-300 hover:text-amber-300'
@@ -141,26 +141,26 @@ export function GoogleReviewForm({
   };
 
   return (
-    <div className={cn('bg-white border border-gray-200 rounded-lg overflow-hidden', className)}>
+    <div className={cn('bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200', className)}>
       {!isExpanded ? (
         /* Collapsed State - Click to Expand */
         <motion.button
           onClick={() => setIsExpanded(true)}
-          className="w-full p-6 text-left hover:bg-gray-50 transition-colors duration-200 group"
+          className="w-full p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors duration-200 group"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.99 }}
         >
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-              <Star className="h-5 w-5 text-white" />
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-700 transition-colors flex-shrink-0">
+              <Star className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-1">Write a review</h3>
-              <p className="text-gray-600 text-sm">Share your experience about this article</p>
+              <h3 className="font-medium text-gray-900 mb-1 text-base sm:text-lg">Write a review</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Share your experience about this article</p>
             </div>
             <div className="ml-auto flex">
               {Array.from({ length: 5 }, (_, i) => (
-                <Star key={i} className="h-5 w-5 text-gray-300" />
+                <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-gray-300" />
               ))}
             </div>
           </div>
@@ -170,23 +170,23 @@ export function GoogleReviewForm({
         <motion.div
           initial={{ height: 'auto', opacity: 1 }}
           animate={{ height: 'auto', opacity: 1 }}
-          className="p-6"
+          className="p-4 sm:p-6"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                <Star className="h-5 w-5 text-white" />
+            <div className="flex items-center gap-3 mb-3 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-medium text-gray-900">Write a review</h3>
-                <p className="text-gray-600 text-sm">Share your thoughts about this article</p>
+                <h3 className="font-medium text-gray-900 text-base sm:text-lg">Write a review</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">Share your thoughts about this article</p>
               </div>
             </div>
 
             {/* Rating Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 mb-2 sm:mb-3">
                 Your rating *
               </label>
               <div className="flex items-center gap-2 mb-2">
@@ -209,7 +209,7 @@ export function GoogleReviewForm({
             </div>
 
             {/* Name and Email */}
-            <div className="space-y-4 sm:grid sm:grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:space-y-0">
+            <div className="space-y-3 sm:space-y-4 sm:grid sm:grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:space-y-0">
               <div>
                 <label htmlFor="authorName" className="block text-sm font-medium text-gray-700 mb-2">
                   Your name *
