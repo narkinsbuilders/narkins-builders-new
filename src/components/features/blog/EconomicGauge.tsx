@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'antd'
 import dynamic from 'next/dynamic'
 
 const ReactECharts = dynamic(
@@ -121,20 +120,20 @@ export default function EconomicGauge({ value, title, subtitle }: EconomicGaugeP
 
   if (!isClient) {
     return (
-      <Card className="mb-6" style={{ padding: '20px' }}>
+      <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
         <div className="text-center mb-4">
           <h3 className="text-xl font-bold text-gray-800">{title || 'Loading...'}</h3>
           {subtitle && <p className="text-gray-600 mt-1">{subtitle}</p>}
         </div>
-        <div className="h-64 flex items-center justify-center bg-gray-50">
+        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
           Loading gauge...
         </div>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card className="mb-6" style={{ padding: '20px' }}>
+    <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
       <div className="text-center mb-4">
         <h3 className="text-xl font-bold text-gray-800">{title || 'Economic Gauge'}</h3>
         {subtitle && <p className="text-gray-600 mt-1">{subtitle}</p>}
@@ -158,6 +157,6 @@ export default function EconomicGauge({ value, title, subtitle }: EconomicGaugeP
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

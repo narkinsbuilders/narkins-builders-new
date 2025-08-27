@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'antd'
 import dynamic from 'next/dynamic'
 
 const ReactECharts = dynamic(
@@ -50,14 +49,14 @@ export default function FDIFlowChart({ title }: FDIFlowChartProps) {
 
   if (!isClient) {
     return (
-      <Card className="mb-6" style={{ padding: '20px' }}>
+      <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
         <div className="mb-4">
           <h3 className="text-xl font-bold text-gray-800">{title || 'Loading...'}</h3>
         </div>
-        <div className="h-96 flex items-center justify-center bg-gray-50">
+        <div className="h-96 flex items-center justify-center bg-gray-50 rounded">
           Loading chart...
         </div>
-      </Card>
+      </div>
     );
   }
   
@@ -124,7 +123,7 @@ export default function FDIFlowChart({ title }: FDIFlowChartProps) {
   }
 
   return (
-    <Card className="mb-6" style={{ padding: '20px' }}>
+    <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
       <div className="mb-4">
         <h3 className="text-xl font-bold text-gray-800">{title || 'FDI Flow Chart'}</h3>
       </div>
@@ -150,6 +149,6 @@ export default function FDIFlowChart({ title }: FDIFlowChartProps) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Select, Button } from 'antd';
 import { BlogPost } from '../../../lib/blog';
 import { getFilterStats } from '../../../lib/blog-filter';
 
@@ -16,8 +15,6 @@ interface BlogFilterProps {
  filteredCount: number;
  posts: BlogPost[];
 }
-
-const { Option } = Select;
 
 export default function BlogFilter({ filters, onFiltersChange, totalPosts, filteredCount, posts }: BlogFilterProps) {
  const stats = getFilterStats(posts);
@@ -75,42 +72,38 @@ export default function BlogFilter({ filters, onFiltersChange, totalPosts, filte
      {/* Sort Order */}
      <div className="flex items-center gap-2">
       <span className="text-sm text-gray-600">Sort:</span>
-      <Select
+      <select
        value={filters.sortOrder}
-       onChange={(value) => handleFilterChange('sortOrder', value)}
-       className="w-32"
-       size="small"
+       onChange={(e) => handleFilterChange('sortOrder', e.target.value)}
+       className="w-32 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       >
-       <Option value="newest">Newest</Option>
-       <Option value="oldest">Oldest</Option>
-      </Select>
+       <option value="newest">Newest</option>
+       <option value="oldest">Oldest</option>
+      </select>
      </div>
 
      {/* Read Time */}
      <div className="flex items-center gap-2">
       <span className="text-sm text-gray-600">Read Time:</span>
-      <Select
+      <select
        value={filters.readTime}
-       onChange={(value) => handleFilterChange('readTime', value)}
-       className="w-32"
-       size="small"
+       onChange={(e) => handleFilterChange('readTime', e.target.value)}
+       className="w-32 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       >
-       <Option value="all">All</Option>
-       <Option value="quick">Quick (≤7 min)</Option>
-       <Option value="detailed">Detailed (8+ min)</Option>
-      </Select>
+       <option value="all">All</option>
+       <option value="quick">Quick (≤7 min)</option>
+       <option value="detailed">Detailed (8+ min)</option>
+      </select>
      </div>
 
      {/* Clear Filters */}
      {hasActiveFilters && (
-      <Button
-       type="link"
-       size="small"
+      <button
        onClick={clearAllFilters}
-       className="text-blue-600 hover:text-blue-800 p-0 h-auto"
+       className="text-blue-600 hover:text-blue-800 text-sm font-medium underline"
       >
        Clear filters
-      </Button>
+      </button>
      )}
     </div>
 

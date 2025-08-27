@@ -3,13 +3,17 @@ import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
 import dynamic from 'next/dynamic'
-import { Table, Card, Progress, Statistic, Row, Col, Divider, List } from 'antd'
-import { TrophyOutlined, RiseOutlined, DollarOutlined } from '@ant-design/icons'
 import { ZoomableImage } from '@/components/features/blog/zoomable-image'
 import EconomicGauge from '@/components/features/blog/EconomicGauge'
 import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
 import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
 import VideoPlayer from '@/components/features/video-player/video-player'
+import EChartsLineChart from '@/components/features/blog/EChartsLineChart'
+import EChartsColumnChart from '@/components/features/blog/EChartsColumnChart'
+import EChartsPieChart from '@/components/features/blog/EChartsPieChart'
+import EChartsTable from '@/components/features/blog/EChartsTable'
+import EChartsProgressBar from '@/components/features/blog/EChartsProgressBar'
+import EChartsStatistic from '@/components/features/blog/EChartsStatistic'
 import {
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -42,12 +46,11 @@ class ChartErrorBoundary extends React.Component<
  render() {
   if (this.state.hasError) {
    return this.props.fallback || (
-    <div className="my-8">
-     <Card title="Chart Error" variant="borderless">
-      <div className="h-64 flex items-center justify-center text-red-500">
-       Unable to load chart. Please try refreshing the page.
-      </div>
-     </Card>
+    <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
+     <h3 className="text-xl font-bold text-gray-800 mb-4">Chart Error</h3>
+     <div className="h-64 flex items-center justify-center text-red-500 bg-red-50 rounded">
+      Unable to load chart. Please try refreshing the page.
+     </div>
     </div>
    );
   }
@@ -56,81 +59,35 @@ class ChartErrorBoundary extends React.Component<
  }
 }
 
-// Fallback chart components using Ant Design components only
+// Fallback chart components using ECharts
 const FallbackChart = ({ title, data, type }: { title: string, data: any[], type: string }) => (
- <div className="my-8">
-  <Card title={title} variant="borderless">
-   <div className="space-y-4">
-    {data.map((item, index) => {
-     const value = item.value || item.price || item.growth || item.demand || 0;
-     const label = item.name || item.type || item.area || item.year || item.month || `Item ${index + 1}`;
-     const color = item.color || '#1890ff';
-     
-     return (
-      <div key={index} className="flex items-center justify-between">
-       <span >{label}</span>
-       <div className="flex items-center space-x-2" style={{ width: '60%' }}>
-        <Progress 
-         percent={Math.min(value, 100)} 
-         strokeColor={color}
-         showInfo={false}
-        />
-        <span className="text-sm ">{value}{type === 'percentage' ? '%' : ''}</span>
-       </div>
+ <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
+  <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
+  <div className="space-y-4">
+   {data.map((item, index) => {
+    const value = item.value || item.price || item.growth || item.demand || 0;
+    const label = item.name || item.type || item.area || item.year || item.month || `Item ${index + 1}`;
+    const color = item.color || '#1890ff';
+    
+    return (
+     <div key={index} className="flex items-center justify-between">
+      <span className="font-medium text-gray-900">{label}</span>
+      <div className="flex items-center space-x-2 w-3/5">
+       <EChartsProgressBar 
+        percent={Math.min(value, 100)} 
+        strokeColor={color}
+        showInfo={false}
+       />
+       <span className="text-sm text-gray-700 min-w-[40px]">{value}{type === 'percentage' ? '%' : ''}</span>
       </div>
-     );
-    })}
-   </div>
-  </Card>
+     </div>
+    );
+   })}
+  </div>
  </div>
 );
 
-// Safe dynamic imports with comprehensive fallbacks
-const Line = dynamic(
- () => import('@ant-design/plots').then(mod => ({ default: mod.Line })).catch(() => ({ 
-  default: (props: any) => <FallbackChart {...props} type="line" />
- })), 
- { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
- }
-)
-const Bar = dynamic(
- () => import('@ant-design/plots').then(mod => ({ default: mod.Bar })).catch(() => ({ 
-  default: (props: any) => <FallbackChart {...props} type="bar" />
- })), 
- { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
- }
-)
-const Pie = dynamic(
- () => import('@ant-design/plots').then(mod => ({ default: mod.Pie })).catch(() => ({ 
-  default: (props: any) => <FallbackChart {...props} type="percentage" />
- })), 
- { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
- }
-)
-const Area = dynamic(
- () => import('@ant-design/plots').then(mod => ({ default: mod.Area })).catch(() => ({ 
-  default: (props: any) => <FallbackChart {...props} type="area" />
- })), 
- { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
- }
-)
-const Column = dynamic(
- () => import('@ant-design/plots').then(mod => ({ default: mod.Column })).catch(() => ({ 
-  default: (props: any) => <FallbackChart {...props} type="column" />
- })), 
- { 
-  ssr: false,
-  loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
- }
-)
+// ECharts components are now imported directly above
 
 // Professional blog styling to match the design
 const htmlComponents = {
@@ -266,317 +223,112 @@ const customComponents = {
   </div>
  ),
 
- PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
+ PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => (
+  <EChartsLineChart 
+    data={data} 
+    title={title}
+    xField="year"
+    yField="price"
+    color="#1890ff"
+    smooth={true}
+  />
+),
 
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-     </Card>
-    </div>
-   );
-  }
+ MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => (
+  <EChartsColumnChart 
+    data={data} 
+    title={title}
+    xField="area"
+    yField="growth"
+    color="#52c41a"
+  />
+),
 
-  try {
-   if (!data || data.length === 0) {
-    return (
-     <div className="my-8">
-      <Card title={title} variant="borderless">
-       <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-      </Card>
-     </div>
-    );
-   }
-
-   const config = {
-    data,
-    xField: 'year',
-    yField: 'price',
-    color: '#1890ff',
-    smooth: true,
-   };
-
-   return (
-    <ChartErrorBoundary>
-     <div className="my-8">
-      <Card title={title} variant="borderless">
-       <Line {...config} height={300} />
-      </Card>
-     </div>
-    </ChartErrorBoundary>
-   );
-  } catch (error) {
-   console.error('PriceChart error:', error);
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
-     </Card>
-    </div>
-   );
-  }
- },
-
- MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-     </Card>
-    </div>
-   );
-  }
-
-  try {
-   if (!data || data.length === 0) {
-    return (
-     <div className="my-8">
-      <Card title={title} variant="borderless">
-       <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-      </Card>
-     </div>
-    );
-   }
-
-   const config = {
-    data,
-    xField: 'area',
-    yField: 'growth',
-    color: '#52c41a',
-   };
-
-   return (
-    <ChartErrorBoundary>
-     <div className="my-8">
-      <Card title={title} variant="borderless">
-       <Column {...config} height={300} />
-      </Card>
-     </div>
-    </ChartErrorBoundary>
-   );
-  } catch (error) {
-   console.error('MarketGrowthChart error:', error);
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-red-500">Chart failed to load</div>
-     </Card>
-    </div>
-   );
-  }
- },
-
- PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-     </Card>
-    </div>
-   );
-  }
-
-  if (!data || data.length === 0) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-     </Card>
-    </div>
-   );
-  }
-
-  // Use Progress bars as the primary display method to avoid dynamic import issues
-  return (
-   <div className="my-8">
-    <Card title={title} variant="borderless">
-     <div className="space-y-4">
-      {data.map((item, index) => (
-       <div key={index} className="flex items-center justify-between">
-        <span className=" text-gray-900">{item.type}</span>
-        <div className="flex items-center space-x-3" style={{ width: '60%' }}>
-         <Progress 
-          percent={item.value} 
-          strokeColor={item.color}
-          showInfo={false}
-          strokeWidth={8}
-         />
-         <span className="text-sm text-gray-700 min-w-[40px]">{item.value}%</span>
-        </div>
-       </div>
-      ))}
-     </div>
-    </Card>
-   </div>
-  );
- },
+ PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => (
+  <EChartsPieChart 
+    data={data} 
+    title={title}
+    showLegend={true}
+    showLabel={true}
+  />
+),
 
  TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-     </Card>
-    </div>
-   );
-  }
-
-  if (!data || data.length === 0) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-     </Card>
-    </div>
-   );
-  }
-
-  // Transform data for stacked area chart
-  const transformedData = data.map(item => ({
-   month: item.month,
-   demand: item.demand,
-   supply: item.supply,
-  }));
-
-  const config = {
-   data: transformedData,
-   xField: 'month',
-   yField: 'demand',
-   seriesField: 'type',
-   color: ['#1890ff', '#52c41a'],
-   smooth: true,
-   areaStyle: {
-    fillOpacity: 0.6,
-   },
-  };
-
-  // Create separate line chart for demand and supply
-  const lineConfig = {
-   data: transformedData,
-   xField: 'month',
-   yField: 'value',
-   seriesField: 'type',
-   color: ['#1890ff', '#52c41a'],
-   smooth: true,
-   point: {
-    size: 4,
-    shape: 'circle',
-   },
-  };
-
   // Transform for multi-line chart
   const multiLineData = data.flatMap(item => [
    { month: item.month, type: 'Demand', value: item.demand },
    { month: item.month, type: 'Supply', value: item.supply },
   ]);
 
-  const multiLineConfig = {
-   data: multiLineData,
-   xField: 'month',
-   yField: 'value',
-   seriesField: 'type',
-   color: ['#1890ff', '#52c41a'],
-   smooth: true,
-   point: {
-    size: 4,
-    shape: 'circle',
-   },
-   legend: {
-    position: 'top-left' as const,
-   },
-  };
-
   return (
-   <ChartErrorBoundary>
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <Line {...multiLineConfig} height={300} />
-     </Card>
-    </div>
-   </ChartErrorBoundary>
+   <EChartsLineChart 
+    data={multiLineData} 
+    title={title}
+    xField="month"
+    yField="value"
+    seriesField="type"
+    color={['#1890ff', '#52c41a']}
+    smooth={true}
+   />
   );
  },
 
- PricingTable: ({ data, title }: { data: Array<{category: string, price: number, rent: number, roi: number}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
+ PricingTable: ({ data, title }: { data: Array<{category: string, price: number | string, rent: number | string, roi: number | string}>, title: string }) => {
+  // Determine if this is disaster/rainfall data based on title
+  const isDisasterData = title.toLowerCase().includes('rainfall') || 
+                        title.toLowerCase().includes('casualties') || 
+                        title.toLowerCase().includes('clearance');
   
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading table...</div>
-     </Card>
-    </div>
-   );
-  }
-
-  if (!data || data.length === 0) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-     </Card>
-    </div>
-   );
-  }
+  // Determine if this is utility cost data based on title
+  const isUtilityData = title.toLowerCase().includes('utility') || 
+                        title.toLowerCase().includes('cost comparison');
 
   const columns = [
    {
-    title: 'Category',
+    title: isDisasterData ? 'Area' : (isUtilityData ? 'Property Type' : 'Category'),
     dataIndex: 'category',
     key: 'category',
     render: (text: string) => text,
    },
    {
-    title: 'Price (Lac)',
+    title: isDisasterData ? 'Rainfall (mm)' : (isUtilityData ? 'Base Cost (PKR K)' : 'Price (Lac)'),
     dataIndex: 'price',
     key: 'price',
-    render: (value: number) => `PKR ${value}`,
+    render: (value: number | string) => {
+     if (isDisasterData) return value;
+     if (isUtilityData) return typeof value === 'number' ? `PKR ${value}K` : value;
+     return typeof value === 'number' ? `PKR ${value}` : value;
+    },
    },
    {
-    title: 'Monthly Rent (K)',
+    title: isDisasterData ? 'Clearance Time' : (isUtilityData ? 'Monthly Savings (PKR K)' : 'Monthly Rent (K)'),
     dataIndex: 'rent',
     key: 'rent',
-    render: (value: number) => value > 0 ? `PKR ${value}K` : 'N/A',
+    render: (value: number | string) => {
+     if (isDisasterData) return value;
+     if (isUtilityData) return typeof value === 'number' ? `PKR ${value}K` : value;
+     return (typeof value === 'number' && value > 0) ? `PKR ${value}K` : 'N/A';
+    },
    },
    {
-    title: 'ROI %',
+    title: isDisasterData ? 'Casualties/Impact' : (isUtilityData ? 'System Type' : 'ROI %'),
     dataIndex: 'roi',
     key: 'roi',
-    render: (value: number) => (
-     <span style={{ color: '#52c41a', fontWeight: 'bold' }}>{value}%</span>
-    ),
+    render: (value: number | string) => {
+     if (isDisasterData) {
+      const isGood = value.toString().toLowerCase().includes('zero') || 
+                     value.toString().toLowerCase().includes('none');
+      return (
+       <span className={`font-bold ${isGood ? 'text-green-600' : 'text-red-600'}`}>
+        {value}
+       </span>
+      );
+     }
+     if (isUtilityData) return <span className="text-blue-600 font-medium">{value}</span>;
+     return (
+      <span className="text-green-600 font-bold">{value}%</span>
+     );
+    },
    },
   ];
 
@@ -586,93 +338,33 @@ const customComponents = {
   }));
 
   return (
-   <div className="my-8">
-    <Card title={title} variant="borderless">
-     <Table 
-      columns={columns} 
-      dataSource={tableData} 
-      pagination={false}
-      size="middle"
-     />
-    </Card>
-   </div>
+   <EChartsTable 
+    columns={columns} 
+    dataSource={tableData} 
+    title={title}
+    pagination={false}
+    size="middle"
+   />
   );
  },
 
  ComparisonChart: ({ data, title }: { data: Array<{name: string, value1: number, value2: number, label1: string, label2: string}>, title: string }) => {
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-   setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-     </Card>
-    </div>
-   );
-  }
-
-  if (!data || data.length === 0) {
-   return (
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <div className="h-64 flex items-center justify-center text-gray-500">No data available</div>
-     </Card>
-    </div>
-   );
-  }
-
-  const chartData = data.map(item => ({
-   category: item.name,
-   [item.label1]: item.value1,
-   [item.label2]: item.value2,
-  }));
-
-  const config = {
-   data: chartData,
-   xField: 'category',
-   yField: ['value1', 'value2'],
-   seriesField: 'type',
-   isGroup: true,
-   legend: {
-    position: 'top-left' as const,
-   },
-   color: ['#1890ff', '#52c41a'],
-   columnStyle: {
-    radius: [4, 4, 0, 0],
-   },
-  };
-
   // Transform data for grouped column chart
   const transformedData = data.flatMap(item => [
    { category: item.name, type: item.label1, value: item.value1 },
    { category: item.name, type: item.label2, value: item.value2 },
   ]);
 
-  const columnConfig = {
-   data: transformedData,
-   xField: 'category',
-   yField: 'value',
-   seriesField: 'type',
-   isGroup: true,
-   color: ['#1890ff', '#52c41a'],
-   columnStyle: {
-    radius: [4, 4, 0, 0],
-   },
-  };
-
   return (
-   <ChartErrorBoundary>
-    <div className="my-8">
-     <Card title={title} variant="borderless">
-      <Column {...columnConfig} height={300} />
-     </Card>
-    </div>
-   </ChartErrorBoundary>
+   <EChartsColumnChart 
+    data={transformedData} 
+    title={title}
+    xField="category"
+    yField="value"
+    seriesField="type"
+    isGroup={true}
+    color={['#1890ff', '#52c41a']}
+   />
   );
  },
 
@@ -684,32 +376,27 @@ const customComponents = {
   };
 
   return (
-   <div className="my-8">
-    <Card title={title} variant="borderless">
-     <Row gutter={[24, 24]} justify="center">
-      <Col xs={24} sm={12} md={8}>
-       <Statistic
-        title="Performance Score"
-        value={value}
-        suffix="/ 100"
-        valueStyle={{ 
-         color: getStatusColor(value),
-         fontSize: '2rem',
-         fontWeight: 'bold'
-        }}
-        prefix={<TrophyOutlined />}
-       />
-       <Progress
-        percent={value}
-        strokeColor={getStatusColor(value)}
-        trailColor="#f0f0f0"
-        strokeWidth={8}
-        showInfo={false}
-        style={{ marginTop: '16px' }}
-       />
-      </Col>
-     </Row>
-    </Card>
+   <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
+    <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">{title}</h3>
+    <div className="max-w-sm mx-auto space-y-4">
+     <EChartsStatistic
+      title="Performance Score"
+      value={value}
+      suffix="/ 100"
+      valueStyle={{ 
+       color: getStatusColor(value),
+       fontSize: '2rem',
+       fontWeight: 'bold'
+      }}
+     />
+     <EChartsProgressBar
+      percent={value}
+      strokeColor={getStatusColor(value)}
+      trailColor="#f0f0f0"
+      strokeWidth={8}
+      showInfo={false}
+     />
+    </div>
    </div>
   );
  },

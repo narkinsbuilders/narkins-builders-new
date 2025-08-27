@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'antd'
 import dynamic from 'next/dynamic'
 
 const ReactECharts = dynamic(
@@ -52,14 +51,14 @@ export default function InvestmentFunnel({ data, title }: InvestmentFunnelProps)
 
   if (!isClient) {
     return (
-      <Card className="mb-6" style={{ padding: '20px' }}>
+      <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
         <div className="mb-4">
           <h3 className="text-xl font-bold text-gray-800">{title || 'Loading...'}</h3>
         </div>
-        <div className="h-96 flex items-center justify-center bg-gray-50">
+        <div className="h-96 flex items-center justify-center bg-gray-50 rounded">
           Loading chart...
         </div>
-      </Card>
+      </div>
     );
   }
   
@@ -130,7 +129,7 @@ export default function InvestmentFunnel({ data, title }: InvestmentFunnelProps)
   }
 
   return (
-    <Card className="mb-6" style={{ padding: '20px' }}>
+    <div className="bg-white rounded-lg shadow-sm border mb-6 p-5">
       <div className="mb-4">
         <h3 className="text-xl font-bold text-gray-800">{title || 'Investment Funnel'}</h3>
       </div>
@@ -140,6 +139,6 @@ export default function InvestmentFunnel({ data, title }: InvestmentFunnelProps)
       <div className="mt-4 text-center text-sm text-gray-600">
         <p>Conversion tracking from initial interest to completed investment</p>
       </div>
-    </Card>
+    </div>
   )
 }
