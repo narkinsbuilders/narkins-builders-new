@@ -33,7 +33,7 @@ export default function EChartsTable({
   if (!dataSource || dataSource.length === 0) {
     return (
       <div className="my-8 overflow-hidden rounded-xl bg-white shadow-2xl border border-gray-100">
-        <div className="bg-gradient-to-r from-neutral-800 to-black px-8 py-6">
+        <div className="bg-gradient-to-r from-neutral-800 to-black px-2 py-6">
           <h3 className="text-2xl font-bold text-white">{title}</h3>
         </div>
         <div className="p-8">
@@ -51,7 +51,7 @@ export default function EChartsTable({
   return (
     <div className="my-8 overflow-hidden rounded-xl bg-white shadow-2xl border border-gray-100">
       {/* Header */}
-      <div className="bg-gradient-to-r from-neutral-500 to-black px-8 py-6">
+      <div className="bg-gradient-to-r from-neutral-800 to-black px-2 py-6">
         <h3 className="text-2xl font-bold text-white">{title}</h3>
       </div>
       
