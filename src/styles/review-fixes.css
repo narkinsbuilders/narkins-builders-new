@@ -1,0 +1,24 @@
+/* Force word breaking for review content */
+.review-content {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Ensure review cards stay contained */
+.review-card {
+  contain: layout !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Grid item constraints */
+.review-grid-item {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}

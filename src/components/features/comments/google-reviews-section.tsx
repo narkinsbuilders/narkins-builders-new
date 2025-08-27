@@ -270,13 +270,14 @@ export function GoogleReviewsSection({
           </div>
         ) : (
           reviews.map((review, index) => (
-            <GoogleReviewItem
-              key={review.reviewId}
-              review={review}
-              onHelpfulVote={handleHelpfulVote}
-              onLike={handleLike}
-              index={index}
-            />
+            <div key={review.reviewId} className="review-grid-item">
+              <GoogleReviewItem
+                review={review}
+                onHelpfulVote={handleHelpfulVote}
+                onLike={handleLike}
+                index={index}
+              />
+            </div>
           ))
         )}
       </div>
