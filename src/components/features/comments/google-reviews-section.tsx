@@ -193,20 +193,20 @@ export function GoogleReviewsSection({
       )}
 
       {/* Reviews List */}
-      <div className="space-y-3 sm:space-y-4 lg:space-y-0 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-6">
+      <div className="space-y-4 sm:space-y-6">
         {loading ? (
-          <div className="space-y-3 sm:space-y-4 lg:col-span-full lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-6 lg:space-y-0">
+          <div className="space-y-4 sm:space-y-6">
             {/* Responsive skeleton screens */}
             {[...Array(6)].map((_, i) => (
               <div 
                 key={i} 
-                className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm animate-pulse"
+                className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm animate-pulse"
                 style={{
                   animationDelay: `${i * 0.1}s`,
                   animationDuration: '1.5s'
                 }}
               >
-                <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
+                <div className="flex items-start gap-4 sm:gap-6">
                   {/* Avatar skeleton */}
                   <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex-shrink-0"></div>
                   
@@ -248,7 +248,7 @@ export function GoogleReviewsSection({
             ))}
           </div>
         ) : reviews.length === 0 ? (
-          <div className="text-center py-12 lg:col-span-full">
+          <div className="text-center py-12">
             <Star className="h-12 w-12 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               {filterRating ? `No ${filterRating}-star reviews yet` : 'No reviews yet'}
@@ -270,14 +270,13 @@ export function GoogleReviewsSection({
           </div>
         ) : (
           reviews.map((review, index) => (
-            <div key={review.reviewId} className="min-w-0 max-w-full w-full">
-              <GoogleReviewItem
-                review={review}
-                onHelpfulVote={handleHelpfulVote}
-                onLike={handleLike}
-                index={index}
-              />
-            </div>
+            <GoogleReviewItem
+              key={review.reviewId}
+              review={review}
+              onHelpfulVote={handleHelpfulVote}
+              onLike={handleLike}
+              index={index}
+            />
           ))
         )}
       </div>

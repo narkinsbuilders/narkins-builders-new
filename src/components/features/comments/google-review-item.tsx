@@ -84,12 +84,12 @@ export function GoogleReviewItem({
         delay: Math.min(index * 0.05, 0.2),
         ease: [0.25, 0.46, 0.45, 0.94] 
       }}
-      className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg lg:hover:shadow-xl transition-all duration-300 will-change-transform hover:-translate-y-1 lg:hover:border-gray-300 lg:hover:scale-[1.02] w-full max-w-full overflow-hidden"
+      className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-300 w-full max-w-full overflow-hidden"
     >
-      <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
+      <div className="flex items-start gap-4 sm:gap-6">
         {/* Avatar */}
         <div className="flex-shrink-0">
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12">
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12">
             {review.author.profilePhotoUrl && !imageError ? (
               <Image
                 src={review.author.profilePhotoUrl}
@@ -102,10 +102,10 @@ export function GoogleReviewItem({
             ) : (
               <UserAvatar 
                 name={review.author.name} 
-                className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12"
+                className="w-10 h-10 sm:w-12 sm:h-12"
               />
             )}
-            {review.isVerified && (
+            {Boolean(review.isVerified) && (
               <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full flex items-center justify-center">
                 <Verified className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" />
               </div>
@@ -115,13 +115,13 @@ export function GoogleReviewItem({
 
         <div className="flex-1 min-w-0 overflow-hidden">
           {/* Header */}
-          <div className="flex items-start justify-between mb-1.5 sm:mb-2 lg:mb-3">
+          <div className="flex items-start justify-between mb-2 sm:mb-3">
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 mb-1 lg:mb-2 min-w-0">
-                <h4 className="font-medium text-gray-900 text-sm sm:text-base lg:text-lg truncate">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2 min-w-0">
+                <h4 className="font-medium text-gray-900 text-base sm:text-lg truncate">
                   {review.author.name}
                 </h4>
-                {review.author.isLocalGuide && (
+                {Boolean(review.author.isLocalGuide) && (
                   <div className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-50 rounded-full">
                     <Shield className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-600" />
                     <span className="text-xs text-blue-600 font-medium hidden sm:inline">Local Guide</span>
@@ -131,11 +131,11 @@ export function GoogleReviewItem({
               </div>
               
               {/* Rating and Date */}
-              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2 lg:mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <div className="flex items-center gap-1">
                   {renderStars(review.rating)}
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base text-gray-500">
+                <span className="text-sm sm:text-base text-gray-500">
                   {review.relativePublishTimeDescription}
                 </span>
               </div>
@@ -151,22 +151,15 @@ export function GoogleReviewItem({
           </div>
 
           {/* Review Content */}
-          <div className="mb-3 sm:mb-4 lg:mb-6 w-full max-w-full">
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg lg:leading-7 break-all overflow-hidden"
-               style={{
-                 wordWrap: 'break-word',
-                 overflowWrap: 'break-word',
-                 wordBreak: 'break-word',
-                 hyphens: 'auto',
-                 maxWidth: '100%'
-               }}>
+          <div className="mb-4 sm:mb-6 w-full max-w-full">
+            <p className="text-gray-700 leading-relaxed text-base sm:text-lg break-words overflow-hidden">
               {displayText}
             </p>
             
-            {shouldTruncate && (
+            {Boolean(shouldTruncate) && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="text-blue-600 hover:text-blue-800 lg:hover:text-blue-700 text-sm lg:text-base font-medium mt-1 min-h-[44px] flex items-center -ml-1 px-1 transition-all duration-200 hover:bg-blue-50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                className="text-blue-600 hover:text-blue-800 text-sm sm:text-base font-medium mt-2 min-h-[44px] flex items-center -ml-1 px-1 transition-all duration-200 hover:bg-blue-50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
               >
                 {isExpanded ? 'Show less' : 'Read more'}
               </button>
@@ -174,7 +167,7 @@ export function GoogleReviewItem({
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-2 border-t border-gray-100 sm:border-t-0 sm:pt-0 lg:pt-4 lg:border-t lg:border-gray-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-3 border-t border-gray-100">
             <div className="flex items-center gap-2 sm:gap-4">
               {/* Helpful Button */}
               <button
@@ -182,10 +175,10 @@ export function GoogleReviewItem({
                 disabled={isVotingHelpful}
                 title={hasVotedHelpful ? 'Remove helpful vote' : 'Mark as helpful'}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm lg:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1',
+                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1',
                   hasVotedHelpful
                     ? 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100'
-                    : 'text-gray-600 hover:bg-gray-50 lg:hover:bg-gray-100 border border-gray-300 hover:border-gray-400',
+                    : 'text-gray-600 hover:bg-gray-50 border border-gray-300 hover:border-gray-400',
                   isVotingHelpful && 'opacity-50 cursor-not-allowed'
                 )}
               >
@@ -205,10 +198,10 @@ export function GoogleReviewItem({
                 disabled={isLiking}
                 title={hasLiked ? 'Unlike this review' : 'Like this review'}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm lg:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1',
+                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-200 min-h-[44px] group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1',
                   hasLiked
                     ? 'bg-red-50 text-red-700 border border-red-200 hover:bg-red-100'
-                    : 'text-gray-600 hover:bg-gray-50 lg:hover:bg-gray-100 border border-gray-300 hover:border-gray-400',
+                    : 'text-gray-600 hover:bg-gray-50 border border-gray-300 hover:border-gray-400',
                   isLiking && 'opacity-50 cursor-not-allowed'
                 )}
               >
