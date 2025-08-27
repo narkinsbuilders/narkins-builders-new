@@ -10,6 +10,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isSafari, setIsSafari] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -46,7 +47,9 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       return /iPhone|iPad|iPod/i.test(userAgent) || 
              (/Safari/i.test(userAgent) && /Apple/i.test(userAgent) && !/Chrome/i.test(userAgent));
     }
-    setIsSafari(!!isMobileSafari());
+    const isIOSDevice = !!isMobileSafari();
+    setIsSafari(isIOSDevice);
+    setShowPlayButton(isIOSDevice);
   }, []);
 
   useEffect(() => {
@@ -72,6 +75,14 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
     if (video) {
       setIsPaused(!video.paused);
       video.paused ? video.play() : video.pause();
+    }
+  };
+
+  const handleIOSPlayClick = () => {
+    const video = videoRef.current;
+    if (video && isSafari) {
+      video.play();
+      setShowPlayButton(false);
     }
   };
 
@@ -101,16 +112,13 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
         <>
           {isSafari ? (
             <video 
-              className="w-full h-full object-cover bg-neutral-300" 
+              className="w-full h-full object-cover" 
               muted 
               poster={poster} 
               playsInline 
-              controls
+              controls={!showPlayButton}
               preload="metadata"
-              {...({ 'webkit-playsinline': 'true' } as any)}
-              {...({ 'x5-playsinline': 'true' } as any)}
-              {...({ 'x5-video-player-type': 'h5' } as any)}
-              {...({ 'x5-video-player-fullscreen': 'true' } as any)}
+              webkitPlaysinline={true}
               style={{ aspectRatio: '16/9' }}
             >
               <source src={src} type="video/mp4" />
@@ -126,7 +134,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
                 />
               </div>
               <video 
-                className="w-full h-full object-cover bg-neutral-300" 
+                className="w-full h-full object-cover" 
                 poster={poster} 
                 ref={videoRef} 
                 preload="metadata"
@@ -136,9 +144,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
                 muted 
                 controls={false} 
                 disablePictureInPicture
-                {...({ 'webkit-playsinline': 'true' } as any)}
-                {...({ 'x5-playsinline': 'true' } as any)}
-                {...({ 'x5-video-player-type': 'h5' } as any)}
+                webkitPlaysinline={true}
                 style={{ aspectRatio: '16/9' }}
               >
                 <source src={src} type="video/mp4" />
@@ -146,6 +152,20 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
             </Fragment>
           )}
         </>
+      )}
+      
+      {/* iOS Play Button Overlay */}
+      {isSafari && showPlayButton && shouldLoad && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+          <button
+            onClick={handleIOSPlayClick}
+            className="w-16 h-16 bg-white/90 hover:bg-white text-black rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
+          >
+            <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+        </div>
       )}
       
       {/* Responsive overlay for mobile */}
