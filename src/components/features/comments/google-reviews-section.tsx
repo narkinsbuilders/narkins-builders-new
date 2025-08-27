@@ -152,14 +152,14 @@ export function GoogleReviewsSection({
   return (
     <div className={cn('max-w-4xl mx-auto', className)}>
       {/* Header with Summary */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+      <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div className="flex items-center gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
+          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-full flex items-center justify-center">
             <Star className="h-6 w-6 text-white fill-white" />
           </div>
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900">Reviews</h2>
-            <p className="text-gray-600">Share your experience about this article</p>
+            <h2 className="text-2xl lg:text-3xl font-semibold text-gray-900">Reviews</h2>
+            <p className="text-gray-600 lg:text-lg">Share your experience about this article</p>
           </div>
         </div>
 
@@ -172,7 +172,7 @@ export function GoogleReviewsSection({
       </div>
 
       {/* Review Form */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8 lg:mb-12">
         <GoogleReviewForm 
           blogSlug={blogSlug} 
           onReviewSubmitted={handleReviewSubmitted}
@@ -181,7 +181,7 @@ export function GoogleReviewsSection({
 
       {/* Sort and Filter Controls */}
       {reviews.length > 0 && (
-        <div className="mb-6">
+        <div className="mb-6 lg:mb-8">
           <GoogleReviewsSort 
             sortBy={sortBy}
             onSortChange={setSortBy}
@@ -193,16 +193,62 @@ export function GoogleReviewsSection({
       )}
 
       {/* Reviews List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4 lg:space-y-0 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-6">
         {loading ? (
-          <div className="flex items-center justify-center py-8">
-            <div className="flex items-center gap-2 text-gray-500">
-              <MessageSquare className="h-5 w-5 animate-pulse" />
-              <span>Loading reviews...</span>
-            </div>
+          <div className="space-y-3 sm:space-y-4 lg:col-span-full lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-6 lg:space-y-0">
+            {/* Responsive skeleton screens */}
+            {[...Array(6)].map((_, i) => (
+              <div 
+                key={i} 
+                className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm animate-pulse"
+                style={{
+                  animationDelay: `${i * 0.1}s`,
+                  animationDuration: '1.5s'
+                }}
+              >
+                <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
+                  {/* Avatar skeleton */}
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex-shrink-0"></div>
+                  
+                  <div className="flex-1 min-w-0">
+                    {/* Header skeleton */}
+                    <div className="flex items-start justify-between mb-1.5 sm:mb-2 lg:mb-3">
+                      <div className="space-y-1">
+                        <div className="h-4 lg:h-5 bg-gray-200 rounded w-24 sm:w-32 lg:w-40"></div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex gap-1">
+                            {[...Array(5)].map((_, j) => (
+                              <div key={j} className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 bg-gray-200 rounded"></div>
+                            ))}
+                          </div>
+                          <div className="h-3 lg:h-4 bg-gray-200 rounded w-16 lg:w-20"></div>
+                        </div>
+                      </div>
+                      <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                    
+                    {/* Content skeleton */}
+                    <div className="mb-3 sm:mb-4 lg:mb-6 space-y-2 lg:space-y-3">
+                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-full"></div>
+                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-4/5"></div>
+                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-3/5"></div>
+                    </div>
+                    
+                    {/* Actions skeleton */}
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-100 sm:border-t-0 sm:pt-0 lg:pt-4 lg:border-t lg:border-gray-100">
+                      <div className="flex gap-2">
+                        <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-20 lg:w-24"></div>
+                        <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-16 lg:w-20"></div>
+                      </div>
+                      <div className="h-6 bg-gray-200 rounded-full w-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : reviews.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12 lg:col-span-full">
             <Star className="h-12 w-12 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               {filterRating ? `No ${filterRating}-star reviews yet` : 'No reviews yet'}
@@ -237,12 +283,13 @@ export function GoogleReviewsSection({
 
       {/* Load More Button (if needed for pagination) */}
       {reviews.length >= 10 && (
-        <div className="text-center mt-8">
+        <div className="text-center mt-6 sm:mt-8">
           <button className="px-6 py-3 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 transition-colors">
             Load more reviews
           </button>
         </div>
       )}
+
     </div>
   );
 }

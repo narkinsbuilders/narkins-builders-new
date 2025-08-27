@@ -114,11 +114,11 @@ export function GoogleReviewForm({
           onMouseEnter={() => setHoverRating(starValue)}
           onMouseLeave={() => setHoverRating(0)}
           onClick={() => setRating(starValue)}
-          className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-full hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
         >
           <Star
             className={cn(
-              'h-8 w-8 transition-colors duration-200',
+              'h-6 w-6 sm:h-8 sm:w-8 transition-colors duration-200',
               (hoverRating || rating) >= starValue
                 ? 'text-amber-400 fill-amber-400'
                 : 'text-gray-300 hover:text-amber-300'
@@ -209,7 +209,7 @@ export function GoogleReviewForm({
             </div>
 
             {/* Name and Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4 sm:grid sm:grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:space-y-0">
               <div>
                 <label htmlFor="authorName" className="block text-sm font-medium text-gray-700 mb-2">
                   Your name *
@@ -219,7 +219,7 @@ export function GoogleReviewForm({
                   id="authorName"
                   value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="w-full px-3 py-3 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base sm:text-sm"
                   placeholder="Enter your full name"
                   disabled={isSubmitting}
                 />
@@ -234,7 +234,7 @@ export function GoogleReviewForm({
                   id="authorEmail"
                   value={authorEmail}
                   onChange={(e) => setAuthorEmail(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="w-full px-3 py-3 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base sm:text-sm"
                   placeholder="Enter your email"
                   disabled={isSubmitting}
                 />
@@ -251,7 +251,7 @@ export function GoogleReviewForm({
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                className="w-full px-3 py-3 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none text-base sm:text-sm"
                 placeholder="Share your experience about this article..."
                 disabled={isSubmitting}
               />
@@ -277,13 +277,13 @@ export function GoogleReviewForm({
             </AnimatePresence>
 
             {/* Actions */}
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 pt-4 lg:pt-6 border-t border-gray-200">
               <Button
                 type="button"
                 variant="outline"
                 onClick={handleCancel}
                 disabled={isSubmitting}
-                className="px-6"
+                className="px-6 py-3 lg:px-8 lg:py-3 min-h-[44px] w-full sm:w-auto lg:text-base"
               >
                 Cancel
               </Button>
@@ -291,7 +291,7 @@ export function GoogleReviewForm({
               <Button
                 type="submit"
                 disabled={isSubmitting || !rating || !authorName.trim() || !authorEmail.trim() || !content.trim()}
-                className="px-6 bg-blue-600 hover:bg-blue-700"
+                className="px-6 py-3 lg:px-8 lg:py-3 bg-blue-600 hover:bg-blue-700 min-h-[44px] w-full sm:w-auto lg:text-base"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
