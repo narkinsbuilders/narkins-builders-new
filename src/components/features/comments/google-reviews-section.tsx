@@ -142,12 +142,12 @@ export function GoogleReviewsSection({
     fetchComments();
   }, [blogSlug, fetchComments]);
 
-  // Load comments on refresh trigger
+  // Load comments when refresh is triggered
   useEffect(() => {
     if (refreshTrigger > 0) {
       fetchComments();
     }
-  }, [refreshTrigger, fetchComments]);
+  }, [refreshTrigger]);
 
   return (
     <div className={cn('max-w-4xl mx-auto', className)}>

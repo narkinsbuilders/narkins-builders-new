@@ -6,6 +6,7 @@ import { Star, ThumbsUp, MoreHorizontal, Shield, Verified } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { UserAvatar } from './user-avatar';
 
 interface GoogleReviewItemProps {
   review: GoogleReviewData;
@@ -25,6 +26,7 @@ export function GoogleReviewItem({
   const [isLiking, setIsLiking] = useState(false);
   const [hasVotedHelpful, setHasVotedHelpful] = useState(false);
   const [hasLiked, setHasLiked] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const shouldTruncate = review.text.length > 200;
   const displayText = shouldTruncate && !isExpanded 
@@ -84,13 +86,18 @@ export function GoogleReviewItem({
         {/* Avatar */}
         <div className="flex-shrink-0">
           <div className="relative w-10 h-10">
-            <Image
-              src={review.author.profilePhotoUrl || '/default-avatar.png'}
-              alt={review.author.name}
-              width={40}
-              height={40}
-              className="rounded-full object-cover"
-            />
+            {review.author.profilePhotoUrl && !imageError ? (
+              <Image
+                src={review.author.profilePhotoUrl}
+                alt={review.author.name}
+                width={40}
+                height={40}
+                className="rounded-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <UserAvatar name={review.author.name} size={40} />
+            )}
             {review.isVerified && (
               <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
                 <Verified className="h-3 w-3 text-white" />
