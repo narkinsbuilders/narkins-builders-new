@@ -339,6 +339,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/api/**',
+      },
       ...(process.env.NODE_ENV === 'development' ? [{
         protocol: 'http',
         hostname: 'localhost',

@@ -139,10 +139,15 @@ export function GoogleReviewsSection({
 
   // Load comments on mount and refresh trigger
   useEffect(() => {
+    fetchComments();
+  }, [blogSlug]);
+
+  // Load comments when refresh is triggered
+  useEffect(() => {
     if (refreshTrigger > 0) {
       fetchComments();
     }
-  }, [refreshTrigger, blogSlug]);
+  }, [refreshTrigger]);
 
   return (
     <div className={cn('max-w-4xl mx-auto', className)}>

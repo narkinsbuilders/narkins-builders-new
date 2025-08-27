@@ -39,6 +39,8 @@ export interface GoogleReviewsSummary {
  * Transform database comment to Google Reviews format
  */
 export function transformCommentToGoogleReview(comment: Comment): GoogleReviewData {
+  const createdAt = new Date(comment.created_at);
+  
   return {
     author: {
       name: comment.author_name,
@@ -47,8 +49,8 @@ export function transformCommentToGoogleReview(comment: Comment): GoogleReviewDa
     },
     rating: comment.rating,
     text: comment.content,
-    publishTime: comment.created_at.toISOString(),
-    relativePublishTimeDescription: getRelativeTime(comment.created_at),
+    publishTime: createdAt.toISOString(),
+    relativePublishTimeDescription: getRelativeTime(createdAt),
     reviewId: comment.id.toString(),
     authorAttribution: {
       displayName: comment.author_name,
@@ -103,9 +105,10 @@ function generateReviewsSummary(comments: Comment[]): GoogleReviewsSummary {
 /**
  * Generate relative time description (e.g., "2 weeks ago")
  */
-function getRelativeTime(date: Date): string {
+function getRelativeTime(date: Date | string): string {
   const now = new Date();
-  const diffInHours = Math.floor((now.getTime() - new Date(date).getTime()) / (1000 * 60 * 60));
+  const targetDate = new Date(date);
+  const diffInHours = Math.floor((now.getTime() - targetDate.getTime()) / (1000 * 60 * 60));
   
   if (diffInHours < 1) {
     return 'Just now';
