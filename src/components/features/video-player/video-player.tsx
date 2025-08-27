@@ -42,7 +42,9 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       setVideoDuration(video.duration);
     }
     function isMobileSafari() {
-      return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) || ('safari' in window)
+      const userAgent = navigator.userAgent;
+      return /iPhone|iPad|iPod/i.test(userAgent) || 
+             (/Safari/i.test(userAgent) && /Apple/i.test(userAgent) && !/Chrome/i.test(userAgent));
     }
     setIsSafari(!!isMobileSafari());
   }, []);
@@ -105,6 +107,10 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
               playsInline 
               controls
               preload="metadata"
+              {...({ 'webkit-playsinline': 'true' } as any)}
+              {...({ 'x5-playsinline': 'true' } as any)}
+              {...({ 'x5-video-player-type': 'h5' } as any)}
+              {...({ 'x5-video-player-fullscreen': 'true' } as any)}
               style={{ aspectRatio: '16/9' }}
             >
               <source src={src} type="video/mp4" />
@@ -125,11 +131,14 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
                 ref={videoRef} 
                 preload="metadata"
                 loop 
-                autoPlay={isVisible} 
+                autoPlay={isVisible && !isSafari} 
                 playsInline 
                 muted 
                 controls={false} 
                 disablePictureInPicture
+                {...({ 'webkit-playsinline': 'true' } as any)}
+                {...({ 'x5-playsinline': 'true' } as any)}
+                {...({ 'x5-video-player-type': 'h5' } as any)}
                 style={{ aspectRatio: '16/9' }}
               >
                 <source src={src} type="video/mp4" />

@@ -717,7 +717,13 @@ const customComponents = {
  EconomicGauge: (props: any) => <EconomicGauge {...props} />,
  FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
  InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />,
- VideoPlayer: (props: any) => <VideoPlayer {...props} />
+ VideoPlayer: (props: any) => (
+   <div className="-mx-6 lg:-mx-8 my-8">
+     <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto rounded-xl overflow-hidden md:lg:rounded-none">
+       <VideoPlayer {...props} />
+     </div>
+   </div>
+ )
 }
 
 // TinaCMS Template Components
