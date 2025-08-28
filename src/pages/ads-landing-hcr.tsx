@@ -10,7 +10,7 @@ export default function AdsLandingPage() {
      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <AdsCampaign residency="Hill Crest Residency"
        onlyForm={false}
-       image={'http://admin.narkinsbuilders.com/wp-content/uploads/2024/06/Picture1.webp'}
+       image={'/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp'}
        headline={"2, 3 & 4 Bedroom Luxury Apartments "}
        features={[
         "Main Jinnah Avenue, 2 mins from the main gate",
