@@ -37,6 +37,9 @@ interface AdsCampaignProps {
  onlyForm: boolean;
  features: Array<string>;
  residency: "Narkin's Boutique Residency" | "Hill Crest Residency" | "General";
+ imageWidth?: number;
+ imageHeight?: number;
+ mapUrl?: string;
 }
 
 const AdsCampaign: React.FC<AdsCampaignProps> = ({ 
@@ -44,7 +47,10 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
  image, 
  onlyForm, 
  features, 
- residency 
+ residency,
+ imageWidth = 600,
+ imageHeight = 900,
+ mapUrl
 }) => {
  const [email, setEmail] = useState("");
  const [name, setName] = useState("");
@@ -250,8 +256,8 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
        src={image ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKae8kU5_6tMlx_wVGwVbbPTMbhekm6x__Sg&s"}
        alt="Residency"
        className="w-full rounded-lg h-auto mb-4"
-       width={400}
-       height={300}
+       width={imageWidth}
+       height={imageHeight}
       />
      </div>
      <div className="text-center">
@@ -261,10 +267,22 @@ const AdsCampaign: React.FC<AdsCampaignProps> = ({
       <h2 className="subsection-title tracking-tight text-black">
        Available on easy installment plans
       </h2>
-      <div className="p-2 bg-neutral-100 border my-4 rounded-xl hover:bg-neutral-200">
-       <MapPin className="inline w-4 h-4 mr-2" />
-       Bahria Town Karachi
-      </div>
+      {mapUrl ? (
+       <a 
+        href={mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block p-2 bg-neutral-100 border my-4 rounded-xl hover:bg-neutral-200 cursor-pointer transition-colors"
+       >
+        <MapPin className="inline w-4 h-4 mr-2" />
+        Bahria Town Karachi
+       </a>
+      ) : (
+       <div className="p-2 bg-neutral-100 border my-4 rounded-xl">
+        <MapPin className="inline w-4 h-4 mr-2" />
+        Bahria Town Karachi
+       </div>
+      )}
       <ul className="list-disc body-text text-left pl-5 space-y-2">
        {features.map((feature, index) => (
         <li key={index}>{feature}</li>
