@@ -101,7 +101,7 @@ const cards = [
    title: "Platinum A-1 Boulevard 6 Bed",
    size: "4972 Square Feet",
    location: "Jinnah & Boulevard View",
-   image: "/media/nbr/3d-renders/platinum-A1-boulevard-new(sky).webp",
+   image: "/media/nbr/3d-renders/platinum-A1-boulevard-new-sky.webp",
   },
   {
    title: "Platinium A 6 Bed",
@@ -119,7 +119,7 @@ const cards = [
    title: "Diamond Corner 6 bed",
    size: "4968 Square Feet",
    location: "Heritage Club & Theme Park View",
-   image: "/media/nbr/3d-renders/diamond-corner-new(sky).webp",
+   image: "/media/nbr/3d-renders/diamond-corner-new-sky.webp",
   },
   {
    title: "Gold 4 Bed",
@@ -411,13 +411,18 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid mt-10 overflow-hidden min-h-[25rem] overflow-y-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className={`grid mt-10 overflow-hidden min-h-[25rem] overflow-y-auto gap-6 ${
+            items.length > 4 
+              ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2" 
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          }`}
          >
           {items.map((item, index) => (
            <motion.div
             key={index}
-            // whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            initial={items.length > 4 ? false : { opacity: 0, y: 20 }}
+            animate={items.length > 4 ? {} : { opacity: 1, y: 0 }}
+            transition={items.length > 4 ? {} : { duration: 0.3, delay: index * 0.1 }}
             className="group"
            >
             <Card
@@ -428,10 +433,12 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
               <Image
                src={item.image}
                alt={item.title}
-               width={500}
-               height={300}
+               width={400}
+               height={250}
                className="w-full h-auto rounded-t-lg"
-               loading={idx === 0 ? "eager" : "lazy"}
+               loading={idx === 0 && index < 2 ? "eager" : "lazy"}
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+               quality={idx === 3 ? 75 : 85}
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                <MagnifyingGlassCircleIcon className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
