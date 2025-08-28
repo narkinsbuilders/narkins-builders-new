@@ -18,17 +18,17 @@ try {
   }
 }
 
-const CACHE_NAME = 'narkins-builders-v7';
-const STATIC_CACHE = 'narkins-static-v6';
-const RUNTIME_CACHE = 'narkins-runtime-v6';
+const CACHE_NAME = 'narkins-builders-v8';
+const STATIC_CACHE = 'narkins-static-v7';
+const RUNTIME_CACHE = 'narkins-runtime-v7';
 
 // Media cache buckets
 const CACHE_BUCKETS = {
-  CRITICAL_VIDEOS: 'narkins-critical-videos-v6',
-  DEMAND_VIDEOS: 'narkins-demand-videos-v6', 
-  CRITICAL_IMAGES: 'narkins-critical-images-v6',
-  PROJECT_IMAGES: 'narkins-project-images-v6',
-  BLOG_IMAGES: 'narkins-blog-images-v6'
+  CRITICAL_VIDEOS: 'narkins-critical-videos-v7',
+  DEMAND_VIDEOS: 'narkins-demand-videos-v7', 
+  CRITICAL_IMAGES: 'narkins-critical-images-v7',
+  PROJECT_IMAGES: 'narkins-project-images-v7',
+  BLOG_IMAGES: 'narkins-blog-images-v7'
 };
 
 // Storage limits (in bytes)
