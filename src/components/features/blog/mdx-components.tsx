@@ -105,21 +105,21 @@ const htmlComponents = {
  ol: (props: any) => <ol className="list-decimal list-outside ml-4 sm:ml-6 mb-6 sm:mb-8 space-y-2 sm:space-y-3" {...props} />,
  li: (props: any) => <li className="text-base sm:text-lg text-gray-700 leading-7 sm:leading-8 pl-1 sm:pl-2" {...props} />,
  
- // Professional table design - with strong outer borders
+ // Modern responsive table design
  table: (props: any) => (
-  <div className="overflow-x-auto my-8">
-   <table className="min-w-full bg-white border-2 border-gray-400 rounded-lg overflow-hidden" {...props} />
+  <div className="overflow-x-auto my-6 sm:my-8 rounded-lg border border-gray-200 shadow-sm">
+   <table className="min-w-full bg-white" {...props} />
   </div>
  ),
- thead: (props: any) => <thead className="bg-blue-100" {...props} />,
- tbody: (props: any) => <tbody className="bg-white" {...props} />,
+ thead: (props: any) => <thead className="bg-gray-50 border-b border-gray-200" {...props} />,
+ tbody: (props: any) => <tbody className="divide-y divide-gray-200" {...props} />,
  th: (props: any) => (
-  <th className="px-6 py-4 text-left text-sm text-blue-800 uppercase tracking-wide border-b border-r border-gray-300 last:border-r-0" {...props} />
+  <th className="px-3 py-3 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-medium text-gray-900 tracking-wider" {...props} />
  ),
  td: (props: any) => (
-  <td className="px-6 py-4 text-sm text-gray-900 border-b border-r border-gray-200 last:border-r-0" {...props} />
+  <td className="px-3 py-3 sm:px-6 sm:py-4 text-sm text-gray-900 whitespace-nowrap" {...props} />
  ),
- tr: (props: any) => <tr className="hover:bg-gray-50" {...props} />,
+ tr: (props: any) => <tr className="hover:bg-gray-50 transition-colors" {...props} />,
  
  // Images - Enhanced with zoom functionality
  img: (props: any) => (
