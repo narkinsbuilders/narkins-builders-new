@@ -405,57 +405,86 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
        </TabsList>
 
        {/* Tabs Content */}
-       {cards.map((items, idx) => (
-        <TabsContent key={idx} value={categories[idx]}>
-         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className={`grid mt-10 overflow-hidden min-h-[25rem] overflow-y-auto gap-6 ${
-            items.length > 4 
-              ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2" 
-              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          }`}
-         >
-          {items.map((item, index) => (
-           <motion.div
-            key={index}
-            initial={items.length > 4 ? false : { opacity: 0, y: 20 }}
-            animate={items.length > 4 ? {} : { opacity: 1, y: 0 }}
-            transition={items.length > 4 ? {} : { duration: 0.3, delay: index * 0.1 }}
-            className="group"
-           >
-            <Card
-             onClick={() => openLightbox({ src: item.image, title: item.title })}
-             className="bg-neutral-900 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-neutral-400 transition-all duration-300"
+       {cards.map((items, idx) => {
+        const isSkyVillaTab = idx === 3; // Sky Villa Duplex tab
+        const ContainerComponent = isSkyVillaTab ? 'div' : motion.div;
+        const ItemComponent = isSkyVillaTab ? 'div' : motion.div;
+        
+        return (
+         <TabsContent key={idx} value={categories[idx]}>
+          <ContainerComponent
+           {...(!isSkyVillaTab && {
+             initial: { opacity: 0, y: 20 },
+             animate: { opacity: 1, y: 0 },
+             transition: { duration: 0.5 }
+           })}
+           className={`grid mt-10 overflow-hidden min-h-[25rem] overflow-y-auto gap-6 ${
+             items.length > 4 
+               ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2" 
+               : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+           }`}
+           style={isSkyVillaTab ? {
+             WebkitTransform: 'translateZ(0)',
+             transform: 'translateZ(0)',
+             WebkitBackfaceVisibility: 'hidden',
+             backfaceVisibility: 'hidden',
+             contain: 'layout style paint'
+           } : undefined}
+          >
+           {items.map((item, index) => (
+            <ItemComponent
+             key={index}
+             {...(!isSkyVillaTab && {
+               initial: items.length > 4 ? false : { opacity: 0, y: 20 },
+               animate: items.length > 4 ? {} : { opacity: 1, y: 0 },
+               transition: items.length > 4 ? {} : { duration: 0.3, delay: index * 0.1 }
+             })}
+             className="group"
+             style={isSkyVillaTab ? {
+               WebkitTransform: 'translateZ(0)',
+               transform: 'translateZ(0)',
+               WebkitBackfaceVisibility: 'hidden',
+               backfaceVisibility: 'hidden'
+             } : undefined}
             >
-             <CardHeader className="relative">
-              <Image
-               src={item.image}
-               alt={item.title}
-               width={400}
-               height={250}
-               className="w-full h-auto rounded-t-lg"
-               loading={idx === 0 && index < 2 ? "eager" : "lazy"}
-               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-               quality={idx === 3 ? 75 : 85}
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-               <MagnifyingGlassCircleIcon className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
-              </div>
-             </CardHeader>
-             <CardContent className="p-4">
-              <h1 className="text-xl text-white">{item.title}</h1>
-              <p className="text-sm mt-2 text-neutral-300">
-               Size: {item.size}, Location: {item.location}
-              </p>
-             </CardContent>
-            </Card>
-           </motion.div>
-          ))}
-         </motion.div>
-        </TabsContent>
-       ))}
+             <Card
+              onClick={() => openLightbox({ src: item.image, title: item.title })}
+              className="bg-neutral-900 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-neutral-400 transition-all duration-300"
+             >
+              <CardHeader className="relative">
+               <Image
+                src={item.image}
+                alt={item.title}
+                width={isSkyVillaTab ? 350 : 400}
+                height={isSkyVillaTab ? 220 : 250}
+                className="w-full h-auto rounded-t-lg"
+                loading={idx === 0 && index < 2 ? "eager" : index > 3 ? "lazy" : "lazy"}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={idx === 3 ? 70 : 85}
+                priority={false}
+                style={isSkyVillaTab ? {
+                  WebkitTransform: 'translateZ(0)',
+                  transform: 'translateZ(0)',
+                  imageRendering: 'auto'
+                } : undefined}
+               />
+               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                <MagnifyingGlassCircleIcon className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+               </div>
+              </CardHeader>
+              <CardContent className="p-4">
+               <h1 className="text-xl text-white">{item.title}</h1>
+               <p className="text-sm mt-2 text-neutral-300">
+                Size: {item.size}, Location: {item.location}
+               </p>
+              </CardContent>
+             </Card>
+            </ItemComponent>
+           ))}
+          </ContainerComponent>
+         </TabsContent>
+        );
+       })}
       </Tabs>
      </div>
     </section>
