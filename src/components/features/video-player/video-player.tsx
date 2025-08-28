@@ -9,7 +9,6 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
   const [shouldLoad, setShouldLoad] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isSafari, setIsSafari] = useState(false);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -40,14 +39,14 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
     const video = videoRef.current;
     if (video) {
       setVideoDuration(video.duration);
+      // Enforce iPhone-compatible settings
+      video.muted = true;
+      video.playsInline = true;
+      if (isVisible) {
+        video.play().catch(error => console.error('Video autoplay failed:', error));
+      }
     }
-    function isMobileSafari() {
-      const userAgent = navigator.userAgent;
-      return /iPhone|iPad|iPod/i.test(userAgent) || 
-             (/Safari/i.test(userAgent) && /Apple/i.test(userAgent) && !/Chrome/i.test(userAgent));
-    }
-    setIsSafari(!!isMobileSafari());
-  }, []);
+  }, [isVisible]);
 
   useEffect(() => {
     if (isPaused) return;
@@ -98,54 +97,34 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
           </div>
         </div>
       ) : (
-        <>
-          {isSafari ? (
-            <video 
-              className="w-full h-full object-cover bg-neutral-300" 
-              muted 
-              poster={poster} 
-              playsInline 
-              controls
-              preload="metadata"
-              {...({ 'webkit-playsinline': 'true' } as any)}
-              {...({ 'x5-playsinline': 'true' } as any)}
-              {...({ 'x5-video-player-type': 'h5' } as any)}
-              {...({ 'x5-video-player-fullscreen': 'true' } as any)}
-              style={{ aspectRatio: '16/9' }}
-            >
-              <source src={src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <Fragment>
-              <div className="absolute top-4 right-4 z-10">
-                <VideoPlayerControls
-                  progress={videoProgress}
-                  isPaused={isPaused}
-                  onPlayPause={togglePlayPause}
-                />
-              </div>
-              <video 
-                className="w-full h-full object-cover bg-neutral-300" 
-                poster={poster} 
-                ref={videoRef} 
-                preload="metadata"
-                loop 
-                autoPlay={isVisible && !isSafari} 
-                playsInline 
-                muted 
-                controls={false} 
-                disablePictureInPicture
-                {...({ 'webkit-playsinline': 'true' } as any)}
-                {...({ 'x5-playsinline': 'true' } as any)}
-                {...({ 'x5-video-player-type': 'h5' } as any)}
-                style={{ aspectRatio: '16/9' }}
-              >
-                <source src={src} type="video/mp4" />
-              </video>
-            </Fragment>
-          )}
-        </>
+        <Fragment>
+          <div className="absolute top-4 right-4 z-10">
+            <VideoPlayerControls
+              progress={videoProgress}
+              isPaused={isPaused}
+              onPlayPause={togglePlayPause}
+            />
+          </div>
+          <video 
+            className="w-full h-full object-cover bg-neutral-300" 
+            poster={poster} 
+            ref={videoRef} 
+            preload="metadata"
+            loop 
+            autoPlay={isVisible} 
+            playsInline 
+            muted 
+            controls={false} 
+            disablePictureInPicture
+            {...({ 'webkit-playsinline': 'true' } as any)}
+            {...({ 'x5-playsinline': 'true' } as any)}
+            {...({ 'x5-video-player-type': 'h5' } as any)}
+            style={{ aspectRatio: '16/9' }}
+          >
+            <source src={src} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </Fragment>
       )}
       
       {/* Responsive overlay for mobile */}
