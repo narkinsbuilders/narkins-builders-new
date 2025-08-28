@@ -24,17 +24,17 @@ export default function EChartsTable({
 }: EChartsTableProps) {
   const getSizeClasses = () => {
     switch (size) {
-      case 'small': return 'text-xs px-3 py-2'
-      case 'large': return 'text-base px-6 py-4'
-      default: return 'text-sm px-4 py-3'
+      case 'small': return 'text-xs px-2 py-2 sm:px-3 sm:py-3'
+      case 'large': return 'text-base px-4 py-3 sm:px-6 sm:py-4'
+      default: return 'text-sm px-3 py-3 sm:px-4 sm:py-3'
     }
   };
 
   if (!dataSource || dataSource.length === 0) {
     return (
-      <div className="my-8 overflow-hidden rounded-xl bg-white shadow-2xl border border-gray-100">
-        <div className="bg-gradient-to-r from-neutral-800 to-black px-2 py-6">
-          <h3 className="text-2xl font-bold text-white">{title}</h3>
+      <div className="my-6 sm:my-8 overflow-hidden rounded-lg bg-white shadow-sm border border-gray-200">
+        <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 sm:py-6">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{title}</h3>
         </div>
         <div className="p-8">
           <div className="flex h-32 items-center justify-center text-gray-500 bg-gray-50 rounded-lg">
@@ -49,10 +49,10 @@ export default function EChartsTable({
   }
 
   return (
-    <div className="my-8 overflow-hidden rounded-xl bg-white shadow-2xl border border-gray-100">
+    <div className="my-6 sm:my-8 overflow-hidden rounded-lg bg-white shadow-sm border border-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-neutral-800 to-black px-2 py-6">
-        <h3 className="text-2xl font-bold text-white">{title}</h3>
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 sm:py-6">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{title}</h3>
       </div>
       
       {/* Table */}
@@ -63,25 +63,23 @@ export default function EChartsTable({
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`text-left font-semibold text-gray-800 border-r border-gray-200 last:border-r-0 ${getSizeClasses()}`}
+                  className={`text-left font-medium text-gray-900 tracking-wider ${getSizeClasses()}`}
                 >
                   {column.title}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-200">
             {dataSource.map((record, index) => (
               <tr
                 key={index}
-                className={`transition-all duration-200 hover:bg-gradient-to-r hover:from-gray-50 hover:to-neutral-50 ${
-                  index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
-                }`}
+                className="hover:bg-gray-50 transition-colors"
               >
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className={`text-gray-700 border-r border-gray-100 last:border-r-0 ${getSizeClasses()}`}
+                    className={`text-gray-900 ${getSizeClasses()}`}
                   >
                     {column.render 
                       ? column.render(record[column.dataIndex], record, index)
