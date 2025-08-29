@@ -16,7 +16,7 @@ export default function AdsLandingPage() {
        mapUrl="https://www.google.com/maps/place/Hill+Crest+Residency/@25.0039331,67.3108812,17z/data=!3m1!4b1!4m6!3m5!1s0x3eb34b0d0e2f0313:0x82f9da3499b223b1!8m2!3d25.0039331!4d67.3134561!16s%2Fg%2F11pzq0ybkk"
        headline={"2, 3 & 4 Bedroom Luxury Apartments "}
        features={[
-        "Main Jinnah Avenue, 2 mins from the main gate",
+        "Main Jinnah Avenue, Less than a minute drive from main gate",
         "Smart Apartments",
         "High speed lifts, Reception area & standby generators",
         "Gym, community hall, steam bath",
