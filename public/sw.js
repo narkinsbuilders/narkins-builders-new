@@ -18,17 +18,17 @@ try {
   }
 }
 
-const CACHE_NAME = 'narkins-builders-v10';
-const STATIC_CACHE = 'narkins-static-v9';
-const RUNTIME_CACHE = 'narkins-runtime-v9';
+const CACHE_NAME = 'narkins-builders-v11';
+const STATIC_CACHE = 'narkins-static-v10';
+const RUNTIME_CACHE = 'narkins-runtime-v10';
 
 // Media cache buckets
 const CACHE_BUCKETS = {
-  CRITICAL_VIDEOS: 'narkins-critical-videos-v8',
-  DEMAND_VIDEOS: 'narkins-demand-videos-v8', 
-  CRITICAL_IMAGES: 'narkins-critical-images-v8',
-  PROJECT_IMAGES: 'narkins-project-images-v8',
-  BLOG_IMAGES: 'narkins-blog-images-v8'
+  CRITICAL_VIDEOS: 'narkins-critical-videos-v9',
+  DEMAND_VIDEOS: 'narkins-demand-videos-v9', 
+  CRITICAL_IMAGES: 'narkins-critical-images-v9',
+  PROJECT_IMAGES: 'narkins-project-images-v9',
+  BLOG_IMAGES: 'narkins-blog-images-v9'
 };
 
 // Storage limits (in bytes)
@@ -88,9 +88,9 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
 
   // Precache core assets including critical media
   const precacheAssets = [
-    ...urlsToCache.map(url => ({ url, revision: '6' })),
-    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '6' })),
-    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '6' }))
+    ...urlsToCache.map(url => ({ url, revision: '7' })),
+    ...MEDIA_CATEGORIES.CRITICAL_VIDEOS.map(url => ({ url, revision: '7' })),
+    ...MEDIA_CATEGORIES.CRITICAL_IMAGES.map(url => ({ url, revision: '7' }))
   ];
   
   workbox.precaching.precacheAndRoute(precacheAssets);
@@ -622,7 +622,7 @@ async function cleanupOldCaches() {
   try {
     const cacheNames = await caches.keys();
     const oldCaches = cacheNames.filter(name => 
-      name.includes('narkins') && !name.includes('v6')
+      name.includes('narkins') && !name.includes('v7')
     );
     
     await Promise.all(
