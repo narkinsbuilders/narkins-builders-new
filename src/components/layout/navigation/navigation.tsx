@@ -175,7 +175,7 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                 <Image
                  src={item.imageSrc}
                  alt={item.imageAlt}
-                 className="object-cover object-center"
+                 className=""
                  width={200}
                  height={200}
                 />
@@ -308,7 +308,7 @@ const Navigation: FC<NavigationProps> = ({ fixed = false, transparent = false })
                        <Image
                         src={item.imageSrc}
                         alt={item.imageAlt}
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full"
                         width={200}
                         height={133}
                        />

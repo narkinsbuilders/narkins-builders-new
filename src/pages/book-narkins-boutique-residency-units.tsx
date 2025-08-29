@@ -16,13 +16,13 @@ export default function AdsLandingPage() {
        mapUrl="https://www.google.com/maps/place/Narkin's+Boutique+Residency/@25.0148945,67.3165014,17z/data=!3m1!4b1!4m6!3m5!1s0x3eb34bad638fbbb1:0x4aa67ba370e4667b!8m2!3d25.0148897!4d67.3190763!16s%2Fg%2F11rr24w7nc?entry=ttu&g_ep=EgoyMDI1MDgyNy4wIKXMDSoASAFQAw%3D%3D"
        headline={"2, 3 & 4 Bedroom Luxury Apartments"}
        features={[
-        "4 mins from the main gate",
+        "3 mins from the main gate",
         "Construction on full swing",
         "Smart Apartment",
-        "Capsule lofts, Reception area & standby generators",
-        "Gym, community hall, indoor swimming pool",
-        "7 floor carparking",
-        "Inhouse Mosque",
+        "Capsule lifts, Reception area & Standby generators",
+        "Gym, Community hall, Indoor swimming pool",
+        "5 Floor car parking",
+        "Inhouse prayer area",
        ]}
       />
      </div>

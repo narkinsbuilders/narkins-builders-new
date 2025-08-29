@@ -20,7 +20,7 @@ export default function AdsLandingPage() {
         "Smart Apartments",
         "High speed lifts, Reception area & standby generators",
         "Gym, community hall, steam bath",
-        "Inhouse Mosque"
+        "Inhouse Prayer Area"
        ]}
       />
      </div>

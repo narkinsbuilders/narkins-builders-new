@@ -18,9 +18,9 @@ try {
   }
 }
 
-const CACHE_NAME = 'narkins-builders-v9';
-const STATIC_CACHE = 'narkins-static-v8';
-const RUNTIME_CACHE = 'narkins-runtime-v8';
+const CACHE_NAME = 'narkins-builders-v10';
+const STATIC_CACHE = 'narkins-static-v9';
+const RUNTIME_CACHE = 'narkins-runtime-v9';
 
 // Media cache buckets
 const CACHE_BUCKETS = {
