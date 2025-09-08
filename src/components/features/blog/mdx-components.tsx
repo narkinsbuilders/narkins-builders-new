@@ -8,6 +8,7 @@ import EconomicGauge from '@/components/features/blog/EconomicGauge'
 import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
 import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
 import VideoPlayer from '@/components/features/video-player/video-player'
+import { getImageAltText } from '@/data/image-alt-texts'
 import EChartsLineChart from '@/components/features/blog/EChartsLineChart'
 import EChartsColumnChart from '@/components/features/blog/EChartsColumnChart'
 import EChartsPieChart from '@/components/features/blog/EChartsPieChart'
@@ -122,16 +123,21 @@ const htmlComponents = {
  tr: (props: any) => <tr className="hover:bg-gray-50 transition-colors" {...props} />,
  
  // Images - Enhanced with zoom functionality
- img: (props: any) => (
-  <ZoomableImage
-   src={props.src}
-   alt={props.alt || ''}
-   width={800}
-   height={600}
-   className="my-8"
-   caption={props.title}
-  />
- ),
+ img: (props: any) => {
+  const filename = props.src?.split('/').pop() || '';
+  const altText = props.alt || getImageAltText(filename, `Image: ${props.title || filename.replace(/\.(webp|jpg|jpeg|png)$/, '').replace(/-/g, ' ')}`);
+  
+  return (
+   <ZoomableImage
+    src={props.src}
+    alt={altText}
+    width={800}
+    height={600}
+    className="my-8"
+    caption={props.title}
+   />
+  );
+ },
  
  // Links and emphasis
  a: (props: any) => <a className="text-blue-600 hover:text-blue-800 " {...props} />,
