@@ -175,7 +175,7 @@ scripts/temp/
 **/database-credentials.*
 **/api-keys.*
 **/secrets.*
-
+.ignored/
 # SEO Keyword Research Files
 SEO_KEYWORDS.md
 /src/SEO_KEYWORDS.md
