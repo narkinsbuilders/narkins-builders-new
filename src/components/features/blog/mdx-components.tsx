@@ -374,38 +374,6 @@ const customComponents = {
   );
  },
 
- PerformanceGauge: ({ value, title, max = 100 }: { value: number, title: string, max?: number }) => {
-  const getStatusColor = (val: number) => {
-   if (val >= 80) return '#52c41a'; // Green
-   if (val >= 60) return '#faad14'; // Yellow
-   return '#ff4d4f'; // Red
-  };
-
-  return (
-   <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-    <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">{title}</h3>
-    <div className="max-w-sm mx-auto space-y-4">
-     <EChartsStatistic
-      title="Performance Score"
-      value={value}
-      suffix="/ 100"
-      valueStyle={{ 
-       color: getStatusColor(value),
-       fontSize: '2rem',
-       fontWeight: 'bold'
-      }}
-     />
-     <EChartsProgressBar
-      percent={value}
-      strokeColor={getStatusColor(value)}
-      trailColor="#f0f0f0"
-      strokeWidth={8}
-      showInfo={false}
-     />
-    </div>
-   </div>
-  );
- },
 
  EconomicGauge: (props: any) => <EconomicGauge {...props} />,
  FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
@@ -466,7 +434,6 @@ const templateComponents = {
  TrendAnalysis: customComponents.TrendAnalysis,
  PricingTable: customComponents.PricingTable,
  ComparisonChart: customComponents.ComparisonChart,
- PerformanceGauge: customComponents.PerformanceGauge,
  EconomicGauge: customComponents.EconomicGauge,
  FDIFlowChart: customComponents.FDIFlowChart,
  InvestmentFunnel: customComponents.InvestmentFunnel,
