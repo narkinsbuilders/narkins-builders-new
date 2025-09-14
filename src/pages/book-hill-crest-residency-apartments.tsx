@@ -1,9 +1,16 @@
 import Navigation from "@/components/layout/navigation/navigation";
 import AdsCampaign from "@/components/features/ads-campaign/ads-campaign";
 import Footer from "@/components/layout/footer/footer";
+import Head from "next/head";
+
 export default function AdsLandingPage() {
  return (
   <main>
+   <Head>
+    <title>Book Hill Crest Residency Apartments | Narkin's Builders</title>
+    <meta name="description" content="Book your luxury apartment at Hill Crest Residency in Bahria Town Karachi. 2, 3 & 4 bedroom apartments with premium amenities." />
+    <link rel="canonical" href="https://narkinsbuilders.com/book-hill-crest-residency-apartments" />
+   </Head>
    <Navigation />
    <div className="bg-white pt-[6rem]">
     <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">

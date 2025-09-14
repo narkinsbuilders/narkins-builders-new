@@ -69,6 +69,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
     <meta name="description" content="Latest insights on real estate investment in Bahria Town Karachi" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
+    <link rel="canonical" href="https://narkinsbuilders.com/blog" />
+    
     {/* Preload new blog images to fix loading issues */}
     {newestBlogImages.map((imagePath, index) => (
      <link key={index} rel="preload" as="image" href={imagePath} />

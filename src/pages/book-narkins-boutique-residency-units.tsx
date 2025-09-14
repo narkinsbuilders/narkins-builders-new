@@ -1,9 +1,16 @@
 import Navigation from "@/components/layout/navigation/navigation";
 import AdsCampaign from "@/components/features/ads-campaign/ads-campaign";
 import Footer from "@/components/layout/footer/footer";
+import Head from "next/head";
+
 export default function AdsLandingPage() {
  return (
   <main>
+   <Head>
+    <title>Book Narkin's Boutique Residency Units | Narkin's Builders</title>
+    <meta name="description" content="Book your luxury unit at Narkin's Boutique Residency in Bahria Town Karachi. Premium apartments with modern amenities and elegant design." />
+    <link rel="canonical" href="https://narkinsbuilders.com/book-narkins-boutique-residency-units" />
+   </Head>
    <Navigation />
    <div className="bg-white pt-[6rem]">
     <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">

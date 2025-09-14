@@ -1,7 +1,17 @@
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 
 export default function AdminPage() {
- return null
+ return (
+  <>
+   <Head>
+    <title>Admin - Narkin's Builders</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://narkinsbuilders.com/admin" />
+   </Head>
+   <div>Redirecting to admin...</div>
+  </>
+ )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {

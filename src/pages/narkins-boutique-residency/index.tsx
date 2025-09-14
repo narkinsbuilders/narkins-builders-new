@@ -308,6 +308,8 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
      content="Narkin's Boutique Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
     />
     <meta name="author" content="Narkin's Builders" />
+    
+    <link rel="canonical" href="https://narkinsbuilders.com/narkins-boutique-residency" />
 
     {/* Open Graph / Facebook Meta Tags */}
     <meta property="og:type" content="website" />
