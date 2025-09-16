@@ -43,8 +43,12 @@ export default function Document() {
      }}
     />
     <noscript>
-     <img height="1" width="1" style={{display:'none'}}
+     <img 
+      height="1" 
+      width="1" 
+      style={{display:'none'}}
       src="https://www.facebook.com/tr?id=5304750006256624&ev=PageView&noscript=1"
+      alt=""
      />
     </noscript>
 

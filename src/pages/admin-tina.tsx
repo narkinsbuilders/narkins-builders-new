@@ -41,5 +41,7 @@ export default function TinaAdminPage() {
     </div>
    </div>
   </div>
+ </>
  )
+}
 }
