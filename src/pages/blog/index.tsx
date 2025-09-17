@@ -9,12 +9,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 interface BlogIndexProps {
  posts: BlogPost[]
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
+ const router = useRouter();
+ 
  // Filter state
  const [filters, setFilters] = useState<BlogFilters>({
   contentType: 'all',
@@ -22,8 +25,20 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   readTime: 'all',
  });
 
+ // Pagination constants
+ const POSTS_PER_PAGE = 9;
+ 
+ // Get current page from URL
+ const currentPage = Number(router.query.page) || 1;
+
  // Filter and sort posts
  const filteredPosts = filterAndSortPosts(posts, filters);
+ 
+ // Calculate pagination
+ const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+ const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+ const endIndex = startIndex + POSTS_PER_PAGE;
+ const currentPosts = filteredPosts.slice(startIndex, endIndex);
 
  // Define the newest blogs that have image loading issues
  const newestBlogImages = [
@@ -51,6 +66,23 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   return imagePath;
  };
 
+ // Handle filter changes and reset to page 1
+ const handleFiltersChange = (newFilters: BlogFilters) => {
+  setFilters(newFilters);
+  if (currentPage !== 1) {
+   router.push('/blog', undefined, { shallow: true });
+  }
+ };
+
+ // Handle page change
+ const handlePageChange = (page: number) => {
+  if (page === 1) {
+   router.push('/blog', undefined, { shallow: true });
+  } else {
+   router.push(`/blog?page=${page}`, undefined, { shallow: true });
+  }
+ };
+
  // Preload new blog images to warm up the cache
  useEffect(() => {
   newestBlogImages.forEach(imagePath => {
@@ -62,14 +94,57 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   });
  }, []);
 
+ // Dynamic SEO meta tags
+ const getPageTitle = () => {
+  if (currentPage === 1) {
+   return "Real Estate Blog | Narkin's Builders";
+  }
+  return `Real Estate Blog - Page ${currentPage} | Narkin's Builders`;
+ };
+
+ const getPageDescription = () => {
+  if (currentPage === 1) {
+   return "Latest insights on real estate investment in Bahria Town Karachi";
+  }
+  return `Real estate investment insights and market analysis - Page ${currentPage} of ${totalPages}. Browse our comprehensive collection of property investment guides.`;
+ };
+
+ const getCanonicalUrl = () => {
+  const baseUrl = "https://narkinsbuilders.com/blog";
+  return currentPage === 1 ? baseUrl : `${baseUrl}?page=${currentPage}`;
+ };
+
  return (
   <>
    <Head>
-    <title>Real Estate Blog | Narkin's Builders</title>
-    <meta name="description" content="Latest insights on real estate investment in Bahria Town Karachi" />
+    <title>{getPageTitle()}</title>
+    <meta name="description" content={getPageDescription()} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <link rel="canonical" href="https://narkinsbuilders.com/blog" />
+    {/* Canonical URL */}
+    <link rel="canonical" href={getCanonicalUrl()} />
+    
+    {/* Pagination rel links */}
+    {currentPage > 1 && (
+     <link 
+      rel="prev" 
+      href={currentPage === 2 ? "https://narkinsbuilders.com/blog" : `https://narkinsbuilders.com/blog?page=${currentPage - 1}`} 
+     />
+    )}
+    {currentPage < totalPages && (
+     <link rel="next" href={`https://narkinsbuilders.com/blog?page=${currentPage + 1}`} />
+    )}
+    
+    {/* Open Graph tags for social sharing */}
+    <meta property="og:title" content={getPageTitle()} />
+    <meta property="og:description" content={getPageDescription()} />
+    <meta property="og:url" content={getCanonicalUrl()} />
+    <meta property="og:type" content="website" />
+    
+    {/* Twitter Card tags */}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={getPageTitle()} />
+    <meta name="twitter:description" content={getPageDescription()} />
     
     {/* Preload new blog images to fix loading issues */}
     {newestBlogImages.map((imagePath, index) => (
@@ -98,7 +173,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
     <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-12 pb-8">
      <BlogFilter 
       filters={filters} 
-      onFiltersChange={setFilters}
+      onFiltersChange={handleFiltersChange}
       totalPosts={posts.length}
       filteredCount={filteredPosts.length}
       posts={posts}
@@ -108,8 +183,9 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
     {/* Blog Posts Grid */}
     <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-20">
      {filteredPosts.length > 0 ? (
-       <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        {filteredPosts.map((post) => (
+       <>
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+         {currentPosts.map((post) => (
         <article key={post.slug} 
          className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300 hover:-translate-y-2 group">
          <Link href={generateBlogUrl(post)}>
@@ -169,7 +245,75 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
          </Link>
         </article>
         ))}
-       </div>
+        </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+         <div className="flex justify-center items-center mt-16 space-x-2">
+          {/* Previous Button */}
+          <button
+           onClick={() => handlePageChange(currentPage - 1)}
+           disabled={currentPage === 1}
+           className={`px-4 py-2 rounded-lg border transition-colors ${
+            currentPage === 1
+             ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+             : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+           }`}
+          >
+           Previous
+          </button>
+
+          {/* Page Numbers */}
+          <div className="flex space-x-1">
+           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+            const isCurrentPage = page === currentPage;
+            const showPage = 
+             page === 1 || 
+             page === totalPages || 
+             (page >= currentPage - 2 && page <= currentPage + 2);
+
+            if (!showPage) {
+             if (page === currentPage - 3 || page === currentPage + 3) {
+              return (
+               <span key={page} className="px-2 py-2 text-gray-400">
+                ...
+               </span>
+              );
+             }
+             return null;
+            }
+
+            return (
+             <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`px-4 py-2 rounded-lg border transition-colors ${
+               isCurrentPage
+                ? 'bg-black text-white border-black'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+              }`}
+             >
+              {page}
+             </button>
+            );
+           })}
+          </div>
+
+          {/* Next Button */}
+          <button
+           onClick={() => handlePageChange(currentPage + 1)}
+           disabled={currentPage === totalPages}
+           className={`px-4 py-2 rounded-lg border transition-colors ${
+            currentPage === totalPages
+             ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+             : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+           }`}
+          >
+           Next
+          </button>
+         </div>
+        )}
+       </>
      ) : (
       <div className="text-center py-12">
        <div className="max-w-md mx-auto">
