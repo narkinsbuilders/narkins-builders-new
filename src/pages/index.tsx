@@ -73,7 +73,22 @@ export default function Index({ posts }: { posts: any[] }) {
   if (video) {
    video.muted = true;
    video.playsInline = true;
-   video.play().catch((error) => console.error('Video play failed', error));
+   
+   // Lazy load video when it becomes visible
+   const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+     if (entry.isIntersecting) {
+      // Load and play video only when visible
+      video.load();
+      video.play().catch((error) => console.error('Video play failed', error));
+      observer.unobserve(video);
+     }
+    });
+   }, { threshold: 0.1 });
+   
+   observer.observe(video);
+   
+   return () => observer.disconnect();
   }
  }, []);
  const openLightbox = useLightboxStore(state => state.openLightbox);
@@ -118,6 +133,10 @@ export default function Index({ posts }: { posts: any[] }) {
  
  {/* Favicon (if you have one) */}
  <link rel="icon" href="/favicon.ico" />
+ 
+ {/* Resource Hints for Performance */}
+ <link rel="preload" href="/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp" as="image" />
+ <link rel="dns-prefetch" href="//fonts.googleapis.com" />
    </Head>
    <OrganizationSchema />
    <LocalBusinessSchema />
@@ -152,7 +171,8 @@ export default function Index({ posts }: { posts: any[] }) {
      </div>
      <video
       ref={videoRef}
-      preload="metadata"
+      preload="none"
+      poster="/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp"
       className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
       loop
       autoPlay

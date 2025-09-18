@@ -177,7 +177,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
       </Link>{" "}
       with ❤ from{" "}
       <a href="https://otherdev.com/" className="underline">
-       The Other Dev
+       Other Dev
       </a>
      </span>
     </div>
