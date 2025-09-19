@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Image from "next/image"; 
 import BlogsSection from "@/components/features/blogs-section/blogs-section";
@@ -35,6 +35,14 @@ import { getAllPostsServer, BlogFilter } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { NarkinsBoutiqueResidencySchema } from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
 import { VideoSchema } from '@/components/common/schema/VideoSchema';
+import { 
+  HeroSkeleton, 
+  FloorPlansSkeleton, 
+  AmenitiesSkeleton, 
+  GallerySkeleton, 
+  VideoSkeleton,
+  TestimonialsSkeleton 
+} from '@/components/common/skeleton/skeleton';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -293,6 +301,30 @@ const Amenities = () => {
 
 export default function HillCrestResidency({ posts }: { posts: PostWithCategory[] }) {
  const openLightbox = useLightboxStore(state => state.openLightbox);
+ 
+ // Loading states for different sections
+ const [loadingStates, setLoadingStates] = useState({
+   hero: true,
+   floorPlans: true,
+   amenities: true,
+   gallery: true,
+   videos: true,
+   testimonials: true,
+ });
+
+ // Simulate realistic loading times with staggered reveals
+ useEffect(() => {
+   const timers = [
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 800),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, floorPlans: false })), 1200),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, amenities: false })), 1600),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, gallery: false })), 2000),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, videos: false })), 2400),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, testimonials: false })), 2800),
+   ];
+
+   return () => timers.forEach(timer => clearTimeout(timer));
+ }, []);
 
  return (
   <main>
@@ -346,42 +378,51 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
    <Navigation />
    <Lightbox />
    <div className="bg-white pt-[6rem]">
-    <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
-     <VideoPlayer src="/media/nbr/videos/nbr.mp4" poster={'/nbr_video_poster.webp'} />
-    </div>
-    <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
-     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl lg:mx-0">
-       <h2 className="text-4xl tracking-tight text-black sm:text-7xl">{'Narkin\'s '} Boutique Residency</h2>
-       <p className="mt-6 text-lg leading-8 text-gray-800">
-        Welcome to {`Narkin's `}Boutique Residency, where luxury meets
-        bespoke design in the heart of Bahria Town Karachi's Heritage
-        Commercial area. Crafted by "Talent & Taste," our premium
-        high-rise apartments redefine upscale living with their
-        exquisite attention to detail.
+    {loadingStates.hero ? (
+      <HeroSkeleton />
+    ) : (
+      <>
+        <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
+         <VideoPlayer src="/media/nbr/videos/nbr.mp4" poster={'/nbr_video_poster.webp'} />
+        </div>
+        <div className="relative isolate overflow-hidden py-20 pt-5 sm:py-[28px]">
+         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+           <h2 className="text-4xl tracking-tight text-black sm:text-7xl">{'Narkin\'s '} Boutique Residency</h2>
+           <p className="mt-6 text-lg leading-8 text-gray-800">
+            Welcome to {`Narkin's `}Boutique Residency, where luxury meets
+            bespoke design in the heart of Bahria Town Karachi's Heritage
+            Commercial area. Crafted by "Talent & Taste," our premium
+            high-rise apartments redefine upscale living with their
+            exquisite attention to detail.
 
-        Nestled in the esteemed Heritage Commercial area, {`Narkin's`}{" "}
-        Boutique Residency offers residents unparalleled access to a
-        wealth of amenities and attractions. From exclusive luxury
-        farmhouses and the prestigious Heritage Club to the convenience
-        of Imtiaz Mega, shopping malls, and a bustling food street,
-        everything you desire is just a walk away. Additionally, the
-        24/7 Shop Stop & PSO ensures your daily needs are effortlessly
-        met.
-        <br />
-        <br />
-        With ground + 20 floors, {`Narkin's`} Boutique Residency
-        offers a premier selection of 2, 3, and 4-bedroom luxury apartments for sale in Bahria Town Karachi,
-        each boasting panoramic views of Bahria Town Karachi. Experience
-        the epitome of sophistication as you unwind in your designer
-        Apartment.Adding to its uniqueness, {`Narkin's`} introduces Sky Villa Duplex penthouses—double-story luxury residences with private terraces, expansive layouts, and unmatched privacy, perfect for those seeking a villa experience in the sky.
-        <br />
-        <br />
-       </p>
-      </div>
-     </div>
-    </div>
-    <section className="bg-black py-20">
+            Nestled in the esteemed Heritage Commercial area, {`Narkin's`}{" "}
+            Boutique Residency offers residents unparalleled access to a
+            wealth of amenities and attractions. From exclusive luxury
+            farmhouses and the prestigious Heritage Club to the convenience
+            of Imtiaz Mega, shopping malls, and a bustling food street,
+            everything you desire is just a walk away. Additionally, the
+            24/7 Shop Stop & PSO ensures your daily needs are effortlessly
+            met.
+            <br />
+            <br />
+            With ground + 20 floors, {`Narkin's`} Boutique Residency
+            offers a premier selection of 2, 3, and 4-bedroom luxury apartments for sale in Bahria Town Karachi,
+            each boasting panoramic views of Bahria Town Karachi. Experience
+            the epitome of sophistication as you unwind in your designer
+            Apartment.Adding to its uniqueness, {`Narkin's`} introduces Sky Villa Duplex penthouses—double-story luxury residences with private terraces, expansive layouts, and unmatched privacy, perfect for those seeking a villa experience in the sky.
+            <br />
+            <br />
+           </p>
+          </div>
+         </div>
+        </div>
+      </>
+    )}
+    {loadingStates.floorPlans ? (
+      <FloorPlansSkeleton />
+    ) : (
+      <section className="bg-black py-20">
      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       {/* Heading and Subheading */}
       <div className="text-center mb-12">
@@ -490,10 +531,20 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </Tabs>
      </div>
     </section>
-    <section className="bg-white py-20">
-     <Amenities />
-    </section>
-    <section className="bg-white px-5 mx-auto py-20 lg:px-8">
+    )}
+    {loadingStates.amenities ? (
+      <AmenitiesSkeleton />
+    ) : (
+      <section className="bg-white py-20">
+       <Amenities />
+      </section>
+    )}
+    {loadingStates.gallery ? (
+      <section className="bg-white px-5 mx-auto py-20 lg:px-8">
+        <GallerySkeleton />
+      </section>
+    ) : (
+      <section className="bg-white px-5 mx-auto py-20 lg:px-8">
      <div className="mx-auto max-w-7xl">
       {/* Gallery Heading (Optional) */}
       <div className="text-center mb-12">
@@ -539,11 +590,21 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </div>
      </div>
     </section>
+    )}
 
-    <section className="bg-white border-t px-5 lg:px-8 py-20">
-     <Testimonials testimonials={testimonials} />
-    </section>
-    <section className="bg-white py-20 border-b border">
+    {loadingStates.testimonials ? (
+      <TestimonialsSkeleton />
+    ) : (
+      <section className="bg-white border-t px-5 lg:px-8 py-20">
+       <Testimonials testimonials={testimonials} />
+      </section>
+    )}
+    {loadingStates.videos ? (
+      <section className="bg-white py-20 border-b border">
+        <VideoSkeleton />
+      </section>
+    ) : (
+      <section className="bg-white py-20 border-b border">
      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       {/* Heading */}
       <div className="text-center mb-12">
@@ -589,6 +650,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </div>
      </div>
     </section>
+    )}
     <BlogsSection posts={posts} />
    </div>
    <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
