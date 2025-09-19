@@ -9,6 +9,7 @@ export interface BlogPost {
  readTime: string
  lastModified?: string
  keywords?: string
+ author?: string
 }
 
 // This will be populated by getStaticProps

@@ -66,6 +66,18 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
         </time>
         <span className="text-gray-500">·</span>
         <span className="text-gray-500">{post.readTime}</span>
+        <span className="text-gray-500">·</span>
+        <span className="text-gray-500">
+         By{' '}
+         <a 
+          href="https://www.otherdev.com/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-gray-500 hover:text-gray-900 transition-colors duration-200"
+         >
+          {post.author || 'Other Dev'}
+         </a>
+        </span>
        </div>
 
        {/* Title */}
