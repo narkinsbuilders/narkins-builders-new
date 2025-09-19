@@ -567,33 +567,14 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         >
          <div className="relative overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-900/10 hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02]">
           <div className="relative w-full h-[200px] lg:h-[280px]">
-           <a
-            href={`https://youtube.com/watch?v=${video.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full h-full"
-           >
-            <Image
-             src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
-             alt={video.title}
-             width={500}
-             height={300}
-             className="w-full h-full object-cover rounded-2xl"
-             loading="lazy"
-             quality={90}
-             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-            <div className="absolute bottom-4 left-4 flex items-center justify-center">
-             <Image alt={'youtube-logo'} src="/youtube.svg" width={40} height={75 / 2} style={{ height: 'auto' }} />
-            </div>
-           </a>
-
-           {/* Hover overlay */}
-           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <div className="bg-white/20 backdrop-blur-sm rounded-full p-6">
-             <PlayIcon className="w-12 h-12 text-white" />
-            </div>
-           </div>
+           <iframe
+            src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1&showinfo=0&color=white&theme=dark&autoplay=0`}
+            title={video.title}
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-2xl"
+            loading="lazy"
+           />
           </div>
          </div>
          
