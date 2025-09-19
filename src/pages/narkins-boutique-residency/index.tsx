@@ -302,18 +302,33 @@ const Amenities = () => {
 export default function HillCrestResidency({ posts }: { posts: PostWithCategory[] }) {
  const openLightbox = useLightboxStore(state => state.openLightbox);
  
- // Loading states for different sections
+ // Loading states for different sections - start with false to prevent hydration mismatch
  const [loadingStates, setLoadingStates] = useState({
-   hero: true,
-   floorPlans: true,
-   amenities: true,
-   gallery: true,
-   videos: true,
-   testimonials: true,
+   hero: false,
+   floorPlans: false,
+   amenities: false,
+   gallery: false,
+   videos: false,
+   testimonials: false,
  });
 
- // Simulate realistic loading times with staggered reveals
+ const [isMounted, setIsMounted] = useState(false);
+
+ // Only show skeleton loading after component mounts on client
  useEffect(() => {
+   setIsMounted(true);
+   
+   // Set loading states to true only on client
+   setLoadingStates({
+     hero: true,
+     floorPlans: true,
+     amenities: true,
+     gallery: true,
+     videos: true,
+     testimonials: true,
+   });
+
+   // Simulate realistic loading times with staggered reveals
    const timers = [
      setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 800),
      setTimeout(() => setLoadingStates(prev => ({ ...prev, floorPlans: false })), 1200),
@@ -378,7 +393,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
    <Navigation />
    <Lightbox />
    <div className="bg-white pt-[6rem]">
-    {loadingStates.hero ? (
+    {isMounted && loadingStates.hero ? (
       <HeroSkeleton />
     ) : (
       <>
@@ -419,7 +434,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         </div>
       </>
     )}
-    {loadingStates.floorPlans ? (
+    {isMounted && loadingStates.floorPlans ? (
       <FloorPlansSkeleton />
     ) : (
       <section className="bg-black py-20">
@@ -532,14 +547,14 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
      </div>
     </section>
     )}
-    {loadingStates.amenities ? (
+    {isMounted && loadingStates.amenities ? (
       <AmenitiesSkeleton />
     ) : (
       <section className="bg-white py-20">
        <Amenities />
       </section>
     )}
-    {loadingStates.gallery ? (
+    {isMounted && loadingStates.gallery ? (
       <section className="bg-white px-5 mx-auto py-20 lg:px-8">
         <GallerySkeleton />
       </section>
@@ -592,14 +607,14 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
     </section>
     )}
 
-    {loadingStates.testimonials ? (
+    {isMounted && loadingStates.testimonials ? (
       <TestimonialsSkeleton />
     ) : (
       <section className="bg-white border-t px-5 lg:px-8 py-20">
        <Testimonials testimonials={testimonials} />
       </section>
     )}
-    {loadingStates.videos ? (
+    {isMounted && loadingStates.videos ? (
       <section className="bg-white py-20 border-b border">
         <VideoSkeleton />
       </section>

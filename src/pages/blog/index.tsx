@@ -10,6 +10,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { BlogGridSkeleton } from '@/components/common/skeleton/skeleton'
 
 interface BlogIndexProps {
  posts: BlogPost[]
@@ -24,6 +25,16 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   sortOrder: 'newest',
   readTime: 'all',
  });
+ 
+ const [isLoading, setIsLoading] = useState(false);
+ const [isMounted, setIsMounted] = useState(false);
+ 
+ useEffect(() => {
+   setIsMounted(true);
+   setIsLoading(true);
+   const timer = setTimeout(() => setIsLoading(false), 1000);
+   return () => clearTimeout(timer);
+ }, []);
 
  // Pagination constants
  const POSTS_PER_PAGE = 9;
@@ -155,33 +166,39 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
    <Navigation />
 
    <div className="bg-white min-h-screen">
-    {/* Hero Section */}
-    <div className="bg-gradient-to-r from-neutral-50 to-white py-20 sm:py-28 lg:py-32">
-     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="text-center">
-       <h1 className="text-4xl tracking-tight text-gray-900 sm:text-5xl mb-4">
-        Narkin's Builders Blog
-       </h1>
-       <p className="text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
-        Latest insights on real estate investment in Bahria Town Karachi
-       </p>
+    {isMounted && isLoading ? (
+      <div className="py-20">
+        <BlogGridSkeleton />
       </div>
-     </div>
-    </div>
+    ) : (
+      <>
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-neutral-50 to-white py-20 sm:py-28 lg:py-32">
+         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center">
+           <h1 className="text-4xl tracking-tight text-gray-900 sm:text-5xl mb-4">
+            Narkin's Builders Blog
+           </h1>
+           <p className="text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
+            Latest insights on real estate investment in Bahria Town Karachi
+           </p>
+          </div>
+         </div>
+        </div>
 
-    {/* Blog Filter */}
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-12 pb-8">
-     <BlogFilter 
-      filters={filters} 
-      onFiltersChange={handleFiltersChange}
-      totalPosts={posts.length}
-      filteredCount={filteredPosts.length}
-      posts={posts}
-     />
-    </div>
+        {/* Blog Filter */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-12 pb-8">
+         <BlogFilter 
+          filters={filters} 
+          onFiltersChange={handleFiltersChange}
+          totalPosts={posts.length}
+          filteredCount={filteredPosts.length}
+          posts={posts}
+         />
+        </div>
 
-    {/* Blog Posts Grid */}
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-20">
+        {/* Blog Posts Grid */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-20">
      {filteredPosts.length > 0 ? (
        <>
         <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -324,7 +341,9 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
        </div>
       </div>
      )}
-    </div>
+        </div>
+      </>
+    )}
    </div>
 
    <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />

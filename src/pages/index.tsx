@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '@/components/layout/navigation/navigation';
@@ -17,6 +17,12 @@ import { OrganizationSchema } from '@/components/common/schema/OrganizationSchem
 import { LocalBusinessSchema } from '@/components/common/schema/LocalBusinessSchema';
 import { ReviewSchema } from '@/components/common/schema/ReviewSchema';
 import { WebSiteSchema } from '@/components/common/schema/WebSiteSchema';
+import { 
+  HomeHeroSkeleton, 
+  FeatureGridSkeleton, 
+  ProjectGridSkeleton, 
+  TestimonialsSkeleton 
+} from '@/components/common/skeleton/skeleton';
 
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
@@ -67,6 +73,39 @@ const testimonials = [
 export default function Index({ posts }: { posts: any[] }) {
  const videoRef = useRef<HTMLVideoElement>(null);
  const setOpen = useGlobalLeadFormState((state: { setOpen: any }) => state.setOpen);
+ 
+ // Loading states for different sections - start with false to prevent hydration mismatch
+ const [loadingStates, setLoadingStates] = useState({
+   hero: false,
+   features: false,
+   projects: false,
+   testimonials: false,
+ });
+
+ const [isMounted, setIsMounted] = useState(false);
+
+ // Only show skeleton loading after component mounts on client
+ useEffect(() => {
+   setIsMounted(true);
+   
+   // Set loading states to true only on client
+   setLoadingStates({
+     hero: true,
+     features: true,
+     projects: true,
+     testimonials: true,
+   });
+
+   // Simulate realistic loading times with staggered reveals
+   const timers = [
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 600),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, features: false })), 1000),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, projects: false })), 1400),
+     setTimeout(() => setLoadingStates(prev => ({ ...prev, testimonials: false })), 1800),
+   ];
+
+   return () => timers.forEach(timer => clearTimeout(timer));
+ }, []);
 
  useEffect(() => {
   const video = videoRef.current;
@@ -144,47 +183,53 @@ export default function Index({ posts }: { posts: any[] }) {
    <WebSiteSchema />
    <Navigation fixed={true} />
    <div>
-    <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">
-     <div className="relative z-10 text-center">
-      <motion.div
-       initial={{ opacity: 0, y: 20 }}
-       animate={{ opacity: 1, y: 0 }}
-       transition={{ duration: 0.8 }}
-       className="mx-auto px-4"
-      >
-       <p className="text-lg text-neutral-300">Welcome to</p>
-       <h1 className="hero-title mt-4 text-white">
-        Narkin&apos;s Builders
-       </h1>
-       <p className="large-text mt-4 text-white">
-        Creating Iconic Living Experiences.
-       </p>
-       <div className="mt-8 flex justify-center gap-4">
-        <Button
-         onClick={() => setOpen(true)}
-         className="border bg-primary border-white text-primary-foreground hover:bg-primary/90 py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+    {isMounted && loadingStates.hero ? (
+      <div className="min-h-[70vh] bg-gray-900">
+        <HomeHeroSkeleton />
+      </div>
+    ) : (
+      <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">
+       <div className="relative z-10 text-center">
+        <motion.div
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 0.8 }}
+         className="mx-auto px-4"
         >
-         Get More Information
-        </Button>
+         <p className="text-lg text-neutral-300">Welcome to</p>
+         <h1 className="hero-title mt-4 text-white">
+          Narkin&apos;s Builders
+         </h1>
+         <p className="large-text mt-4 text-white">
+          Creating Iconic Living Experiences.
+         </p>
+         <div className="mt-8 flex justify-center gap-4">
+          <Button
+           onClick={() => setOpen(true)}
+           className="border bg-primary border-white text-primary-foreground hover:bg-primary/90 py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+          >
+           Get More Information
+          </Button>
+         </div>
+        </motion.div>
        </div>
-      </motion.div>
-     </div>
-     <video
-      ref={videoRef}
-      preload="none"
-      poster="/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp"
-      className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
-      loop
-      autoPlay
-      playsInline
-      muted
-      controls={false}
-      disablePictureInPicture
-     >
-      <source src="/media/videos/hero/C_Narkins_Exterior.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-     </video>
-    </header>
+       <video
+        ref={videoRef}
+        preload="none"
+        poster="/media/nbr/exterior/narkins-boutique-residency-exterior-heritage-commercial-bahria-town.webp"
+        className="max-h-screen absolute w-auto min-w-full min-h-full object-cover brightness-50"
+        loop
+        autoPlay
+        playsInline
+        muted
+        controls={false}
+        disablePictureInPicture
+       >
+        <source src="/media/videos/hero/C_Narkins_Exterior.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+       </video>
+      </header>
+    )}
    </div>
 
    {/* Narkin's Boutique Residency Section */}
@@ -353,9 +398,13 @@ export default function Index({ posts }: { posts: any[] }) {
    </section>
 
    {/* Testimonials Section */}
-   <section className="bg-white border-t px-5 lg:px-8 py-20">
-    <Testimonials testimonials={testimonials} />
-   </section>
+   {isMounted && loadingStates.testimonials ? (
+     <TestimonialsSkeleton />
+   ) : (
+     <section className="bg-white border-t px-5 lg:px-8 py-20">
+      <Testimonials testimonials={testimonials} />
+     </section>
+   )}
    <section className='bg-white border-b px-4 lg:px-8 py-20 w-full'>
     <div className="ml-auto">
      <figure className="max-w-screen-md ml-auto text-right">

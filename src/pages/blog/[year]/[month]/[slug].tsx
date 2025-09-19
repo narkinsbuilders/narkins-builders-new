@@ -10,6 +10,7 @@ import components from '@/components/features/blog/mdx-components'
 import remarkGfm from 'remark-gfm'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
 import { 
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -22,6 +23,7 @@ import {
 } from '@/data/faq-data'
 import SocialShare from '@/components/features/social-share/social-share'
 import BlogPostSchema from '@/components/common/schema/BlogPostSchema'
+import { BlogPostSkeleton } from '@/components/common/skeleton/skeleton'
 
 interface BlogPostProps {
  post: BlogPost
@@ -32,6 +34,15 @@ interface BlogPostProps {
 
 export default function BlogPost({ post, mdxSource, previousPost, nextPost }: BlogPostProps) {
  const router = useRouter()
+ const [isLoading, setIsLoading] = useState(false)
+ const [isMounted, setIsMounted] = useState(false)
+ 
+ useEffect(() => {
+   setIsMounted(true)
+   setIsLoading(true)
+   const timer = setTimeout(() => setIsLoading(false), 1500)
+   return () => clearTimeout(timer)
+ }, [])
  
  if (router.isFallback) {
   return <div>Loading...</div>
@@ -103,6 +114,21 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
     "item": canonicalUrl
    }
   ]
+ }
+
+ if (isMounted && isLoading) {
+   return (
+     <>
+       <Head>
+         <title>Loading... | Narkin's Builders Blog</title>
+       </Head>
+       <div className="bg-white min-h-screen py-20">
+         <div className="mx-auto max-w-5xl px-6 lg:px-8">
+           <BlogPostSkeleton />
+         </div>
+       </div>
+     </>
+   )
  }
 
  return (

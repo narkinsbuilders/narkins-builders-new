@@ -198,3 +198,234 @@ export function TestimonialsSkeleton({ className }: SkeletonProps) {
     </div>
   );
 }
+
+// Home Hero Skeleton
+export function HomeHeroSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("bg-white py-20 lg:py-32", className)}>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="text-center space-y-8">
+          {/* Main headline */}
+          <div className="space-y-4">
+            <Skeleton className="h-16 lg:h-20 w-full max-w-4xl mx-auto" />
+            <Skeleton className="h-6 w-full max-w-3xl mx-auto" />
+            <Skeleton className="h-6 w-full max-w-2xl mx-auto" />
+          </div>
+          
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Skeleton className="h-12 w-40" />
+            <Skeleton className="h-12 w-40" />
+          </div>
+          
+          {/* Stats section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="text-center space-y-2">
+                <Skeleton className="h-12 w-20 mx-auto" />
+                <Skeleton className="h-4 w-24 mx-auto" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Project Grid Skeleton
+export function ProjectGridSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("space-y-8", className)}>
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <Skeleton className="h-12 w-64 mx-auto" />
+        <Skeleton className="h-6 w-96 mx-auto" />
+      </div>
+      
+      {/* Filter buttons */}
+      <div className="flex flex-wrap justify-center gap-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Skeleton key={i} className="h-10 w-24" />
+        ))}
+      </div>
+      
+      {/* Project grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <Skeleton className="w-full h-48" />
+            <div className="p-6 space-y-4">
+              <Skeleton className="h-6 w-3/4" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-2/3" />
+              <div className="flex items-center space-x-2">
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-4 w-20" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Blog Grid Skeleton
+export function BlogGridSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("space-y-8", className)}>
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <Skeleton className="h-12 w-48 mx-auto" />
+        <Skeleton className="h-6 w-80 mx-auto" />
+      </div>
+      
+      {/* Featured post */}
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="md:flex">
+          <Skeleton className="w-full md:w-1/2 h-64" />
+          <div className="p-6 md:w-1/2 space-y-4">
+            <Skeleton className="h-6 w-20" />
+            <Skeleton className="h-8 w-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+            <div className="flex items-center space-x-4">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-3 w-20" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Blog grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 9 }).map((_, i) => (
+          <div key={i} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <Skeleton className="w-full h-48" />
+            <div className="p-6 space-y-4">
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-6 w-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-2/3" />
+              </div>
+              <div className="flex items-center space-x-4">
+                <Skeleton className="w-8 h-8 rounded-full" />
+                <div className="space-y-1">
+                  <Skeleton className="h-3 w-20" />
+                  <Skeleton className="h-3 w-16" />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Pagination */}
+      <div className="flex justify-center space-x-2">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="w-10 h-10" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Blog Post Skeleton
+export function BlogPostSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("max-w-4xl mx-auto space-y-8", className)}>
+      {/* Header */}
+      <div className="text-center space-y-6">
+        <Skeleton className="h-4 w-20 mx-auto" />
+        <Skeleton className="h-12 w-full" />
+        <div className="flex items-center justify-center space-x-6">
+          <div className="flex items-center space-x-3">
+            <Skeleton className="w-10 h-10 rounded-full" />
+            <div className="space-y-1">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-3 w-20" />
+            </div>
+          </div>
+          <Skeleton className="h-4 w-24" />
+        </div>
+      </div>
+      
+      {/* Featured image */}
+      <Skeleton className="w-full h-96 rounded-lg" />
+      
+      {/* Content */}
+      <div className="prose max-w-none space-y-6">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} className="space-y-3">
+            <Skeleton className="h-6 w-48" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-8 w-20" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Stats Skeleton
+export function StatsSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("py-16", className)}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="text-center space-y-3">
+            <Skeleton className="h-16 w-20 mx-auto" />
+            <Skeleton className="h-4 w-24 mx-auto" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Feature Grid Skeleton
+export function FeatureGridSkeleton({ className }: SkeletonProps) {
+  return (
+    <div className={cn("space-y-12", className)}>
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <Skeleton className="h-12 w-64 mx-auto" />
+        <Skeleton className="h-6 w-96 mx-auto" />
+      </div>
+      
+      {/* Features grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="text-center space-y-4">
+            <Skeleton className="w-16 h-16 mx-auto rounded-xl" />
+            <Skeleton className="h-6 w-32 mx-auto" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4 mx-auto" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
