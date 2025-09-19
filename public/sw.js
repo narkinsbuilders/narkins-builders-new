@@ -378,6 +378,17 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
     })
   );
 
+  // 7. Exclude Facebook and tracking scripts from all caching
+  workbox.routing.registerRoute(
+    ({ url }) => 
+      url.hostname.includes('facebook.net') ||
+      url.hostname.includes('connect.facebook.net') ||
+      url.pathname.includes('fbevents.js') ||
+      url.hostname.includes('google-analytics.com') ||
+      url.hostname.includes('googletagmanager.com'),
+    new workbox.strategies.NetworkOnly()
+  );
+
 } else { 
   
   // Fallback to basic service worker functionality
@@ -429,6 +440,14 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
   self.addEventListener('fetch', event => {
     // Only handle requests from our origin to avoid CORS issues
     if (!event.request.url.startsWith(self.location.origin)) {
+      return;
+    }
+    
+    // Exclude Facebook and other tracking scripts from service worker
+    const url = new URL(event.request.url);
+    if (url.hostname.includes('facebook.net') || 
+        url.hostname.includes('connect.facebook.net') ||
+        event.request.url.includes('fbevents.js')) {
       return;
     }
 
