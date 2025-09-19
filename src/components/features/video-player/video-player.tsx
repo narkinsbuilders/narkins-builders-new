@@ -7,6 +7,7 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
   const [isPaused, setIsPaused] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -19,15 +20,19 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Start loading video when 50% visible
-          if (entry.intersectionRatio > 0.5) {
-            setShouldLoad(true);
+          // Start loading video immediately when visible
+          if (entry.intersectionRatio > 0.1) {
+            setIsLoading(true);
+            // Add small delay to prevent flash, then load
+            setTimeout(() => {
+              setShouldLoad(true);
+            }, 300);
           }
         }
       },
       { 
         threshold: [0.1, 0.5],
-        rootMargin: '100px 0px' // Start loading 100px before element comes into view
+        rootMargin: '50px 0px' // Start loading 50px before element comes into view
       }
     );
 
@@ -81,19 +86,41 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       style={{ aspectRatio: '16/9' }} // 1920x1080 aspect ratio
     >
       {!shouldLoad ? (
-        // Lazy loading placeholder
+        // Lazy loading placeholder with poster image
         <div 
-          className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"
-          style={{ aspectRatio: '16/9' }}
+          className="w-full h-full relative flex items-center justify-center"
+          style={{ 
+            aspectRatio: '16/9',
+            backgroundImage: poster ? `url(${poster})` : 'linear-gradient(to bottom right, #e5e7eb, #d1d5db)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
         >
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-              <svg className="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-            <p className="text-gray-600 text-sm">Loading video...</p>
-            <p className="text-gray-500 text-xs mt-1">Hill Crest Residency Electrical Installation</p>
+          {/* Overlay for better contrast */}
+          <div className="absolute inset-0 bg-black/30" />
+          
+          {/* Play button and loading text */}
+          <div className="relative text-center z-10">
+            {isLoading ? (
+              // Loading spinner
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                <div className="w-8 h-8 border-3 border-gray-300 border-t-gray-800 rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              // Play button
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                   onClick={() => {
+                     setIsLoading(true);
+                     setTimeout(() => setShouldLoad(true), 300);
+                   }}>
+                <svg className="w-10 h-10 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            )}
+            {!isLoading && (
+              <p className="text-white text-sm font-medium drop-shadow-lg">Click to load video</p>
+            )}
           </div>
         </div>
       ) : (
@@ -128,18 +155,21 @@ export default function VideoPlayer({ src, poster }: { src: string, poster?: str
       )}
       
       {/* Responsive overlay for mobile */}
-      <div className="absolute inset-0 lg:hidden">
-        <div className="w-full h-full flex items-center justify-center">
-          {!shouldLoad && (
+      {!shouldLoad && !isLoading && (
+        <div className="absolute inset-0 lg:hidden">
+          <div className="w-full h-full flex items-center justify-center">
             <button
-              onClick={() => setShouldLoad(true)}
-              className="bg-black/50 hover:bg-black/70 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+              onClick={() => {
+                setIsLoading(true);
+                setTimeout(() => setShouldLoad(true), 300);
+              }}
+              className="bg-white/90 hover:bg-white text-gray-800 px-6 py-3 rounded-lg transition-colors duration-200 shadow-lg font-medium"
             >
-              Load Video (26MB)
+              Load Video
             </button>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
