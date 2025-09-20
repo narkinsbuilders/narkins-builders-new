@@ -38,7 +38,6 @@ export default function Document() {
        s.parentNode.insertBefore(t,s)}(window, document,'script',
        'https://connect.facebook.net/en_US/fbevents.js');
        fbq('init', '5304750006256624');
-       fbq('track', 'PageView');
       `,
      }}
     />

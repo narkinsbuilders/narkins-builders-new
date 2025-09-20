@@ -3,13 +3,29 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
 
+declare global {
+ interface Window {
+  fbq: any;
+ }
+}
+
 export const useAnalytics = () => {
  const router = useRouter();
 
  useEffect(() => {
   const handleRouteChange = (url: string) => {
    gtag.pageview(url);
+   
+   // Track Meta Pixel PageView
+   if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', 'PageView');
+   }
   };
+
+  // Track initial page load
+  if (typeof window !== 'undefined' && window.fbq) {
+   window.fbq('track', 'PageView');
+  }
 
   router.events.on('routeChangeComplete', handleRouteChange);
   
@@ -39,6 +55,14 @@ export const useFormAnalytics = () => {
 
  const trackFormSubmit = (formType: 'contact' | 'quote' | 'newsletter', propertyInterest?: string) => {
   gtag.trackFormSubmission(formType, propertyInterest);
+  
+  // Track Meta Pixel Lead event
+  if (typeof window !== 'undefined' && window.fbq) {
+   window.fbq('track', 'Lead', {
+    content_name: propertyInterest || formType,
+    content_category: 'Real Estate',
+   });
+  }
  };
 
  const trackFormError = (formType: string, errorField: string) => {
