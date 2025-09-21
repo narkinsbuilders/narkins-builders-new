@@ -29,7 +29,22 @@ export default function EChartsPieChart({
   showLegend = true,
   showLabel = true
 }: EChartsPieChartProps) {
-  // Early return for data validation before hooks
+  const [isClient, setIsClient] = React.useState(false);
+  
+  // Check if running on mobile
+  const [isMobile, setIsMobile] = React.useState(false);
+  
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Early return for data validation after hooks
   if (!data || data.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
@@ -40,8 +55,6 @@ export default function EChartsPieChart({
       </div>
     );
   }
-
-  const [isClient, setIsClient] = React.useState(false);
   
   React.useEffect(() => {
     setIsClient(true);
@@ -75,52 +88,64 @@ export default function EChartsPieChart({
       formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: showLegend ? {
+      orient: isMobile ? 'vertical' : 'horizontal',
       top: 'bottom',
       left: 'center',
       data: chartData.map(item => item.name),
       textStyle: {
         color: '#6b7280',
-        fontSize: 12
+        fontSize: isMobile ? 10 : 12
       },
-      itemWidth: 14,
-      itemHeight: 14,
-      itemGap: 10,
-      padding: [15, 5, 5, 5]
+      itemWidth: isMobile ? 10 : 14,
+      itemHeight: isMobile ? 10 : 14,
+      itemGap: isMobile ? 6 : 10,
+      padding: isMobile ? [10, 5, 5, 5] : [15, 5, 5, 5],
+      pageButtonItemGap: 5,
+      pageButtonGap: 2,
+      pageIconSize: 10
     } : undefined,
     series: [
       {
         name: title,
         type: 'pie',
-        radius: ['40%', '70%'],
-        center: ['50%', '45%'],
-        avoidLabelOverlap: false,
+        radius: isMobile ? ['25%', '55%'] : ['40%', '70%'],
+        center: isMobile ? ['50%', '35%'] : ['50%', '45%'],
+        avoidLabelOverlap: true,
         itemStyle: {
-          borderRadius: 10,
+          borderRadius: isMobile ? 6 : 10,
           borderColor: '#fff',
-          borderWidth: 2
+          borderWidth: isMobile ? 1 : 2
         },
         label: showLabel ? {
-          show: true,
+          show: !isMobile,
           position: 'outside',
           formatter: '{b}: {d}%',
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: 11,
+          distanceToLabelLine: 5
         } : {
           show: false
         },
         emphasis: {
           label: {
             show: true,
-            fontSize: 14,
-            fontWeight: 'bold'
+            fontSize: isMobile ? 11 : 14,
+            fontWeight: 'bold',
+            formatter: isMobile ? '{d}%' : '{b}: {d}%',
+            position: isMobile ? 'inside' : 'outside',
+            color: isMobile ? '#fff' : '#6b7280'
           },
           itemStyle: {
-            shadowBlur: 10,
+            shadowBlur: isMobile ? 5 : 10,
             shadowOffsetX: 0,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
         },
-        labelLine: showLabel ? {
-          show: true
+        labelLine: showLabel && !isMobile ? {
+          show: true,
+          length: 10,
+          length2: 8,
+          smooth: true
         } : {
           show: false
         },

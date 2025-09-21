@@ -46,7 +46,22 @@ export default function EChartsLineChart({
   enableBrush = false,
   opacity = 0.6
 }: EChartsLineChartProps) {
-  // Early return for data validation before hooks
+  const [isClient, setIsClient] = React.useState(false);
+  
+  // Check if running on mobile
+  const [isMobile, setIsMobile] = React.useState(false);
+  
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Early return for data validation after hooks
   if (!data || data.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
@@ -57,8 +72,6 @@ export default function EChartsLineChart({
       </div>
     );
   }
-
-  const [isClient, setIsClient] = React.useState(false);
   
   React.useEffect(() => {
     setIsClient(true);
@@ -193,7 +206,15 @@ export default function EChartsLineChart({
       } : undefined,
       legend: {
         data: seriesNames,
-        top: 10
+        top: 10,
+        orient: isMobile ? 'vertical' : 'horizontal',
+        left: isMobile ? 'right' : 'center',
+        textStyle: {
+          fontSize: isMobile ? 10 : 12
+        },
+        itemWidth: isMobile ? 10 : 18,
+        itemHeight: isMobile ? 10 : 14,
+        itemGap: isMobile ? 8 : 10
       },
       xAxis: {
         type: 'category',
@@ -203,7 +224,10 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12,
+          interval: isMobile ? 'auto' : 0,
+          rotate: isMobile ? 45 : 0
         }
       },
       yAxis: {
@@ -212,17 +236,18 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12
         },
         splitLine: {
           lineStyle: { color: '#f3f4f6' }
         }
       },
       grid: {
-        right: showEndLabels ? 140 : 30,
-        top: 60,
-        bottom: 60,
-        left: 60
+        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
+        top: isMobile ? 40 : 60,
+        bottom: isMobile ? 40 : 60,
+        left: isMobile ? 35 : 60
       },
       series: seriesList
     };
@@ -288,7 +313,15 @@ export default function EChartsLineChart({
       } : undefined,
       legend: {
         data: series.map(s => s.name),
-        top: 10
+        top: 10,
+        orient: isMobile ? 'vertical' : 'horizontal',
+        left: isMobile ? 'right' : 'center',
+        textStyle: {
+          fontSize: isMobile ? 10 : 12
+        },
+        itemWidth: isMobile ? 10 : 18,
+        itemHeight: isMobile ? 10 : 14,
+        itemGap: isMobile ? 8 : 10
       },
       xAxis: {
         type: 'category',
@@ -298,7 +331,10 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12,
+          interval: isMobile ? 'auto' : 0,
+          rotate: isMobile ? 45 : 0
         }
       },
       yAxis: {
@@ -307,17 +343,18 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12
         },
         splitLine: {
           lineStyle: { color: '#f3f4f6' }
         }
       },
       grid: {
-        right: showEndLabels ? 140 : 30,
-        top: 60,
-        bottom: 60,
-        left: 60
+        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
+        top: isMobile ? 40 : 60,
+        bottom: isMobile ? 40 : 60,
+        left: isMobile ? 35 : 60
       },
       series
     };
@@ -353,7 +390,10 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12,
+          interval: isMobile ? 'auto' : 0,
+          rotate: isMobile ? 45 : 0
         }
       },
       yAxis: {
@@ -362,17 +402,18 @@ export default function EChartsLineChart({
           lineStyle: { color: '#e5e7eb' }
         },
         axisLabel: {
-          color: '#6b7280'
+          color: '#6b7280',
+          fontSize: isMobile ? 10 : 12
         },
         splitLine: {
           lineStyle: { color: '#f3f4f6' }
         }
       },
       grid: {
-        right: showEndLabels ? 140 : 30,
-        top: 60,
-        bottom: 60,
-        left: 60
+        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
+        top: isMobile ? 40 : 60,
+        bottom: isMobile ? 40 : 60,
+        left: isMobile ? 35 : 60
       },
       series: [{
         type: 'line',
