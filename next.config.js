@@ -4,6 +4,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Force cache invalidation for this deployment
+  generateBuildId: async () => {
+    return `build-${Date.now()}`
+  },
   reactStrictMode: true,
   typescript: {
     ignoreBuildErrors: true,
