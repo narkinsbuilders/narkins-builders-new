@@ -9,7 +9,7 @@
     "build": "npm run build:vercel",
     "build:optimized": "bun run precompile-mdx && next build",
     "build:fast": "next build",
-    "build:vercel": "tinacms build && node scripts/fix-tina-branding.js && (bun run precompile-mdx || echo 'Precompilation failed, building without cache') && next build",
+    "build:vercel": "rm -rf .next .mdx-cache && tinacms build && node scripts/fix-tina-branding.js && (bun run precompile-mdx || echo 'Precompilation failed, building without cache') && next build",
     "build:analyze": "ANALYZE=true bun run build:optimized",
     "precompile-mdx": "bun scripts/precompile-mdx.ts",
     "precompile-mdx-node": "npx ts-node scripts/precompile-mdx.ts",
