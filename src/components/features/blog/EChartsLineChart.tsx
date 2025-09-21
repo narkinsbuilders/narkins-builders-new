@@ -18,6 +18,14 @@ interface EChartsLineChartProps {
   color?: string | string[]
   smooth?: boolean
   height?: number
+  showEndLabels?: boolean
+  animationDuration?: number
+  showSymbol?: boolean
+  enableDataset?: boolean
+  isArea?: boolean
+  gradientColors?: string[]
+  enableBrush?: boolean
+  opacity?: number
 }
 
 export default function EChartsLineChart({ 
@@ -28,7 +36,15 @@ export default function EChartsLineChart({
   seriesField, 
   color = '#1890ff', 
   smooth = true,
-  height = 300 
+  height = 300,
+  showEndLabels = false,
+  animationDuration = 3000,
+  showSymbol = false,
+  enableDataset = false,
+  isArea = false,
+  gradientColors,
+  enableBrush = false,
+  opacity = 0.6
 }: EChartsLineChartProps) {
   const [isClient, setIsClient] = React.useState(false);
   
@@ -58,10 +74,159 @@ export default function EChartsLineChart({
     );
   }
 
-  // Handle multi-series data
+  // Helper function to create gradient
+  const createGradient = (colorArray: string[], seriesIndex = 0) => {
+    const baseColor = Array.isArray(color) ? color[seriesIndex % color.length] : color;
+    const gradColors = gradientColors || [baseColor, baseColor];
+    
+    return {
+      type: 'linear',
+      x: 0, y: 0, x2: 0, y2: 1,
+      colorStops: [
+        { offset: 0, color: gradColors[0] || baseColor },
+        { offset: 1, color: gradColors[1] || baseColor }
+      ]
+    };
+  };
+
   let option;
-  if (seriesField && data.some(item => item[seriesField as keyof typeof item])) {
-    // Multi-line chart
+
+  if (enableDataset && seriesField) {
+    // Advanced dataset-based approach (like your example)
+    const seriesNames = Array.from(new Set(data.map(item => item[seriesField as keyof typeof item])));
+    
+    // Transform data to dataset format
+    const datasetSource = data.map(item => ({
+      [xField]: item[xField as keyof typeof item],
+      [yField]: item[yField as keyof typeof item],
+      [seriesField]: item[seriesField as keyof typeof item]
+    }));
+
+    const datasetWithFilters = [];
+    const seriesList = [];
+
+    seriesNames.forEach((seriesName, index) => {
+      const datasetId = `dataset_${seriesName}`;
+      
+      datasetWithFilters.push({
+        id: datasetId,
+        fromDatasetId: 'dataset_raw',
+        transform: {
+          type: 'filter',
+          config: {
+            and: [
+              { dimension: seriesField, '=': seriesName }
+            ]
+          }
+        }
+      });
+
+      seriesList.push({
+        type: 'line',
+        datasetId: datasetId,
+        showSymbol: showSymbol,
+        smooth: smooth,
+        name: seriesName,
+        endLabel: showEndLabels ? {
+          show: true,
+          formatter: function (params: any) {
+            return `${params.seriesName}: ${params.value[yField]}`;
+          }
+        } : undefined,
+        labelLayout: {
+          moveOverlap: 'shiftY'
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        lineStyle: {
+          width: 2
+        },
+        itemStyle: {
+          color: Array.isArray(color) ? color[index % color.length] : (index === 0 ? '#1890ff' : '#52c41a')
+        },
+        areaStyle: isArea ? {
+          color: gradientColors ? createGradient(gradientColors, index) : 
+                 Array.isArray(color) ? color[index % color.length] : (index === 0 ? '#1890ff' : '#52c41a'),
+          opacity: opacity
+        } : undefined,
+        encode: {
+          x: xField,
+          y: yField,
+          itemName: xField,
+          tooltip: [yField]
+        }
+      });
+    });
+
+    option = {
+      animationDuration: animationDuration,
+      dataset: [
+        {
+          id: 'dataset_raw',
+          source: datasetSource
+        },
+        ...datasetWithFilters
+      ],
+      title: {
+        show: false
+      },
+      tooltip: {
+        order: 'valueDesc',
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+          label: {
+            backgroundColor: '#6a7985'
+          }
+        }
+      },
+      brush: enableBrush ? {
+        toolbox: ['rect', 'polygon', 'keep', 'clear'],
+        xAxisIndex: 0,
+        brushStyle: {
+          borderWidth: 1,
+          color: 'rgba(120,140,180,0.15)',
+          borderColor: 'rgba(120,140,180,0.35)'
+        }
+      } : undefined,
+      legend: {
+        data: seriesNames,
+        top: 10
+      },
+      xAxis: {
+        type: 'category',
+        nameLocation: 'middle',
+        boundaryGap: false,
+        axisLine: {
+          lineStyle: { color: '#e5e7eb' }
+        },
+        axisLabel: {
+          color: '#6b7280'
+        }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: {
+          lineStyle: { color: '#e5e7eb' }
+        },
+        axisLabel: {
+          color: '#6b7280'
+        },
+        splitLine: {
+          lineStyle: { color: '#f3f4f6' }
+        }
+      },
+      grid: {
+        right: showEndLabels ? 140 : 30,
+        top: 60,
+        bottom: 60,
+        left: 60
+      },
+      series: seriesList
+    };
+  } else if (seriesField && data.some(item => item[seriesField as keyof typeof item])) {
+    // Traditional multi-line chart
     const series = Array.from(new Set(data.map(item => item[seriesField as keyof typeof item]))).map((seriesName, index) => {
       const seriesData = data
         .filter(item => item[seriesField as keyof typeof item] === seriesName)
@@ -71,19 +236,37 @@ export default function EChartsLineChart({
         name: seriesName,
         type: 'line',
         smooth,
+        showSymbol: showSymbol,
         data: seriesData,
+        endLabel: showEndLabels ? {
+          show: true,
+          formatter: function (params: any) {
+            return `${seriesName}: ${params.value[1]}`;
+          }
+        } : undefined,
+        labelLayout: {
+          moveOverlap: 'shiftY'
+        },
+        emphasis: {
+          focus: 'series'
+        },
         itemStyle: {
           color: Array.isArray(color) ? color[index % color.length] : (index === 0 ? '#1890ff' : '#52c41a')
         },
         lineStyle: {
           width: 2
         },
-        symbol: 'circle',
+        areaStyle: isArea ? {
+          color: gradientColors ? createGradient(gradientColors, index) : 
+                 Array.isArray(color) ? color[index % color.length] : (index === 0 ? '#1890ff' : '#52c41a'),
+          opacity: opacity
+        } : undefined,
         symbolSize: 4
       };
     });
 
     option = {
+      animationDuration: animationDuration,
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -93,6 +276,15 @@ export default function EChartsLineChart({
           }
         }
       },
+      brush: enableBrush ? {
+        toolbox: ['rect', 'polygon', 'keep', 'clear'],
+        xAxisIndex: 0,
+        brushStyle: {
+          borderWidth: 1,
+          color: 'rgba(120,140,180,0.15)',
+          borderColor: 'rgba(120,140,180,0.35)'
+        }
+      } : undefined,
       legend: {
         data: series.map(s => s.name),
         top: 10
@@ -120,6 +312,12 @@ export default function EChartsLineChart({
           lineStyle: { color: '#f3f4f6' }
         }
       },
+      grid: {
+        right: showEndLabels ? 140 : 30,
+        top: 60,
+        bottom: 60,
+        left: 60
+      },
       series
     };
   } else {
@@ -127,6 +325,7 @@ export default function EChartsLineChart({
     const chartData = data.map(item => [item[xField as keyof typeof item], item[yField as keyof typeof item]]);
     
     option = {
+      animationDuration: animationDuration,
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -136,6 +335,15 @@ export default function EChartsLineChart({
           }
         }
       },
+      brush: enableBrush ? {
+        toolbox: ['rect', 'polygon', 'keep', 'clear'],
+        xAxisIndex: 0,
+        brushStyle: {
+          borderWidth: 1,
+          color: 'rgba(120,140,180,0.15)',
+          borderColor: 'rgba(120,140,180,0.35)'
+        }
+      } : undefined,
       xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -159,10 +367,23 @@ export default function EChartsLineChart({
           lineStyle: { color: '#f3f4f6' }
         }
       },
+      grid: {
+        right: showEndLabels ? 140 : 30,
+        top: 60,
+        bottom: 60,
+        left: 60
+      },
       series: [{
         type: 'line',
         smooth,
+        showSymbol: showSymbol,
         data: chartData,
+        endLabel: showEndLabels ? {
+          show: true,
+          formatter: function (params: any) {
+            return `${params.value[1]}`;
+          }
+        } : undefined,
         itemStyle: {
           color: Array.isArray(color) ? color[0] : color
         },
@@ -170,7 +391,11 @@ export default function EChartsLineChart({
           width: 2,
           color: Array.isArray(color) ? color[0] : color
         },
-        symbol: 'circle',
+        areaStyle: isArea ? {
+          color: gradientColors ? createGradient(gradientColors, 0) : 
+                 Array.isArray(color) ? color[0] : color,
+          opacity: opacity
+        } : undefined,
         symbolSize: 4
       }]
     };

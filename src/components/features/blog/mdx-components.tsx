@@ -12,9 +12,16 @@ import { getImageAltText } from '@/data/image-alt-texts'
 import EChartsLineChart from '@/components/features/blog/EChartsLineChart'
 import EChartsColumnChart from '@/components/features/blog/EChartsColumnChart'
 import EChartsPieChart from '@/components/features/blog/EChartsPieChart'
+import EChartsPolarBarChart from '@/components/features/blog/EChartsPolarBarChart'
+import EChartsWaterfallChart from '@/components/features/blog/EChartsWaterfallChart'
+import EChartsHeatmapChart from '@/components/features/blog/EChartsHeatmapChart'
+import EChartsScatterChart from '@/components/features/blog/EChartsScatterChart'
+import EChartsLiquidFillChart from '@/components/features/blog/EChartsLiquidFillChart'
+import EChartsPictorialBarChart from '@/components/features/blog/EChartsPictorialBarChart'
+import ECharts3DBarChart from '@/components/features/blog/ECharts3DBarChart'
+import EChartsCylindricalBarChart from '@/components/features/blog/EChartsCylindricalBarChart'
 import EChartsTable from '@/components/features/blog/EChartsTable'
 import EChartsProgressBar from '@/components/features/blog/EChartsProgressBar'
-import EChartsStatistic from '@/components/features/blog/EChartsStatistic'
 import {
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -24,9 +31,7 @@ import {
  hillCrestFAQs,
  boutiqueResidencyFAQs,
  apartmentSaleFAQs
-} from '@/data/faq-data'
-
-// Error boundary for chart components
+} from '@/data/faq-data'// Error boundary for chart components
 class ChartErrorBoundary extends React.Component<
  { children: React.ReactNode; fallback?: React.ReactNode },
  { hasError: boolean }
@@ -34,17 +39,11 @@ class ChartErrorBoundary extends React.Component<
  constructor(props: any) {
   super(props);
   this.state = { hasError: false };
- }
-
- static getDerivedStateFromError() {
+ } static getDerivedStateFromError() {
   return { hasError: true };
- }
-
- componentDidCatch(error: any, errorInfo: any) {
+ } componentDidCatch(error: any, errorInfo: any) {
   console.error('Chart component error:', error, errorInfo);
- }
-
- render() {
+ } render() {
   if (this.state.hasError) {
    return this.props.fallback || (
     <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
@@ -54,13 +53,9 @@ class ChartErrorBoundary extends React.Component<
      </div>
     </div>
    );
-  }
-
-  return this.props.children;
+  }  return this.props.children;
  }
-}
-
-// Fallback chart components using ECharts
+}// Fallback chart components using ECharts
 const FallbackChart = ({ title, data, type }: { title: string, data: any[], type: string }) => (
  <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
   <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
@@ -86,11 +81,7 @@ const FallbackChart = ({ title, data, type }: { title: string, data: any[], type
    })}
   </div>
  </div>
-);
-
-// ECharts components are now imported directly above
-
-// Professional blog styling to match the design
+);// ECharts components are now imported directly above// Professional blog styling to match the design
 const htmlComponents = {
  // Headers - Large, bold, professional spacing with mobile optimization
  h1: (props: any) => <h1 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-6 sm:mb-8 mt-8 sm:mt-12 leading-tight" {...props} />,
@@ -160,9 +151,7 @@ const htmlComponents = {
    (props: any) => React.createElement(tag, props)
   ])
  )
-}
-
-// Your existing custom components
+}// Your existing custom components
 const customComponents = {
  PropertyCard: ({ title, price, location, bedrooms, bathrooms, area, image }: {
   title: string
@@ -227,9 +216,7 @@ const customComponents = {
     {buttonText}
    </a>
   </div>
- ),
-
- PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => (
+ ), PriceChart: ({ data, title }: { data: Array<{year: string, price: number}>, title: string }) => (
   <EChartsLineChart 
     data={data} 
     title={title}
@@ -237,36 +224,26 @@ const customComponents = {
     yField="price"
     color="#1890ff"
     smooth={true}
+    showEndLabels={true}
+    animationDuration={4000}
+    showSymbol={false}
+    isArea={true}
+    gradientColors={['#1890ff', 'rgba(24, 144, 255, 0.1)']}
+    opacity={0.7}
   />
-),
-
- MarketGrowthChart: ({ data, title }: { data: Array<{area: string, growth: number}>, title: string }) => (
-  <EChartsColumnChart 
-    data={data} 
-    title={title}
-    xField="area"
-    yField="growth"
-    color="#52c41a"
-  />
-),
-
- PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => (
+), PropertyTypeDistribution: ({ data, title }: { data: Array<{type: string, value: number, color: string}>, title: string }) => (
   <EChartsPieChart 
     data={data} 
     title={title}
     showLegend={true}
     showLabel={true}
   />
-),
-
- TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
+), TrendAnalysis: ({ data, title }: { data: Array<{month: string, demand: number, supply: number}>, title: string }) => {
   // Transform for multi-line chart
   const multiLineData = data.flatMap(item => [
    { month: item.month, type: 'Demand', value: item.demand },
    { month: item.month, type: 'Supply', value: item.supply },
-  ]);
-
-  return (
+  ]);  return (
    <EChartsLineChart 
     data={multiLineData} 
     title={title}
@@ -275,11 +252,17 @@ const customComponents = {
     seriesField="type"
     color={['#1890ff', '#52c41a']}
     smooth={true}
+    enableDataset={true}
+    showEndLabels={true}
+    animationDuration={4000}
+    showSymbol={false}
+    isArea={true}
+    gradientColors={['rgba(24, 144, 255, 0.6)', 'rgba(24, 144, 255, 0.05)', 'rgba(82, 196, 26, 0.6)', 'rgba(82, 196, 26, 0.05)']}
+    opacity={0.8}
+    enableBrush={true}
    />
   );
- },
-
- PricingTable: ({ data, title }: { data: Array<{category: string, price: number | string, rent: number | string, roi: number | string}>, title: string }) => {
+ }, PricingTable: ({ data, title }: { data: Array<{category: string, price: number | string, rent: number | string, roi: number | string}>, title: string }) => {
   // Determine if this is disaster/rainfall data based on title
   const isDisasterData = title.toLowerCase().includes('rainfall') || 
                         title.toLowerCase().includes('casualties') || 
@@ -287,9 +270,7 @@ const customComponents = {
   
   // Determine if this is utility cost data based on title
   const isUtilityData = title.toLowerCase().includes('utility') || 
-                        title.toLowerCase().includes('cost comparison');
-
-  const columns = [
+                        title.toLowerCase().includes('cost comparison');  const columns = [
    {
     title: isDisasterData ? 'Area' : (isUtilityData ? 'Property Type' : 'Category'),
     dataIndex: 'category',
@@ -336,14 +317,10 @@ const customComponents = {
      );
     },
    },
-  ];
-
-  const tableData = data.map((item, index) => ({
+  ];  const tableData = data.map((item, index) => ({
    key: index,
    ...item,
-  }));
-
-  return (
+  }));  return (
    <EChartsTable 
     columns={columns} 
     dataSource={tableData} 
@@ -352,29 +329,215 @@ const customComponents = {
     size="middle"
    />
   );
- },
-
- ComparisonChart: ({ data, title }: { data: Array<{name: string, value1: number, value2: number, label1: string, label2: string}>, title: string }) => {
-  // Transform data for grouped column chart
-  const transformedData = data.flatMap(item => [
-   { category: item.name, type: item.label1, value: item.value1 },
-   { category: item.name, type: item.label2, value: item.value2 },
-  ]);
-
-  return (
-   <EChartsColumnChart 
-    data={transformedData} 
-    title={title}
-    xField="category"
-    yField="value"
-    seriesField="type"
-    isGroup={true}
-    color={['#1890ff', '#52c41a']}
-   />
-  );
- },
-
-
+ }, PolarBarChart: ({ data, title }: { data: Array<{category: string, value: number}>, title: string }) => (
+  <EChartsPolarBarChart 
+   data={data} 
+   title={title}
+   color={['#1890ff', '#52c41a', '#fa8c16', '#722ed1', '#13c2c2', '#eb2f96']}
+   showLabels={true}
+   animationDuration={4000}
+   height={400}
+  />
+ ), RadialChart: ({ data, title }: { data: Array<{category: string, value: number}>, title: string }) => (
+  <EChartsPolarBarChart 
+   data={data} 
+   title={title}
+   color="#1890ff"
+   showLabels={true}
+   labelPosition="end"
+   startAngle={90}
+   animationDuration={4000}
+   height={400}
+  />
+ ), RacingBarChart: ({ raceData, title }: { raceData: Array<Array<[string, number]>>, title: string }) => (
+  <EChartsColumnChart 
+   data={[]}
+   title={title}
+   xField="name"
+   yField="value"
+   isRacing={true}
+   raceData={raceData}
+   updateInterval={2000}
+   showValueLabels={true}
+   isHorizontal={true}
+   maxItems={10}
+   animationDuration={500}
+   color={['#1890ff', '#52c41a', '#fa8c16', '#722ed1', '#13c2c2', '#eb2f96', '#f5222d', '#52c41a', '#1890ff', '#722ed1']}
+   height={500}
+  />
+ ), TimelineChart: ({ raceData, title }: { raceData: Array<Array<[string, number]>>, title: string }) => (
+  <EChartsColumnChart 
+   data={[]}
+   title={title}
+   xField="name"
+   yField="value"
+   isRacing={true}
+   raceData={raceData}
+   updateInterval={3000}
+   showValueLabels={true}
+   isHorizontal={false}
+   maxItems={8}
+   animationDuration={800}
+   color={['#1890ff', '#52c41a', '#fa8c16', '#722ed1', '#13c2c2', '#eb2f96']}
+   height={400}
+  />
+ ), WaterfallChart: ({ data, title, subtitle }: { 
+   data: Array<{name: string, value: number, isTotal?: boolean, color?: string}>, 
+   title: string,
+   subtitle?: string 
+ }) => (
+  <EChartsWaterfallChart 
+   data={data} 
+   title={title}
+   subtitle={subtitle}
+   showLabels={true}
+   positiveColor="#52c41a"
+   negativeColor="#ff4d4f"
+   totalColor="#1890ff"
+   animationDuration={4000}
+   height={450}
+  />
+ ), FinancialBreakdown: ({ data, title }: { 
+   data: Array<{name: string, value: number, isTotal?: boolean}>, 
+   title: string 
+ }) => (
+  <EChartsWaterfallChart 
+   data={data} 
+   title={title}
+   subtitle="Financial Analysis"
+   showLabels={true}
+   positiveColor="#1890ff"
+   negativeColor="#fa8c16"
+   totalColor="#722ed1"
+   animationDuration={3500}
+   height={400}
+  />
+ ), CostAnalysis: ({ data, title }: { 
+   data: Array<{name: string, value: number, isTotal?: boolean}>, 
+   title: string 
+ }) => (
+  <EChartsWaterfallChart 
+   data={data} 
+   title={title}
+   subtitle="Cost Breakdown Analysis"
+   showLabels={true}
+   positiveColor="#52c41a"
+   negativeColor="#ff4d4f"
+   totalColor="#13c2c2"
+   animationDuration={4000}
+   height={420}
+  />
+ ), HeatmapChart: ({ data, title, xAxisData, yAxisData }: { 
+   data: Array<[number, number, number]> | Array<{x: string | number, y: string | number, value: number}>, 
+   title: string,
+   xAxisData?: string[],
+   yAxisData?: string[]
+ }) => (
+  <EChartsHeatmapChart 
+   data={data} 
+   title={title}
+   xAxisData={xAxisData}
+   yAxisData={yAxisData}
+   colorRange={['#f0f9ff', '#1890ff']}
+   showLabels={false}
+   animationDuration={3500}
+   height={450}
+  />
+ ), PropertyDensityMap: ({ data, title }: { 
+   data: Array<{x: string, y: string, value: number}>, 
+   title: string 
+ }) => (
+  <EChartsHeatmapChart 
+   data={data} 
+   title={title}
+   colorRange={['#fff5f5', '#e53e3e']}
+   showLabels={true}
+   animationDuration={4000}
+   height={400}
+   visualMapPosition="right"
+  />
+ ), ScatterPlot: ({ data, title, xAxisLabel, yAxisLabel }: { 
+   data: Array<{x: number, y: number, size?: number, category?: string, name?: string}>, 
+   title: string,
+   xAxisLabel?: string,
+   yAxisLabel?: string
+ }) => (
+  <EChartsScatterChart 
+   data={data} 
+   title={title}
+   xAxisLabel={xAxisLabel || 'X Axis'}
+   yAxisLabel={yAxisLabel || 'Y Axis'}
+   color={['#1890ff', '#52c41a', '#fa8c16', '#722ed1']}
+   enableBrush={true}
+   enableZoom={true}
+   showSymbolSize={true}
+   animationDuration={3000}
+   height={500}
+  />
+ ), PropertyScatter: ({ data, title }: { 
+   data: Array<{x: number, y: number, size?: number, category?: string, name?: string}>, 
+   title: string 
+ }) => (
+  <EChartsScatterChart 
+   data={data} 
+   title={title}
+   xAxisLabel="Property Size (sq ft)"
+   yAxisLabel="Price (PKR Lac)"
+   color="#1890ff"
+   enableBrush={true}
+   enableZoom={true}
+   showSymbolSize={true}
+   seriesField="category"
+   animationDuration={3500}
+   height={450}
+  />
+ ), LiquidGauge: ({ value, title, subtitle }: { 
+   value: number, 
+   title: string,
+   subtitle?: string
+ }) => (
+  <EChartsLiquidFillChart 
+   value={value} 
+   title={title}
+   subtitle={subtitle}
+   color={['#1890ff', '#40a9ff']}
+   backgroundColor="#f0f0f0"
+   showWave={true}
+   waveAnimation={true}
+   animationDuration={5000}
+   height={350}
+  />
+ ), OccupancyGauge: ({ value, title }: { 
+   value: number, 
+   title: string 
+ }) => (
+  <EChartsLiquidFillChart 
+   value={value} 
+   title={title}
+   subtitle="Occupancy Rate"
+   color={['#52c41a', '#95de64']}
+   backgroundColor="#f6ffed"
+   showWave={true}
+   waveAnimation={true}
+   animationDuration={4000}
+   height={300}
+  />
+ ), SalesTarget: ({ value, title }: { 
+   value: number, 
+   title: string 
+ }) => (
+  <EChartsLiquidFillChart 
+   value={value} 
+   title={title}
+   subtitle="Target Achievement"
+   color={['#fa8c16', '#ffc069']}
+   backgroundColor="#fff7e6"
+   showWave={true}
+   waveAnimation={true}
+   animationDuration={4500}
+   height={320}
+  />
+ ),
  EconomicGauge: (props: any) => <EconomicGauge {...props} />,
  FDIFlowChart: (props: any) => <FDIFlowChart {...props} />,
  InvestmentFunnel: (props: any) => <InvestmentFunnel {...props} />,
@@ -385,9 +548,7 @@ const customComponents = {
      </div>
    </div>
  )
-}
-
-// TinaCMS Template Components
+}// TinaCMS Template Components
 const FAQTemplate = (props: any) => {
  const { 
   staticFaqs,
@@ -395,9 +556,7 @@ const FAQTemplate = (props: any) => {
   contextType = 'general',
   title = 'Frequently Asked Questions',
   description
- } = props;
-
- // FAQ data map using ES6 imports (TinaCMS-compatible)
+ } = props; // FAQ data map using ES6 imports (TinaCMS-compatible)
  const faqDataMap: any = {
   firstTimeBuyerFAQs,
   investmentGuideFAQs,
@@ -407,11 +566,7 @@ const FAQTemplate = (props: any) => {
   hillCrestFAQs,
   boutiqueResidencyFAQs,
   apartmentSaleFAQs,
- };
-
- const faqData = staticFaqs ? faqDataMap[staticFaqs] || [] : [];
-
- return (
+ }; const faqData = staticFaqs ? faqDataMap[staticFaqs] || [] : []; return (
   <FAQ
    staticFaqs={faqData}
    pageUrl={pageUrl || (typeof window !== 'undefined' ? window.location.href : '')}
@@ -420,24 +575,46 @@ const FAQTemplate = (props: any) => {
    description={description}
   />
  );
-};
-
-// Template components for TinaCMS
+};// Template components for TinaCMS
 const templateComponents = {
  FAQ: FAQTemplate,
  CallToAction: customComponents.CallToAction,
  PropertyCard: customComponents.PropertyCard,
  MarketTable: customComponents.MarketTable,
  PriceChart: customComponents.PriceChart,
- MarketGrowthChart: customComponents.MarketGrowthChart,
  PropertyTypeDistribution: customComponents.PropertyTypeDistribution,
  TrendAnalysis: customComponents.TrendAnalysis,
  PricingTable: customComponents.PricingTable,
- ComparisonChart: customComponents.ComparisonChart,
+ PolarBarChart: customComponents.PolarBarChart,
+ RadialChart: customComponents.RadialChart,
+ RacingBarChart: customComponents.RacingBarChart,
+ TimelineChart: customComponents.TimelineChart,
+ WaterfallChart: customComponents.WaterfallChart,
+ FinancialBreakdown: customComponents.FinancialBreakdown,
+ CostAnalysis: customComponents.CostAnalysis,
+ HeatmapChart: customComponents.HeatmapChart,
+ PropertyDensityMap: customComponents.PropertyDensityMap,
+ ScatterPlot: customComponents.ScatterPlot,
+ PropertyScatter: customComponents.PropertyScatter,
+ LiquidGauge: customComponents.LiquidGauge,
+ OccupancyGauge: customComponents.OccupancyGauge,
+ SalesTarget: customComponents.SalesTarget,
  EconomicGauge: customComponents.EconomicGauge,
  FDIFlowChart: customComponents.FDIFlowChart,
  InvestmentFunnel: customComponents.InvestmentFunnel,
  VideoPlayer: customComponents.VideoPlayer,
+ // Direct enhanced chart components
+ EChartsLineChart,
+ EChartsColumnChart,
+ EChartsPieChart,
+ EChartsPolarBarChart,
+ EChartsWaterfallChart,
+ EChartsHeatmapChart,
+ EChartsScatterChart,
+ EChartsLiquidFillChart,
+ EChartsPictorialBarChart,
+ ECharts3DBarChart,
+ EChartsCylindricalBarChart,
  ImageGrid: ({ images }: { images: Array<{src: string, alt: string, title: string, description: string}> }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 my-6 sm:my-8">
     {images.map((img, index) => (
@@ -470,5 +647,4 @@ const components = {
 }
 
 // All components are properly exported
-
 export default components
