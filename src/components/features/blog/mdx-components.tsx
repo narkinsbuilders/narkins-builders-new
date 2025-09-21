@@ -643,7 +643,10 @@ const templateComponents = {
 const components = {
  ...htmlComponents,
  ...customComponents,
- ...templateComponents
+ ...templateComponents,
+ // Legacy component aliases for backward compatibility
+ ComparisonChart: customComponents.TrendAnalysis,
+ MarketGrowthChart: customComponents.EChartsLineChart
 }
 
 // All components are properly exported
