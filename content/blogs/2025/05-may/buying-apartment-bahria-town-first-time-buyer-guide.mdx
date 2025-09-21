@@ -24,14 +24,19 @@ With [Pakistan's property market reaching $2.08 trillion](/blog/2025/09/pakistan
 
 ## Income Requirements & Affordability Calculator
 
-<ComparisonChart 
+<EChartsColumnChart 
   data={[
-    {name: 'PKR 150-200K', value1: 140, value2: 70, label1: 'Property Price (Lac)', label2: 'EMI Capacity (K)'},
-    {name: 'PKR 200-300K', value1: 200, value2: 100, label1: 'Property Price (Lac)', label2: 'EMI Capacity (K)'},
-    {name: 'PKR 300-500K', value1: 320, value2: 160, label1: 'Property Price (Lac)', label2: 'EMI Capacity (K)'},
-    {name: 'PKR 500K+', value1: 500, value2: 250, label1: 'Property Price (Lac)', label2: 'EMI Capacity (K)'}
+    {name: 'PKR 150-200K', value1: 140, value2: 70},
+    {name: 'PKR 200-300K', value1: 200, value2: 100},
+    {name: 'PKR 300-500K', value1: 320, value2: 160},
+    {name: 'PKR 500K+', value1: 500, value2: 250}
   ]}
   title="Affordability Analysis by Income Level"
+  xField="name"
+  yField={["value1", "value2"]}
+  isGroup={true}
+  color={["#1890ff", "#52c41a"]}
+  height={400}
 />
 
 **Salary Slip Reality**: Banks typically require **2-3 years stable employment** with annual increments documented for mortgage approval.
@@ -111,14 +116,21 @@ Purchase Agreement Essentials:
 
 Pro Tip: Start building credit 12-18 months before planned apartment purchase for optimal mortgage rates.
 
-<MarketGrowthChart 
+<EChartsCylindricalBarChart 
   data={[
-    {area: 'Credit Card Usage', growth: 75},
-    {area: 'Utility Payments', growth: 45},
-    {area: 'Personal Loans', growth: 100},
-    {area: 'FD Against Loan', growth: 80}
+    {name: 'Credit Card Usage', value: 75},
+    {name: 'Utility Payments', value: 45},
+    {name: 'Personal Loans', value: 100},
+    {name: 'FD Against Loan', value: 80}
   ]}
   title="Credit Score Improvement Methods (Average Points)"
+  color={['#4f46e5', '#059669', '#dc2626', '#7c3aed']}
+  cylinderWidth={35}
+  animationDuration={4000}
+  showLabels={true}
+  metallic={true}
+  glowEffect={false}
+  height={450}
 />
 
 ## Unique First-Time Buyer Mistakes & Solutions

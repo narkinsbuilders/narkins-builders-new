@@ -56,14 +56,21 @@ Market Intelligence: Green buildings demonstrate **40% higher resale value reten
 Current Technology Adoption:
 Bahria Town Karachi's luxury apartment segment shows rapid integration of smart home technologies, with **60% of new developments** incorporating basic automation systems and 25% featuring comprehensive smart building infrastructure.
 
-<MarketGrowthChart 
+<EChartsPictorialBarChart 
   data={[
-    {area: 'Smart Lighting Systems', growth: 78},
-    {area: 'Climate Control Automation', growth: 65},
-    {area: 'Security Integration', growth: 85},
-    {area: 'Energy Management', growth: 45}
+    {name: 'Smart Lighting Systems', value: 78},
+    {name: 'Climate Control Automation', value: 65},
+    {name: 'Security Integration', value: 85},
+    {name: 'Energy Management', value: 45}
   ]}
   title="Smart Home Technology Adoption Rate (%)"
+  symbolType="building"
+  color={['#52c41a', '#73d13d', '#95de64', '#b7eb8f']}
+  symbolRepeat={true}
+  symbolClip={true}
+  animationDuration={4500}
+  showLabels={true}
+  height={450}
 />
 
 ### Advanced Smart Living Features

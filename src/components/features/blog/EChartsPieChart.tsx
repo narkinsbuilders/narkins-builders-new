@@ -29,6 +29,18 @@ export default function EChartsPieChart({
   showLegend = true,
   showLabel = true
 }: EChartsPieChartProps) {
+  // Early return for data validation before hooks
+  if (!data || data.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
+        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
+          No data available
+        </div>
+      </div>
+    );
+  }
+
   const [isClient, setIsClient] = React.useState(false);
   
   React.useEffect(() => {
@@ -41,17 +53,6 @@ export default function EChartsPieChart({
         <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
         <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
           Loading chart...
-        </div>
-      </div>
-    );
-  }
-
-  if (!data || data.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No data available
         </div>
       </div>
     );
@@ -78,8 +79,13 @@ export default function EChartsPieChart({
       left: 'center',
       data: chartData.map(item => item.name),
       textStyle: {
-        color: '#6b7280'
-      }
+        color: '#6b7280',
+        fontSize: 12
+      },
+      itemWidth: 14,
+      itemHeight: 14,
+      itemGap: 10,
+      padding: [15, 5, 5, 5]
     } : undefined,
     series: [
       {

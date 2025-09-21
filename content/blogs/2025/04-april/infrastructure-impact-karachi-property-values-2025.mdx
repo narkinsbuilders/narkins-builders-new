@@ -65,15 +65,20 @@ Within 500 meters of BRT stations:
 
 ## Karachi Circular Railway: The Game Changer
 
-<MarketGrowthChart 
+<EChartsPictorialBarChart 
   data={[
-    {area: 'Nazimabad Station', growth: 32},
-    {area: 'Gulberg Station', growth: 28},
-    {area: 'North Karachi', growth: 35},
-    {area: 'New Karachi', growth: 30},
-    {area: 'Liaquatabad', growth: 25}
+    {name: 'Nazimabad Station', value: 32},
+    {name: 'Gulberg Station', value: 28},
+    {name: 'North Karachi', value: 35},
+    {name: 'New Karachi', value: 30},
+    {name: 'Liaquatabad', value: 25}
   ]}
   title="KCR Catchment Area Price Growth (%) - Last 18 Months"
+  symbolType="building"
+  color={["#52c41a", "#73d13d", "#95de64", "#b7eb8f", "#d9f7be"]}
+  symbolRepeat={true}
+  symbolClip={true}
+  showLabels={true}
 />
 
 ### KCR Revival Impact Zones

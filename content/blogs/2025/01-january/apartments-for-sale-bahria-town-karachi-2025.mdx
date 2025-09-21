@@ -108,14 +108,21 @@ World-Class Facilities:
 ### Market Track Record:
 Historical Growth: 12-18% annually (2020-2024), Rental Yields: 6-10% based on unit type, Market Drivers: Infrastructure growth, corporate demand
 
-<MarketGrowthChart 
+<EChartsCylindricalBarChart 
   data={[
-    {area: '2-Bed Standard', growth: 12},
-    {area: '2-Bed Premium', growth: 15},
-    {area: '3-Bed Standard', growth: 16},
-    {area: '3-Bed Luxury', growth: 18}
+    {name: '2-Bed Standard', value: 12},
+    {name: '2-Bed Premium', value: 15},
+    {name: '3-Bed Standard', value: 16},
+    {name: '3-Bed Luxury', value: 18}
   ]}
   title="ROI by Apartment Category (%)"
+  color={['#4f46e5', '#059669', '#dc2626', '#7c3aed']}
+  cylinderWidth={35}
+  animationDuration={4000}
+  showLabels={true}
+  metallic={true}
+  glowEffect={false}
+  height={450}
 />
 
 ### Financing Options:

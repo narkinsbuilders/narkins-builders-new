@@ -36,6 +36,18 @@ export default function EChartsPolarBarChart({
   labelPosition = 'middle',
   animationDuration = 3000
 }: EChartsPolarBarChartProps) {
+  // Early return for data validation before hooks
+  if (!data || data.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
+        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
+          No data available
+        </div>
+      </div>
+    );
+  }
+
   const [isClient, setIsClient] = React.useState(false);
   
   React.useEffect(() => {
@@ -48,17 +60,6 @@ export default function EChartsPolarBarChart({
         <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
         <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
           Loading chart...
-        </div>
-      </div>
-    );
-  }
-
-  if (!data || data.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No data available
         </div>
       </div>
     );
