@@ -646,7 +646,7 @@ const components = {
  ...templateComponents,
  // Legacy component aliases for backward compatibility
  ComparisonChart: customComponents.TrendAnalysis,
- MarketGrowthChart: customComponents.EChartsLineChart
+ MarketGrowthChart: EChartsLineChart
 }
 
 // All components are properly exported
