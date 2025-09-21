@@ -643,9 +643,7 @@ const templateComponents = {
 const components = {
  ...htmlComponents,
  ...customComponents,
- ...templateComponents,
- // Temporary fix for Vercel cache issue
- ComparisonChart: customComponents.TrendAnalysis
+ ...templateComponents
 }
 
 // All components are properly exported
