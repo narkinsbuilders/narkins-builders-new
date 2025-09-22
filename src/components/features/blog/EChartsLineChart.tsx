@@ -206,9 +206,9 @@ export default function EChartsLineChart({
       } : undefined,
       legend: {
         data: seriesNames,
-        top: 10,
-        orient: isMobile ? 'vertical' : 'horizontal',
-        left: isMobile ? 'right' : 'center',
+        top: isMobile ? 30 : 10,
+        orient: 'horizontal',
+        left: 'center',
         textStyle: {
           fontSize: isMobile ? 10 : 12
         },
@@ -244,10 +244,10 @@ export default function EChartsLineChart({
         }
       },
       grid: {
-        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
-        top: isMobile ? 40 : 60,
-        bottom: isMobile ? 40 : 60,
-        left: isMobile ? 35 : 60
+        right: showEndLabels ? (isMobile ? 120 : 140) : (isMobile ? 25 : 30),
+        top: isMobile ? 70 : 80,
+        bottom: isMobile ? 50 : 60,
+        left: isMobile ? 45 : 60
       },
       series: seriesList
     };
@@ -313,9 +313,9 @@ export default function EChartsLineChart({
       } : undefined,
       legend: {
         data: series.map(s => s.name),
-        top: 10,
-        orient: isMobile ? 'vertical' : 'horizontal',
-        left: isMobile ? 'right' : 'center',
+        top: isMobile ? 30 : 10,
+        orient: 'horizontal',
+        left: 'center',
         textStyle: {
           fontSize: isMobile ? 10 : 12
         },
@@ -351,10 +351,10 @@ export default function EChartsLineChart({
         }
       },
       grid: {
-        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
-        top: isMobile ? 40 : 60,
-        bottom: isMobile ? 40 : 60,
-        left: isMobile ? 35 : 60
+        right: showEndLabels ? (isMobile ? 120 : 140) : (isMobile ? 25 : 30),
+        top: isMobile ? 70 : 80,
+        bottom: isMobile ? 50 : 60,
+        left: isMobile ? 45 : 60
       },
       series
     };
@@ -410,10 +410,10 @@ export default function EChartsLineChart({
         }
       },
       grid: {
-        right: showEndLabels ? (isMobile ? 80 : 140) : (isMobile ? 15 : 30),
-        top: isMobile ? 40 : 60,
-        bottom: isMobile ? 40 : 60,
-        left: isMobile ? 35 : 60
+        right: showEndLabels ? (isMobile ? 120 : 140) : (isMobile ? 25 : 30),
+        top: isMobile ? 70 : 80,
+        bottom: isMobile ? 50 : 60,
+        left: isMobile ? 45 : 60
       },
       series: [{
         type: 'line',
