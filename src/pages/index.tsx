@@ -17,12 +17,6 @@ import { OrganizationSchema } from '@/components/common/schema/OrganizationSchem
 import { LocalBusinessSchema } from '@/components/common/schema/LocalBusinessSchema';
 import { ReviewSchema } from '@/components/common/schema/ReviewSchema';
 import { WebSiteSchema } from '@/components/common/schema/WebSiteSchema';
-import { 
-  HomeHeroSkeleton, 
-  FeatureGridSkeleton, 
-  ProjectGridSkeleton, 
-  TestimonialsSkeleton 
-} from '@/components/common/skeleton/skeleton';
 
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
@@ -74,38 +68,6 @@ export default function Index({ posts }: { posts: any[] }) {
  const videoRef = useRef<HTMLVideoElement>(null);
  const setOpen = useGlobalLeadFormState((state: { setOpen: any }) => state.setOpen);
  
- // Loading states for different sections - start with false to prevent hydration mismatch
- const [loadingStates, setLoadingStates] = useState({
-   hero: false,
-   features: false,
-   projects: false,
-   testimonials: false,
- });
-
- const [isMounted, setIsMounted] = useState(false);
-
- // Only show skeleton loading after component mounts on client
- useEffect(() => {
-   setIsMounted(true);
-   
-   // Set loading states to true only on client
-   setLoadingStates({
-     hero: true,
-     features: true,
-     projects: true,
-     testimonials: true,
-   });
-
-   // Simulate realistic loading times with staggered reveals
-   const timers = [
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 600),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, features: false })), 1000),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, projects: false })), 1400),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, testimonials: false })), 1800),
-   ];
-
-   return () => timers.forEach(timer => clearTimeout(timer));
- }, []);
 
  useEffect(() => {
   const video = videoRef.current;
@@ -183,11 +145,6 @@ export default function Index({ posts }: { posts: any[] }) {
    <WebSiteSchema />
    <Navigation fixed={true} />
    <div>
-    {isMounted && loadingStates.hero ? (
-      <div className="min-h-[70vh] bg-gray-900">
-        <HomeHeroSkeleton />
-      </div>
-    ) : (
       <header className="relative flex items-center justify-center min-h-[70vh] overflow-hidden">
        <div className="relative z-10 text-center">
         <motion.div
@@ -229,7 +186,6 @@ export default function Index({ posts }: { posts: any[] }) {
         Your browser does not support the video tag.
        </video>
       </header>
-    )}
    </div>
 
    {/* Narkin's Boutique Residency Section */}
@@ -398,13 +354,9 @@ export default function Index({ posts }: { posts: any[] }) {
    </section>
 
    {/* Testimonials Section */}
-   {isMounted && loadingStates.testimonials ? (
-     <TestimonialsSkeleton />
-   ) : (
      <section className="bg-white border-t px-5 lg:px-8 py-20">
       <Testimonials testimonials={testimonials} />
      </section>
-   )}
    <section className='bg-white border-b px-4 lg:px-8 py-20 w-full'>
     <div className="ml-auto">
      <figure className="max-w-screen-md ml-auto text-right">

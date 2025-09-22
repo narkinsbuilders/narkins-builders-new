@@ -21,12 +21,6 @@ import {
  innovationFeatures,
  whyChooseUs 
 } from '@/data/about-data';
-import { 
-  HeroSkeleton, 
-  StatsSkeleton, 
-  FeatureGridSkeleton, 
-  VideoSkeleton 
-} from '@/components/common/skeleton/skeleton';
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
 
@@ -34,50 +28,6 @@ const AboutPage = () => {
  const [contactOpen, setContactOpen] = useState(false);
  const openLightbox = useLightboxStore(state => state.openLightbox);
  
- // Loading states for different sections - start with false to prevent hydration mismatch
- const [loadingStates, setLoadingStates] = useState({
-   hero: false,
-   stats: false,
-   values: false,
-   journey: false,
-   innovation: false,
-   videos: false,
-   leadership: false,
-   business: false,
- });
-
- const [isMounted, setIsMounted] = useState(false);
-
- // Only show skeleton loading after component mounts on client
- useEffect(() => {
-   setIsMounted(true);
-   
-   // Set loading states to true only on client
-   setLoadingStates({
-     hero: true,
-     stats: true,
-     values: true,
-     journey: true,
-     innovation: true,
-     videos: true,
-     leadership: true,
-     business: true,
-   });
-
-   // Simulate realistic loading times with staggered reveals
-   const timers = [
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 700),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, stats: false })), 1100),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, values: false })), 1500),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, journey: false })), 1900),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, innovation: false })), 2300),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, videos: false })), 2700),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, leadership: false })), 3100),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, business: false })), 3500),
-   ];
-
-   return () => timers.forEach(timer => clearTimeout(timer));
- }, []);
 
  // Hero Section Component
  const HeroSection = () => (
@@ -701,60 +651,14 @@ const DiversifiedBusiness = () => (
    
    <main>
     <Navigation />
-    {isMounted && loadingStates.hero ? (
-      <div className="pt-[10rem] pb-20 lg:pb-24">
-        <HeroSkeleton />
-      </div>
-    ) : (
-      <HeroSection />
-    )}
-    {isMounted && loadingStates.stats ? (
-      <StatsSkeleton />
-    ) : (
-      <AchievementStats />
-    )}
-    {isMounted && loadingStates.values ? (
-      <div className="py-20">
-        <FeatureGridSkeleton />
-      </div>
-    ) : (
-      <CoreValues />
-    )}
-    {isMounted && loadingStates.journey ? (
-      <div className="py-20">
-        <FeatureGridSkeleton />
-      </div>
-    ) : (
-      <ProjectJourney />
-    )}
-    {isMounted && loadingStates.innovation ? (
-      <div className="py-20">
-        <FeatureGridSkeleton />
-      </div>
-    ) : (
-      <InnovationSection />
-    )}
-    {isMounted && loadingStates.videos ? (
-      <div className="py-16 lg:py-24">
-        <VideoSkeleton />
-      </div>
-    ) : (
-      <VideoShowcase />
-    )}
-    {isMounted && loadingStates.leadership ? (
-      <div className="py-24">
-        <FeatureGridSkeleton />
-      </div>
-    ) : (
-      <LeadershipQuote />
-    )}
-    {isMounted && loadingStates.business ? (
-      <div className="py-20">
-        <FeatureGridSkeleton />
-      </div>
-    ) : (
-      <DiversifiedBusiness />
-    )}
+    <HeroSection />
+    <AchievementStats />
+    <CoreValues />
+    <ProjectJourney />
+    <InnovationSection />
+    <VideoShowcase />
+    <LeadershipQuote />
+    <DiversifiedBusiness />
     <Lightbox />
    </main>
    

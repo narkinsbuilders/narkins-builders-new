@@ -31,7 +31,6 @@ export function GoogleReviewsSection({
   const [sortBy, setSortBy] = useState<'helpful' | 'newest' | 'oldest' | 'rating'>('helpful');
   const [filterRating, setFilterRating] = useState<number | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const [loading, setLoading] = useState(false);
 
   // Transform comments to Google Reviews format
   useEffect(() => {
@@ -67,7 +66,6 @@ export function GoogleReviewsSection({
   // Fetch comments from API
   const fetchComments = useCallback(async () => {
     try {
-      setLoading(true);
       const response = await fetch(`/api/comments/by-slug/${blogSlug}`);
       const data = await response.json();
       
@@ -76,8 +74,6 @@ export function GoogleReviewsSection({
       }
     } catch (error) {
       console.error('Error fetching comments:', error);
-    } finally {
-      setLoading(false);
     }
   }, [blogSlug]);
 
@@ -194,60 +190,7 @@ export function GoogleReviewsSection({
 
       {/* Reviews List */}
       <div className="space-y-4 sm:space-y-5 lg:space-y-6">
-        {loading ? (
-          <div className="space-y-4 sm:space-y-5 lg:space-y-6">
-            {/* Responsive skeleton screens */}
-            {[...Array(6)].map((_, i) => (
-              <div 
-                key={i} 
-                className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-5 shadow-sm animate-pulse"
-                style={{
-                  animationDelay: `${i * 0.1}s`,
-                  animationDuration: '1.5s'
-                }}
-              >
-                <div className="flex items-start gap-3 sm:gap-4 lg:gap-5">
-                  {/* Avatar skeleton */}
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gray-200 rounded-full flex-shrink-0"></div>
-                  
-                  <div className="flex-1 min-w-0">
-                    {/* Header skeleton */}
-                    <div className="flex items-start justify-between mb-3 sm:mb-4">
-                      <div className="space-y-1">
-                        <div className="h-4 lg:h-5 bg-gray-200 rounded w-24 sm:w-32 lg:w-40"></div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex gap-1">
-                            {[...Array(5)].map((_, j) => (
-                              <div key={j} className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 bg-gray-200 rounded"></div>
-                            ))}
-                          </div>
-                          <div className="h-3 lg:h-4 bg-gray-200 rounded w-16 lg:w-20"></div>
-                        </div>
-                      </div>
-                      <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                    </div>
-                    
-                    {/* Content skeleton */}
-                    <div className="mb-5 sm:mb-6 lg:mb-8 space-y-2 lg:space-y-3">
-                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-full"></div>
-                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-4/5"></div>
-                      <div className="h-4 lg:h-5 bg-gray-200 rounded w-3/5"></div>
-                    </div>
-                    
-                    {/* Actions skeleton */}
-                    <div className="flex items-center justify-between pt-4 sm:pt-3 border-t border-gray-100">
-                      <div className="flex gap-2">
-                        <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-20 lg:w-24"></div>
-                        <div className="h-8 lg:h-10 bg-gray-200 rounded-full w-16 lg:w-20"></div>
-                      </div>
-                      <div className="h-6 bg-gray-200 rounded-full w-12"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : reviews.length === 0 ? (
+        {reviews.length === 0 ? (
           <div className="text-center py-16 sm:py-12">
             <Star className="h-16 w-16 sm:h-12 sm:w-12 text-gray-300 mx-auto mb-6 sm:mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">

@@ -35,14 +35,6 @@ import { getAllPostsServer, BlogFilter } from "@/lib/blog-server";
 import SEOImage from "@/components/common/seo-image/seo-image";
 import { NarkinsBoutiqueResidencySchema } from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
 import { VideoSchema } from '@/components/common/schema/VideoSchema';
-import { 
-  HeroSkeleton, 
-  FloorPlansSkeleton, 
-  AmenitiesSkeleton, 
-  GallerySkeleton, 
-  VideoSkeleton,
-  TestimonialsSkeleton 
-} from '@/components/common/skeleton/skeleton';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -302,44 +294,6 @@ const Amenities = () => {
 export default function HillCrestResidency({ posts }: { posts: PostWithCategory[] }) {
  const openLightbox = useLightboxStore(state => state.openLightbox);
  
- // Loading states for different sections - start with false to prevent hydration mismatch
- const [loadingStates, setLoadingStates] = useState({
-   hero: false,
-   floorPlans: false,
-   amenities: false,
-   gallery: false,
-   videos: false,
-   testimonials: false,
- });
-
- const [isMounted, setIsMounted] = useState(false);
-
- // Only show skeleton loading after component mounts on client
- useEffect(() => {
-   setIsMounted(true);
-   
-   // Set loading states to true only on client
-   setLoadingStates({
-     hero: true,
-     floorPlans: true,
-     amenities: true,
-     gallery: true,
-     videos: true,
-     testimonials: true,
-   });
-
-   // Simulate realistic loading times with staggered reveals
-   const timers = [
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, hero: false })), 800),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, floorPlans: false })), 1200),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, amenities: false })), 1600),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, gallery: false })), 2000),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, videos: false })), 2400),
-     setTimeout(() => setLoadingStates(prev => ({ ...prev, testimonials: false })), 2800),
-   ];
-
-   return () => timers.forEach(timer => clearTimeout(timer));
- }, []);
 
  return (
   <main>
@@ -393,9 +347,6 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
    <Navigation />
    <Lightbox />
    <div className="bg-white pt-[6rem]">
-    {isMounted && loadingStates.hero ? (
-      <HeroSkeleton />
-    ) : (
       <>
         <div className="px-4 bg-neutral-50 relative md:xl:px-0 w-full h-auto max-w-7xl z-index-0 bg-transparent mx-auto my-8 rounded-xl overflow-hidden -md:lg:rounded-none">
          <VideoPlayer src="/media/nbr/videos/nbr.mp4" poster={'/nbr_video_poster.webp'} />
@@ -433,10 +384,6 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
          </div>
         </div>
       </>
-    )}
-    {isMounted && loadingStates.floorPlans ? (
-      <FloorPlansSkeleton />
-    ) : (
       <section className="bg-black py-20">
      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       {/* Heading and Subheading */}
@@ -546,19 +493,9 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </Tabs>
      </div>
     </section>
-    )}
-    {isMounted && loadingStates.amenities ? (
-      <AmenitiesSkeleton />
-    ) : (
       <section className="bg-white py-20">
        <Amenities />
       </section>
-    )}
-    {isMounted && loadingStates.gallery ? (
-      <section className="bg-white px-5 mx-auto py-20 lg:px-8">
-        <GallerySkeleton />
-      </section>
-    ) : (
       <section className="bg-white px-5 mx-auto py-20 lg:px-8">
      <div className="mx-auto max-w-7xl">
       {/* Gallery Heading (Optional) */}
@@ -605,20 +542,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </div>
      </div>
     </section>
-    )}
 
-    {isMounted && loadingStates.testimonials ? (
-      <TestimonialsSkeleton />
-    ) : (
       <section className="bg-white border-t px-5 lg:px-8 py-20">
        <Testimonials testimonials={testimonials} />
       </section>
-    )}
-    {isMounted && loadingStates.videos ? (
-      <section className="bg-white py-20 border-b border">
-        <VideoSkeleton />
-      </section>
-    ) : (
       <section className="bg-white py-20 border-b border">
      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       {/* Heading */}
@@ -665,7 +592,6 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
       </div>
      </div>
     </section>
-    )}
     <BlogsSection posts={posts} />
    </div>
    <Footer map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.887654842134!2d67.31088117394069!3d25.003933139504262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34b0d0e2f0313%3A0x82f9da3499b223b1!2sHill%20Crest%20Residency!5e0!3m2!1sen!2s!4v1751481865917!5m2!1sen!2s" />
