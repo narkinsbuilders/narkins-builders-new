@@ -47,9 +47,19 @@ export default function EChartsHeatmapChart({
   }
 
   const [isClient, setIsClient] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
   
   React.useEffect(() => {
     setIsClient(true);
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   if (!isClient) {
@@ -112,10 +122,11 @@ export default function EChartsHeatmapChart({
   const option = {
     animationDuration: animationDuration,
     title: {
-      text: title,
+      text: isMobile ? title.substring(0, 40) + (title.length > 40 ? '...' : '') : title,
       left: 'center',
+      top: isMobile ? '2%' : '5%',
       textStyle: {
-        fontSize: 18,
+        fontSize: isMobile ? 12 : 16,
         fontWeight: 'bold',
         color: '#374151'
       }
@@ -129,17 +140,25 @@ export default function EChartsHeatmapChart({
       }
     },
     grid: {
-      height: '70%',
-      top: '15%',
-      left: '10%',
-      right: visualMapPosition === 'right' ? '15%' : '5%'
+      height: isMobile ? '55%' : '60%',
+      top: isMobile ? '15%' : '20%',
+      left: isMobile ? '25%' : '20%',
+      right: visualMapPosition === 'right' ? (isMobile ? '25%' : '20%') : '10%',
+      bottom: isMobile ? '30%' : '20%',
+      containLabel: true
     },
     xAxis: {
       ...xAxis,
       position: 'bottom',
       axisLabel: {
         color: '#6b7280',
-        rotate: xAxis.data.length > 8 ? 45 : 0
+        fontSize: isMobile ? 8 : 10,
+        rotate: 45,
+        interval: 0,
+        formatter: function(value: string) {
+          const maxLength = isMobile ? 8 : 15;
+          return value.length > maxLength ? value.substring(0, maxLength) + '...' : value;
+        }
       },
       axisLine: {
         lineStyle: { color: '#e5e7eb' }
@@ -154,7 +173,13 @@ export default function EChartsHeatmapChart({
     yAxis: {
       ...yAxis,
       axisLabel: {
-        color: '#6b7280'
+        color: '#6b7280',
+        fontSize: isMobile ? 8 : 10,
+        interval: 0,
+        formatter: function(value: string) {
+          const maxLength = isMobile ? 12 : 20;
+          return value.length > maxLength ? value.substring(0, maxLength) + '...' : value;
+        }
       },
       axisLine: {
         lineStyle: { color: '#e5e7eb' }
@@ -188,7 +213,7 @@ export default function EChartsHeatmapChart({
       label: showLabels ? {
         show: true,
         color: '#374151',
-        fontSize: 10
+        fontSize: 9
       } : { show: false },
       emphasis: {
         itemStyle: {
@@ -204,9 +229,13 @@ export default function EChartsHeatmapChart({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-      <div style={{ height }}>
-        <ReactECharts option={option} style={{ height: `${height}px`, width: '100%' }} />
+    <div className="bg-white rounded-lg shadow-sm border my-8 p-3 md:p-6">
+      <div style={{ height }} className="w-full overflow-hidden">
+        <ReactECharts 
+          option={option} 
+          style={{ height: `${height}px`, width: '100%' }}
+          opts={{ renderer: 'svg' }}
+        />
       </div>
     </div>
   )
