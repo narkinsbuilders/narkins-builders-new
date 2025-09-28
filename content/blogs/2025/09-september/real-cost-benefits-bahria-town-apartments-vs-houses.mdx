@@ -107,7 +107,7 @@ Let me give you real examples with actual numbers from our 30-year track record.
 
 ## The Real Cost Comparison
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Year 1', demand: 79, supply: 66},
     {month: 'Year 2', demand: 79, supply: 73},
@@ -116,6 +116,12 @@ Let me give you real examples with actual numbers from our 30-year track record.
     {month: 'Year 5', demand: 79, supply: 94}
   ]}
   title="5-Year Total Costs: Independent House vs HCR Apartment (Index 100 = PKR 1 Crore)"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 Let's be honest about a PKR 3-crore investment over 5 years:

@@ -29,7 +29,7 @@ Recent [price drops of 20-40% in select areas](/blog/2025/08/bahria-town-karachi
 
 ## **Live Pricing Data**: What Properties Actually Cost Today
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2020', price: 32},
     {year: '2021', price: 48},
@@ -39,6 +39,12 @@ Recent [price drops of 20-40% in select areas](/blog/2025/08/bahria-town-karachi
     {year: 'Jul 2025', price: 96}
   ]}
   title="Average 5 Marla Plot Prices (PKR Lac)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ### Residential Plots: Current Market Rates
@@ -75,7 +81,7 @@ Apartment Pricing Breakdown:
 
 ## Investment Performance Analysis
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Jan', demand: 72, supply: 68},
     {month: 'Feb', demand: 75, supply: 65},
@@ -86,6 +92,12 @@ Apartment Pricing Breakdown:
     {month: 'Jul', demand: 95, supply: 48}
   ]}
   title="Demand vs Supply Dynamics Bahria Town Karachi"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 ### ROI Analysis: Which Properties Deliver Best Returns?
@@ -103,7 +115,7 @@ Capital Appreciation (2020-2025):
 
 ## Sector-wise Price Comparison
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Overseas Block', value: 35, color: '#3b82f6'},
     {type: 'Central Park', value: 25, color: '#10b981'},
@@ -112,6 +124,8 @@ Capital Appreciation (2020-2025):
     {type: 'Other Precincts', value: 8, color: '#8b5cf6'}
   ]}
   title="Investment Activity by Precinct Q2 2025"
+  showLegend={true}
+  showLabel={true}
 />
 
 ### Precinct-Specific Analysis

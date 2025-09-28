@@ -28,7 +28,7 @@ The numbers don't lie. Let me break it down.
 
 ## Why $2.08 Trillion Actually Matters
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: '2020', demand: 65, supply: 85},
     {month: '2021', demand: 72, supply: 82},
@@ -38,6 +38,12 @@ The numbers don't lie. Let me break it down.
     {month: '2025', demand: 98, supply: 62}
   ]}
   title="Pakistan Property Market Growth Trajectory (Index: 100 = $2.08T)"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 When a sector hits $2.08 trillion and contributes 2% to GDP, three things happen:

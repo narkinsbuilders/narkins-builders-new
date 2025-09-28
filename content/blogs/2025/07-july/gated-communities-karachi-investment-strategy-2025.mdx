@@ -29,7 +29,7 @@ This trend aligns perfectly with [Pakistan's property market hitting $2.08 trill
 
 ## Market Dominance: The Numbers Tell the Story
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Gated Communities', value: 68, color: '#10b981'},
     {type: 'Open Schemes', value: 22, color: '#f59e0b'},
@@ -37,6 +37,8 @@ This trend aligns perfectly with [Pakistan's property market hitting $2.08 trill
     {type: 'Individual Houses', value: 3, color: '#ef4444'}
   ]}
   title="Premium Investment Distribution (PKR 50 Lac+) Q2 2025"
+  showLegend={true}
+  showLabel={true}
 />
 
 ### Key Market Statistics:
@@ -49,7 +51,7 @@ For a comprehensive comparison of Karachi's premium residential areas, see our [
 
 ## Security Premium Analysis: What Buyers Actually Get
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2020', price: 15},
     {year: '2021', price: 18},
@@ -59,6 +61,12 @@ For a comprehensive comparison of Karachi's premium residential areas, see our [
     {year: 'Jul 2025', price: 38}
   ]}
   title="Security Premium Over Open Schemes (PKR Lac)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ### What The Premium Buys:
@@ -123,7 +131,7 @@ Creek Vistas (Boutique Premium)
 ### Conservative Investors (Stability Focus)
 Recommended: Established gated communities with 5+ years track record
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Jan', demand: 78, supply: 82},
     {month: 'Feb', demand: 82, supply: 78},
@@ -134,6 +142,12 @@ Recommended: Established gated communities with 5+ years track record
     {month: 'Jul', demand: 98, supply: 62}
   ]}
   title="Established Gated Communities: Demand vs Supply Trend"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 Investment Targets:

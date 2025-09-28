@@ -211,7 +211,7 @@ Next-Generation Green Features:
 
 ### Cost-Benefit Analysis Framework
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: 'Initial Investment', price: 320},
     {year: 'Year 1 Savings', price: 295},
@@ -220,6 +220,12 @@ Next-Generation Green Features:
     {year: '10-Year ROI', price: 85}
   ]}
   title="Green Technology Investment Recovery (PKR Thousands)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ### Smart Technology Return Analysis
@@ -263,13 +269,15 @@ Long-term (2028-2030): Fully autonomous sustainable buildings with net-zero ener
 
 ### Market Adoption Forecasts
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Smart-Enabled Units', value: 45, color: '#10b981'},
     {type: 'Green-Certified Buildings', value: 25, color: '#3b82f6'},
     {type: 'Conventional Apartments', value: 30, color: '#f59e0b'}
   ]}
   title="Expected Market Distribution by 2027"
+  showLegend={true}
+  showLabel={true}
 />
 
 Investment Implications:

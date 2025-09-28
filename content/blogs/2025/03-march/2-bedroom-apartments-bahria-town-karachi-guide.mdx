@@ -48,7 +48,7 @@ The Numbers Tell the Story:
 
 Insider Tip: Cash buyers save 5-10% instantly, while early bird purchasers get additional pre-launch discounts.
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2020', price: 95},
     {year: '2021', price: 110},
@@ -58,6 +58,12 @@ Insider Tip: Cash buyers save 5-10% instantly, while early bird purchasers get a
     {year: '2025', price: 195}
   ]}
   title="2-Bedroom Apartment Price Trend (PKR Lac)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ## Featured Projects: Ready to Move vs Under Construction
@@ -124,13 +130,15 @@ World-Class Amenities:
 
 Design Trend: Open concept layouts are 30% more popular with buyers under 35, while traditional layouts appeal to families with children.
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Open Concept', value: 45, color: '#3b82f6'},
     {type: 'Traditional', value: 35, color: '#10b981'},
     {type: 'Luxury Premium', value: 20, color: '#f59e0b'}
   ]}
   title="Layout Preference Distribution 2025"
+  showLegend={true}
+  showLabel={true}
 />
 
 ## Investment Performance: The Real Numbers

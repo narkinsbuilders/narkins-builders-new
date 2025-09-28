@@ -27,7 +27,7 @@ After months of cautious observation, July 2025 data confirms what industry expe
 
 ## Indicator #1: Property Price Growth Acceleration
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2022', price: 85},
     {year: '2023', price: 78},
@@ -35,6 +35,12 @@ After months of cautious observation, July 2025 data confirms what industry expe
     {year: 'Jul 2025', price: 96}
   ]}
   title="Average Property Prices (PKR Lac per Unit)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 **What This Means**: After the 2023 dip, property prices have surged **17% since January 2025**, with premium areas like **Bahria Town Karachi** leading the recovery with **20%+ appreciation**.
@@ -74,7 +80,7 @@ Major infrastructure projects are driving demand in strategic locations:
 
 ## Indicator #4: Economic Stability Returns
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Jan', demand: 65, supply: 85},
     {month: 'Feb', demand: 70, supply: 80},
@@ -85,6 +91,12 @@ Major infrastructure projects are driving demand in strategic locations:
     {month: 'Jul', demand: 96, supply: 62}
   ]}
   title="Market Demand vs Supply Balance (Index)"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 ### Key Economic Improvements:
@@ -95,7 +107,7 @@ Major infrastructure projects are driving demand in strategic locations:
 
 ## Indicator #5: Investment Pattern Shift
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Apartments', value: 42, color: '#3b82f6'},
     {type: 'Plots', value: 28, color: '#10b981'},
@@ -103,6 +115,8 @@ Major infrastructure projects are driving demand in strategic locations:
     {type: 'Commercial', value: 10, color: '#ef4444'}
   ]}
   title="Investment Distribution by Property Type - Q2 2025"
+  showLegend={true}
+  showLabel={true}
 />
 
 Notable Shifts:

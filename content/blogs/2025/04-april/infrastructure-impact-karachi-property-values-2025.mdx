@@ -29,7 +29,7 @@ These developments align perfectly with [Pakistan's $2.08 trillion property mark
 
 ## Green Line BRT: The Property Value Multiplier
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2020', price: 45},
     {year: '2021', price: 52},
@@ -39,6 +39,12 @@ These developments align perfectly with [Pakistan's $2.08 trillion property mark
     {year: 'Jul 2025', price: 92}
   ]}
   title="Average Property Prices Near BRT Stations (PKR Lac per Unit)"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ### Station Proximity Impact Analysis
@@ -103,7 +109,7 @@ Phase 2 Extension (2027-2028):
 
 ## Distance-Based Investment Strategy
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Jan', demand: 65, supply: 88},
     {month: 'Feb', demand: 72, supply: 85},
@@ -114,6 +120,12 @@ Phase 2 Extension (2027-2028):
     {month: 'Jul', demand: 98, supply: 58}
   ]}
   title="Transit-Oriented Development: Demand vs Supply Balance"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 ### Optimal Investment Zones:
@@ -216,7 +228,7 @@ Orangi Station Area:
 
 ## Commercial Real Estate: The Infrastructure Multiplier
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'Retail Spaces', value: 40, color: '#3b82f6'},
     {type: 'Office Buildings', value: 25, color: '#10b981'},
@@ -225,6 +237,8 @@ Orangi Station Area:
     {type: 'Industrial', value: 5, color: '#8b5cf6'}
   ]}
   title="Commercial Investment Distribution Near Transit"
+  showLegend={true}
+  showLabel={true}
 />
 
 ### Commercial Opportunities by Category:

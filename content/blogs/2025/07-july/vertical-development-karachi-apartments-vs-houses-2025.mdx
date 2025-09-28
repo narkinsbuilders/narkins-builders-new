@@ -27,7 +27,7 @@ Land scarcity and population growth are driving **Karachi's dramatic shift towar
 
 ## Market Share Transformation: The Great Shift
 
-<PropertyTypeDistribution 
+<EChartsPieChart 
   data={[
     {type: 'High-Rise Apartments', value: 42, color: '#3b82f6'},
     {type: 'Mid-Rise (4-10 floors)', value: 28, color: '#10b981'},
@@ -35,6 +35,8 @@ Land scarcity and population growth are driving **Karachi's dramatic shift towar
     {type: 'Low-Rise Apartments', value: 8, color: '#ef4444'}
   ]}
   title="New Construction by Property Type - Q2 2025"
+  showLegend={true}
+  showLabel={true}
 />
 
 ### Dramatic Market Evolution:
@@ -45,7 +47,7 @@ Land scarcity and population growth are driving **Karachi's dramatic shift towar
 
 ## Investment Performance: Apartments Pull Ahead
 
-<PriceChart 
+<EChartsLineChart 
   data={[
     {year: '2020', price: 65},
     {year: '2021', price: 72},
@@ -55,6 +57,12 @@ Land scarcity and population growth are driving **Karachi's dramatic shift towar
     {year: 'Jul 2025', price: 128}
   ]}
   title="High-Rise Apartment Price Index vs Market Average"
+  xField="year"
+  yField="price"
+  color="#1890ff"
+  smooth={true}
+  isArea={true}
+  showEndLabels={true}
 />
 
 ### Performance Comparison (Last 5 Years):
@@ -114,7 +122,7 @@ Boomers (45+ years) - 22% prefer apartments
 
 ## Cost Analysis: True Ownership Comparison
 
-<TrendAnalysis 
+<EChartsLineChart 
   data={[
     {month: 'Purchase', demand: 100, supply: 100},
     {month: 'Year 1', demand: 115, supply: 112},
@@ -124,6 +132,12 @@ Boomers (45+ years) - 22% prefer apartments
     {month: 'Year 5', demand: 198, supply: 176}
   ]}
   title="Total Cost of Ownership: Apartments vs Houses (Index)"
+  xField="month"
+  yField="value"
+  seriesField="type"
+  color={['#1890ff', '#52c41a']}
+  smooth={true}
+  enableDataset={true}
 />
 
 ### 5-Year Total Cost Analysis (PKR 3 Crore Initial Investment):
