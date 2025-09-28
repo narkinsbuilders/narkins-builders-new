@@ -126,16 +126,6 @@ export default function EChartsColumnChart({
     };
   }, [createAdvancedGradient, barBorderRadius, showShadows, gradientColors]);
 
-  if (!isClient) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
-        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
-          Loading chart...
-        </div>
-      </div>
-    );
-  }
 
 
   let option;

@@ -119,28 +119,32 @@ export default function EChartsPieChart({
 
   // If there's too much data, show as progress bars instead
   if (data.length > 8) {
+    const progressContent = (
+      <div className="space-y-4">
+        {data.map((item, index) => (
+          <div key={index} className="flex items-center justify-between">
+            <span className="text-gray-900 font-medium">{item.type || item.name || `Item ${index + 1}`}</span>
+            <div className="flex items-center space-x-3 w-3/5">
+              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                <div 
+                  className="h-2 rounded-full transition-all duration-300"
+                  style={{ 
+                    width: `${item.value}%`,
+                    backgroundColor: item.color || defaultColors[index % defaultColors.length]
+                  }}
+                ></div>
+              </div>
+              <span className="text-sm text-gray-700 min-w-[40px] font-medium">{item.value}%</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+    
     return (
       <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
         <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="space-y-4">
-          {data.map((item, index) => (
-            <div key={index} className="flex items-center justify-between">
-              <span className="text-gray-900 font-medium">{item.type || item.name || `Item ${index + 1}`}</span>
-              <div className="flex items-center space-x-3 w-3/5">
-                <div className="flex-1 bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="h-2 rounded-full transition-all duration-300"
-                    style={{ 
-                      width: `${item.value}%`,
-                      backgroundColor: item.color || defaultColors[index % defaultColors.length]
-                    }}
-                  ></div>
-                </div>
-                <span className="text-sm text-gray-700 min-w-[40px] font-medium">{item.value}%</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        {progressContent}
       </div>
     );
   }
