@@ -1,13 +1,5 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-
-const ReactECharts = dynamic(
-  () => import('echarts-for-react'),
-  { 
-    ssr: false,
-    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-  }
-)
+import ChartContainer from './chart-container'
 
 interface EChartsCylindricalBarChartProps {
   data: Array<{name: string, value: number, color?: string}>
@@ -34,34 +26,6 @@ export default function EChartsCylindricalBarChart({
   metallic = true,
   glowEffect = true
 }: EChartsCylindricalBarChartProps) {
-  // Early return for data validation before hooks
-  if (!data || data.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No data available
-        </div>
-      </div>
-    );
-  }
-
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
-        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
-          Loading chart...
-        </div>
-      </div>
-    );
-  }
 
   // Create metallic gradient effect
   const createMetallicGradient = (baseColor: string) => {
@@ -252,11 +216,5 @@ export default function EChartsCylindricalBarChart({
     ]
   };
 
-  return (
-    <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-      <div style={{ height }}>
-        <ReactECharts option={option} style={{ height: `${height}px`, width: '100%' }} />
-      </div>
-    </div>
-  )
+  return <ChartContainer title={title} option={option} height={height} data={data} />
 }

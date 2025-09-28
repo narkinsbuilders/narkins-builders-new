@@ -1,13 +1,5 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-
-const ReactECharts = dynamic(
-  () => import('echarts-for-react'),
-  { 
-    ssr: false,
-    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-  }
-)
+import ChartContainer from './chart-container'
 
 interface EChartsHeatmapChartProps {
   data: Array<[number, number, number]> | Array<{x: string | number, y: string | number, value: number}>
@@ -34,24 +26,9 @@ export default function EChartsHeatmapChart({
   visualMapPosition = 'right',
   gridSize = 20
 }: EChartsHeatmapChartProps) {
-  // Early return for data validation before hooks
-  if (!data || data.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No data available
-        </div>
-      </div>
-    );
-  }
-
-  const [isClient, setIsClient] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
   
   React.useEffect(() => {
-    setIsClient(true);
-    
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -61,17 +38,6 @@ export default function EChartsHeatmapChart({
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  if (!isClient) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
-        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
-          Loading chart...
-        </div>
-      </div>
-    );
-  }
 
   // Transform data if needed
   let processedData;
@@ -228,15 +194,5 @@ export default function EChartsHeatmapChart({
     }]
   };
 
-  return (
-    <div className="bg-white rounded-lg shadow-sm border my-8 p-3 md:p-6">
-      <div style={{ height }} className="w-full overflow-hidden">
-        <ReactECharts 
-          option={option} 
-          style={{ height: `${height}px`, width: '100%' }}
-          opts={{ renderer: 'svg' }}
-        />
-      </div>
-    </div>
-  )
+  return <ChartContainer title={title} option={option} height={height} data={data} />
 }

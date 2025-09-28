@@ -1,13 +1,5 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-
-const ReactECharts = dynamic(
-  () => import('echarts-for-react'),
-  { 
-    ssr: false,
-    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-  }
-)
+import ChartContainer from './chart-container'
 
 interface EChartsPictorialBarChartProps {
   data: Array<{name: string, value: number, symbol?: string, color?: string}>
@@ -38,34 +30,6 @@ export default function EChartsPictorialBarChart({
   showLabels = true,
   orientation = 'vertical'
 }: EChartsPictorialBarChartProps) {
-  // Early return for empty data before hooks
-  if (!data || data.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No data available
-        </div>
-      </div>
-    );
-  }
-
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
-        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
-          Loading chart...
-        </div>
-      </div>
-    );
-  }
 
   // Custom symbol paths for different types
   const customSymbols = {
@@ -240,11 +204,5 @@ export default function EChartsPictorialBarChart({
     }]
   };
 
-  return (
-    <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-      <div style={{ height }}>
-        <ReactECharts option={option} style={{ height: `${height}px`, width: '100%' }} />
-      </div>
-    </div>
-  )
+  return <ChartContainer title={title} option={option} height={height} data={data} />
 }

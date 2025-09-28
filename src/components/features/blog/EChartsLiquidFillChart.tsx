@@ -1,13 +1,5 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-
-const ReactECharts = dynamic(
-  () => import('echarts-for-react'),
-  { 
-    ssr: false,
-    loading: () => <div className="h-64 flex items-center justify-center bg-gray-50">Loading chart...</div>
-  }
-)
+import ChartContainer from './chart-container'
 
 interface EChartsLiquidFillChartProps {
   value: number // Percentage value (0-100)
@@ -36,34 +28,6 @@ export default function EChartsLiquidFillChart({
   animationDuration = 4000,
   formatter
 }: EChartsLiquidFillChartProps) {
-  // Early return for value validation before hooks
-  if (value === undefined || value === null) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-        <div className="h-64 flex items-center justify-center text-gray-500 bg-gray-50 rounded">
-          No value provided
-        </div>
-      </div>
-    );
-  }
-
-  const [isClient, setIsClient] = React.useState(false);
-  
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{title || 'Loading...'}</h3>
-        <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
-          Loading chart...
-        </div>
-      </div>
-    );
-  }
 
   // Clamp value between 0 and 100
   const clampedValue = Math.max(0, Math.min(100, value));
@@ -190,16 +154,5 @@ export default function EChartsLiquidFillChart({
     ]
   };
 
-  return (
-    <div className="bg-white rounded-lg shadow-sm border my-8 p-6">
-      <div style={{ height, width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: Math.min(width, 400), height }}>
-          <ReactECharts 
-            option={fallbackOption} 
-            style={{ height: `${height}px`, width: '100%' }} 
-          />
-        </div>
-      </div>
-    </div>
-  )
+  return <ChartContainer title={title} option={fallbackOption} height={height} data={value === undefined || value === null ? [] : [value]} />
 }
