@@ -124,12 +124,18 @@ Boomers (45+ years) - 22% prefer apartments
 
 <EChartsLineChart 
   data={[
-    {month: 'Purchase', demand: 100, supply: 100},
-    {month: 'Year 1', demand: 115, supply: 112},
-    {month: 'Year 2', demand: 132, supply: 125},
-    {month: 'Year 3', demand: 151, supply: 140},
-    {month: 'Year 4', demand: 173, supply: 157},
-    {month: 'Year 5', demand: 198, supply: 176}
+    {month: 'Purchase', type: 'Demand', value: 100},
+    {month: 'Purchase', type: 'Supply', value: 100},
+    {month: 'Year 1', type: 'Demand', value: 115},
+    {month: 'Year 1', type: 'Supply', value: 112},
+    {month: 'Year 2', type: 'Demand', value: 132},
+    {month: 'Year 2', type: 'Supply', value: 125},
+    {month: 'Year 3', type: 'Demand', value: 151},
+    {month: 'Year 3', type: 'Supply', value: 140},
+    {month: 'Year 4', type: 'Demand', value: 173},
+    {month: 'Year 4', type: 'Supply', value: 157},
+    {month: 'Year 5', type: 'Demand', value: 198},
+    {month: 'Year 5', type: 'Supply', value: 176}
   ]}
   title="Total Cost of Ownership: Apartments vs Houses (Index)"
   xField="month"

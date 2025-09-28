@@ -109,11 +109,16 @@ Let me give you real examples with actual numbers from our 30-year track record.
 
 <EChartsLineChart 
   data={[
-    {month: 'Year 1', demand: 79, supply: 66},
-    {month: 'Year 2', demand: 79, supply: 73},
-    {month: 'Year 3', demand: 79, supply: 80},
-    {month: 'Year 4', demand: 79, supply: 87},
-    {month: 'Year 5', demand: 79, supply: 94}
+    {month: 'Year 1', type: 'Demand', value: 79},
+    {month: 'Year 1', type: 'Supply', value: 66},
+    {month: 'Year 2', type: 'Demand', value: 79},
+    {month: 'Year 2', type: 'Supply', value: 73},
+    {month: 'Year 3', type: 'Demand', value: 79},
+    {month: 'Year 3', type: 'Supply', value: 80},
+    {month: 'Year 4', type: 'Demand', value: 79},
+    {month: 'Year 4', type: 'Supply', value: 87},
+    {month: 'Year 5', type: 'Demand', value: 79},
+    {month: 'Year 5', type: 'Supply', value: 94}
   ]}
   title="5-Year Total Costs: Independent House vs HCR Apartment (Index 100 = PKR 1 Crore)"
   xField="month"

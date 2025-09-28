@@ -82,13 +82,20 @@ Major infrastructure projects are driving demand in strategic locations:
 
 <EChartsLineChart 
   data={[
-    {month: 'Jan', demand: 65, supply: 85},
-    {month: 'Feb', demand: 70, supply: 80},
-    {month: 'Mar', demand: 75, supply: 75},
-    {month: 'Apr', demand: 82, supply: 70},
-    {month: 'May', demand: 88, supply: 68},
-    {month: 'Jun', demand: 92, supply: 65},
-    {month: 'Jul', demand: 96, supply: 62}
+    {month: 'Jan', type: 'Demand', value: 65},
+    {month: 'Jan', type: 'Supply', value: 85},
+    {month: 'Feb', type: 'Demand', value: 70},
+    {month: 'Feb', type: 'Supply', value: 80},
+    {month: 'Mar', type: 'Demand', value: 75},
+    {month: 'Mar', type: 'Supply', value: 75},
+    {month: 'Apr', type: 'Demand', value: 82},
+    {month: 'Apr', type: 'Supply', value: 70},
+    {month: 'May', type: 'Demand', value: 88},
+    {month: 'May', type: 'Supply', value: 68},
+    {month: 'Jun', type: 'Demand', value: 92},
+    {month: 'Jun', type: 'Supply', value: 65},
+    {month: 'Jul', type: 'Demand', value: 96},
+    {month: 'Jul', type: 'Supply', value: 62}
   ]}
   title="Market Demand vs Supply Balance (Index)"
   xField="month"

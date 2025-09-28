@@ -127,11 +127,16 @@ Infrastructure Foundation:
 
 <EChartsLineChart 
   data={[
-    {month: '2020', demand: 60, supply: 85},
-    {month: '2021', demand: 75, supply: 82},
-    {month: '2022', demand: 88, supply: 75},
-    {month: '2023', demand: 92, supply: 68},
-    {month: '2024', demand: 95, supply: 62}
+    {month: '2020', type: 'Demand', value: 60},
+    {month: '2020', type: 'Supply', value: 85},
+    {month: '2021', type: 'Demand', value: 75},
+    {month: '2021', type: 'Supply', value: 82},
+    {month: '2022', type: 'Demand', value: 88},
+    {month: '2022', type: 'Supply', value: 75},
+    {month: '2023', type: 'Demand', value: 92},
+    {month: '2023', type: 'Supply', value: 68},
+    {month: '2024', type: 'Demand', value: 95},
+    {month: '2024', type: 'Supply', value: 62}
   ]}
   title="Investment Demand vs Market Supply Trend"
   xField="month"

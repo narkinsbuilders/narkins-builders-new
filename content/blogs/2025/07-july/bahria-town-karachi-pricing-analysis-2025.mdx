@@ -83,13 +83,20 @@ Apartment Pricing Breakdown:
 
 <EChartsLineChart 
   data={[
-    {month: 'Jan', demand: 72, supply: 68},
-    {month: 'Feb', demand: 75, supply: 65},
-    {month: 'Mar', demand: 80, supply: 62},
-    {month: 'Apr', demand: 85, supply: 58},
-    {month: 'May', demand: 88, supply: 55},
-    {month: 'Jun', demand: 92, supply: 52},
-    {month: 'Jul', demand: 95, supply: 48}
+    {month: 'Jan', type: 'Demand', value: 72},
+    {month: 'Jan', type: 'Supply', value: 68},
+    {month: 'Feb', type: 'Demand', value: 75},
+    {month: 'Feb', type: 'Supply', value: 65},
+    {month: 'Mar', type: 'Demand', value: 80},
+    {month: 'Mar', type: 'Supply', value: 62},
+    {month: 'Apr', type: 'Demand', value: 85},
+    {month: 'Apr', type: 'Supply', value: 58},
+    {month: 'May', type: 'Demand', value: 88},
+    {month: 'May', type: 'Supply', value: 55},
+    {month: 'Jun', type: 'Demand', value: 92},
+    {month: 'Jun', type: 'Supply', value: 52},
+    {month: 'Jul', type: 'Demand', value: 95},
+    {month: 'Jul', type: 'Supply', value: 48}
   ]}
   title="Demand vs Supply Dynamics Bahria Town Karachi"
   xField="month"
