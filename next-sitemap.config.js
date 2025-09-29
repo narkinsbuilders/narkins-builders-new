@@ -57,6 +57,10 @@ module.exports = {
   generateRobotsTxt: true,
   generateIndexSitemap: false, // Since we don't have many pages
   
+  // Ensure XML declaration is included
+  trailingSlash: false,
+  autoLastmod: true,
+  
   // Static pages with custom priority and changefreq
   transform: async (config, path) => {
     // Default values
@@ -131,8 +135,12 @@ module.exports = {
   exclude: [
     '/api/*',
     '/admin/*',
+    '/admin-tina*',
     '/_next/*',
     '/404',
     '/500',
+    '/book-*', // Exclude booking pages if they're dynamic
+    '/privacy-policy',
+    '/terms',
   ],
 };
