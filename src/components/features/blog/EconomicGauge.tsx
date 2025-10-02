@@ -3,19 +3,33 @@ import dynamic from 'next/dynamic'
 
 const ReactECharts = dynamic(
   () => import('echarts-for-react'),
-  { 
+  {
     ssr: false,
     loading: () => <div>Loading gauge...</div>
   }
 )
 
+interface GaugeDataItem {
+  value: number
+  name: string
+  title?: {
+    offsetCenter?: [string, string]
+    show?: boolean
+  }
+  detail?: {
+    valueAnimation?: boolean
+    offsetCenter?: [string, string]
+  }
+}
+
 interface EconomicGaugeProps {
-  value: number | string
+  value?: number | string
+  data?: GaugeDataItem[]
   title: string
   subtitle?: string
 }
 
-export default function EconomicGauge({ value, title, subtitle }: EconomicGaugeProps) {
+export default function EconomicGauge({ value, data, title, subtitle }: EconomicGaugeProps) {
   // Safe value parsing with comprehensive validation
   const parseValue = (val: number | string | undefined): number => {
     if (typeof val === 'number' && !isNaN(val)) return Math.max(0, Math.min(100, val));
@@ -25,88 +39,83 @@ export default function EconomicGauge({ value, title, subtitle }: EconomicGaugeP
     }
     return 0;
   };
-  
-  const gaugeValue = parseValue(value);
-  const percentValue = gaugeValue / 100;
-  
-  // Ensure percent is valid (0-1 range)
-  const safePercent = Math.max(0, Math.min(1, percentValue));
-  
+
+  // Support both single value and multi-gauge data
+  let gaugeData: GaugeDataItem[];
+
+  if (data) {
+    gaugeData = data;
+  } else if (value !== undefined) {
+    // Single value mode - backward compatibility
+    const gaugeValue = parseValue(value);
+    gaugeData = [
+      {
+        value: gaugeValue,
+        name: '',
+        title: {
+          show: false
+        },
+        detail: {
+          valueAnimation: true,
+          offsetCenter: ['0%', '0%']
+        }
+      }
+    ];
+  } else {
+    gaugeData = [];
+  }
+
   const option = {
     series: [
       {
         type: 'gauge',
-        startAngle: 180,
-        endAngle: 0,
-        center: ['50%', '75%'],
-        radius: '90%',
-        min: 0,
-        max: 100,
-        splitNumber: 8,
+        startAngle: 90,
+        endAngle: -270,
+        pointer: {
+          show: false
+        },
+        progress: {
+          show: true,
+          overlap: false,
+          roundCap: true,
+          clip: false,
+          itemStyle: {
+            borderWidth: 1,
+            borderColor: '#464646'
+          }
+        },
         axisLine: {
           lineStyle: {
-            width: 6,
-            color: [
-              [0.33, '#F4664A'],
-              [0.66, '#FAAD14'],
-              [1, '#30BF78']
-            ]
-          }
-        },
-        pointer: {
-          icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-          length: '12%',
-          width: 20,
-          offsetCenter: [0, '-60%'],
-          itemStyle: {
-            color: 'auto'
-          }
-        },
-        axisTick: {
-          length: 12,
-          lineStyle: {
-            color: 'auto',
-            width: 2
+            width: 40
           }
         },
         splitLine: {
-          length: 20,
-          lineStyle: {
-            color: 'auto',
-            width: 5
-          }
+          show: false,
+          distance: 0,
+          length: 10
+        },
+        axisTick: {
+          show: false
         },
         axisLabel: {
-          color: '#464646',
-          fontSize: 12,
-          distance: -60,
-          formatter: function (value: number) {
-            if (value === 33) return 'Crisis';
-            if (value === 66) return 'Recovery';
-            if (value === 100) return 'Growth';
-            return value.toString();
-          }
+          show: false,
+          distance: 50
         },
+        data: gaugeData,
         title: {
-          offsetCenter: [0, '-10%'],
-          fontSize: 16,
-          color: '#464646'
+          fontSize: 14,
+          color: '#374151'
         },
         detail: {
-          fontSize: 36,
-          offsetCenter: [0, '-35%'],
-          valueAnimation: true,
-          formatter: function (value: number) {
-            return Math.round(value).toString();
-          },
-          color: 'inherit'
-        },
-        data: [
-          {
-            value: gaugeValue,
-            name: 'Score'
-          }
-        ]
+          width: 50,
+          height: 14,
+          fontSize: 14,
+          color: 'inherit',
+          borderColor: 'inherit',
+          borderRadius: 20,
+          borderWidth: 1,
+          formatter: '{value}%'
+        }
       }
     ]
   }
@@ -140,22 +149,6 @@ export default function EconomicGauge({ value, title, subtitle }: EconomicGaugeP
       </div>
       <div style={{ height: 300 }}>
         <ReactECharts option={option} style={{ height: '300px', width: '100%' }} />
-      </div>
-      <div className="text-center mt-4">
-        <div className="flex justify-center space-x-6 text-sm">
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-red-500 rounded mr-2"></div>
-            <span>Crisis (0-33)</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-yellow-500 rounded mr-2"></div>
-            <span>Recovery (34-66)</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded mr-2"></div>
-            <span>Growth (67-100)</span>
-          </div>
-        </div>
       </div>
     </div>
   )
