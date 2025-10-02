@@ -13,7 +13,6 @@
     "build:analyze": "ANALYZE=true bun run build:optimized",
     "precompile-mdx": "bun scripts/precompile-mdx.ts",
     "precompile-mdx-node": "npx ts-node scripts/precompile-mdx.ts",
-    "preprocess-blogs": "bun scripts/parallel-blog-processor.ts",
     "dev:cms": "tinacms dev -c \"next dev --turbopack\"",
     "build:cms": "tinacms build && node scripts/fix-tina-branding.js && bun run build:optimized",
     "sitemap": "next-sitemap",
@@ -24,18 +23,11 @@
     "typecheck": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo",
     "check": "bun run typecheck && bun run lint",
     "check:parallel": "bunx tsc --noEmit --incremental --tsBuildInfoFile .tsbuildinfo & biome check . & wait",
-    "blog:verify-setup": "bun scripts/verify-setup.ts",
-    "blog:stats": "bun scripts/blog-stats.ts",
     "blog:clear-cache": "rm -rf .mdx-cache && echo 'MDX cache cleared'",
-    "blog:validate-cache": "bun scripts/validate-cache.ts",
-    "setup-database": "bun scripts/setup-database.ts",
-    "migrate-google-reviews": "bun scripts/migrate-google-reviews.ts",
-    "check-columns": "bun scripts/check-columns.ts",
     "tina:dev": "tinacms dev -c \"next dev\"",
     "tina:build": "tinacms build",
     "tina:init": "tinacms init",
-    "analyze": "ANALYZE=true bun run build:fast",
-    "performance:test": "bun scripts/performance-test.ts"
+    "analyze": "ANALYZE=true bun run build:fast"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
