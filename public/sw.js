@@ -378,15 +378,19 @@ if (workboxLoaded && typeof workbox !== 'undefined' && workbox) {
     })
   );
 
-  // 7. Exclude Facebook and tracking scripts from all caching
+  // 7. Skip Facebook and tracking scripts entirely (bypass service worker)
+  // This prevents errors when these scripts are blocked by ad blockers
   workbox.routing.registerRoute(
-    ({ url }) => 
+    ({ url }) =>
       url.hostname.includes('facebook.net') ||
       url.hostname.includes('connect.facebook.net') ||
       url.pathname.includes('fbevents.js') ||
       url.hostname.includes('google-analytics.com') ||
       url.hostname.includes('googletagmanager.com'),
-    new workbox.strategies.NetworkOnly()
+    async ({ event }) => {
+      // Let the browser handle these requests directly (bypass SW)
+      return fetch(event.request).catch(() => new Response(null, { status: 200 }));
+    }
   );
 
 } else { 
