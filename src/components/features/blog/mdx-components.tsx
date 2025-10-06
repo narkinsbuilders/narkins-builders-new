@@ -21,6 +21,8 @@ import EChartsCylindricalBarChart from '@/components/features/blog/EChartsCylind
 import EChartsTable from '@/components/features/blog/EChartsTable'
 import EChartsProgressBar from '@/components/features/blog/EChartsProgressBar'
 import EChartsStatistic from '@/components/features/blog/EChartsStatistic'
+import EChartsSunburst from '@/components/features/blog/EChartsSunburst'
+import EChartsGeoGraph from '@/components/features/blog/EChartsGeoGraph'
 import {
  firstTimeBuyerFAQs,
  investmentGuideFAQs,
@@ -323,6 +325,8 @@ const FAQTemplate = (props: any) => {
  ECharts3DBarChart,
  EChartsCylindricalBarChart,
  EChartsStatistic,
+ EChartsSunburst,
+ EChartsGeoGraph,
  ImageGrid: ({ images }: { images: Array<{src: string, alt: string, title: string, description: string}> }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 my-6 sm:my-8">
     {images.map((img, index) => (
