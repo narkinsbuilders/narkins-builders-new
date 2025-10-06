@@ -45,16 +45,37 @@ The Board of Revenue is reviewing a proposal that would allow illegal housing sc
 
 According to LDA Chief Metropolitan Planner Faisal Qureshi, the goal is not just regularizing existing violations but discouraging future unapproved development.
 
-<EChartsColumnChart
+<EChartsSunburst
   data={[
-    {category: 'Approved Schemes', value: 2687},
-    {category: 'Illegal/Pending Approval', value: 5118}
+    {
+      name: 'Punjab Housing Schemes',
+      children: [
+        {
+          name: 'Approved Schemes',
+          value: 2687,
+          itemStyle: { color: '#10b981' },
+          children: [
+            { name: 'Fully Compliant', value: 1800, itemStyle: { color: '#059669' } },
+            { name: 'Recently Approved', value: 887, itemStyle: { color: '#34d399' } }
+          ]
+        },
+        {
+          name: 'Illegal/Pending',
+          value: 5118,
+          itemStyle: { color: '#dc2626' },
+          children: [
+            { name: 'Pending Approval', value: 2000, itemStyle: { color: '#f97316' } },
+            { name: 'Completely Illegal', value: 3118, itemStyle: { color: '#b91c1c' } }
+          ]
+        }
+      ]
+    }
   ]}
-  xField="category"
-  yField="value"
-  title="Punjab Housing Schemes Legal Status Breakdown"
-  height={300}
-  color="#dc2626"
+  title="Punjab Housing Schemes: Legal Status Distribution"
+  height={400}
+  colors={['#10b981', '#34d399', '#dc2626', '#f97316']}
+  showVisualMap={false}
+  radius={[0, '85%']}
 />
 
 ## Why This Matters Beyond Government Policy
