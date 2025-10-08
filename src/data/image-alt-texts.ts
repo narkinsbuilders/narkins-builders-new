@@ -77,7 +77,44 @@ export const imageAltTexts: Record<string, string> = {
  'gallery-image-1': 'Hill Crest Residency apartment interior showcasing modern luxury living spaces',
  'gallery-image-2': 'Hill Crest Residency bedroom with panoramic views of Bahria Town Karachi',
  'gallery-image-3': 'Hill Crest Residency kitchen featuring premium appliances and elegant granite finishes',
- 'gallery-image-4': 'Hill Crest Residency living area with contemporary furniture and natural lighting'
+ 'gallery-image-4': 'Hill Crest Residency living area with contemporary furniture and natural lighting',
+
+ // === BLOG IMAGES ===
+ 'zameen-arx-proptech-guaranteed-returns.webp': 'Zameen ARX proptech platform offering 15% guaranteed annual cashback on real estate investments in Pakistan',
+ 'lahore-canal-floating-restaurant-lifestyle.webp': 'Lahore Canal floating restaurant approved project enhancing urban lifestyle and waterfront real estate development',
+ 'lahore-elevated-expressway-infrastructure-impact.webp': 'Lahore elevated expressway infrastructure project impact on property values and real estate market 2025',
+ 'pakistan-largest-apartment-size-analysis.webp': 'Pakistan largest 3 bedroom apartment size analysis comparing Riviera Sky Garden and luxury real estate projects',
+ 'punjab-ebiz-portal-digital-approvals-2025.webp': 'Punjab eBiz portal digital NOC approval system for property development and construction permits 2025',
+ 'sbca-crackdown-dangerous-illegal-buildings-karachi.webp': 'SBCA crackdown on dangerous illegal buildings in Karachi ensuring property safety and compliance',
+ 'punjab-illegal-housing-regularization-2025.webp': 'Punjab government 5000 illegal housing schemes regularization plan protecting property investors 2025',
+ 'fbr-super-tax-200-billion-property-impact-2025.webp': 'FBR super tax 200 billion rupee recovery impact on Pakistan property market and real estate sector 2025',
+ 'dolmen-meezan-islamic-home-financing.webp': 'Dolmen Meezan Bank shariah compliant Islamic home financing case study for property buyers in Pakistan',
+ 'falettis-grand-hotel-ayubia-payment-plan.webp': "Faletti's Grand Hotel Ayubia 1% monthly payment plan luxury mountain resort investment opportunity",
+ 'rda-regulatory-crackdown-housing-societies.webp': 'RDA regulatory crackdown on illegal housing societies protecting real estate investors in Rawalpindi',
+ 'pakistan-new-property-projects-development-boom-2025.webp': 'Pakistan property market 1227 new development projects in Islamabad Lahore Karachi construction boom 2025',
+ 'tpl-lagoon-views-karachi-case-study.webp': 'TPL Properties Lagoon Views Karachi luxury waterfront apartments case study and investment analysis',
+ 'pakistan-property-market-2-trillion-gdp-2025.webp': 'Pakistan property market crosses 2 trillion rupees contributing 3% to GDP real estate sector growth 2025',
+ 'bahria-town-apartments-vs-houses.webp': 'Bahria Town Karachi apartments vs houses cost benefit analysis comparing property investment options',
+ 'hill-crest-residency-electrical-meters-possession-2025.webp': 'Hill Crest Residency electrical meter installation marking possession milestone for luxury apartments 2025',
+ 'hill-crest-residency-electrical-meter-installation-unit-1.webp': 'Hill Crest Residency Unit 1 electrical meter installation progress for apartment handover',
+ 'hill-crest-residency-electrical-meter-installation-unit-2.webp': 'Hill Crest Residency Unit 2 electrical meter installation completion for resident possession',
+ 'first-time-buyer-apartment-keys.webp': 'First time home buyer receiving apartment keys in Bahria Town Karachi luxury residential project',
+ '2-bedroom-apartments.webp': '2 bedroom luxury apartments in Bahria Town Karachi with modern amenities and premium finishes',
+ 'bahria-town-karachi-investment-opportunity.webp': 'Bahria Town Karachi real estate investment opportunity with growing property values and infrastructure',
+ 'bahria-town-karachi-overview.webp': 'Bahria Town Karachi master planned community overview showing luxury apartments and infrastructure development',
+ 'bahria-town-shutdown-crisis.webp': 'Bahria Town Karachi shutdown crisis analysis and impact on property investors and real estate market',
+ 'gated-community-karachi.webp': 'Gated community luxury apartments in Karachi featuring security and premium residential amenities',
+ 'karachi-brt-development.webp': 'Karachi BRT bus rapid transit development impact on property values and real estate investment hotspots',
+ 'karachi-emerging-areas-development.webp': 'Karachi emerging neighborhoods and development hotspots for real estate investment opportunities 2025',
+ 'luxury-apartments-bahria-town-night-view.webp': 'Luxury apartments in Bahria Town Karachi illuminated night view showing modern architecture',
+ 'bahria-town-apartments-aerial-view.webp': 'Bahria Town Karachi luxury apartments aerial view showing master planned community layout',
+ 'karachi-high-rise-skyline.webp': 'Karachi high rise apartment buildings skyline showing vertical development and modern architecture',
+ 'karachi-luxury-areas-comparison.webp': 'Karachi luxury areas comparison DHA vs Bahria Town vs Gulshan real estate investment analysis',
+ 'karachi-skyline-2025.webp': 'Karachi city skyline 2025 showing real estate development and modern apartment buildings growth',
+ 'karachi-monsoon-floods-bahria-town-drainage-comparison-2025.webp': 'Karachi monsoon flooding vs Bahria Town drainage infrastructure comparison property safety analysis 2025',
+ 'bahria-town-karachi-rainy-day-infrastructure-safety-2025.webp': 'Bahria Town Karachi rainy season infrastructure and drainage keeping properties safe during monsoon 2025',
+ 'bahria-town-vs-karachi-flooding-comparison-investment-2025.webp': 'Bahria Town superior drainage vs Karachi flooding comparison for safe property investment 2025',
+ 'pakistan-economic-recovery-overseas-investment-confidence-2025.webp': 'Pakistan economic recovery attracting overseas investors to real estate and property market 2025'
 };
 
 /**
@@ -90,11 +127,11 @@ export const imageAltTexts: Record<string, string> = {
  */
 export const getImageAltText = (filename: string, fallback?: string, context?: string, index?: number): string => {
  const seoAltText = imageAltTexts[filename];
- 
+
  if (seoAltText) {
   return seoAltText;
  }
- 
+
  // Handle dynamic context-based alt text
  if (context && index !== undefined) {
   switch (context) {
@@ -108,18 +145,51 @@ export const getImageAltText = (filename: string, fallback?: string, context?: s
     break;
   }
  }
- 
+
  if (fallback) {
   return fallback;
  }
- 
- // Generate fallback from filename
- const cleanedName = filename
-  .replace(/\.(webp|jpg|jpeg|png)$/i, '')
-  .replace(/-/g, ' ')
-  .replace(/\b\w/g, l => l.toUpperCase());
-  
- return `Narkin's Builders - ${cleanedName}`;
+
+ // Auto-generate SEO-friendly alt text from filename
+ return generateAltTextFromFilename(filename);
+};
+
+/**
+ * Generate SEO-optimized alt text from filename
+ * Applies real estate and location-specific SEO patterns
+ */
+const generateAltTextFromFilename = (filename: string): string => {
+ // Remove file extension
+ const cleanName = filename.replace(/\.(webp|jpg|jpeg|png)$/i, '');
+
+ // Split by hyphens and process
+ const words = cleanName.split('-').map(word => {
+  // Capitalize known acronyms
+  const upperWords = ['hcr', 'nbr', 'brt', 'dha', 'fbr', 'rda', 'sbca', 'noc', 'gdp', 'seo', 'tpl'];
+  if (upperWords.includes(word.toLowerCase())) {
+   return word.toUpperCase();
+  }
+  // Capitalize first letter of each word
+  return word.charAt(0).toUpperCase() + word.slice(1);
+ });
+
+ let altText = words.join(' ');
+
+ // Add contextual real estate keywords if not present
+ const hasRealEstateContext = /apartment|property|residency|building|karachi|bahria|luxury/i.test(altText);
+ const hasYearSuffix = /\b202[0-9]\b/.test(altText);
+
+ if (!hasRealEstateContext) {
+  // Add Narkin's Builders brand context
+  altText = `Narkin's Builders ${altText}`;
+ }
+
+ // Add location context if missing for Karachi real estate
+ if (/bahria|karachi|dha|gulshan/i.test(altText) && !hasYearSuffix) {
+  altText = `${altText} real estate development`;
+ }
+
+ return altText;
 };
 
 /**
