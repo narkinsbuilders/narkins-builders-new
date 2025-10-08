@@ -233,6 +233,14 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/rss.xml',
+        destination: '/api/rss.xml',
+      },
+    ];
+  },
   async redirects() {
     return [
       {

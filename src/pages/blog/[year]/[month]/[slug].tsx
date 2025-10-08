@@ -118,7 +118,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
     <meta name="author" content="Narkin's Builders and Developers" />
     <meta name="copyright" content="Narkin's Builders and Developers" />
     <meta name="generator" content="Next.js" />
-    <meta name="keywords" content="Bahria Town Karachi, luxury apartments, real estate investment, property development, Narkin's Builders" />
+    <meta name="keywords" content={post.keywords || "Bahria Town Karachi, luxury apartments, real estate investment, property development, Narkin's Builders"} />
     
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hrefLang="en" href={canonicalUrl} />
