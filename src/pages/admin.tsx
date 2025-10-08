@@ -7,7 +7,7 @@ export default function AdminPage() {
    <Head>
     <title>Admin - Narkin's Builders</title>
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="canonical" href="https://narkinsbuilders.com/admin" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/admin" />
    </Head>
    <div>Redirecting to admin...</div>
   </>

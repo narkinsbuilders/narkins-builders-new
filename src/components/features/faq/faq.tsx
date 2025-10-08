@@ -142,7 +142,7 @@ export default function FAQ({
   "publisher": {
    "@type": "Organization",
    "name": "Narkin's Builders and Developers",
-   "url": "https://narkinsbuilders.com"
+   "url": "https://www.narkinsbuilders.com"
   },
   "url": pageUrl
  };

@@ -42,11 +42,11 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
  }
 
  const { year, month, slug } = router.query
- const canonicalUrl = `https://narkinsbuilders.com/blog/${year}/${month}/${slug}`
- const imageUrl = post.image ? `https://narkinsbuilders.com${post.image}` : 'https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp'
+ const canonicalUrl = `https://www.narkinsbuilders.com/blog/${year}/${month}/${slug}`
+ const imageUrl = post.image ? `https://www.narkinsbuilders.com${post.image}` : 'https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp'
 
  // Generate dynamic OG image URL
- const ogImageUrl = `https://narkinsbuilders.com/api/og/${slug}?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}&readTime=${encodeURIComponent(post.readTime)}`
+ const ogImageUrl = `https://www.narkinsbuilders.com/api/og/${slug}?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}&readTime=${encodeURIComponent(post.readTime)}`
 
  const faqsMap = {
   firstTimeBuyerFAQs,
@@ -71,14 +71,14 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
   "author": {
    "@type": "Organization",
    "name": "Narkin's Builders and Developers",
-   "url": "https://narkinsbuilders.com"
+   "url": "https://www.narkinsbuilders.com"
   },
   "publisher": {
    "@type": "Organization",
    "name": "Narkin's Builders",
    "logo": {
     "@type": "ImageObject",
-    "url": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp"
+    "url": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp"
    }
   },
   "datePublished": post.date,
@@ -102,13 +102,13 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
     "@type": "ListItem",
     "position": 1,
     "name": "Home",
-    "item": "https://narkinsbuilders.com"
+    "item": "https://www.narkinsbuilders.com"
    },
    {
-    "@type": "ListItem", 
+    "@type": "ListItem",
     "position": 2,
     "name": "Blog",
-    "item": "https://narkinsbuilders.com/blog"
+    "item": "https://www.narkinsbuilders.com/blog"
    },
    {
     "@type": "ListItem",
@@ -135,7 +135,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
     
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hrefLang="en" href={canonicalUrl} />
-    <link rel="alternate" type="application/rss+xml" title="Narkin's Builders Blog RSS Feed" href="https://narkinsbuilders.com/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Narkin's Builders Blog RSS Feed" href="https://www.narkinsbuilders.com/rss.xml" />
 
     <meta property="og:title" content={post.title} />
     <meta property="og:description" content={post.excerpt || ''} />

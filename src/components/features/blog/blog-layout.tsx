@@ -37,7 +37,7 @@ export default function BlogLayout({ post, children, previousPost, nextPost, rel
     excerpt={post.excerpt}
     date={post.date}
     image={post.image}
-    url={`https://narkinsbuilders.com${generateBlogUrl(post)}`}
+    url={`https://www.narkinsbuilders.com${generateBlogUrl(post)}`}
    />
 
    <ReadingProgressBar />

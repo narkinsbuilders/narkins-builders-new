@@ -118,8 +118,8 @@ export default function Index({ posts }: { posts: any[] }) {
   property="og:description" 
   content="Searching for your dream apartment in Bahria Town Karachi? Narkin's Builders offers stunning 2, 3, & 4 bedroom luxury apartments. Discover Hill Crest & Narkin's Boutique Residency and find your perfect home today." 
  />
- <meta property="og:url" content="https://narkinsbuilders.com/" />
- <meta property="og:image" content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
+ <meta property="og:url" content="https://www.narkinsbuilders.com/" />
+ <meta property="og:image" content="https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
  <meta property="og:site_name" content="Narkin's Builders" />
  <meta property="og:locale" content="en_US" />
  
@@ -130,7 +130,7 @@ export default function Index({ posts }: { posts: any[] }) {
  <meta property="og:image:alt" content="Narkin's Builders - Premium Apartments in Bahria Town Karachi" />
  
  {/* Canonical URL */}
- <link rel="canonical" href="https://narkinsbuilders.com/" />
+ <link rel="canonical" href="https://www.narkinsbuilders.com/" />
  
  {/* Favicon (if you have one) */}
  <link rel="icon" href="/favicon.ico" />

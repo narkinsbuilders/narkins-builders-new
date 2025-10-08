@@ -473,7 +473,7 @@ Production Environment:
 ```bash
 # Production .env
 NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://narkinsbuilders.com
+NEXT_PUBLIC_SITE_URL=https://www.narkinsbuilders.com
 NEXT_TELEMETRY_DISABLED=1
 
 # TinaCMS Production
@@ -677,9 +677,9 @@ export default async function handler(
 Uptime Monitoring:
 ```bash
 # Monitoring endpoints
-https://narkinsbuilders.com/api/health
-https://narkinsbuilders.com/api/sitemap.xml
-https://narkinsbuilders.com/api/rss.xml
+https://www.narkinsbuilders.com/api/health
+https://www.narkinsbuilders.com/api/sitemap.xml
+https://www.narkinsbuilders.com/api/rss.xml
 ```
 
 ## Rollback & Recovery

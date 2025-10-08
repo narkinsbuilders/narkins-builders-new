@@ -15,7 +15,7 @@ const Footer: FC<FooterProps> = ({ map }) => (
      {/* Logo and Map in one block */}
      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
       <div className="mb-6 md:mb-0">
-       <a href="https://narkinsbuilders.com/" className="flex items-center">
+       <a href="https://www.narkinsbuilders.com/" className="flex items-center">
         <Image
          src="/media/common/logos/narkins-builders-logo-30-years-experience.webp"
          className="h-[5rem] w-auto me-3"

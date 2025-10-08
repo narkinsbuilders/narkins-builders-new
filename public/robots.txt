@@ -6,7 +6,7 @@ Disallow: /_next/
 Disallow: /admin/
 
 # Host
-Host: https://narkinsbuilders.com
+Host: https://www.narkinsbuilders.com
 
 # Sitemaps
-Sitemap: https://narkinsbuilders.com/sitemap.xml
+Sitemap: https://www.narkinsbuilders.com/sitemap.xml

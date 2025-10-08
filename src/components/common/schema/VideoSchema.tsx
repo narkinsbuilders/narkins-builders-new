@@ -32,10 +32,10 @@ export const VideoSchema = ({
   "publisher": {
    "@type": "Organization",
    "name": "Narkin's Builders and Developers",
-   "url": "https://narkinsbuilders.com",
+   "url": "https://www.narkinsbuilders.com",
    "logo": {
     "@type": "ImageObject",
-    "url": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
+    "url": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
     "width": 400,
     "height": 400
    }

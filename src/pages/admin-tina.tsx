@@ -14,7 +14,7 @@ export default function TinaAdminPage() {
     <Head>
      <title>CMS Admin - Narkin's Builders</title>
      <meta name="robots" content="noindex, nofollow" />
-     <link rel="canonical" href="https://narkinsbuilders.com/admin-tina" />
+     <link rel="canonical" href="https://www.narkinsbuilders.com/admin-tina" />
     </Head>
     <div>Loading OtherDev CMS...</div>
    </>
@@ -26,7 +26,7 @@ export default function TinaAdminPage() {
    <Head>
     <title>CMS Admin - Narkin's Builders</title>
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="canonical" href="https://narkinsbuilders.com/admin-tina" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/admin-tina" />
    </Head>
    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
    <div className="max-w-md mx-auto text-center">

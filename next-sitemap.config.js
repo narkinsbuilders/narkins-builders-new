@@ -53,7 +53,7 @@ function generateBlogUrlFromDateAndSlug(dateString, slug) {
 }
 
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false, // Since we don't have many pages
   

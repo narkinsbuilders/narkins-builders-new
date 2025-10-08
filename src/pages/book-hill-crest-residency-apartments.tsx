@@ -9,7 +9,7 @@ export default function AdsLandingPage() {
    <Head>
     <title>Book Hill Crest Residency Apartments | Narkin's Builders</title>
     <meta name="description" content="Book your luxury apartment at Hill Crest Residency in Bahria Town Karachi. 2, 3 & 4 bedroom apartments with premium amenities." />
-    <link rel="canonical" href="https://narkinsbuilders.com/book-hill-crest-residency-apartments" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/book-hill-crest-residency-apartments" />
    </Head>
    <Navigation />
    <div className="bg-white pt-[6rem]">

@@ -111,7 +111,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
  };
 
  const getCanonicalUrl = () => {
-  const baseUrl = "https://narkinsbuilders.com/blog";
+  const baseUrl = "https://www.narkinsbuilders.com/blog";
   return currentPage === 1 ? baseUrl : `${baseUrl}?page=${currentPage}`;
  };
 
@@ -127,13 +127,13 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
     
     {/* Pagination rel links */}
     {currentPage > 1 && (
-     <link 
-      rel="prev" 
-      href={currentPage === 2 ? "https://narkinsbuilders.com/blog" : `https://narkinsbuilders.com/blog?page=${currentPage - 1}`} 
+     <link
+      rel="prev"
+      href={currentPage === 2 ? "https://www.narkinsbuilders.com/blog" : `https://www.narkinsbuilders.com/blog?page=${currentPage - 1}`}
      />
     )}
     {currentPage < totalPages && (
-     <link rel="next" href={`https://narkinsbuilders.com/blog?page=${currentPage + 1}`} />
+     <link rel="next" href={`https://www.narkinsbuilders.com/blog?page=${currentPage + 1}`} />
     )}
     
     {/* Open Graph tags for social sharing */}

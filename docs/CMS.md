@@ -279,7 +279,7 @@ This is a comprehensive analysis of the real estate market.
 
 <FAQ 
   staticFaqs={firstTimeBuyerFAQs}
-  pageUrl="https://narkinsbuilders.com/blog/market-analysis-2025"
+  pageUrl="https://www.narkinsbuilders.com/blog/market-analysis-2025"
   contextType="property"
   title="Frequently Asked Questions"
 />

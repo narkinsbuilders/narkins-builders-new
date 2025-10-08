@@ -636,8 +636,8 @@ const DiversifiedBusiness = () => (
      property="og:description" 
      content="Learn about Narkin's Builders - 30+ years of real estate excellence in Karachi. Discover our commitment to quality, innovation, and customer satisfaction." 
     />
-    <meta property="og:url" content="https://narkinsbuilders.com/about" />
-    <meta property="og:image" content="https://narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
+    <meta property="og:url" content="https://www.narkinsbuilders.com/about" />
+    <meta property="og:image" content="https://www.narkinsbuilders.com/images/narkins-builders-logo-30-years-experience.webp" />
     <meta property="og:site_name" content="Narkin's Builders" />
     
     {/* Instagram/Social Media Optimization */}
@@ -646,7 +646,7 @@ const DiversifiedBusiness = () => (
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="About Narkin's Builders - 30+ Years of Excellence" />
     
-    <link rel="canonical" href="https://narkinsbuilders.com/about" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/about" />
    </Head>
    
    <main>

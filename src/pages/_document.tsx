@@ -72,8 +72,8 @@ export default function Document() {
        "@context": "https://schema.org",
        "@type": "Organization",
        "name": "Narkin's Builders",
-       "url": "https://narkinsbuilders.com",
-       "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
+       "url": "https://www.narkinsbuilders.com",
+       "logo": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
        "description": "Leading real estate developers in Bahria Town Karachi with over 30 years of experience in luxury residential projects.",
        "foundingDate": "1994",
        "sameAs": [
@@ -131,10 +131,10 @@ export default function Document() {
     
     {/* Additional Meta Tags for SEO */}
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://narkinsbuilders.com" />
-    
+    <link rel="canonical" href="https://www.narkinsbuilders.com" />
+
     {/* RSS Feed */}
-    <link rel="alternate" type="application/rss+xml" title="Narkin's Builders Blog" href="https://narkinsbuilders.com/api/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Narkin's Builders Blog" href="https://www.narkinsbuilders.com/api/rss.xml" />
    </Head>
    <body>
     <Main />

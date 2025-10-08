@@ -99,7 +99,7 @@ const Terms = () => {
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://narkinsbuilders.com/terms" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/terms" />
    </Head>
 
    <Navigation />

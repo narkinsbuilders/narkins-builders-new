@@ -7,10 +7,10 @@ export const HillCrestResidencySchema = () => {
   "@type": "Residence",
   "name": "Hill Crest Residency - Luxury Apartments in Bahria Town Karachi",
   "description": "Luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi with panoramic views and premium amenities by Narkin's Builders.",
-  "url": "https://narkinsbuilders.com/hill-crest-residency",
+  "url": "https://www.narkinsbuilders.com/hill-crest-residency",
   "image": [
-   "https://narkinsbuilders.com/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
-   "https://narkinsbuilders.com/media/hcr/apartment-interiors/hill-crest-residency-apartment-interior-living-room-luxury.webp"
+   "https://www.narkinsbuilders.com/media/hcr/exterior/hill-crest-residency-exterior-view-bahria-town-karachi.webp",
+   "https://www.narkinsbuilders.com/media/hcr/apartment-interiors/hill-crest-residency-apartment-interior-living-room-luxury.webp"
   ],
   "address": {
    "@type": "PostalAddress",

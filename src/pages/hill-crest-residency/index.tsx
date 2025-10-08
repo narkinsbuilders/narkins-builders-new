@@ -203,7 +203,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
         />
         <meta name="author" content="Narkin's Builders" />
         
-        <link rel="canonical" href="https://narkinsbuilders.com/hill-crest-residency" />
+        <link rel="canonical" href="https://www.narkinsbuilders.com/hill-crest-residency" />
 
         {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:type" content="website" />
@@ -212,10 +212,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
           property="og:description"
           content="Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
         />
-        <meta property="og:url" content="https://narkinsbuilders.com/hill-crest-residency" />
+        <meta property="og:url" content="https://www.narkinsbuilders.com/hill-crest-residency" />
         <meta
           property="og:image"
-          content="https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
+          content="https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
         />
         <meta property="og:site_name" content="Hill Crest Residency" />
 
@@ -235,7 +235,7 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
        thumbnailUrl="https://i.ytimg.com/vi/TSiLOTW2s4g/maxresdefault.jpg"
        uploadDate="2024-01-15"
        duration="PT3M45S"
-       pageUrl="https://narkinsbuilders.com/hill-crest-residency"
+       pageUrl="https://www.narkinsbuilders.com/hill-crest-residency"
       />
       <Navigation />
       <Lightbox />

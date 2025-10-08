@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getAllPostsServer } from '../../lib/blog-server';
 import { generateBlogUrlFromDateAndSlug } from '../../lib/blog';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
  try {

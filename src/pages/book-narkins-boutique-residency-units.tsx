@@ -9,7 +9,7 @@ export default function AdsLandingPage() {
    <Head>
     <title>Book Narkin's Boutique Residency Units | Narkin's Builders</title>
     <meta name="description" content="Book your luxury unit at Narkin's Boutique Residency in Bahria Town Karachi. Premium apartments with modern amenities and elegant design." />
-    <link rel="canonical" href="https://narkinsbuilders.com/book-narkins-boutique-residency-units" />
+    <link rel="canonical" href="https://www.narkinsbuilders.com/book-narkins-boutique-residency-units" />
    </Head>
    <Navigation />
    <div className="bg-white pt-[6rem]">

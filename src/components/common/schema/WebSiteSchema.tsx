@@ -6,27 +6,27 @@ export const WebSiteSchema = () => {
   "@type": "WebSite",
   "name": "Narkin's Builders",
   "alternateName": "Narkins Builders",
-  "url": "https://narkinsbuilders.com",
+  "url": "https://www.narkinsbuilders.com",
   "description": "Premium real estate developer in Bahria Town Karachi specializing in luxury apartments and residential projects with over 30 years of experience.",
   "inLanguage": "en-US",
   "publisher": {
    "@type": "Organization",
    "name": "Narkin's Builders and Developers",
-   "url": "https://narkinsbuilders.com",
-   "logo": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
+   "url": "https://www.narkinsbuilders.com",
+   "logo": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
   },
   "potentialAction": {
    "@type": "SearchAction",
    "target": {
     "@type": "EntryPoint",
-    "urlTemplate": "https://narkinsbuilders.com/blog?search={search_term_string}"
+    "urlTemplate": "https://www.narkinsbuilders.com/blog?search={search_term_string}"
    },
    "query-input": "required name=search_term_string"
   },
   "mainEntity": {
    "@type": "Organization",
    "name": "Narkin's Builders and Developers",
-   "url": "https://narkinsbuilders.com"
+   "url": "https://www.narkinsbuilders.com"
   },
   "about": [
    {

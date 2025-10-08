@@ -52,7 +52,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   keywords = [],
 }) => {
   const fullTitle = `${title} | Narkin\'s Builders - Premium Real Estate Karachi`;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com';
   const canonicalUrl = canonical || siteUrl;
 
   return (
@@ -112,8 +112,8 @@ export const OrganizationSchema = () => {
     "@type": "Organization",
     "name": "Narkin's Builders and Developers",
     "alternateName": "Narkin's Builders",
-    "url": "https://narkinsbuilders.com",
-    "logo": "https://narkinsbuilders.com/images/narkins-builders-logo.webp",
+    "url": "https://www.narkinsbuilders.com",
+    "logo": "https://www.narkinsbuilders.com/images/narkins-builders-logo.webp",
     "description": "Premium real estate developer in Bahria Town Karachi specializing in luxury apartments and residential projects with 30+ years of construction excellence.",
     "address": {
       "@type": "PostalAddress",
@@ -170,12 +170,12 @@ export const LocalBusinessSchema = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://narkinsbuilders.com/#organization",
+    "@id": "https://www.narkinsbuilders.com/#organization",
     "name": "Narkin's Builders and Developers",
-    "image": "https://narkinsbuilders.com/images/narkins-builders-logo.webp",
+    "image": "https://www.narkinsbuilders.com/images/narkins-builders-logo.webp",
     "telephone": "+92-320-324-3970",
     "email": "info@narkinsbuilders.com",
-    "url": "https://narkinsbuilders.com",
+    "url": "https://www.narkinsbuilders.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Bahria Town",
@@ -243,7 +243,7 @@ export const RealEstateListingSchema: React.FC<RealEstateListingProps> = ({
     "@type": "RealEstateListing",
     "name": property.name,
     "description": property.description,
-    "url": `https://narkinsbuilders.com/properties/${property.name.toLowerCase().replace(/\s+/g, '-')}`,
+    "url": `https://www.narkinsbuilders.com/properties/${property.name.toLowerCase().replace(/\s+/g, '-')}`,
     "offers": {
       "@type": "Offer",
       "price": property.price,
@@ -270,7 +270,7 @@ export const RealEstateListingSchema: React.FC<RealEstateListingProps> = ({
     })),
     "photo": property.images.map(image => ({
       "@type": "ImageObject",
-      "url": `https://narkinsbuilders.com${image}`
+      "url": `https://www.narkinsbuilders.com${image}`
     }))
   };
 
@@ -354,23 +354,23 @@ export const BlogPostSchema: React.FC<BlogPostSchemaProps> = ({
     "@type": "Article",
     "headline": title,
     "description": description,
-    "image": [`https://narkinsbuilders.com${image}`],
+    "image": [`https://www.narkinsbuilders.com${image}`],
     "author": {
       "@type": "Organization",
       "name": "Narkin's Builders",
-      "url": "https://narkinsbuilders.com"
+      "url": "https://www.narkinsbuilders.com"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Narkin's Builders",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://narkinsbuilders.com/images/narkins-builders-logo.webp"
+        "url": "https://www.narkinsbuilders.com/images/narkins-builders-logo.webp"
       }
     },
     "datePublished": publishDate,
     "dateModified": modifiedDate || publishDate,
-    "url": `https://narkinsbuilders.com/blog/${slug}`,
+    "url": `https://www.narkinsbuilders.com/blog/${slug}`,
     "wordCount": wordCount,
     "timeRequired": `PT${readingTime}M`,
     "about": [
@@ -492,7 +492,7 @@ export default async function handler(
   }
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com';
     const blogPosts = await getAllBlogPosts();
     
     const staticPages = [
@@ -584,7 +584,7 @@ export default async function handler(
   }
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://narkinsbuilders.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com';
     const blogPosts = await getAllBlogPosts();
     
     const publishedPosts = blogPosts
@@ -637,12 +637,12 @@ export default async function handler(
 
 Public Robots.txt:
 ```
-# https://narkinsbuilders.com/robots.txt
+# https://www.narkinsbuilders.com/robots.txt
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://narkinsbuilders.com/api/sitemap.xml
+Sitemap: https://www.narkinsbuilders.com/api/sitemap.xml
 
 # Block admin areas
 Disallow: /admin/
@@ -669,7 +669,7 @@ const businessInfo = {
   address: "Bahria Town, Karachi, Sindh 75340, Pakistan",
   phone: "+92-320-324-3970",
   email: "info@narkinsbuilders.com",
-  website: "https://narkinsbuilders.com",
+  website: "https://www.narkinsbuilders.com",
   businessHours: {
     monday: "09:00-18:00",
     tuesday: "09:00-18:00",

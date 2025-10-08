@@ -7,11 +7,11 @@ export const LocalBusinessSchema = () => {
   "@type": ["RealEstateAgent", "LocalBusiness"],
   "name": "Narkin's Builders and Developers",
   "alternateName": "Narkins Builders",
-  "url": "https://narkinsbuilders.com",
-  "image": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
+  "url": "https://www.narkinsbuilders.com",
+  "image": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
   "logo": {
    "@type": "ImageObject",
-   "url": "https://narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
+   "url": "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp",
    "width": 400,
    "height": 400
   },
