@@ -8,15 +8,17 @@ import { GoogleReviewsSection } from '@/components/features/comments/google-revi
 import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
 import { BlogNavigation } from '@/components/features/blog/blog-navigation';
 import Breadcrumb from '@/components/common/breadcrumb/breadcrumb';
+import RelatedPosts from '@/components/features/blog/related-posts';
 
 interface BlogLayoutProps {
  post: BlogPost
  children: React.ReactNode
  previousPost?: { slug: string; title: string; excerpt?: string } | null
  nextPost?: { slug: string; title: string; excerpt?: string } | null
+ relatedPosts?: BlogPost[]
 }
 
-export default function BlogLayout({ post, children, previousPost, nextPost }: BlogLayoutProps) {
+export default function BlogLayout({ post, children, previousPost, nextPost, relatedPosts }: BlogLayoutProps) {
  return (
   <>
    <Head>
@@ -135,6 +137,13 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
     <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">
      <BlogNavigation previousPost={previousPost} nextPost={nextPost} />
     </div>
+
+    {/* Related Posts Section */}
+    {relatedPosts && relatedPosts.length > 0 && (
+     <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">
+      <RelatedPosts posts={relatedPosts} />
+     </div>
+    )}
 
     {/* Reviews Section */}
     <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">

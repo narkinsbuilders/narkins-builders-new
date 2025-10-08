@@ -5,6 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { getPostBySlugServer, getAdjacentPosts, getPrecompiledMDX, hasPrecompiledMDX } from '../../../../lib/blog-server-precompiled'
 import type { BlogPost } from '../../../../lib/blog'
+import { getRelatedPosts } from '../../../../lib/related-posts'
 import BlogLayout from '@/components/features/blog/blog-layout'
 import components from '@/components/features/blog/mdx-components'
 import remarkGfm from 'remark-gfm'
@@ -23,15 +24,17 @@ import {
 } from '@/data/faq-data'
 import SocialShare from '@/components/features/social-share/social-share'
 import BlogPostSchema from '@/components/common/schema/BlogPostSchema'
+import RelatedPosts from '@/components/features/blog/related-posts'
 
 interface BlogPostProps {
  post: BlogPost
  mdxSource: MDXRemoteSerializeResult
  previousPost?: { slug: string; title: string; excerpt?: string } | null
  nextPost?: { slug: string; title: string; excerpt?: string } | null
+ relatedPosts?: BlogPost[]
 }
 
-export default function BlogPost({ post, mdxSource, previousPost, nextPost }: BlogPostProps) {
+export default function BlogPost({ post, mdxSource, previousPost, nextPost, relatedPosts }: BlogPostProps) {
  const router = useRouter()
  
  if (router.isFallback) {
@@ -153,7 +156,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
    </Head>
    
-   <BlogLayout post={post} previousPost={previousPost} nextPost={nextPost}>
+   <BlogLayout post={post} previousPost={previousPost} nextPost={nextPost} relatedPosts={relatedPosts}>
     <div className="prose prose-lg max-w-none mx-auto">
      <MDXRemote {...mdxSource} components={{...components, ...faqsMap}} />
     </div>
@@ -276,6 +279,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { previousPost, nextPost } = getAdjacentPosts(slug)
 
+  // Get all posts for related posts calculation
+  const { getAllPostsServer } = require('../../../../lib/blog-server-precompiled')
+  const allPosts = getAllPostsServer()
+
+  // Calculate related posts
+  const relatedPosts = getRelatedPosts(post, allPosts, 3).map(p => ({
+   ...p,
+   content: '' // Remove content to reduce payload
+  }))
+
   return {
    props: {
     post: {
@@ -284,7 +297,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
     mdxSource,
     previousPost,
-    nextPost
+    nextPost,
+    relatedPosts
    },
    revalidate: 3600 // Revalidate once per hour
   }
