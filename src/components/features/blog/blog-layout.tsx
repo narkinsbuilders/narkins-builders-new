@@ -47,9 +47,6 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
       <div className="text-center">
        {/* Meta Info */}
        <div className="flex items-center justify-center gap-x-4 text-sm mb-6">
-        <span className="bg-black text-white px-3 py-1 rounded-full ">
-         Real Estate
-        </span>
         <time className="text-gray-500">
          {(() => {
           try {
