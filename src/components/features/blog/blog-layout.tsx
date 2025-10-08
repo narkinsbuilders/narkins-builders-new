@@ -7,6 +7,7 @@ import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
 import { GoogleReviewsSection } from '@/components/features/comments/google-reviews-section'
 import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
 import { BlogNavigation } from '@/components/features/blog/blog-navigation';
+import Breadcrumb from '@/components/common/breadcrumb/breadcrumb';
 
 interface BlogLayoutProps {
  post: BlogPost
@@ -44,6 +45,16 @@ export default function BlogLayout({ post, children, previousPost, nextPost }: B
     {/* Hero Section */}
     <div className="bg-gradient-to-r from-neutral-50 to-white py-20 sm:py-28 lg:py-32">
      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+      {/* Breadcrumb */}
+      <div className="mb-6">
+       <Breadcrumb
+        items={[
+         { label: 'Blog', href: '/blog' }
+        ]}
+        currentPage={post.title}
+       />
+      </div>
+
       <div className="text-center">
        {/* Meta Info */}
        <div className="flex items-center justify-center gap-x-4 text-sm mb-6">
