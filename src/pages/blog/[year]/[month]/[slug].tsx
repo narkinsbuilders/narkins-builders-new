@@ -53,6 +53,9 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
   apartmentSaleFAQs
  }
 
+ // Calculate word count from content
+ const wordCount = post.content ? post.content.split(/\s+/).filter(Boolean).length : 0
+
  const blogSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -65,7 +68,7 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
    "url": "https://narkinsbuilders.com"
   },
   "publisher": {
-   "@type": "Organization", 
+   "@type": "Organization",
    "name": "Narkin's Builders",
    "logo": {
     "@type": "ImageObject",
@@ -78,7 +81,11 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost }: Bl
    "@type": "WebPage",
    "@id": canonicalUrl
   },
-  "url": canonicalUrl
+  "url": canonicalUrl,
+  "articleBody": post.content ? post.content.substring(0, 5000) : post.excerpt || '',
+  "wordCount": wordCount,
+  "keywords": post.keywords || "Bahria Town Karachi, luxury apartments, real estate investment",
+  "articleSection": "Real Estate"
  }
 
  const breadcrumbSchema = {
