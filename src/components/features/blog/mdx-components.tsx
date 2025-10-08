@@ -324,6 +324,8 @@ const FAQTemplate = (props: any) => {
  EChartsPictorialBarChart,
  ECharts3DBarChart,
  EChartsCylindricalBarChart,
+ EChartsProgressBar,
+ EChartsTable,
  EChartsStatistic,
  EChartsSunburst,
  EChartsGeoGraph,
