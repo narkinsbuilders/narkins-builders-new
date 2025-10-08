@@ -45,6 +45,9 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
  const canonicalUrl = `https://narkinsbuilders.com/blog/${year}/${month}/${slug}`
  const imageUrl = post.image ? `https://narkinsbuilders.com${post.image}` : 'https://narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp'
 
+ // Generate dynamic OG image URL
+ const ogImageUrl = `https://narkinsbuilders.com/api/og/${slug}?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}&readTime=${encodeURIComponent(post.readTime)}`
+
  const faqsMap = {
   firstTimeBuyerFAQs,
   investmentGuideFAQs, 
@@ -138,11 +141,16 @@ export default function BlogPost({ post, mdxSource, previousPost, nextPost, rela
     <meta property="og:description" content={post.excerpt || ''} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={post.title} />
     <meta property="og:site_name" content="Narkin's Builders" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={post.title} />
+    <meta name="twitter:description" content={post.excerpt || ''} />
+    <meta name="twitter:image" content={ogImageUrl} />
     
     <meta property="article:published_time" content={post.date} />
     <meta property="article:modified_time" content={post.lastModified || post.date} />
