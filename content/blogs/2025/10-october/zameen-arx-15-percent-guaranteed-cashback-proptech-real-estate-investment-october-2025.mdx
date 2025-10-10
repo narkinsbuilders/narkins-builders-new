@@ -54,17 +54,32 @@ Traditional property ownership doesn't offer guarantees, but you own the asset d
 
 <EChartsLineChart
   data={[
-    {month: 'Year 1', 'ARX Guaranteed': 15, 'HCR Actual': 23, 'NBR Projected': 21, 'Market Average': 15},
-    {month: 'Year 2', 'ARX Guaranteed': 15, 'HCR Actual': 24, 'NBR Projected': 22, 'Market Average': 16},
-    {month: 'Year 3', 'ARX Guaranteed': 15, 'HCR Actual': 25, 'NBR Projected': 23, 'Market Average': 17},
-    {month: 'Year 4', 'ARX Guaranteed': 15, 'HCR Actual': 24, 'NBR Projected': 22, 'Market Average': 16},
-    {month: 'Year 5', 'ARX Guaranteed': 15, 'HCR Actual': 23, 'NBR Projected': 21, 'Market Average': 15}
+    {month: 'Year 1', type: 'ARX Guaranteed', value: 15},
+    {month: 'Year 1', type: 'HCR Actual', value: 23},
+    {month: 'Year 1', type: 'NBR Projected', value: 21},
+    {month: 'Year 1', type: 'Market Average', value: 15},
+    {month: 'Year 2', type: 'ARX Guaranteed', value: 15},
+    {month: 'Year 2', type: 'HCR Actual', value: 24},
+    {month: 'Year 2', type: 'NBR Projected', value: 22},
+    {month: 'Year 2', type: 'Market Average', value: 16},
+    {month: 'Year 3', type: 'ARX Guaranteed', value: 15},
+    {month: 'Year 3', type: 'HCR Actual', value: 25},
+    {month: 'Year 3', type: 'NBR Projected', value: 23},
+    {month: 'Year 3', type: 'Market Average', value: 17},
+    {month: 'Year 4', type: 'ARX Guaranteed', value: 15},
+    {month: 'Year 4', type: 'HCR Actual', value: 24},
+    {month: 'Year 4', type: 'NBR Projected', value: 22},
+    {month: 'Year 4', type: 'Market Average', value: 16},
+    {month: 'Year 5', type: 'ARX Guaranteed', value: 15},
+    {month: 'Year 5', type: 'HCR Actual', value: 23},
+    {month: 'Year 5', type: 'NBR Projected', value: 21},
+    {month: 'Year 5', type: 'Market Average', value: 15}
   ]}
   title="5-Year ROI Performance: Proptech vs Traditional Ownership"
   xField="month"
-  yField={['ARX Guaranteed', 'HCR Actual', 'NBR Projected', 'Market Average']}
+  yField="value"
+  seriesField="type"
   smooth={true}
-  showArea={false}
   color={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6']}
   height={400}
 />
