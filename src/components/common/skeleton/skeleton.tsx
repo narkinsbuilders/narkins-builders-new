@@ -1,3 +1,6 @@
+/** @deprecated 
+* Kabeer's Network Authors 2025 (c)
+**/
 import { cn } from "@/lib/utils";
 
 interface SkeletonProps {
