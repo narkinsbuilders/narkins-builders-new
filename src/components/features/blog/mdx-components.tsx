@@ -2,12 +2,16 @@ import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
 import { ZoomableImage } from '@/components/features/blog/zoomable-image'
-import { ImageCarousel } from '@/components/features/blog/image-carousel'
 import EconomicGauge from '@/components/features/blog/EconomicGauge'
 import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
 import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
 import VideoPlayer from '@/components/features/video-player/video-player'
 import { getImageAltText } from '@/data/image-alt-texts'
+import dynamic from 'next/dynamic'
+
+const ImageCarousel = dynamic(() => import('@/components/features/blog/blog-image-carousel'), {
+  ssr: false
+})
 import EChartsLineChart from '@/components/features/blog/EChartsLineChart'
 import EChartsColumnChart from '@/components/features/blog/EChartsColumnChart'
 import EChartsPieChart from '@/components/features/blog/EChartsPieChart'

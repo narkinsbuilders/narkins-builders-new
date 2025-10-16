@@ -3,21 +3,19 @@
 import React, { useState } from 'react';
 import Carousel from '@/components/features/carousel-op/carousel-op';
 
-interface ImageCarouselProps {
+interface BlogImageCarouselProps {
   images: Array<{src: string, alt: string, title: string, description: string}>;
   height?: string;
   autoPlay?: boolean;
 }
 
-export function ImageCarousel({ images, height = "500px", autoPlay = false }: ImageCarouselProps) {
+export default function BlogImageCarousel({ images, height = "500px", autoPlay = false }: BlogImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const carouselData = images.map(img => ({
     image: img.src,
     name: `${img.title} - ${img.description}`,
     alt: img.alt
   }));
-
   const currentImage = images[currentIndex];
 
   return (
@@ -35,10 +33,8 @@ export function ImageCarousel({ images, height = "500px", autoPlay = false }: Im
         displayMode="default"
         dataSource={carouselData}
         height={height}
-        onChange={(index) => setCurrentIndex(index)}
+        onChange={setCurrentIndex}
       />
-
-      {/* External Caption */}
       <div className="mt-4 px-2 text-center">
         <h3 className="text-gray-900 font-semibold text-base sm:text-lg mb-1">
           {currentImage.title}
@@ -50,5 +46,3 @@ export function ImageCarousel({ images, height = "500px", autoPlay = false }: Im
     </div>
   );
 }
-
-export default ImageCarousel;
