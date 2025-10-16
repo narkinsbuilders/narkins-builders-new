@@ -32,32 +32,19 @@ export function ZoomableImage({
  return (
   <>
    {/* Regular Image */}
-   <div className={`group relative cursor-zoom-in ${className}`}>
+   <div className={`relative ${className}`}>
     <div className="relative overflow-hidden rounded-lg border-2 border-blue-200">
      <Image
       src={src}
       alt={alt}
       width={width}
       height={height}
-      className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+      className="w-full h-auto cursor-pointer"
       onClick={openZoom}
       priority={priority}
      />
-     
-     {/* Zoom Icon Overlay */}
-     <div 
-      className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center cursor-zoom-in"
-      onClick={openZoom}
-     >
-      <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-lg" />
-     </div>
-     
-     {/* Debug indicator */}
-     <div className="absolute bottom-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-      Click to Zoom
-     </div>
     </div>
-    
+
     {/* Caption */}
     {caption && (
      <p className="text-sm text-gray-600 text-center mt-3 italic">

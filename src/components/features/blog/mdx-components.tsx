@@ -9,9 +9,7 @@ import VideoPlayer from '@/components/features/video-player/video-player'
 import { getImageAltText } from '@/data/image-alt-texts'
 import dynamic from 'next/dynamic'
 
-const ImageCarousel = dynamic(() => import('@/components/features/blog/blog-image-carousel'), {
-  ssr: false
-})
+const ImageCarousel = dynamic(() => import('@/components/features/blog/blog-image-carousel'))
 import EChartsLineChart from '@/components/features/blog/EChartsLineChart'
 import EChartsColumnChart from '@/components/features/blog/EChartsColumnChart'
 import EChartsPieChart from '@/components/features/blog/EChartsPieChart'
