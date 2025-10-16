@@ -329,28 +329,32 @@ const FAQTemplate = (props: any) => {
  EChartsStatistic,
  EChartsSunburst,
  EChartsGeoGraph,
- ImageGrid: ({ images }: { images: Array<{src: string, alt: string, title: string, description: string}> }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 my-6 sm:my-8">
-    {images.map((img, index) => (
-      <div key={index} className="space-y-2 sm:space-y-3">
-        <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-md sm:shadow-lg">
-          <Image
-            src={img.src}
-            alt={img.alt}
-            width={800}
-            height={600}
-            className="w-full h-48 sm:h-56 md:h-64 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-          />
+ ImageGrid: ({ images }: { images: Array<{src: string, alt: string, title: string, description: string}> }) => {
+  const isSingleImage = images.length === 1;
+
+  return (
+    <div className={`${isSingleImage ? 'flex justify-center' : 'grid grid-cols-1 md:grid-cols-2'} gap-4 sm:gap-6 my-6 sm:my-8`}>
+      {images.map((img, index) => (
+        <div key={index} className={`space-y-2 sm:space-y-3 ${isSingleImage ? 'w-full max-w-2xl' : ''}`}>
+          <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-md sm:shadow-lg">
+            <Image
+              src={img.src}
+              alt={img.alt}
+              width={800}
+              height={600}
+              className={`w-full ${isSingleImage ? 'h-auto' : 'h-48 sm:h-56 md:h-64'} object-cover`}
+              sizes={isSingleImage ? "100vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"}
+            />
+          </div>
+          <div className="text-center px-2 sm:px-0">
+            <h4 className="text-gray-900 font-semibold text-xs sm:text-sm mb-1">{img.title}</h4>
+            <p className="text-gray-600 text-xs leading-relaxed">{img.description}</p>
+          </div>
         </div>
-        <div className="text-center px-2 sm:px-0">
-          <h4 className="text-gray-900 font-semibold text-xs sm:text-sm mb-1">{img.title}</h4>
-          <p className="text-gray-600 text-xs leading-relaxed">{img.description}</p>
-        </div>
-      </div>
-    ))}
-  </div>
- ),
+      ))}
+    </div>
+  );
+ },
 };
 
 const components = {
