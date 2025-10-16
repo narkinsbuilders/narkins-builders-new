@@ -50,25 +50,108 @@ const cards = [[
 ]];
 
 const amenities = [
-  { 
-    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center.webp", 
-    name: "Gym",
-    alt: "Hill Crest Residency modern gym and fitness center with premium equipment"
-  },
-  { 
-    image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque.webp", 
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque-qibla-wall.webp",
     name: "Prayer Area",
-    alt: "Hill Crest Residency in-house prayer area and mosque facility for residents"
+    alt: "Hill Crest Residency in-house prayer area and mosque with qibla wall and luxury finishes"
   },
-  { 
-    image: "/media/hcr/amenities/hill-crest-residency-steam-bath-wellness.webp", 
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-wudu-area-ablution-facility.webp",
+    name: "Wudu Area",
+    alt: "Hill Crest Residency wudu area with modern ablution facilities and marble finishes"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-steam-bath-sauna-wellness-center.webp",
     name: "Steam Bath",
-    alt: "Hill Crest Residency steam bath and spa wellness center for residents"
+    alt: "Hill Crest Residency steam bath and sauna wellness center for residents"
   },
-  { 
-    image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-reception.webp", 
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center-equipment.webp",
+    name: "Gym",
+    alt: "Hill Crest Residency modern gym and fitness center with premium equipment and training facilities"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-reception-area.webp",
     name: "Grand Lobby",
-    alt: "Hill Crest Residency grand lobby and reception area with luxury finishes"
+    alt: "Hill Crest Residency grand lobby and reception area with luxury seating and premium finishes"
+  },
+];
+
+const amenitiesCarousel = [
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque-qibla-wall.webp",
+    name: "Prayer Area - Qibla Wall",
+    alt: "Hill Crest Residency prayer area with qibla wall"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque-wide-angle.webp",
+    name: "Prayer Area - Wide View",
+    alt: "Hill Crest Residency prayer area wide angle view"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-prayer-area-mosque-interior.webp",
+    name: "Prayer Area - Interior",
+    alt: "Hill Crest Residency prayer area interior view"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-wudu-area-ablution-facility.webp",
+    name: "Wudu Area",
+    alt: "Hill Crest Residency wudu area ablution facility"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-wudu-area-washing-stations.webp",
+    name: "Wudu Area - Washing Stations",
+    alt: "Hill Crest Residency wudu area washing stations"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-steam-bath-sauna-wellness-center.webp",
+    name: "Steam Bath",
+    alt: "Hill Crest Residency steam bath and sauna"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-steam-bath-sauna-interior-view.webp",
+    name: "Steam Bath - Interior",
+    alt: "Hill Crest Residency steam bath interior view"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-steam-bath-sauna-seating-area.webp",
+    name: "Steam Bath - Seating",
+    alt: "Hill Crest Residency steam bath seating area"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center-equipment.webp",
+    name: "Gym - Training Wall",
+    alt: "Hill Crest Residency gym with training wall"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center-entrance.webp",
+    name: "Gym - Entrance",
+    alt: "Hill Crest Residency gym entrance area"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center-cardio-equipment.webp",
+    name: "Gym - Cardio Equipment",
+    alt: "Hill Crest Residency gym cardio equipment"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-gym-fitness-center-wide-view.webp",
+    name: "Gym - Wide View",
+    alt: "Hill Crest Residency gym wide view"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-reception-area.webp",
+    name: "Grand Lobby",
+    alt: "Hill Crest Residency grand lobby reception"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-luxury-seating.webp",
+    name: "Grand Lobby - Seating",
+    alt: "Hill Crest Residency grand lobby luxury seating"
+  },
+  {
+    image: "/media/hcr/amenities/hill-crest-residency-grand-lobby-lounge-area.webp",
+    name: "Grand Lobby - Lounge",
+    alt: "Hill Crest Residency grand lobby lounge area"
   },
 ];
 
@@ -137,7 +220,7 @@ const Amenities = () => {
 
       {/* Amenities Grid */}
       <div className="max-w-7xl w-full mx-auto">
-        <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {amenities.map((amenity, index) => (
             <motion.li
               key={index}
@@ -177,7 +260,7 @@ const Amenities = () => {
           onChange={setAmenityIndex}
           className="w-full h-full"
           displayMode="default"
-          dataSource={amenities}
+          dataSource={amenitiesCarousel}
         />
       </div>
     </div>

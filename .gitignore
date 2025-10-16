@@ -40,6 +40,7 @@ next-env.d.ts
 CLAUDE.md
 .claude/
 claude.md
+gemini.md
 BLOG_WRITING_GUIDE.md
 BLOG_BUILD_OPTIMIZATION_ANALYSIS.md
 
