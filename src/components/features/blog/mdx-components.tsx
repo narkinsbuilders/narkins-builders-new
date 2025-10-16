@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import FAQ from '@/components/features/faq/faq'
 import { ZoomableImage } from '@/components/features/blog/zoomable-image'
+import { ImageCarousel } from '@/components/features/blog/image-carousel'
 import EconomicGauge from '@/components/features/blog/EconomicGauge'
 import FDIFlowChart from '@/components/features/blog/FDIFlowChart'
 import InvestmentFunnel from '@/components/features/blog/InvestmentFunnel'
@@ -355,6 +356,7 @@ const FAQTemplate = (props: any) => {
     </div>
   );
  },
+ ImageCarousel,
 };
 
 const components = {

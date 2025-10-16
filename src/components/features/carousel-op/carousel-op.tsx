@@ -20,6 +20,7 @@ interface CarouselOpProps {
   id?: string;
   className?: string;
   onChange?: (index: number) => void;
+  hideCaption?: boolean;
 }
 
 const CarouselOp: React.FC<CarouselOpProps> = ({
@@ -31,6 +32,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
   height = "500px",
   borderRadius = false,
   onChange,
+  hideCaption = false,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
@@ -109,23 +111,25 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
       >
         {dataSource.map((item, index) => (
           <div key={index} className="flex-none w-full h-full flex items-center justify-center relative">
-            <SEOImage 
-              src={item.image} 
-              loading={index === 0 ? "eager" : "lazy"} 
+            <SEOImage
+              src={item.image}
+              loading={index === 0 ? "eager" : "lazy"}
               width={1600}
               height={1000}
               context="carousel"
               index={index}
-              style={{ objectFit: 'cover', flex: 1 }} 
-              className="w-full h-full rounded-xl" 
+              style={{ objectFit: 'cover', flex: 1 }}
+              className="w-full h-full rounded-xl"
               quality={95}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 rounded-b-xl">
-              <h2 className="text-white text-lg ">
-                {item.name || ""}
-              </h2>
-            </div>
+            {!hideCaption && (
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 rounded-b-xl">
+                <h2 className="text-white text-base sm:text-lg font-semibold drop-shadow-lg">
+                  {item.name || ""}
+                </h2>
+              </div>
+            )}
           </div>
         ))}
       </div>
