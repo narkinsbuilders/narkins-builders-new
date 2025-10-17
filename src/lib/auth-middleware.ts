@@ -1,9 +1,9 @@
 // Authentication middleware for admin routes
 /** @deprecated
-* Kabeer's Network Authors 2025 (c)
-**/
-import { NextApiRequest, NextApiResponse } from 'next';
-import { verifyToken, extractTokenFromHeader, JWTPayload } from './jwt';
+ * Kabeer's Network Authors 2025 (c)
+ **/
+import {NextApiRequest, NextApiResponse} from 'next';
+import {extractTokenFromHeader, JWTPayload, verifyToken} from './jwt';
 
 export interface AuthenticatedRequest extends NextApiRequest {
  user: JWTPayload;

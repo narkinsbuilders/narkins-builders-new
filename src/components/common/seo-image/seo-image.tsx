@@ -1,7 +1,7 @@
 // src/components/seo-image/seo-image.tsx
 import Image from 'next/image';
-import { FC } from 'react';
-import { getImageAltText } from '@/data/image-alt-texts';
+import {FC} from 'react';
+import {getImageAltText} from '@/data/image-alt-texts';
 
 interface SEOImageProps {
  src: string;

@@ -1,9 +1,9 @@
-import React, { Fragment, useState, FC, useEffect } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, {FC, Fragment, useEffect, useState} from "react";
+import {Dialog, Popover, Tab, Transition} from "@headlessui/react";
+import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
-import { useGlobalLeadFormState } from "@/zustand";
+import {useGlobalLeadFormState} from "@/zustand";
 
 const navigation = {
  categories: [

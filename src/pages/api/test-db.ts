@@ -1,8 +1,8 @@
 // File: src/pages/api/test-db.ts
 // Production database connection test endpoint
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { testConnection, executeQuery, executeQuerySingle } from '../../lib/database';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {executeQuery, executeQuerySingle, testConnection} from '../../lib/database';
 
 interface TestResponse {
  success: boolean;

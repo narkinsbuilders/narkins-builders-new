@@ -1,6 +1,5 @@
 import React from 'react'
 import ChartContainer from './chart-container'
-import EChartsProgressBar from './EChartsProgressBar'
 
 interface EChartsPieChartProps {
   data: Array<{

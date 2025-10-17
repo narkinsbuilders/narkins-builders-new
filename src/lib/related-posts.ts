@@ -1,4 +1,4 @@
-import { BlogPost } from './blog'
+import {BlogPost} from './blog'
 
 /**
  * Calculate content similarity between two blog posts

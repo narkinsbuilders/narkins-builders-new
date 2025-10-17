@@ -2,7 +2,7 @@
 // Usage: <BlogLink slug="hill-crest-investment-guide">Read our investment guide</BlogLink>
 
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import {ReactNode} from 'react'
 
 interface BlogLinkProps {
  slug: string

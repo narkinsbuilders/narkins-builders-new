@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { GoogleReviewsSummary } from '@/lib/google-reviews-adapter';
-import { Star } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import {GoogleReviewsSummary} from '@/lib/google-reviews-adapter';
+import {Star} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {motion} from 'framer-motion';
 
 interface GoogleReviewsSummaryCardProps {
   summary: GoogleReviewsSummary;

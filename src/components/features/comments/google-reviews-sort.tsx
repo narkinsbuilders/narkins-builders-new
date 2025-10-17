@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { ChevronDown, SlidersHorizontal, Star, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import {ChevronDown, SlidersHorizontal, Star, X} from 'lucide-react';
+import {cn} from '@/lib/utils';
 
 interface GoogleReviewsSortProps {
   sortBy: 'helpful' | 'newest' | 'oldest' | 'rating';

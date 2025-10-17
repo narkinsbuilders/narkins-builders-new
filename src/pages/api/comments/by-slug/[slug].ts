@@ -1,11 +1,11 @@
 // API endpoint: GET /api/comments/by-slug/[slug] - Get comments for a blog post
 // API endpoint: POST /api/comments/by-slug/[slug] - Create new comment
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { CommentQueries, Comment } from '../../../../lib/database';
-import { validateInput, createCommentSchema } from '../../../../lib/validation';
-import { verifyRecaptcha } from '../../../../lib/recaptcha';
-import { checkRateLimit, getClientIP } from '../../../../lib/rate-limit';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {Comment, CommentQueries} from '../../../../lib/database';
+import {createCommentSchema, validateInput} from '../../../../lib/validation';
+import {verifyRecaptcha} from '../../../../lib/recaptcha';
+import {checkRateLimit, getClientIP} from '../../../../lib/rate-limit';
 
 interface CreateCommentResponse {
  success: boolean;

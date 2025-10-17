@@ -1,5 +1,5 @@
-import { BlogPost } from './blog';
-import { BlogFilters } from '../components/features/blog-filter/blog-filter';
+import {BlogPost} from './blog';
+import {BlogFilters} from '../components/features/blog-filter/blog-filter';
 
 // Categorize blog posts based on title and keywords
 export function categorizePost(post: BlogPost): string {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Carousel from '@/components/features/carousel-op/carousel-op';
 
 interface BlogImageCarouselProps {

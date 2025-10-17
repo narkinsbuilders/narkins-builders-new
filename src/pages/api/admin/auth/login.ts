@@ -1,10 +1,10 @@
 // API endpoint: POST /api/admin/auth/login - Admin login
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { validateInput, adminLoginSchema } from '../../../../lib/validation';
-import { generateToken, comparePassword } from '../../../../lib/jwt';
-import { executeQuerySingle } from '../../../../lib/database';
-import { getClientIP } from '../../../../lib/rate-limit';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {adminLoginSchema, validateInput} from '../../../../lib/validation';
+import {comparePassword, generateToken} from '../../../../lib/jwt';
+import {executeQuerySingle} from '../../../../lib/database';
+import {getClientIP} from '../../../../lib/rate-limit';
 
 interface LoginResponse {
  success: boolean;

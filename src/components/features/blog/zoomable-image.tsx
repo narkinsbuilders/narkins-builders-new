@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn } from 'lucide-react';
+import {AnimatePresence, motion} from 'framer-motion';
+import {X} from 'lucide-react';
 
 interface ZoomableImageProps {
  src: string;

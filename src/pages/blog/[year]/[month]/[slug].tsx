@@ -1,30 +1,32 @@
 // src/pages/blog/[year]/[month]/[slug].tsx
 
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { getPostBySlugServer, getAdjacentPosts, getPrecompiledMDX, hasPrecompiledMDX } from '../../../../lib/blog-server-precompiled'
-import type { BlogPost } from '../../../../lib/blog'
-import { getRelatedPosts } from '../../../../lib/related-posts'
+import {GetStaticPaths, GetStaticProps} from 'next'
+import {serialize} from 'next-mdx-remote/serialize'
+import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote'
+import {
+    getAdjacentPosts,
+    getPostBySlugServer,
+    getPrecompiledMDX,
+    hasPrecompiledMDX
+} from '../../../../lib/blog-server-precompiled'
+import type {BlogPost} from '../../../../lib/blog'
+import {getRelatedPosts} from '../../../../lib/related-posts'
 import BlogLayout from '@/components/features/blog/blog-layout'
 import components from '@/components/features/blog/mdx-components'
 import remarkGfm from 'remark-gfm'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import Head from 'next/head'
-import { useState, useEffect } from 'react'
-import { 
- firstTimeBuyerFAQs,
- investmentGuideFAQs,
- twoBedroomFAQs,
- luxuryApartmentsFAQs,
- generalRealEstateFAQs,
- hillCrestFAQs,
- boutiqueResidencyFAQs,
- apartmentSaleFAQs
+import {
+    apartmentSaleFAQs,
+    boutiqueResidencyFAQs,
+    firstTimeBuyerFAQs,
+    generalRealEstateFAQs,
+    hillCrestFAQs,
+    investmentGuideFAQs,
+    luxuryApartmentsFAQs,
+    twoBedroomFAQs
 } from '@/data/faq-data'
 import SocialShare from '@/components/features/social-share/social-share'
-import BlogPostSchema from '@/components/common/schema/BlogPostSchema'
-import RelatedPosts from '@/components/features/blog/related-posts'
 
 interface BlogPostProps {
  post: BlogPost

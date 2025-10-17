@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { resolve } from "@tinacms/datalayer";
-import type { TinaClient } from "tinacms/dist/client";
+import {resolve} from "@tinacms/datalayer";
+import type {TinaClient} from "tinacms/dist/client";
 
-import { queries } from "./types";
+import {queries} from "./types";
 import database from "../database";
 
 export async function databaseRequest({ query, variables, user }) {

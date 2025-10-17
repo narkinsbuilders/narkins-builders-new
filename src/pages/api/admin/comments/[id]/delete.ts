@@ -1,8 +1,8 @@
 // API endpoint: DELETE /api/admin/comments/[id]/delete - Delete comment
 
-import { NextApiResponse } from 'next';
-import { withAuth, AuthenticatedRequest } from '../../../../../lib/auth-middleware';
-import { CommentQueries, executeQuery } from '../../../../../lib/database';
+import {NextApiResponse} from 'next';
+import {AuthenticatedRequest, withAuth} from '../../../../../lib/auth-middleware';
+import {CommentQueries, executeQuery} from '../../../../../lib/database';
 
 interface DeleteResponse {
  success: boolean;

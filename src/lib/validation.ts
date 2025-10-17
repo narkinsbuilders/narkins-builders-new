@@ -1,6 +1,6 @@
 // Input validation schemas for comment system
 
-import { z } from 'zod';
+import {z} from 'zod';
 
 // Comment creation schema
 export const createCommentSchema = z.object({

@@ -1,6 +1,6 @@
 // Rate limiting utility for comment system
 
-import { executeQuery, executeQuerySingle } from './database';
+import {executeQuery, executeQuerySingle} from './database';
 
 export interface RateLimitResult {
  allowed: boolean;

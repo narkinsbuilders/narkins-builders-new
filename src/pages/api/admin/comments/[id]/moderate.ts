@@ -1,9 +1,9 @@
 // API endpoint: PUT /api/admin/comments/[id]/moderate - Approve/reject comment
 
-import { NextApiResponse } from 'next';
-import { withAuth, AuthenticatedRequest } from '../../../../../lib/auth-middleware';
-import { validateInput, moderateCommentSchema } from '../../../../../lib/validation';
-import { CommentQueries, executeQuery } from '../../../../../lib/database';
+import {NextApiResponse} from 'next';
+import {AuthenticatedRequest, withAuth} from '../../../../../lib/auth-middleware';
+import {moderateCommentSchema, validateInput} from '../../../../../lib/validation';
+import {CommentQueries, executeQuery} from '../../../../../lib/database';
 
 interface ModerateResponse {
  success: boolean;

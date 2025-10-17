@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Button } from '@/components/common/ui/button';
-import { Star, Send } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, {useState} from 'react';
+import {Button} from '@/components/common/ui/button';
+import {Send, Star} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {AnimatePresence, motion} from 'framer-motion';
 
 interface GoogleReviewFormProps {
   blogSlug: string;

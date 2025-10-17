@@ -1,7 +1,7 @@
 // API endpoint: GET /api/comments/stats/[slug] - Get comment statistics for a blog post
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { StatsQueries, executeQuerySingle } from '../../../../lib/database';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {executeQuerySingle, StatsQueries} from '../../../../lib/database';
 
 interface StatsResponse {
  success: boolean;

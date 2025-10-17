@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '@/components/layout/navigation/navigation';
 import Footer from '@/components/layout/footer/footer';
-import { motion } from 'framer-motion';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { Button } from '@/components/common/ui/button';
+import {motion} from 'framer-motion';
+import {ChevronDownIcon, ChevronRightIcon} from '@heroicons/react/24/outline';
 
 const Privacy = () => {
  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({});

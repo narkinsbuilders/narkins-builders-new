@@ -1,15 +1,15 @@
-import { GetStaticProps } from 'next'
-import { getAllPostsServer } from '../../lib/blog-server-precompiled'
-import { BlogPost, generateBlogUrl } from '../../lib/blog'
+import {GetStaticProps} from 'next'
+import {getAllPostsServer} from '../../lib/blog-server-precompiled'
+import {BlogPost, generateBlogUrl} from '../../lib/blog'
 import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'
-import BlogFilter, { BlogFilters } from '@/components/features/blog-filter/blog-filter'
-import { filterAndSortPosts } from '../../lib/blog-filter'
+import BlogFilter, {BlogFilters} from '@/components/features/blog-filter/blog-filter'
+import {filterAndSortPosts} from '../../lib/blog-filter'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import {useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
 
 interface BlogIndexProps {
  posts: BlogPost[]

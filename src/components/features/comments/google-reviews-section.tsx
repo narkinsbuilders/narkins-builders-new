@@ -1,14 +1,19 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { Comment } from '@/lib/database';
-import { transformCommentsToGoogleReviews, GoogleReviewData, GoogleReviewsSummary, sortReviewsGoogleStyle } from '@/lib/google-reviews-adapter';
-import { GoogleReviewItem } from './google-review-item';
-import { GoogleReviewForm } from './google-review-form';
-import { GoogleReviewsSummaryCard } from './google-reviews-summary';
-import { GoogleReviewsSort } from './google-reviews-sort';
-import { Star, MessageSquare } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Comment} from '@/lib/database';
+import {
+    GoogleReviewData,
+    GoogleReviewsSummary,
+    sortReviewsGoogleStyle,
+    transformCommentsToGoogleReviews
+} from '@/lib/google-reviews-adapter';
+import {GoogleReviewItem} from './google-review-item';
+import {GoogleReviewForm} from './google-review-form';
+import {GoogleReviewsSummaryCard} from './google-reviews-summary';
+import {GoogleReviewsSort} from './google-reviews-sort';
+import {Star} from 'lucide-react';
+import {cn} from '@/lib/utils';
 
 interface GoogleReviewsSectionProps {
   blogSlug: string;

@@ -1,5 +1,5 @@
 // src/components/carousel-op/carousel-op.tsx
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import SEOImage from "@/components/common/seo-image/seo-image";
 
 interface CarouselOpProps {

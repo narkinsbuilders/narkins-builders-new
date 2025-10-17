@@ -1,5 +1,5 @@
 // src/hooks/useDialogBehavior.ts
-import { useEffect, RefObject } from 'react';
+import {RefObject, useEffect} from 'react';
 
 interface UseDialogBehaviorOptions {
  isOpen: boolean;

@@ -1,5 +1,5 @@
-import { GetServerSideProps, GetStaticProps } from "next";
-import { useState, useEffect } from "react";
+import {GetStaticProps} from "next";
+import {useState} from "react";
 
 import Image from "next/image";
 import BlogsSection from "@/components/features/blogs-section/blogs-section";
@@ -7,15 +7,21 @@ import BlogsSection from "@/components/features/blogs-section/blogs-section";
 import Navigation from "@/components/layout/navigation/navigation";
 import VideoPlayer from "@/components/features/video-player/video-player";
 import Footer from "@/components/layout/footer/footer";
-import { Lightbox } from "@/components/features/lightbox/lightbox";
-import Link from "next/link";
+import {Lightbox} from "@/components/features/lightbox/lightbox";
 import Map from "@/components/features/map/map";
 import Head from "next/head";
 import Carousel from "@/components/features/carousel-op/carousel-op";
-import { Card, CardHeader, CardContent } from "@/components/common/ui/card"; // shadcn/ui Card
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/common/ui/tabs";
-import { motion } from "framer-motion";
-import type { BlogPost } from "@/lib/blog";
+import {Card, CardContent, CardHeader} from "@/components/common/ui/card"; // shadcn/ui Card
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/common/ui/tabs";
+import {motion} from "framer-motion";
+import type {BlogPost} from "@/lib/blog";
+import {useLightboxStore} from "@/zustand";
+import {MagnifyingGlassCircleIcon} from "@heroicons/react/24/solid";
+import Testimonials from "@/components/features/testimonials/testimonials";
+import {getAllPostsServer} from "@/lib/blog-server";
+import SEOImage from "@/components/common/seo-image/seo-image";
+import {HillCrestResidencySchema} from '@/components/common/schema/HillCrestResidencySchema';
+import {VideoSchema} from '@/components/common/schema/VideoSchema';
 
 interface PostWithCategory extends BlogPost {
  id: number;
@@ -29,13 +35,6 @@ interface PostWithCategory extends BlogPost {
   imageUrl: string;
  };
 }
-import { useLightboxStore } from "@/zustand";
-import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import Testimonials from "@/components/features/testimonials/testimonials";
-import { getAllPostsServer, BlogFilter } from "@/lib/blog-server";
-import SEOImage from "@/components/common/seo-image/seo-image";
-import { HillCrestResidencySchema } from '@/components/common/schema/HillCrestResidencySchema';
-import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ['2 Bed', '3 Bed', '4 Bed'];
 const cards = [[
@@ -275,14 +274,14 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
     <main>
       <Head>
         {/* Primary Meta Tags */}
-        <title>Hill Crest Residency | Luxury Apartments in Bahria Town Karachi</title>
+        <title>Hill Crest Residency - Ready Apartments | Immediate Possession | Bahria Town</title>
         <meta
           name="description"
-          content="Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+          content="✓ Ready to Move ✓ Completion Certificate Issued Oct 2025 ✓ 2/3/4 BHK from 45 Lakh ✓ Installments Available. Move in 30 days. Gym, Pool, Steam Bath & Security. Call 0320-324-3970"
         />
         <meta
           name="keywords"
-          content="Hill Crest Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
+          content="Hill Crest Residency Bahria Town, ready apartments Bahria Town Karachi, immediate possession apartments, apartments on installments Bahria Town, completion certificate, best apartments in Bahria Town Karachi, luxury apartments with security Karachi, gated community apartments Bahria Town, 2 bedroom apartments Bahria Town, 3 bedroom apartments Bahria Town, apartments under 50 lakh Bahria Town"
         />
         <meta name="author" content="Narkin's Builders" />
         
@@ -290,10 +289,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
 
         {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Hill Crest Residency | Luxury Apartments in Bahria Town Karachi" />
+        <meta property="og:title" content="Hill Crest Residency - Ready Apartments | Immediate Possession | Bahria Town" />
         <meta
           property="og:description"
-          content="Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+          content="✓ Ready to Move ✓ Completion Certificate Issued Oct 2025 ✓ 2/3/4 BHK from 45 Lakh ✓ Installments Available. Move in 30 days. Call 0320-324-3970"
         />
         <meta property="og:url" content="https://www.narkinsbuilders.com/hill-crest-residency" />
         <meta
@@ -304,10 +303,10 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
 
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hill Crest Residency | Luxury Apartments in Bahria Town Karachi" />
+        <meta name="twitter:title" content="Hill Crest Residency - Ready Apartments | Immediate Possession | Bahria Town" />
         <meta
           name="twitter:description"
-          content="Discover Hill Crest Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+          content="✓ Ready to Move ✓ Completion Certificate Issued Oct 2025 ✓ 2/3/4 BHK from 45L ✓ Installments Available. Move in 30 days. Call 0320-324-3970"
         />
       </Head>
       <HillCrestResidencySchema />

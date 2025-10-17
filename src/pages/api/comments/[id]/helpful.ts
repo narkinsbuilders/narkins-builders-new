@@ -1,9 +1,9 @@
 // API endpoint for toggling helpful votes on comments
 // POST /api/comments/[id]/helpful
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { HelpfulVoteQueries, CommentQueries } from '@/lib/database';
-import { checkRateLimit } from '@/lib/rate-limit';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {CommentQueries, HelpfulVoteQueries} from '@/lib/database';
+import {checkRateLimit} from '@/lib/rate-limit';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

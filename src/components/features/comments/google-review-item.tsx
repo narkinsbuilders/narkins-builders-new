@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import { GoogleReviewData } from '@/lib/google-reviews-adapter';
-import { Star, ThumbsUp, MoreHorizontal, Shield, Verified, Heart } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import React, {useState} from 'react';
+import {GoogleReviewData} from '@/lib/google-reviews-adapter';
+import {Heart, MoreHorizontal, Shield, Star, ThumbsUp, Verified} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {motion} from 'framer-motion';
 import Image from 'next/image';
-import { UserAvatar } from './user-avatar';
+import {UserAvatar} from './user-avatar';
 
 interface GoogleReviewItemProps {
   review: GoogleReviewData;

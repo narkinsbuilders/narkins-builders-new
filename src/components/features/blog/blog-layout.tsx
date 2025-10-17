@@ -2,11 +2,11 @@ import Navigation from '@/components/layout/navigation/navigation'
 import Footer from '@/components/layout/footer/footer'
 import Head from 'next/head'
 import Image from 'next/image'
-import { BlogPost, generateBlogUrl } from '@/lib/blog'
-import { BlogPostSchema } from '@/components/common/schema/BlogPostSchema'
-import { GoogleReviewsSection } from '@/components/features/comments/google-reviews-section'
-import { ReadingProgressBar } from '@/components/features/blog/reading-progress-bar';
-import { BlogNavigation } from '@/components/features/blog/blog-navigation';
+import {BlogPost, generateBlogUrl} from '@/lib/blog'
+import {BlogPostSchema} from '@/components/common/schema/BlogPostSchema'
+import {GoogleReviewsSection} from '@/components/features/comments/google-reviews-section'
+import {ReadingProgressBar} from '@/components/features/blog/reading-progress-bar';
+import {BlogNavigation} from '@/components/features/blog/blog-navigation';
 import Breadcrumb from '@/components/common/breadcrumb/breadcrumb';
 import RelatedPosts from '@/components/features/blog/related-posts';
 

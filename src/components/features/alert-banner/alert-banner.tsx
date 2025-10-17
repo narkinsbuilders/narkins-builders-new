@@ -1,5 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/20/solid'
-import { useState } from 'react'
+import {XMarkIcon} from '@heroicons/react/20/solid'
 
 export default function AlertBanner({title, body, button, open, onClose}: {open: boolean, onClose: () => void, title: string, body: string, button: {
  title: string, link: string

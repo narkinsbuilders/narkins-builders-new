@@ -1,4 +1,4 @@
-import { defineConfig } from 'tinacms'
+import {defineConfig} from 'tinacms'
 
 export default defineConfig({
   branch: 'main',

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
+import {isMainThread, parentPort, Worker, workerData} from 'worker_threads';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { fileURLToPath } from 'url';
+import {fileURLToPath} from 'url';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
+import {serialize} from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 
 // ES module compatibility

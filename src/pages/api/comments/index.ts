@@ -2,10 +2,10 @@
 // GET /api/comments - Get all comments (admin)
 // POST /api/comments - Create new comment
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { CommentQueries } from '@/lib/database';
-import { checkRateLimit } from '@/lib/rate-limit';
-import { validateComment } from '@/lib/validation';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {CommentQueries} from '@/lib/database';
+import {checkRateLimit} from '@/lib/rate-limit';
+import {validateComment} from '@/lib/validation';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {

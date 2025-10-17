@@ -1,5 +1,5 @@
 import VideoPlayerControls from "@/components/features/video-player/video-player-controls";
-import { Fragment, useEffect, useRef, useState } from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 
 export default function VideoPlayer({ src, poster }: { src: string, poster?: string }) {
   const [videoProgress, setVideoProgress] = useState<number>(0);

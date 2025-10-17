@@ -1,8 +1,8 @@
 // API endpoint: GET /api/admin/comments - Get comments for moderation
 
-import { NextApiResponse } from 'next';
-import { withAuth, AuthenticatedRequest } from '../../../../lib/auth-middleware';
-import { CommentQueries, Comment } from '../../../../lib/database';
+import {NextApiResponse} from 'next';
+import {AuthenticatedRequest, withAuth} from '../../../../lib/auth-middleware';
+import {Comment, CommentQueries} from '../../../../lib/database';
 
 interface ModerationResponse {
  success: boolean;

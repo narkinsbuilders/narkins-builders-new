@@ -1,6 +1,6 @@
 // src/components/features/social-share/social-share.tsx
-import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import {FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp} from 'react-icons/fa';
+import {motion} from 'framer-motion';
 
 interface SocialShareProps {
  url: string;

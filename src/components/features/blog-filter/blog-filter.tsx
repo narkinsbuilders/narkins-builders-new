@@ -1,6 +1,6 @@
 import React from 'react';
-import { BlogPost } from '../../../lib/blog';
-import { getFilterStats } from '../../../lib/blog-filter';
+import {BlogPost} from '../../../lib/blog';
+import {getFilterStats} from '../../../lib/blog-filter';
 
 export interface BlogFilters {
  contentType: string;

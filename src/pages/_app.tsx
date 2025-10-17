@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import type { AppProps } from "next/app";
+import {useEffect, useState} from "react";
+import type {AppProps} from "next/app";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { GlobalLeadFormProvider } from "@/contexts/global";
-import { useGlobalLeadFormState } from "@/zustand";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import {GlobalLeadFormProvider} from "@/contexts/global";
+import {useGlobalLeadFormState} from "@/zustand";
+import {useAnalytics} from "@/hooks/useAnalytics";
 import "@/styles/globals.css";
 
 // Lazy-load components

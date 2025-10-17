@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {createContext, ReactNode, useState} from "react";
 
 export const GlobalLeadFormContext = createContext({
   open: false, setOpen: (open: boolean) => { },

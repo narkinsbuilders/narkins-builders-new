@@ -1,5 +1,5 @@
 // Adapter to transform database comments to Google Reviews format
-import { Comment } from '@/lib/database';
+import {Comment} from '@/lib/database';
 
 export interface GoogleReviewData {
   author: {

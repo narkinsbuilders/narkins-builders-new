@@ -1,20 +1,27 @@
-import { GetStaticProps } from "next";
-import { useState, useEffect } from "react";
+import {GetStaticProps} from "next";
+import {useState} from "react";
 
-import Image from "next/image"; 
+import Image from "next/image";
 import BlogsSection from "@/components/features/blogs-section/blogs-section";
 
 import Navigation from "@/components/layout/navigation/navigation";
 import VideoPlayer from "@/components/features/video-player/video-player";
 import Footer from "@/components/layout/footer/footer";
-import { Lightbox } from "@/components/features/lightbox/lightbox";
+import {Lightbox} from "@/components/features/lightbox/lightbox";
 import Map from "@/components/features/map/map";
 import Head from "next/head";
 import Carousel from "@/components/features/carousel-op/carousel-op";
-import { Card, CardHeader, CardContent } from "@/components/common/ui/card"; // shadcn/ui Card
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/common/ui/tabs";
-import { motion } from "framer-motion";
-import type { BlogPost } from "@/lib/blog";
+import {Card, CardContent, CardHeader} from "@/components/common/ui/card"; // shadcn/ui Card
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/common/ui/tabs";
+import {motion} from "framer-motion";
+import type {BlogPost} from "@/lib/blog";
+import {useLightboxStore} from "@/zustand";
+import {MagnifyingGlassCircleIcon} from "@heroicons/react/24/solid";
+import Testimonials from "@/components/features/testimonials/testimonials";
+import {getAllPostsServer} from "@/lib/blog-server";
+import SEOImage from "@/components/common/seo-image/seo-image";
+import {NarkinsBoutiqueResidencySchema} from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
+import {VideoSchema} from '@/components/common/schema/VideoSchema';
 
 interface PostWithCategory extends BlogPost {
  id: number;
@@ -28,13 +35,6 @@ interface PostWithCategory extends BlogPost {
   imageUrl: string;
  };
 }
-import { useLightboxStore } from "@/zustand";
-import { PlayIcon, MagnifyingGlassCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import Testimonials from "@/components/features/testimonials/testimonials";
-import { getAllPostsServer, BlogFilter } from "@/lib/blog-server";
-import SEOImage from "@/components/common/seo-image/seo-image";
-import { NarkinsBoutiqueResidencySchema } from '@/components/common/schema/NarkinsBoutiqueResidencySchema';
-import { VideoSchema } from '@/components/common/schema/VideoSchema';
 
 const categories = ["2 Bed", "3 Bed", "4 Bed", "Sky Villa Duplex"];
 const cards = [
@@ -299,14 +299,14 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
   <main>
    <Head>
     {/* Primary Meta Tags */}
-    <title>Narkin's Boutique Residency | Luxury Apartments in Bahria Town Karachi</title>
+    <title>Narkin's Boutique Residency - Pre-Launch Pricing | Luxury Apartments Bahria Town</title>
     <meta
      name="description"
-     content="Discover Narkin's Boutique Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+     content="✓ Pre-Launch Exclusive ✓ 20-Floor Luxury Tower ✓ 2/3/4 BHK & Sky Villas ✓ Heritage Commercial Location ✓ Easy Installments. Lock today's price for tomorrow's delivery. Indoor Pool, Gym & 5-Floor Parking. Call 0320-324-3970"
     />
     <meta
      name="keywords"
-     content="Narkin's Boutique Residency, Bahria Town Karachi, luxury apartments, modern living, 2-bedroom apartments, 3-bedroom apartments, 4-bedroom apartments, premium amenities"
+     content="Narkin's Boutique Residency apartments, pre-launch apartments Bahria Town, luxury apartments Heritage Commercial, apartments on installments Bahria Town, sky villa duplex Bahria Town, 2 bedroom apartments Bahria Town, 3 bedroom apartments Bahria Town, 4 bedroom apartments Bahria Town, apartments with gym Bahria Town, theme park view apartments Bahria Town, best apartments in Bahria Town Karachi"
     />
     <meta name="author" content="Narkin's Builders" />
     
@@ -314,24 +314,24 @@ export default function HillCrestResidency({ posts }: { posts: PostWithCategory[
 
     {/* Open Graph / Facebook Meta Tags */}
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi" />
+    <meta property="og:title" content="Narkin's Boutique Residency - Pre-Launch Pricing | Luxury Apartments Bahria Town" />
     <meta
      property="og:description"
-     content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+     content="✓ Pre-Launch Exclusive ✓ 20-Floor Luxury Tower ✓ 2/3/4 BHK & Sky Villas ✓ Heritage Commercial ✓ Easy Installments. Lock today's price. Indoor Pool, Gym & 5-Floor Parking. Call 0320-324-3970"
     />
     <meta property="og:url" content="https://www.narkinsbuilders.com/narkins-boutique-residency" />
     <meta
      property="og:image"
      content="https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp"
     />
-    <meta property="og:site_name" content="Hill Crest Residency" />
+    <meta property="og:site_name" content="Narkin's Boutique Residency" />
 
     {/* Twitter Meta Tags */}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Narkin's Boutiqe Residency | Luxury Apartments in Bahria Town Karachi" />
+    <meta name="twitter:title" content="Narkin's Boutique Residency - Pre-Launch Pricing | Luxury Apartments Bahria Town" />
     <meta
      name="twitter:description"
-     content="Discover Narkin's Boutiqe Residency, offering luxurious 2, 3, and 4-bedroom apartments in Bahria Town Karachi. Experience modern living with premium amenities and panoramic views."
+     content="✓ Pre-Launch Exclusive ✓ 20-Floor Luxury Tower ✓ 2/3/4 BHK & Sky Villas ✓ Easy Installments. Lock today's price. Call 0320-324-3970"
     />
    </Head>
    <NarkinsBoutiqueResidencySchema />

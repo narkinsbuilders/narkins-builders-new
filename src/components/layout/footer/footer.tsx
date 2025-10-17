@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 
 interface FooterProps {
  map: string;

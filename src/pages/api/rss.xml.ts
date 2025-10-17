@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getAllPostsServer } from '../../lib/blog-server';
-import { generateBlogUrlFromDateAndSlug } from '../../lib/blog';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {getAllPostsServer} from '../../lib/blog-server';
+import {generateBlogUrlFromDateAndSlug} from '../../lib/blog';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.narkinsbuilders.com';
 

@@ -1,26 +1,17 @@
 import Head from 'next/head';
 import Navigation from '@/components/layout/navigation/navigation';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/common/ui/button';
-import { useState, useEffect } from 'react';
+import {motion} from 'framer-motion';
+import {useState} from 'react';
 import Footer from '@/components/layout/footer/footer';
-import Image from 'next/image';
 import VideoShowcase from '@/components/features/video-showcase/video-showcase';
-import { useLightboxStore } from '@/zustand';
-import { PlayIcon, MagnifyingGlassCircleIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
-import { MdSecurity } from 'react-icons/md';
-import { IoRocketSharp } from 'react-icons/io5';
-import { FaAward, FaHammer } from 'react-icons/fa';
+import {useLightboxStore} from '@/zustand';
+import {MagnifyingGlassCircleIcon} from '@heroicons/react/24/solid';
+import {MdSecurity} from 'react-icons/md';
+import {IoRocketSharp} from 'react-icons/io5';
+import {FaAward, FaHammer} from 'react-icons/fa';
 import SEOImage from '@/components/common/seo-image/seo-image';
 import dynamic from 'next/dynamic';
-import { 
- achievements, 
- values, 
- projects, 
- featuredVideos,
- innovationFeatures,
- whyChooseUs 
-} from '@/data/about-data';
+import {achievements, innovationFeatures, projects, values, whyChooseUs} from '@/data/about-data';
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
 

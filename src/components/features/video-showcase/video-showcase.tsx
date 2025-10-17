@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { PlayIcon } from '@heroicons/react/24/solid';
-import { featuredVideos } from '@/data/about-data';
+import React, {useEffect, useRef, useState} from 'react';
+import {motion} from 'framer-motion';
+import {PlayIcon} from '@heroicons/react/24/solid';
+import {featuredVideos} from '@/data/about-data';
 
 interface VideoEmbedProps {
  video: {

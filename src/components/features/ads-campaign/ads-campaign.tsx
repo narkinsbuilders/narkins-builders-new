@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import { Button } from "@/components/common/ui/button";
-import { Input } from "@/components/common/ui/input";
-import { Label } from "@/components/common/ui/label";
-import { ChevronDown, Building2, Building, MapPin } from "lucide-react";
-import { useFormAnalytics } from "@/hooks/useAnalytics";
-import { event as trackEvent } from "@/lib/gtag";
+import {Button} from "@/components/common/ui/button";
+import {Input} from "@/components/common/ui/input";
+import {Label} from "@/components/common/ui/label";
+import {Building, Building2, ChevronDown, MapPin} from "lucide-react";
+import {useFormAnalytics} from "@/hooks/useAnalytics";
+import {event as trackEvent} from "@/lib/gtag";
 
 // Residency options with details
 const residencyOptions = [

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { BlogPost, generateBlogUrl } from '@/lib/blog'
+import {BlogPost, generateBlogUrl} from '@/lib/blog'
 
 interface RelatedPostsProps {
   posts: BlogPost[]

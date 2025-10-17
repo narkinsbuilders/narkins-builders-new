@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import Head from 'next/head';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import {ChevronDownIcon, ChevronUpIcon} from '@heroicons/react/24/outline';
+
 // Define FAQ interface locally to avoid server-side imports
 interface FAQ {
  id: string;

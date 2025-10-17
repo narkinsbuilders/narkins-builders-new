@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { generateBlogUrlFromDateAndSlug } from '@/lib/blog';
+import {ChevronLeft, ChevronRight} from 'lucide-react';
+import {motion} from 'framer-motion';
+import {generateBlogUrlFromDateAndSlug} from '@/lib/blog';
 
 interface BlogPost {
  slug: string;

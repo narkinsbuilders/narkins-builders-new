@@ -1,8 +1,8 @@
 // API endpoint: POST /api/comments/[id]/like - Toggle like on a comment
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { LikeQueries } from '../../../../lib/database';
-import { checkRateLimit, getClientIP } from '../../../../lib/rate-limit';
+import {NextApiRequest, NextApiResponse} from 'next';
+import {LikeQueries} from '../../../../lib/database';
+import {checkRateLimit, getClientIP} from '../../../../lib/rate-limit';
 
 interface LikeResponse {
  success: boolean;

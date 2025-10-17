@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { BlogPost } from './blog'
+import {BlogPost} from './blog'
 
 const postsDirectory = path.join(process.cwd(), 'content/blogs')
 const mdxCacheDir = path.join(process.cwd(), '.mdx-cache')

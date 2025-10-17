@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '@/components/layout/navigation/navigation';
@@ -7,16 +7,16 @@ import Testimonials from '@/components/features/testimonials/testimonials';
 import BlogsSection from '@/components/features/blogs-section/blogs-section';
 import dynamic from 'next/dynamic';
 import Image from "next/image";
-import { getAllPostsServer, BlogFilter } from '../lib/blog-server';
-import { useGlobalLeadFormState, useLightboxStore } from '@/zustand';
-import { GetStaticProps } from 'next'
+import {getAllPostsServer} from '../lib/blog-server';
+import {useGlobalLeadFormState, useLightboxStore} from '@/zustand';
+import {GetStaticProps} from 'next'
 import SEOImage from "@/components/common/seo-image/seo-image";
-import { Button } from '@/components/common/ui/button'; // shadcn/ui button
-import { motion } from 'framer-motion'; // For animations
-import { OrganizationSchema } from '@/components/common/schema/OrganizationSchema';
-import { LocalBusinessSchema } from '@/components/common/schema/LocalBusinessSchema';
-import { ReviewSchema } from '@/components/common/schema/ReviewSchema';
-import { WebSiteSchema } from '@/components/common/schema/WebSiteSchema';
+import {Button} from '@/components/common/ui/button'; // shadcn/ui button
+import {motion} from 'framer-motion'; // For animations
+import {OrganizationSchema} from '@/components/common/schema/OrganizationSchema';
+import {LocalBusinessSchema} from '@/components/common/schema/LocalBusinessSchema';
+import {ReviewSchema} from '@/components/common/schema/ReviewSchema';
+import {WebSiteSchema} from '@/components/common/schema/WebSiteSchema';
 
 
 const Lightbox = dynamic(() => import('@/components/features/lightbox/lightbox'), { ssr: false });
@@ -97,15 +97,15 @@ export default function Index({ posts }: { posts: any[] }) {
   <>
    <Head>
      {/* Primary Meta Tags */}
- <title>Luxury Apartments for Sale in Bahria Town Karachi | Narkin's Builders</title>
+ <title>Apartments on Installments Bahria Town | Ready to Move | Narkin's Builders</title>
  <meta name="viewport" content="width=device-width, initial-scale=1" />
- <meta 
-  name="description" 
-  content="Searching for your dream apartment in Bahria Town Karachi? Narkin's Builders offers stunning 2, 3, & 4 bedroom luxury apartments. Discover Hill Crest & Narkin's Boutique Residency and find your perfect home today." 
+ <meta
+  name="description"
+  content="Ready apartments in Bahria Town from PKR 45 Lakh. Easy installments, immediate possession. 2, 3 & 4 BHK luxury apartments with gym, pool & security. Hill Crest Residency ready to move - Call 0320-324-3970"
  />
- <meta 
-  name="keywords" 
-  content="Narkin's Builders, Bahria Town Karachi apartments, luxury apartments Karachi, Hill Crest Residency, Narkin's Boutique Residency, 2 bedroom apartments, 3 bedroom apartments" 
+ <meta
+  name="keywords"
+  content="apartments on installments Bahria Town, ready apartments Bahria Town Karachi, apartments under 50 lakh Bahria Town, Hill Crest Residency Bahria Town, best apartments in Bahria Town Karachi, Narkin's Boutique Residency apartments, easy monthly installments apartments Karachi, 2 bedroom apartments Bahria Town, 3 bedroom apartments Bahria Town, luxury apartments with security Karachi, gated community apartments Bahria Town, apartments near me Bahria Town Karachi, immediate possession apartments Bahria Town"
  />
  <meta name="author" content="Narkin's Builders" />
  <meta name="robots" content="index, follow" />
@@ -113,10 +113,10 @@ export default function Index({ posts }: { posts: any[] }) {
  
  {/* Open Graph / Facebook */}
  <meta property="og:type" content="website" />
- <meta property="og:title" content="Narkin's Builders | Premium Apartments in Bahria Town Karachi" />
- <meta 
-  property="og:description" 
-  content="Searching for your dream apartment in Bahria Town Karachi? Narkin's Builders offers stunning 2, 3, & 4 bedroom luxury apartments. Discover Hill Crest & Narkin's Boutique Residency and find your perfect home today." 
+ <meta property="og:title" content="Apartments on Installments Bahria Town | Ready to Move | Narkin's Builders" />
+ <meta
+  property="og:description"
+  content="Ready apartments in Bahria Town from PKR 45 Lakh. Easy installments, immediate possession. 2, 3 & 4 BHK luxury apartments with gym, pool & security. Call 0320-324-3970"
  />
  <meta property="og:url" content="https://www.narkinsbuilders.com/" />
  <meta property="og:image" content="https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo-30-years-experience.webp" />
@@ -155,10 +155,10 @@ export default function Index({ posts }: { posts: any[] }) {
         >
          <p className="text-lg text-neutral-300">Welcome to</p>
          <h1 className="hero-title mt-4 text-white">
-          Narkin&apos;s Builders
+          Apartments on Installments in Bahria Town Karachi
          </h1>
          <p className="large-text mt-4 text-white">
-          Creating Iconic Living Experiences.
+          Ready to Move | Narkin&apos;s Builders - 30 Years of Excellence
          </p>
          <div className="mt-8 flex justify-center gap-4">
           <Button
