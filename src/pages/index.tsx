@@ -155,10 +155,10 @@ export default function Index({ posts }: { posts: any[] }) {
         >
          <p className="text-lg text-neutral-300">Welcome to</p>
          <h1 className="hero-title mt-4 text-white">
-          Apartments on Installments in Bahria Town Karachi
+             Narkin&apos;s Builders
          </h1>
          <p className="large-text mt-4 text-white">
-          Ready to Move | Narkin&apos;s Builders - 30 Years of Excellence
+          Creating Iconic Living Experiences.
          </p>
          <div className="mt-8 flex justify-center gap-4">
           <Button
