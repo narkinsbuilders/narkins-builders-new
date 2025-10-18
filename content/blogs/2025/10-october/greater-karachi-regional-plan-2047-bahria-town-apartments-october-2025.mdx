@@ -58,13 +58,15 @@ Bahria Town's historically superior drainage systems become even more valuable w
 
 <EChartsColumnChart
   data={[
-    { category: "Current Karachi Infrastructure", value: 45 },
-    { category: "GKRP 2047 Phase 1 Targets", value: 62 },
-    { category: "GKRP 2047 Full Implementation", value: 88 }
+    { name: "Current Karachi Infrastructure", value: 45 },
+    { name: "GKRP 2047 Phase 1 Targets", value: 62 },
+    { name: "GKRP 2047 Full Implementation", value: 88 }
   ]}
   title="Infrastructure Development Index - Karachi Growth Trajectory"
   subtitle="Projected infrastructure improvement across city zones"
-  showLabels={true}
+  xField="name"
+  yField="value"
+  showValueLabels={true}
   color="#1890ff"
 />
 
