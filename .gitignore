@@ -2,7 +2,7 @@
 node_modules/
 /.pnp
 .pnp.js
-.mcp.json
+.mcp.js
 # Testing
 /coverage
 
@@ -182,6 +182,14 @@ scripts/temp/
 **/api-keys.*
 **/secrets.*
 .ignored/
+
+# =============================================================================
+# GOOGLE INDEXING API - SECURITY CRITICAL
+# =============================================================================
+# Never commit service account credentials
+scripts/service-account.json
+**/service-account*.json
+
 # SEO Keyword Research Files
 SEO_KEYWORDS.md
 /src/SEO_KEYWORDS.md
