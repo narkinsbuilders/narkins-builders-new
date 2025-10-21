@@ -1,6 +1,5 @@
 // tina/config.ts
-import {defineConfig} from "tinacms";
-
+import { defineConfig } from "tinacms";
 var config_default = defineConfig({
   branch: "main",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
