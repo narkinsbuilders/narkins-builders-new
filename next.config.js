@@ -243,6 +243,30 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Redirect non-www to www (301 Permanent for SEO)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'narkinsbuilders.com',
+          },
+        ],
+        destination: 'https://www.narkinsbuilders.com/:path*',
+        permanent: true,
+      },
+      // Redirect admin subdomain to main site (301 Permanent)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'admin.narkinsbuilders.com',
+          },
+        ],
+        destination: 'https://www.narkinsbuilders.com/:path*',
+        permanent: true,
+      },
       {
         source: '/blog/bahria-town-uncertainty-smart-investors-choose-established-developers-2025',
         destination: '/blog/bahria-town-shutdown-scare-investment-security',
