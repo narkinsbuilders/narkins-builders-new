@@ -83,11 +83,8 @@
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",
     "@next/bundle-analyzer": "^15.4.6",
-    "@types/bcryptjs": "^3.0.0",
-    "@types/dompurify": "^3.2.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mdx": "^2.0.13",
-    "@types/minimatch": "^6.0.0",
     "@types/node": "^24.1.0",
     "gray-matter": "^4.0.3",
     "ts-node": "^10.9.2"
