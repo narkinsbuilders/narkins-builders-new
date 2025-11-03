@@ -1,5 +1,5 @@
-import React from 'react'
-import ChartContainer from './chart-container'
+import React from "react"
+import ChartContainer from "./chart-container"
 
 interface RouteNode {
   name: string
@@ -31,22 +31,22 @@ export default function EChartsGeoGraph({
   edges,
   height = 400,
   showLabels = true,
-  lineColor = '#718adbff',
-  aspectScale = 0.75
+  lineColor = "#718adbff",
+  aspectScale = 0.75,
 }: EChartsGeoGraphProps) {
-  const [isClient, setIsClient] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(false)
 
   React.useEffect(() => {
-    setIsClient(true);
-  }, []);
+    setIsClient(true)
+  }, [])
 
   React.useEffect(() => {
-    if (isClient && typeof window !== 'undefined') {
+    if (isClient && typeof window !== "undefined") {
       // Register map dynamically
-      const echarts = require('echarts');
-      echarts.registerMap(mapName, mapGeoJSON);
+      const echarts = require("echarts")
+      echarts.registerMap(mapName, mapGeoJSON)
     }
-  }, [isClient, mapName, mapGeoJSON]);
+  }, [isClient, mapName, mapGeoJSON])
 
   const option = {
     geo: {
@@ -55,73 +55,80 @@ export default function EChartsGeoGraph({
       aspectScale: aspectScale,
       label: {
         show: showLabels,
-        textBorderColor: '#fff',
-        textBorderWidth: 2
+        textBorderColor: "#fff",
+        textBorderWidth: 2,
       },
       itemStyle: {
-        areaColor: '#f3f4f6',
-        borderColor: '#d1d5db'
+        areaColor: "#f3f4f6",
+        borderColor: "#d1d5db",
       },
       emphasis: {
         itemStyle: {
-          areaColor: '#e5e7eb'
+          areaColor: "#e5e7eb",
         },
         label: {
-          color: '#111827'
-        }
-      }
+          color: "#111827",
+        },
+      },
     },
     tooltip: {
-      trigger: 'item',
-      formatter: function(params: any) {
-        if (params.componentSubType === 'graph') {
-          return params.name;
+      trigger: "item",
+      formatter: function (params: any) {
+        if (params.componentSubType === "graph") {
+          return params.name
         }
-        return params.name;
-      }
+        return params.name
+      },
     },
     series: [
       {
-        type: 'graph',
-        coordinateSystem: 'geo',
+        type: "graph",
+        coordinateSystem: "geo",
         data: nodes,
         edges: edges,
-        edgeSymbol: ['none', 'arrow'],
+        edgeSymbol: ["none", "arrow"],
         edgeSymbolSize: 5,
         lineStyle: {
           color: lineColor,
           opacity: 1,
-          width: 2
+          width: 2,
         },
         itemStyle: {
-          color: '#5470c6',
-          borderColor: '#fff',
-          borderWidth: 2
+          color: "#5470c6",
+          borderColor: "#fff",
+          borderWidth: 2,
         },
         label: {
           show: showLabels,
-          position: 'right',
-          formatter: '{b}',
+          position: "right",
+          formatter: "{b}",
           fontSize: 12,
-          color: '#374151'
+          color: "#374151",
         },
         emphasis: {
           itemStyle: {
-            color: '#1d4ed8',
-            borderColor: '#fff',
-            borderWidth: 3
+            color: "#1d4ed8",
+            borderColor: "#fff",
+            borderWidth: 3,
           },
           lineStyle: {
-            width: 3
-          }
-        }
-      }
-    ]
-  };
-
-  if (!isClient) {
-    return null;
+            width: 3,
+          },
+        },
+      },
+    ],
   }
 
-  return <ChartContainer title={title} option={option} height={height} data={nodes} />
+  if (!isClient) {
+    return null
+  }
+
+  return (
+    <ChartContainer
+      title={title}
+      option={option}
+      height={height}
+      data={nodes}
+    />
+  )
 }

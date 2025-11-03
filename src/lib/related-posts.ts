@@ -1,4 +1,4 @@
-import {BlogPost} from './blog'
+import { BlogPost } from "./blog"
 
 /**
  * Calculate content similarity between two blog posts
@@ -12,19 +12,21 @@ function calculateSimilarity(post1: BlogPost, post2: BlogPost): number {
   const keywords2 = extractKeywords(post2)
 
   // Calculate keyword overlap (highest weight)
-  const keywordOverlap = keywords1.filter(k => keywords2.includes(k)).length
+  const keywordOverlap = keywords1.filter((k) => keywords2.includes(k)).length
   score += keywordOverlap * 3
 
   // Calculate title word overlap
   const titleWords1 = extractWords(post1.title)
   const titleWords2 = extractWords(post2.title)
-  const titleOverlap = titleWords1.filter(w => titleWords2.includes(w)).length
+  const titleOverlap = titleWords1.filter((w) => titleWords2.includes(w)).length
   score += titleOverlap * 2
 
   // Calculate excerpt word overlap (lower weight)
-  const excerptWords1 = extractWords(post1.excerpt || '')
-  const excerptWords2 = extractWords(post2.excerpt || '')
-  const excerptOverlap = excerptWords1.filter(w => excerptWords2.includes(w)).length
+  const excerptWords1 = extractWords(post1.excerpt || "")
+  const excerptWords2 = extractWords(post2.excerpt || "")
+  const excerptOverlap = excerptWords1.filter((w) =>
+    excerptWords2.includes(w)
+  ).length
   score += excerptOverlap * 1
 
   return score
@@ -40,36 +42,36 @@ function extractKeywords(post: BlogPost): string[] {
   if (post.keywords) {
     const keywordList = post.keywords
       .toLowerCase()
-      .split(',')
-      .map(k => k.trim())
+      .split(",")
+      .map((k) => k.trim())
       .filter(Boolean)
     keywords.push(...keywordList)
   }
 
   // Common real estate keywords from title
   const realEstateKeywords = [
-    'bahria town',
-    'karachi',
-    'lahore',
-    'islamabad',
-    'apartment',
-    'property',
-    'investment',
-    'housing',
-    'real estate',
-    'dha',
-    'gulshan',
-    'construction',
-    'development',
-    'financing',
-    'fbr',
-    'rda',
-    'sbca',
-    'proptech'
+    "bahria town",
+    "karachi",
+    "lahore",
+    "islamabad",
+    "apartment",
+    "property",
+    "investment",
+    "housing",
+    "real estate",
+    "dha",
+    "gulshan",
+    "construction",
+    "development",
+    "financing",
+    "fbr",
+    "rda",
+    "sbca",
+    "proptech",
   ]
 
   const titleLower = post.title.toLowerCase()
-  realEstateKeywords.forEach(keyword => {
+  realEstateKeywords.forEach((keyword) => {
     if (titleLower.includes(keyword)) {
       keywords.push(keyword)
     }
@@ -83,18 +85,63 @@ function extractKeywords(post: BlogPost): string[] {
  */
 function extractWords(text: string): string[] {
   const stopWords = new Set([
-    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-    'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
-    'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
-    'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those', 'what',
-    'how', 'why', 'when', 'where', 'which', 'who', 'your', 'you', 'we', 'our'
+    "the",
+    "a",
+    "an",
+    "and",
+    "or",
+    "but",
+    "in",
+    "on",
+    "at",
+    "to",
+    "for",
+    "of",
+    "with",
+    "by",
+    "from",
+    "as",
+    "is",
+    "was",
+    "are",
+    "were",
+    "been",
+    "be",
+    "have",
+    "has",
+    "had",
+    "do",
+    "does",
+    "did",
+    "will",
+    "would",
+    "could",
+    "should",
+    "may",
+    "might",
+    "can",
+    "this",
+    "that",
+    "these",
+    "those",
+    "what",
+    "how",
+    "why",
+    "when",
+    "where",
+    "which",
+    "who",
+    "your",
+    "you",
+    "we",
+    "our",
   ])
 
   return text
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
-    .filter(word => word.length > 3 && !stopWords.has(word))
+    .filter((word) => word.length > 3 && !stopWords.has(word))
 }
 
 /**
@@ -110,12 +157,12 @@ export function getRelatedPosts(
   limit: number = 3
 ): BlogPost[] {
   // Filter out current post
-  const otherPosts = allPosts.filter(post => post.slug !== currentPost.slug)
+  const otherPosts = allPosts.filter((post) => post.slug !== currentPost.slug)
 
   // Calculate similarity scores
-  const postsWithScores = otherPosts.map(post => ({
+  const postsWithScores = otherPosts.map((post) => ({
     post,
-    score: calculateSimilarity(currentPost, post)
+    score: calculateSimilarity(currentPost, post),
   }))
 
   // Sort by score (descending) and recency (newer posts preferred for equal scores)
@@ -128,7 +175,5 @@ export function getRelatedPosts(
   })
 
   // Return top N posts
-  return postsWithScores
-    .slice(0, limit)
-    .map(item => item.post)
+  return postsWithScores.slice(0, limit).map((item) => item.post)
 }

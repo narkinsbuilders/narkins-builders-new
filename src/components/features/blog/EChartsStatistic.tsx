@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 interface EChartsStatisticProps {
   title: string
@@ -10,37 +10,37 @@ interface EChartsStatisticProps {
   formatter?: (value: number | string) => React.ReactNode
 }
 
-export default function EChartsStatistic({ 
-  title, 
-  value, 
+export default function EChartsStatistic({
+  title,
+  value,
   suffix,
   prefix,
   valueStyle,
   precision,
-  formatter
+  formatter,
 }: EChartsStatisticProps) {
   const formatValue = () => {
     if (formatter) {
-      return formatter(value);
+      return formatter(value)
     }
-    
-    if (typeof value === 'number' && precision !== undefined) {
-      return value.toFixed(precision);
+
+    if (typeof value === "number" && precision !== undefined) {
+      return value.toFixed(precision)
     }
-    
-    if (typeof value === 'number') {
-      return value.toLocaleString();
+
+    if (typeof value === "number") {
+      return value.toLocaleString()
     }
-    
-    return value;
-  };
+
+    return value
+  }
 
   const defaultValueStyle: React.CSSProperties = {
-    fontSize: '1.875rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
-    ...valueStyle
-  };
+    fontSize: "1.875rem",
+    fontWeight: "bold",
+    color: "#1f2937",
+    ...valueStyle,
+  }
 
   return (
     <div className="text-center space-y-2">
@@ -49,9 +49,7 @@ export default function EChartsStatistic({
       </div>
       <div className="flex items-center justify-center space-x-1">
         {prefix && <span className="text-gray-700">{prefix}</span>}
-        <span style={defaultValueStyle}>
-          {formatValue()}
-        </span>
+        <span style={defaultValueStyle}>{formatValue()}</span>
         {suffix && <span className="text-gray-600 text-lg">{suffix}</span>}
       </div>
     </div>

@@ -1,26 +1,26 @@
 // src/components/carousel-op/carousel-op.tsx
-import React, {useEffect, useRef, useState} from "react";
-import SEOImage from "@/components/common/seo-image/seo-image";
+import React, { useEffect, useRef, useState } from "react"
+import SEOImage from "@/components/common/seo-image/seo-image"
 
 interface CarouselOpProps {
-  dataSource: { image: string; name?: string }[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
-  hideArrows?: boolean;
-  hideIndicators?: boolean;
-  height?: string;
-  borderRadius?: boolean;
-  swipe?: boolean;
-  slideShow?: boolean;
-  loop?: boolean;
-  rightToLeft?: boolean;
-  keyboard?: boolean;
-  displayMode?: string;
-  interval?: number;
-  id?: string;
-  className?: string;
-  onChange?: (index: number) => void;
-  hideCaption?: boolean;
+  dataSource: { image: string; name?: string }[]
+  autoPlay?: boolean
+  autoPlayInterval?: number
+  hideArrows?: boolean
+  hideIndicators?: boolean
+  height?: string
+  borderRadius?: boolean
+  swipe?: boolean
+  slideShow?: boolean
+  loop?: boolean
+  rightToLeft?: boolean
+  keyboard?: boolean
+  displayMode?: string
+  interval?: number
+  id?: string
+  className?: string
+  onChange?: (index: number) => void
+  hideCaption?: boolean
 }
 
 const CarouselOp: React.FC<CarouselOpProps> = ({
@@ -34,70 +34,70 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
   onChange,
   hideCaption = false,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
-      newIndex = dataSource.length - 1;
+      newIndex = dataSource.length - 1
     } else if (newIndex >= dataSource.length) {
-      newIndex = 0;
+      newIndex = 0
     }
-    setCurrentIndex(newIndex);
-    onChange?.(newIndex);
-  };
+    setCurrentIndex(newIndex)
+    onChange?.(newIndex)
+  }
 
   // Auto-play functionality
   useEffect(() => {
     if (isAutoPlaying && dataSource.length > 1) {
       intervalRef.current = setInterval(() => {
-        updateIndex(currentIndex + 1);
-      }, autoPlayInterval);
+        updateIndex(currentIndex + 1)
+      }, autoPlayInterval)
     } else {
       if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+        clearInterval(intervalRef.current)
       }
     }
 
     return () => {
       if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+        clearInterval(intervalRef.current)
       }
-    };
-  }, [currentIndex, isAutoPlaying, autoPlayInterval, dataSource.length]);
+    }
+  }, [currentIndex, isAutoPlaying, autoPlayInterval, dataSource.length])
 
   // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-    setIsAutoPlaying(false);
-  };
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+    setIsAutoPlaying(false)
+  }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
 
   const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
 
     if (isLeftSwipe) {
-      updateIndex(currentIndex + 1);
+      updateIndex(currentIndex + 1)
     } else if (isRightSwipe) {
-      updateIndex(currentIndex - 1);
+      updateIndex(currentIndex - 1)
     }
 
-    setIsAutoPlaying(autoPlay);
-  };
+    setIsAutoPlaying(autoPlay)
+  }
 
   return (
-    <div 
-      className={`relative overflow-hidden ${borderRadius ? "rounded-xl" : ""}`} 
+    <div
+      className={`relative overflow-hidden ${borderRadius ? "rounded-xl" : ""}`}
       style={{ height }}
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(autoPlay)}
@@ -110,7 +110,10 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
         onTouchEnd={handleTouchEnd}
       >
         {dataSource.map((item, index) => (
-          <div key={index} className="flex-none w-full h-full flex items-center justify-center relative">
+          <div
+            key={index}
+            className="flex-none w-full h-full flex items-center justify-center relative"
+          >
             <SEOImage
               src={item.image}
               loading={index === 0 ? "eager" : "lazy"}
@@ -118,7 +121,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
               height={1000}
               context="carousel"
               index={index}
-              style={{ objectFit: 'cover', flex: 1 }}
+              style={{ objectFit: "cover", flex: 1 }}
               className="w-full h-full rounded-xl"
               quality={95}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
@@ -137,7 +140,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
       {/* Navigation Arrows */}
       {!hideArrows && dataSource.length > 1 && (
         <React.Fragment>
-          <button 
+          <button
             onClick={() => updateIndex(currentIndex - 1)}
             className="absolute px-4 left-0 top-1/2 transform -translate-y-1/2 group"
             data-testid="carousel-left-control"
@@ -156,11 +159,15 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
                 width="1em"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </span>
           </button>
-          <button 
+          <button
             onClick={() => updateIndex(currentIndex + 1)}
             className="group px-4 absolute right-0 top-1/2 transform -translate-y-1/2"
             data-testid="carousel-right-control"
@@ -179,7 +186,11 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
                 width="1em"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </span>
           </button>
@@ -193,8 +204,8 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
             <button
               key={index}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex 
-                  ? "bg-white" 
+                index === currentIndex
+                  ? "bg-white"
                   : "bg-white/50 hover:bg-white/75"
               }`}
               onClick={() => updateIndex(index)}
@@ -204,7 +215,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CarouselOp;
+export default CarouselOp

@@ -1,62 +1,62 @@
-'use client';
+"use client"
 
-import React, {useState} from 'react';
-import {Button} from '@/components/common/ui/button';
-import {Send, Star} from 'lucide-react';
-import {cn} from '@/lib/utils';
-import {AnimatePresence, motion} from 'framer-motion';
+import React, { useState } from "react"
+import { Button } from "@/components/common/ui/button"
+import { Send, Star } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { AnimatePresence, motion } from "framer-motion"
 
 interface GoogleReviewFormProps {
-  blogSlug: string;
-  onReviewSubmitted: (review: { id: number; pending: boolean }) => void;
-  className?: string;
+  blogSlug: string
+  onReviewSubmitted: (review: { id: number; pending: boolean }) => void
+  className?: string
 }
 
-export function GoogleReviewForm({ 
-  blogSlug, 
-  onReviewSubmitted, 
-  className 
+export function GoogleReviewForm({
+  blogSlug,
+  onReviewSubmitted,
+  className,
 }: GoogleReviewFormProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [hoverRating, setHoverRating] = useState(0);
-  const [authorName, setAuthorName] = useState('');
-  const [authorEmail, setAuthorEmail] = useState('');
-  const [content, setContent] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [rating, setRating] = useState(0)
+  const [hoverRating, setHoverRating] = useState(0)
+  const [authorName, setAuthorName] = useState("")
+  const [authorEmail, setAuthorEmail] = useState("")
+  const [content, setContent] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+    e.preventDefault()
+
     if (!rating) {
-      setError('Please select a rating');
-      return;
-    }
-    
-    if (!authorName.trim()) {
-      setError('Please enter your name');
-      return;
-    }
-    
-    if (!authorEmail.trim()) {
-      setError('Please enter your email');
-      return;
-    }
-    
-    if (!content.trim()) {
-      setError('Please write a review');
-      return;
+      setError("Please select a rating")
+      return
     }
 
-    setIsSubmitting(true);
-    setError('');
+    if (!authorName.trim()) {
+      setError("Please enter your name")
+      return
+    }
+
+    if (!authorEmail.trim()) {
+      setError("Please enter your email")
+      return
+    }
+
+    if (!content.trim()) {
+      setError("Please write a review")
+      return
+    }
+
+    setIsSubmitting(true)
+    setError("")
 
     try {
-      const response = await fetch('/api/comments', {
-        method: 'POST',
+      const response = await fetch("/api/comments", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           blog_slug: blogSlug,
@@ -65,48 +65,48 @@ export function GoogleReviewForm({
           content: content.trim(),
           rating: rating,
         }),
-      });
+      })
 
-      const data = await response.json();
+      const data = await response.json()
 
       if (data.success) {
         // Reset form
-        setRating(0);
-        setHoverRating(0);
-        setAuthorName('');
-        setAuthorEmail('');
-        setContent('');
-        setIsExpanded(false);
-        
+        setRating(0)
+        setHoverRating(0)
+        setAuthorName("")
+        setAuthorEmail("")
+        setContent("")
+        setIsExpanded(false)
+
         // Notify parent
-        onReviewSubmitted({ 
-          id: data.commentId, 
-          pending: !data.autoApproved 
-        });
+        onReviewSubmitted({
+          id: data.commentId,
+          pending: !data.autoApproved,
+        })
       } else {
-        setError(data.error || 'Failed to submit review');
+        setError(data.error || "Failed to submit review")
       }
     } catch (error) {
-      console.error('Review submission error:', error);
-      setError('Failed to submit review. Please try again.');
+      console.error("Review submission error:", error)
+      setError("Failed to submit review. Please try again.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const handleCancel = () => {
-    setIsExpanded(false);
-    setRating(0);
-    setHoverRating(0);
-    setAuthorName('');
-    setAuthorEmail('');
-    setContent('');
-    setError('');
-  };
+    setIsExpanded(false)
+    setRating(0)
+    setHoverRating(0)
+    setAuthorName("")
+    setAuthorEmail("")
+    setContent("")
+    setError("")
+  }
 
   const renderStars = () => {
     return Array.from({ length: 5 }, (_, i) => {
-      const starValue = i + 1;
+      const starValue = i + 1
       return (
         <button
           key={i}
@@ -118,30 +118,41 @@ export function GoogleReviewForm({
         >
           <Star
             className={cn(
-              'h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 transition-colors duration-200',
+              "h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 transition-colors duration-200",
               (hoverRating || rating) >= starValue
-                ? 'text-amber-400 fill-amber-400'
-                : 'text-gray-300 hover:text-amber-300'
+                ? "text-amber-400 fill-amber-400"
+                : "text-gray-300 hover:text-amber-300"
             )}
           />
         </button>
-      );
-    });
-  };
+      )
+    })
+  }
 
   const getRatingText = (rating: number) => {
     switch (rating) {
-      case 1: return 'Terrible';
-      case 2: return 'Poor';
-      case 3: return 'Average';
-      case 4: return 'Good';
-      case 5: return 'Excellent';
-      default: return '';
+      case 1:
+        return "Terrible"
+      case 2:
+        return "Poor"
+      case 3:
+        return "Average"
+      case 4:
+        return "Good"
+      case 5:
+        return "Excellent"
+      default:
+        return ""
     }
-  };
+  }
 
   return (
-    <div className={cn('bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200', className)}>
+    <div
+      className={cn(
+        "bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200",
+        className
+      )}
+    >
       {!isExpanded ? (
         /* Collapsed State - Click to Expand */
         <motion.button
@@ -155,8 +166,12 @@ export function GoogleReviewForm({
               <Star className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-1 text-base sm:text-lg">Write a review</h3>
-              <p className="text-gray-600 text-xs sm:text-sm">Share your experience about this article</p>
+              <h3 className="font-medium text-gray-900 mb-1 text-base sm:text-lg">
+                Write a review
+              </h3>
+              <p className="text-gray-600 text-xs sm:text-sm">
+                Share your experience about this article
+              </p>
             </div>
             <div className="ml-auto flex">
               {Array.from({ length: 5 }, (_, i) => (
@@ -168,8 +183,8 @@ export function GoogleReviewForm({
       ) : (
         /* Expanded State - Full Form */
         <motion.div
-          initial={{ height: 'auto', opacity: 1 }}
-          animate={{ height: 'auto', opacity: 1 }}
+          initial={{ height: "auto", opacity: 1 }}
+          animate={{ height: "auto", opacity: 1 }}
           className="p-4 sm:p-6"
         >
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -179,8 +194,12 @@ export function GoogleReviewForm({
                 <Star className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-medium text-gray-900 text-base sm:text-lg">Write a review</h3>
-                <p className="text-gray-600 text-xs sm:text-sm">Share your thoughts about this article</p>
+                <h3 className="font-medium text-gray-900 text-base sm:text-lg">
+                  Write a review
+                </h3>
+                <p className="text-gray-600 text-xs sm:text-sm">
+                  Share your thoughts about this article
+                </p>
               </div>
             </div>
 
@@ -190,9 +209,7 @@ export function GoogleReviewForm({
                 Your rating *
               </label>
               <div className="flex items-center gap-2 mb-2">
-                <div className="flex">
-                  {renderStars()}
-                </div>
+                <div className="flex">{renderStars()}</div>
                 <AnimatePresence>
                   {(rating > 0 || hoverRating > 0) && (
                     <motion.span
@@ -211,7 +228,10 @@ export function GoogleReviewForm({
             {/* Name and Email */}
             <div className="space-y-3 sm:space-y-4 sm:grid sm:grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:space-y-0">
               <div>
-                <label htmlFor="authorName" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="authorName"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Your name *
                 </label>
                 <input
@@ -224,9 +244,12 @@ export function GoogleReviewForm({
                   disabled={isSubmitting}
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="authorEmail" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="authorEmail"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Your email *
                 </label>
                 <input
@@ -243,7 +266,10 @@ export function GoogleReviewForm({
 
             {/* Review Content */}
             <div>
-              <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="content"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Your review *
               </label>
               <textarea
@@ -287,10 +313,16 @@ export function GoogleReviewForm({
               >
                 Cancel
               </Button>
-              
+
               <Button
                 type="submit"
-                disabled={isSubmitting || !rating || !authorName.trim() || !authorEmail.trim() || !content.trim()}
+                disabled={
+                  isSubmitting ||
+                  !rating ||
+                  !authorName.trim() ||
+                  !authorEmail.trim() ||
+                  !content.trim()
+                }
                 className="px-6 py-3 lg:px-8 lg:py-3 bg-blue-600 hover:bg-blue-700 min-h-[44px] w-full sm:w-auto lg:text-base"
               >
                 {isSubmitting ? (
@@ -310,7 +342,7 @@ export function GoogleReviewForm({
         </motion.div>
       )}
     </div>
-  );
+  )
 }
 
-export default GoogleReviewForm;
+export default GoogleReviewForm

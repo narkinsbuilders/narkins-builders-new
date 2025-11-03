@@ -43,6 +43,7 @@
     "@types/react-dom": "18.2.25",
     "autoprefixer": "10.4.21",
     "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^12.4.1",
     "browserslist": "",
     "caniuse-lite": "^1.0.30001731",
     "class-variance-authority": "^0.7.1",

@@ -1,52 +1,52 @@
 // src/components/lightbox/lightbox.tsx
-import React, {useEffect, useState} from "react";
-import Image from "next/image";
-import {Button} from "@/components/common/ui/button";
-import {XMarkIcon} from "@heroicons/react/24/outline";
-import {useLightboxStore} from "@/zustand";
-import {getImageAltText} from "@/data/image-alt-texts";
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
+import { Button } from "@/components/common/ui/button"
+import { XMarkIcon } from "@heroicons/react/24/outline"
+import { useLightboxStore } from "@/zustand"
+import { getImageAltText } from "@/data/image-alt-texts"
 
 export const Lightbox: React.FC = () => {
-  const { image, open, closeLightbox } = useLightboxStore();
-  const [isLoading, setIsLoading] = useState(true);
+  const { image, open, closeLightbox } = useLightboxStore()
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleImageLoad = () => {
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   const handleImageError = () => {
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     if (open) {
-      setIsLoading(true);
+      setIsLoading(true)
     }
-  }, [open, image]);
+  }, [open, image])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeLightbox();
+        closeLightbox()
       }
-    };
+    }
 
     if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = "hidden"
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
-    };
-  }, [open, closeLightbox]);
+      document.removeEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = "unset"
+    }
+  }, [open, closeLightbox])
 
-  if (!image) return null;
+  if (!image) return null
 
   // Generate SEO-friendly alt text for lightbox
-  const filename = image.src.split('/').pop() || '';
-  const lightboxAltText = getImageAltText(filename, undefined, 'lightbox');
+  const filename = image.src.split("/").pop() || ""
+  const lightboxAltText = getImageAltText(filename, undefined, "lightbox")
 
   return (
     <div
@@ -60,8 +60,8 @@ export const Lightbox: React.FC = () => {
           variant="ghost"
           size="icon"
           onClick={(e) => {
-            e.stopPropagation();
-            closeLightbox();
+            e.stopPropagation()
+            closeLightbox()
           }}
           className="text-neutral-700 hover:text-black"
         >
@@ -98,7 +98,7 @@ export const Lightbox: React.FC = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Lightbox;
+export default Lightbox

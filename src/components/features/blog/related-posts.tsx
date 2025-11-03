@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import {BlogPost, generateBlogUrl} from '@/lib/blog'
+import Link from "next/link"
+import Image from "next/image"
+import { BlogPost, generateBlogUrl } from "@/lib/blog"
 
 interface RelatedPostsProps {
   posts: BlogPost[]
@@ -25,12 +25,15 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => {
           const blogUrl = generateBlogUrl(post)
-          const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC'
-          })
+          const formattedDate = new Date(post.date).toLocaleDateString(
+            "en-US",
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            }
+          )
 
           return (
             <Link

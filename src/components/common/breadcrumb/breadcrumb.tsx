@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import {ChevronRightIcon, HomeIcon} from '@heroicons/react/24/outline'
+import Link from "next/link"
+import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline"
 
 export interface BreadcrumbItem {
   label: string
@@ -13,7 +13,10 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items, currentPage }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-sm">
+    <nav
+      aria-label="Breadcrumb"
+      className="flex items-center space-x-2 text-sm"
+    >
       {/* Home */}
       <Link
         href="/"

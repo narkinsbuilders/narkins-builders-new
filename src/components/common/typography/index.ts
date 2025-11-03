@@ -1,1 +1,1 @@
-export { default as TypographySample } from './typography-sample';
+export { default as TypographySample } from "./typography-sample"

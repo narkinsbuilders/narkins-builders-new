@@ -28,21 +28,36 @@
       "id": "ftb-004",
       "question": "What government schemes are available for first-time buyers in Pakistan?",
       "answer": "Available schemes include Naya Pakistan Housing Scheme with subsidized loans, State Bank refinancing for discounted mortgage rates, tax benefits for first-time buyers, and special programs for young professionals aged 21-40.",
-      "tags": ["government-schemes", "subsidized-loans", "tax-benefits", "young-professionals"],
+      "tags": [
+        "government-schemes",
+        "subsidized-loans",
+        "tax-benefits",
+        "young-professionals"
+      ],
       "priority": 4
     },
     {
       "id": "ftb-005",
       "question": "How do I avoid common first-time buyer mistakes?",
       "answer": "Don't fall in love with the first property you see, avoid buying beyond your budget due to pressure, don't ignore location importance for cosmetic features, and always conduct thorough market research before making decisions.",
-      "tags": ["common-mistakes", "market-research", "budget-discipline", "location-importance"],
+      "tags": [
+        "common-mistakes",
+        "market-research",
+        "budget-discipline",
+        "location-importance"
+      ],
       "priority": 5
     },
     {
       "id": "ftb-006",
       "question": "What should I look for during property inspection?",
       "answer": "Check structural integrity, plumbing and electrical systems, water pressure, ventilation, natural lighting, noise levels, security features, parking availability, and proximity to essential services like hospitals and schools.",
-      "tags": ["property-inspection", "structural-integrity", "utilities", "location-factors"],
+      "tags": [
+        "property-inspection",
+        "structural-integrity",
+        "utilities",
+        "location-factors"
+      ],
       "priority": 6
     }
   ]

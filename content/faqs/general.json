@@ -11,7 +11,7 @@
       "priority": 1
     },
     {
-      "id": "general-002", 
+      "id": "general-002",
       "question": "What makes Narkin's Builders different from other developers?",
       "answer": "With over 30 years of experience since 1994, Narkin's Builders has a proven track record of delivering quality projects on time. We focus on luxury construction, customer satisfaction, and creating iconic living experiences with transparent business practices.",
       "tags": ["narkins-builders", "experience", "quality"],
@@ -26,7 +26,7 @@
     },
     {
       "id": "general-004",
-      "question": "Do you offer property management services?", 
+      "question": "Do you offer property management services?",
       "answer": "Yes, we provide comprehensive support including assistance with property documentation, legal procedures, and can recommend trusted property management services for rental properties and maintenance.",
       "tags": ["property-management", "services", "support"],
       "priority": 4
