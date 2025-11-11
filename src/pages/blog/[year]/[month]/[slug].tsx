@@ -58,7 +58,12 @@ export default function BlogPost({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt || "",
-    image: imageUrl,
+    image: {
+      "@type": "ImageObject",
+      url: imageUrl,
+      width: 1200,
+      height: 630,
+    },
     author: {
       "@type": "Organization",
       name: "Narkin's Builders and Developers",
@@ -70,6 +75,8 @@ export default function BlogPost({
       logo: {
         "@type": "ImageObject",
         url: "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
+        width: 600,
+        height: 60,
       },
     },
     datePublished: post.date,
@@ -87,6 +94,8 @@ export default function BlogPost({
       post.keywords ||
       "Bahria Town Karachi, luxury apartments, real estate investment",
     articleSection: "Real Estate",
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
   }
 
   const breadcrumbSchema = {
@@ -112,6 +121,52 @@ export default function BlogPost({
         item: canonicalUrl,
       },
     ],
+  }
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Narkin's Builders and Developers",
+    url: "https://www.narkinsbuilders.com",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.narkinsbuilders.com/media/common/logos/narkins-builders-logo.webp",
+      width: 600,
+      height: 60,
+    },
+    sameAs: [
+      "https://www.facebook.com/narkinsbuilders",
+      "https://www.instagram.com/narkinsbuilders",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+92-320-3243970",
+      contactType: "Sales",
+      areaServed: "PK",
+      availableLanguage: ["English", "Urdu"],
+    },
+  }
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: "https://www.narkinsbuilders.com",
+    name: "Narkin's Builders",
+    description:
+      "Premium apartments in Bahria Town Karachi with flexible payment plans",
+    publisher: {
+      "@type": "Organization",
+      name: "Narkin's Builders",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate:
+          "https://www.narkinsbuilders.com/blog?search={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
   }
 
   return (
@@ -175,6 +230,17 @@ export default function BlogPost({
         <meta property="article:tag" content="Bahria Town Karachi" />
         <meta property="article:tag" content="Real Estate Investment" />
         <meta property="article:tag" content="Property Development" />
+        {post.keywords &&
+          post.keywords
+            .split(",")
+            .slice(0, 10)
+            .map((keyword: string, index: number) => (
+              <meta
+                key={`keyword-${index}`}
+                property="article:tag"
+                content={keyword.trim()}
+              />
+            ))}
 
         <script
           type="application/ld+json"
@@ -183,6 +249,16 @@ export default function BlogPost({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </Head>
 
