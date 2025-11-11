@@ -16,16 +16,6 @@ import components from "@/components/features/blog/mdx-components"
 import remarkGfm from "remark-gfm"
 import { useRouter } from "next/router"
 import Head from "next/head"
-import {
-  apartmentSaleFAQs,
-  boutiqueResidencyFAQs,
-  firstTimeBuyerFAQs,
-  generalRealEstateFAQs,
-  hillCrestFAQs,
-  investmentGuideFAQs,
-  luxuryApartmentsFAQs,
-  twoBedroomFAQs,
-} from "@/data/faq-data"
 import SocialShare from "@/components/features/social-share/social-share"
 
 interface BlogPostProps {
@@ -57,17 +47,6 @@ export default function BlogPost({
 
   // Generate dynamic OG image URL
   const ogImageUrl = `https://www.narkinsbuilders.com/api/og/${slug}?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}&readTime=${encodeURIComponent(post.readTime)}`
-
-  const faqsMap = {
-    firstTimeBuyerFAQs,
-    investmentGuideFAQs,
-    twoBedroomFAQs,
-    luxuryApartmentsFAQs,
-    generalRealEstateFAQs,
-    hillCrestFAQs,
-    boutiqueResidencyFAQs,
-    apartmentSaleFAQs,
-  }
 
   // Calculate word count from content
   const wordCount = post.content
@@ -214,10 +193,7 @@ export default function BlogPost({
         relatedPosts={relatedPosts}
       >
         <div className="prose prose-lg max-w-none mx-auto">
-          <MDXRemote
-            {...mdxSource}
-            components={{ ...components, ...faqsMap }}
-          />
+          <MDXRemote {...mdxSource} components={components} />
         </div>
         <div className="mt-8">
           <SocialShare url={canonicalUrl} title={post.title} />
@@ -306,16 +282,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             remarkPlugins: [remarkGfm],
             development: process.env.NODE_ENV === "development",
           },
-          scope: {
-            firstTimeBuyerFAQs,
-            investmentGuideFAQs,
-            twoBedroomFAQs,
-            luxuryApartmentsFAQs,
-            generalRealEstateFAQs,
-            hillCrestFAQs,
-            boutiqueResidencyFAQs,
-            apartmentSaleFAQs,
-          },
         })
       }
     } else {
@@ -324,16 +290,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         mdxOptions: {
           remarkPlugins: [remarkGfm],
           development: process.env.NODE_ENV === "development",
-        },
-        scope: {
-          firstTimeBuyerFAQs,
-          investmentGuideFAQs,
-          twoBedroomFAQs,
-          luxuryApartmentsFAQs,
-          generalRealEstateFAQs,
-          hillCrestFAQs,
-          boutiqueResidencyFAQs,
-          apartmentSaleFAQs,
         },
       })
     }

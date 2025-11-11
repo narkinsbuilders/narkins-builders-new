@@ -1,31 +1,30 @@
 // tina/config.ts
-import { defineConfig } from "tinacms"
+import { defineConfig } from "tinacms";
 var config_default = defineConfig({
   branch: "main",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   ui: {
     title: "OtherDev CMS Solutions",
-    welcomeMessage:
-      "Welcome to OtherDev CMS Solutions!\n\nThis is your dashboard for editing and creating content. Select a collection on the left to begin.",
+    welcomeMessage: "Welcome to OtherDev CMS Solutions!\n\nThis is your dashboard for editing and creating content. Select a collection on the left to begin."
   },
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
   search: {
     tina: {
       indexerToken: process.env.TINA_SEARCH_TOKEN,
-      stopwordLanguages: ["eng"],
+      stopwordLanguages: ["eng"]
     },
     indexBatchSize: 100,
-    maxSearchIndexFieldLength: 100,
+    maxSearchIndexFieldLength: 100
   },
   media: {
     tina: {
       mediaRoot: "images",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
   schema: {
     collections: [
@@ -38,12 +37,9 @@ var config_default = defineConfig({
           filename: {
             readonly: true,
             slugify: (values) => {
-              return `${values?.title
-                ?.toLowerCase()
-                .replace(/\s+/g, "-")
-                .replace(/[^a-z0-9-]/g, "")}`
-            },
-          },
+              return `${values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
+            }
+          }
         },
         fields: [
           {
@@ -52,7 +48,7 @@ var config_default = defineConfig({
             label: "Title",
             isTitle: true,
             required: true,
-            searchable: true,
+            searchable: true
           },
           {
             type: "string",
@@ -62,35 +58,34 @@ var config_default = defineConfig({
             searchable: true,
             ui: {
               component: "textarea",
-              description:
-                "Brief description of the blog post for SEO and previews",
-            },
+              description: "Brief description of the blog post for SEO and previews"
+            }
           },
           {
             type: "datetime",
             name: "date",
             label: "Publication Date",
-            required: true,
+            required: true
           },
           {
             type: "image",
             name: "image",
             label: "Featured Image",
             required: true,
-            description: "Main image for the blog post",
+            description: "Main image for the blog post"
           },
           {
             type: "string",
             name: "readTime",
             label: "Read Time",
             required: true,
-            description: 'Estimated read time (e.g., "8 min read")',
+            description: 'Estimated read time (e.g., "8 min read")'
           },
           {
             type: "datetime",
             name: "lastModified",
             label: "Last Modified",
-            required: true,
+            required: true
           },
           {
             type: "string",
@@ -100,8 +95,8 @@ var config_default = defineConfig({
             options: [
               { value: "peak", label: "Peak Season" },
               { value: "off-peak", label: "Off-Peak Season" },
-              { value: "moderate", label: "Moderate Season" },
-            ],
+              { value: "moderate", label: "Moderate Season" }
+            ]
           },
           {
             type: "string",
@@ -111,14 +106,14 @@ var config_default = defineConfig({
             options: [
               { value: "high", label: "High Priority" },
               { value: "medium", label: "Medium Priority" },
-              { value: "low", label: "Low Priority" },
-            ],
+              { value: "low", label: "Low Priority" }
+            ]
           },
           {
             type: "boolean",
             name: "automatedUpdate",
             label: "Automated Update",
-            description: "Whether this post receives automated updates",
+            description: "Whether this post receives automated updates"
           },
           {
             type: "string",
@@ -127,14 +122,14 @@ var config_default = defineConfig({
             required: true,
             ui: {
               component: "textarea",
-              description: "Market timing description for this post",
-            },
+              description: "Market timing description for this post"
+            }
           },
           {
             type: "boolean",
             name: "dateFixed",
             label: "Date Fixed",
-            description: "Whether the publication date is fixed",
+            description: "Whether the publication date is fixed"
           },
           {
             type: "string",
@@ -144,8 +139,8 @@ var config_default = defineConfig({
             searchable: true,
             ui: {
               component: "textarea",
-              description: "Comma-separated keywords for SEO",
-            },
+              description: "Comma-separated keywords for SEO"
+            }
           },
           {
             type: "rich-text",
@@ -165,40 +160,40 @@ var config_default = defineConfig({
                     options: [
                       {
                         value: "firstTimeBuyerFAQs",
-                        label: "First Time Buyer FAQs",
+                        label: "First Time Buyer FAQs"
                       },
                       {
                         value: "investmentGuideFAQs",
-                        label: "Investment Guide FAQs",
+                        label: "Investment Guide FAQs"
                       },
                       { value: "twoBedroomFAQs", label: "Two Bedroom FAQs" },
                       {
                         value: "luxuryApartmentsFAQs",
-                        label: "Luxury Apartments FAQs",
+                        label: "Luxury Apartments FAQs"
                       },
                       {
                         value: "generalRealEstateFAQs",
-                        label: "General Real Estate FAQs",
+                        label: "General Real Estate FAQs"
                       },
                       {
                         value: "hillCrestFAQs",
-                        label: "Hill Crest Residency FAQs",
+                        label: "Hill Crest Residency FAQs"
                       },
                       {
                         value: "boutiqueResidencyFAQs",
-                        label: "Boutique Residency FAQs",
+                        label: "Boutique Residency FAQs"
                       },
                       {
                         value: "apartmentSaleFAQs",
-                        label: "Apartment Sale FAQs",
-                      },
-                    ],
+                        label: "Apartment Sale FAQs"
+                      }
+                    ]
                   },
                   {
                     name: "pageUrl",
                     label: "Page URL",
                     type: "string",
-                    description: "URL of the current page for FAQ context",
+                    description: "URL of the current page for FAQ context"
                   },
                   {
                     name: "contextType",
@@ -207,24 +202,23 @@ var config_default = defineConfig({
                     options: [
                       { value: "property", label: "Property" },
                       { value: "investment", label: "Investment" },
-                      { value: "general", label: "General" },
-                    ],
+                      { value: "general", label: "General" }
+                    ]
                   },
                   {
                     name: "title",
                     label: "Title",
                     type: "string",
-                    description:
-                      'Optional custom title (default: "Frequently Asked Questions")',
+                    description: 'Optional custom title (default: "Frequently Asked Questions")'
                   },
                   {
                     name: "description",
                     label: "Description",
                     type: "string",
                     ui: { component: "textarea" },
-                    description: "Optional description text below the title",
-                  },
-                ],
+                    description: "Optional description text below the title"
+                  }
+                ]
               },
               {
                 name: "CallToAction",
@@ -234,28 +228,28 @@ var config_default = defineConfig({
                     name: "title",
                     label: "Title",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "description",
                     label: "Description",
                     type: "string",
                     ui: { component: "textarea" },
-                    required: true,
+                    required: true
                   },
                   {
                     name: "buttonText",
                     label: "Button Text",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "buttonLink",
                     label: "Button Link",
                     type: "string",
-                    required: true,
-                  },
-                ],
+                    required: true
+                  }
+                ]
               },
               {
                 name: "PropertyCard",
@@ -265,45 +259,45 @@ var config_default = defineConfig({
                     name: "title",
                     label: "Title",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "price",
                     label: "Price",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "location",
                     label: "Location",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "bedrooms",
                     label: "Bedrooms",
                     type: "number",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "bathrooms",
                     label: "Bathrooms",
                     type: "number",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "area",
                     label: "Area",
                     type: "string",
-                    required: true,
+                    required: true
                   },
                   {
                     name: "image",
                     label: "Image",
                     type: "image",
-                    required: true,
-                  },
-                ],
+                    required: true
+                  }
+                ]
               },
               {
                 name: "MarketTable",
@@ -319,27 +313,27 @@ var config_default = defineConfig({
                         name: "area",
                         label: "Area",
                         type: "string",
-                        required: true,
+                        required: true
                       },
                       {
                         name: "avgPrice",
                         label: "Average Price",
                         type: "string",
-                        required: true,
+                        required: true
                       },
                       {
                         name: "growth",
                         label: "Growth",
                         type: "string",
-                        required: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                        required: true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         name: "faq",
@@ -350,12 +344,9 @@ var config_default = defineConfig({
           filename: {
             readonly: true,
             slugify: (values) => {
-              return `${values?.category
-                ?.toLowerCase()
-                .replace(/\s+/g, "-")
-                .replace(/[^a-z0-9-]/g, "")}`
-            },
-          },
+              return `${values?.category?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
+            }
+          }
         },
         fields: [
           {
@@ -364,7 +355,7 @@ var config_default = defineConfig({
             label: "Collection Title",
             isTitle: true,
             required: true,
-            searchable: true,
+            searchable: true
           },
           {
             type: "string",
@@ -374,8 +365,8 @@ var config_default = defineConfig({
             searchable: true,
             ui: {
               component: "textarea",
-              description: "Brief description of this FAQ collection",
-            },
+              description: "Brief description of this FAQ collection"
+            }
           },
           {
             type: "string",
@@ -388,15 +379,14 @@ var config_default = defineConfig({
               { value: "investment", label: "Investment" },
               { value: "first-time-buyer", label: "First Time Buyer" },
               { value: "documentation", label: "Legal & Documentation" },
-              { value: "financing", label: "Financing & Loans" },
-            ],
+              { value: "financing", label: "Financing & Loans" }
+            ]
           },
           {
             type: "string",
             name: "projectId",
             label: "Project ID",
-            description:
-              "For property-specific FAQs (e.g., hill-crest-residency)",
+            description: "For property-specific FAQs (e.g., hill-crest-residency)"
           },
           {
             type: "object",
@@ -409,7 +399,7 @@ var config_default = defineConfig({
                 name: "id",
                 label: "FAQ ID",
                 required: true,
-                description: "Unique identifier (e.g., hcr-001)",
+                description: "Unique identifier (e.g., hcr-001)"
               },
               {
                 type: "string",
@@ -418,15 +408,15 @@ var config_default = defineConfig({
                 required: true,
                 searchable: true,
                 ui: {
-                  component: "textarea",
-                },
+                  component: "textarea"
+                }
               },
               {
                 type: "rich-text",
                 name: "answer",
                 label: "Answer",
                 required: true,
-                searchable: true,
+                searchable: true
               },
               {
                 type: "string",
@@ -434,20 +424,22 @@ var config_default = defineConfig({
                 label: "Tags",
                 list: true,
                 searchable: true,
-                description: "Tags for filtering and organization",
+                description: "Tags for filtering and organization"
               },
               {
                 type: "number",
                 name: "priority",
                 label: "Priority",
                 required: true,
-                description: "Display order (1 = highest priority)",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-})
-export { config_default as default }
+                description: "Display order (1 = highest priority)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+});
+export {
+  config_default as default
+};
