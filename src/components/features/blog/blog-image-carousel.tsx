@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Carousel from "@/components/features/carousel-op/carousel-op"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 
 interface BlogImageCarouselProps {
   images: Array<{
@@ -21,6 +22,7 @@ export default function BlogImageCarousel({
 }: BlogImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const isMobile = useMediaQuery("(max-width: 640px)")
 
   React.useEffect(() => {
     setMounted(true)
@@ -33,12 +35,15 @@ export default function BlogImageCarousel({
   }))
   const currentImage = images[currentIndex]
 
+  // Use 500px for mobile, provided height for desktop
+  const responsiveHeight = isMobile ? "500px" : height
+
   if (!mounted) {
     return (
       <div className="my-8 sm:my-12">
         <div
           className="w-full rounded-xl overflow-hidden shadow-lg bg-gray-100"
-          style={{ height }}
+          style={{ height: responsiveHeight }}
         >
           <div className="flex items-center justify-center h-full">
             <span className="text-gray-400">Loading carousel...</span>
@@ -62,7 +67,7 @@ export default function BlogImageCarousel({
         className="w-full rounded-xl overflow-hidden shadow-lg"
         displayMode="default"
         dataSource={carouselData}
-        height={height}
+        height={responsiveHeight}
         onChange={setCurrentIndex}
       />
       <div className="mt-4 px-2 text-center">
