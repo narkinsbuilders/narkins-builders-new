@@ -146,12 +146,12 @@ const htmlComponents = {
 
   // Links and emphasis
   a: (props: any) => (
-    <a className="text-blue-600 hover:text-blue-800 " {...props} />
+    <a className="text-blue-600 hover:text-blue-800" {...props} />
   ),
   strong: (props: any) => (
     <span className="font-bold text-gray-900" {...props} />
   ),
-  em: (props: any) => <em className="italic text-gray-700" {...props} />,
+  em: (props: any) => <em className="italic" {...props} />,
 
   // Code and quotes
   code: (props: any) => <code {...props} />,

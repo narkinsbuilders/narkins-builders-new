@@ -1,8 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Carousel from "@/components/features/carousel-op/carousel-op"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
 
 interface BlogImageCarouselProps {
   images: Array<{
@@ -11,22 +10,16 @@ interface BlogImageCarouselProps {
     title: string
     description: string
   }>
-  height?: string
+  heightClass?: string
   autoPlay?: boolean
 }
 
 export default function BlogImageCarousel({
   images,
-  height = "500px",
+  heightClass = "h-[400px] sm:h-[520px] md:h-[700px] lg:h-[800px]",
   autoPlay = false,
 }: BlogImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [mounted, setMounted] = useState(false)
-  const isMobile = useMediaQuery("(max-width: 640px)")
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const carouselData = images.map((img) => ({
     image: img.src,
@@ -35,26 +28,8 @@ export default function BlogImageCarousel({
   }))
   const currentImage = images[currentIndex]
 
-  // Use 500px for mobile, provided height for desktop
-  const responsiveHeight = isMobile ? "500px" : height
-
-  if (!mounted) {
-    return (
-      <div className="my-8 sm:my-12">
-        <div
-          className="w-full rounded-xl overflow-hidden shadow-lg bg-gray-100"
-          style={{ height: responsiveHeight }}
-        >
-          <div className="flex items-center justify-center h-full">
-            <span className="text-gray-400">Loading carousel...</span>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="my-8 sm:my-12">
+    <div className="my-8 sm:my-12 px-2 sm:px-4 md:px-0">
       <Carousel
         id="blog-carousel"
         swipe
@@ -67,7 +42,7 @@ export default function BlogImageCarousel({
         className="w-full rounded-xl overflow-hidden shadow-lg"
         displayMode="default"
         dataSource={carouselData}
-        height={responsiveHeight}
+        heightClass={heightClass}
         onChange={setCurrentIndex}
       />
       <div className="mt-4 px-2 text-center">

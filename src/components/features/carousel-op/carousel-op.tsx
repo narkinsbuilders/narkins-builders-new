@@ -8,7 +8,7 @@ interface CarouselOpProps {
   autoPlayInterval?: number
   hideArrows?: boolean
   hideIndicators?: boolean
-  height?: string
+  heightClass?: string
   borderRadius?: boolean
   swipe?: boolean
   slideShow?: boolean
@@ -29,7 +29,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
   autoPlayInterval = 3000,
   hideArrows = false,
   hideIndicators = false,
-  height = "500px",
+  heightClass = "h-[400px] sm:h-[520px] md:h-[700px] lg:h-[800px]",
   borderRadius = false,
   onChange,
   hideCaption = false,
@@ -97,8 +97,7 @@ const CarouselOp: React.FC<CarouselOpProps> = ({
 
   return (
     <div
-      className={`relative overflow-hidden ${borderRadius ? "rounded-xl" : ""}`}
-      style={{ height }}
+      className={`relative overflow-hidden ${heightClass} ${borderRadius ? "rounded-xl" : ""}`}
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(autoPlay)}
     >
