@@ -267,6 +267,8 @@ export default function BlogPost({
         previousPost={previousPost}
         nextPost={nextPost}
         relatedPosts={relatedPosts}
+        hideImage={post.hideImage}
+        hideExcerpt={post.hideExcerpt}
       >
         <div className="prose prose-lg max-w-none mx-auto">
           <MDXRemote {...mdxSource} components={components} />

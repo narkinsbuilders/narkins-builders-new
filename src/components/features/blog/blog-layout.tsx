@@ -16,6 +16,8 @@ interface BlogLayoutProps {
   previousPost?: { slug: string; title: string; excerpt?: string } | null
   nextPost?: { slug: string; title: string; excerpt?: string } | null
   relatedPosts?: BlogPost[]
+  hideImage?: boolean
+  hideExcerpt?: boolean
 }
 
 export default function BlogLayout({
@@ -24,6 +26,8 @@ export default function BlogLayout({
   previousPost,
   nextPost,
   relatedPosts,
+  hideImage = false,
+  hideExcerpt = false,
 }: BlogLayoutProps) {
   return (
     <>
@@ -100,7 +104,7 @@ export default function BlogLayout({
               </h1>
 
               {/* Excerpt */}
-              {post.excerpt && (
+              {!hideExcerpt && post.excerpt && (
                 <p className="text-lg sm:text-xl leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto">
                   {post.excerpt}
                 </p>
@@ -110,17 +114,19 @@ export default function BlogLayout({
         </div>
 
         {/* Featured Image */}
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">
-          <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-            />
+        {!hideImage && (
+          <div className="mx-auto max-w-5xl px-6 lg:px-8 mb-16">
+            <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Content */}
         <div className="mx-auto max-w-5xl px-6 lg:px-8 pb-16">
