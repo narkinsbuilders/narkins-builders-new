@@ -10,6 +10,8 @@ export interface BlogPost {
   lastModified?: string
   keywords?: string
   author?: string
+  ogTitle?: string
+  customAuthor?: string
   hideImage?: boolean
   hideExcerpt?: boolean
 }

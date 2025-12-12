@@ -48,6 +48,12 @@ export default function BlogPost({
   // Generate dynamic OG image URL
   const ogImageUrl = `https://www.narkinsbuilders.com/api/og/${slug}?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}&readTime=${encodeURIComponent(post.readTime)}`
 
+  // Use custom OG title if provided, otherwise use regular title
+  const ogTitle = post.ogTitle || post.title
+
+  // Use custom author if provided, otherwise use default
+  const authorName = post.customAuthor || "Narkin's Builders and Developers"
+
   // Calculate word count from content
   const wordCount = post.content
     ? post.content.split(/\s+/).filter(Boolean).length
@@ -65,8 +71,8 @@ export default function BlogPost({
       height: 630,
     },
     author: {
-      "@type": "Organization",
-      name: "Narkin's Builders and Developers",
+      "@type": post.customAuthor ? "Person" : "Organization",
+      name: authorName,
       url: "https://www.narkinsbuilders.com",
     },
     publisher: {
@@ -182,7 +188,7 @@ export default function BlogPost({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="English" />
-        <meta name="author" content="Narkin's Builders and Developers" />
+        <meta name="author" content={authorName} />
         <meta name="copyright" content="Narkin's Builders and Developers" />
         <meta name="generator" content="Next.js" />
         <meta
@@ -202,7 +208,7 @@ export default function BlogPost({
           href="https://www.narkinsbuilders.com/rss.xml"
         />
 
-        <meta property="og:title" content={post.title} />
+        <meta property="og:title" content={ogTitle} />
         <meta property="og:description" content={post.excerpt || ""} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
@@ -213,7 +219,7 @@ export default function BlogPost({
         <meta property="og:site_name" content="Narkin's Builders" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:title" content={ogTitle} />
         <meta name="twitter:description" content={post.excerpt || ""} />
         <meta name="twitter:image" content={ogImageUrl} />
 
@@ -224,7 +230,7 @@ export default function BlogPost({
         />
         <meta
           property="article:author"
-          content="Narkin's Builders and Developers"
+          content={authorName}
         />
         <meta property="article:section" content="Real Estate" />
         <meta property="article:tag" content="Bahria Town Karachi" />
