@@ -47,6 +47,7 @@ CLAUDE.md
 .claude/
 claude.md
 gemini.md
+.qwen/
 BLOG_WRITING_GUIDE.md
 BLOG_BUILD_OPTIMIZATION_ANALYSIS.md
 
